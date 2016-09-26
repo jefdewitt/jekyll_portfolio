@@ -111,7 +111,13 @@
 .social-media-list {
     list-style: none;
     margin-left: 0;
-    display: inline-block;
+    text-align: right;
+}
+
+.social-media-list {
+    li {
+        float: right;
+    }
 }
 
 .footer-col-wrapper {
@@ -133,8 +139,9 @@
 }
 
 .footer-col-2 {
-    width: -webkit-calc(20% - (#{$spacing-unit} / 2));
-    width:         calc(20% - (#{$spacing-unit} / 2));
+    // width: -webkit-calc(20% - (#{$spacing-unit} / 2));
+    // width:         calc(20% - (#{$spacing-unit} / 2));
+    width: 95%;
 }
 
 .footer-col-3 {
