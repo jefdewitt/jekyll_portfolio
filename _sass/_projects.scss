@@ -1,0 +1,22 @@
+.projects__container {
+    position: relative;
+}
+
+.projects__inner {
+    //desktop layout
+    width: 100%;
+    margin-right: 0;
+    text-align: right;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.project__description {
+    //desktop layout
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 10em;
+    width: 10em;
+    background: #ccc;
+}

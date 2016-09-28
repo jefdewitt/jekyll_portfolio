@@ -1,0 +1,24 @@
+.home {
+    .page-content {
+        position: relative;
+    }
+}
+
+.menu {
+    a {
+        &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 10em;
+            height: 20em;
+            background: #bbb;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        &:hover:after {
+            opacity: 1;
+        }
+    }
+}

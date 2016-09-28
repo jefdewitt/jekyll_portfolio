@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body class="connect">
+
+    {% include header.html %}
+
+    <div class="page-content">
+      <div class="wrapper">
+        {{ content }}
+        <form action="" class="form__container">
+            <form action="" class="form">
+                <input type="text" name="name" placeholder="name"></input><br>
+                <input type="text" name="email" placeholder="email"></input><br>
+                <input type="text"></input><br>
+                <input type="textarea"></input><br>
+                <input type="submit" value="send"></input>
+            </form>
+        </form>
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>
