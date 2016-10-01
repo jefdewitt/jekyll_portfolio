@@ -14,7 +14,7 @@ $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       #111;
+$text-color:       #111111;
 $background-color: #fdfdfd;
 $brand-color:      #2a7ae2;
 
@@ -23,15 +23,17 @@ $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
 // Width of the content area
-$content-width:    800px;
+$small-content-width:    800px;
+$medium-content-width:   1000px;
 
 $on-palm:          600px;
 $on-laptop:        800px;
+$on-desktop:       1200px;
 
 
 
 // Use media queries like this:
-// @include media-query($on-palm) {
+// @include media($on-palm, 'max') {
 //     .wrapper {
 //         padding-right: $spacing-unit / 2;
 //         padding-left: $spacing-unit / 2;
@@ -43,6 +45,10 @@ $on-laptop:        800px;
     }
 }
 
+@mixin media( $bp, $determinate: min, $direction: width ) {
+   @media screen and ( #{$determinate}-#{$direction}: $bp ) { @content; }
+}
+
 
 
 // Import partials from `sass_dir` (defaults to `_sass`)
@@ -51,5 +57,6 @@ $on-laptop:        800px;
         "layout",
         "syntax-highlighting",
         "projects",
-        "home"
+        "home",
+        "posts"
 ;

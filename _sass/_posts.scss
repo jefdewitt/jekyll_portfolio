@@ -1,0 +1,21 @@
+/**
+ * Blog posts
+ */
+ .wrapper {
+     .post {
+         @include media($on-laptop) {
+             width: 66%;
+             display: inline-block;
+         }
+     }
+     .sidebar {
+          @include media($on-laptop) {
+             width: 33%;
+             display: inline-block;
+             vertical-align: top;
+         }
+         h2 {
+             margin-bottom: 2rem;
+         }
+     }
+ }

@@ -19,3 +19,8 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
+
+# Plugins
+# gems: [jekyll-paginate]
+# This will require each of these gems automatically.
+# paginate: 5
