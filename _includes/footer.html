@@ -16,13 +16,44 @@
         <ul class="social-media-list">
           {% if site.github_username %}
           <li>
-            {% include icon-github.html username=site.github_username %}
+            <!-- {% include icon-github.html username=site.github_username %} -->
+            {% include icon-github.html %}
           </li>
           {% endif %}
 
           {% if site.twitter_username %}
           <li>
-            {% include icon-twitter.html username=site.twitter_username %}
+            {% include icon-twitter.html %}
+          </li>
+          {% endif %}
+
+          {% if site.instagram_username %}
+          <li>
+            {% include icon-instagram.html %}
+          </li>
+          {% endif %}
+
+          {% if site.facebook_username %}
+          <li>
+            {% include icon-facebook.html %}
+          </li>
+          {% endif %}
+
+          {% if site.codepen_username %}
+          <li>
+            {% include icon-codepen.html %}
+          </li>
+          {% endif %}
+
+          {% if site.stackoverflow_username %}
+          <li>
+            {% include icon-stackoverflow.html %}
+          </li>
+          {% endif %}
+
+          {% if site.email_username %}
+          <li>
+            {% include icon-email.html %}
           </li>
           {% endif %}
         </ul>

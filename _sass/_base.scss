@@ -202,12 +202,35 @@ pre {
 
     > svg {
         display: inline-block;
-        width: 16px;
-        height: 16px;
+        width: 32px;
+        height: 32px;
         vertical-align: middle;
 
-        path {
+        path,
+        circle {
             fill: $grey-color;
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+
+.social-media-list {
+    li {
+        @include media($on-palm, 'max') {
+            width: 14.2%;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+    a:hover svg {
+        @include media($on-palm) {
+            background: $grey-color;
+            border-radius: 50%;
+            path,
+            circle {
+                fill: $off-white;
+            }
         }
     }
 }
