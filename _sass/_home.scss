@@ -8,31 +8,39 @@
 }
 
 .menu {
-    a {
-        @include media($on-palm) {
-            &:after {
-                content: '';
-                position: absolute;
-                right: 25%;
-                bottom: 0;
-                width: 10em;
-                height: 20em;
-                background: #bbb;
-                opacity: 0;
-                transition: all 0.5s ease;
+    li {
+        a {
+            @include media($on-palm) {
+                &:after {
+                    content: '';
+                    position: absolute;
+                    right: 5%;
+                    bottom: 0;
+                    width: 50%;
+                    height: 100%;
+                    transform: rotate(90deg);
+                    opacity: 0;
+                    transition: all 0.5s ease;
+                }
+                &:hover:after {
+                    opacity: 1;
+                }
             }
-            &:hover:after {
-                opacity: 1;
-            }
-            &:first-of-type:after {
-                content: url('');
-            }
-            &:nth-of-type(2):after {
-                content: url('');
-            }
-            &:last-of-type:after {
-                content: url('');
-            }
+        }
+        &:first-of-type a:after {
+            background: url('/images/IMG_1170.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+        &:nth-of-type(2) a:after {
+            background: url('/images/IMG_1176.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+        &:last-of-type a:after {
+            background: url('/images/IMG_1181.jpg');
+            background-position: center;
+            background-size: cover;
         }
     }
 }
