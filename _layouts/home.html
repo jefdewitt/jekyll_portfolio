@@ -3,23 +3,27 @@
 
   {% include head.html %}
 
-  <body class="home">
+  <body class="home" style="background: url('/images/jef-in-suit-b&w-one.jpg'); background-size: cover;">
 
     <!-- {% include header.html %} -->
 
     <div class="page-content">
       <div class="wrapper">
-          <h1 class="name">Jef DeWitt</h1>
-        {{ content }}
-        <div class="menu__container">
-            <ul class="menu">
-                <li class="menu__item1"><a href="/projects">Projects</a></li>
-                <li class="menu__item2"><a href="/blog">Blog</a></li>
-                <li class="menu__item3"><a href="/connect">Connect</a></li>
-            </ul>
+        <div class="site-intro side--left">
+            <h1 class="name">Jef DeWitt</h1>
+            {{ content }}
+            <div class="menu__container">
+                <ul class="menu">
+                    <li class="menu__item1"><a href="/projects">Projects</a></li>
+                    <li class="menu__item2"><a href="/blog">Blog</a></li>
+                    <li class="menu__item3"><a href="/connect">Connect</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="image__container side--right">
+          <!-- <img src="{{ site.baseurl }}/images/jef-in-suit-one.png" alt="Image of Jef in a smart gray suit."> -->
         </div>
       </div>
-    </div>
 
     {% include footer.html %}
 
