@@ -1,103 +1,100 @@
-.home {
-    // background: url('/images/IMG_1181.jpg') no-repeat;
-    // background-size: cover;
-    .page-content > .wrapper {
-        position: relative;
-        @include media($on-palm) {
-            padding-top: 10%;
-            padding-bottom: 10%;
-            // &:after {
-            //     content: '';
-            //     position: absolute;
-            //     background: url('/images/IMG_1170.jpg') no-repeat;
-            //     background-position: center right;
-            //     background-size: contain;
-            //     right: 5%;
-            //     bottom: 0;
-            //     width: 50%;
-            //     height: 100%;
-            //     transform: rotate(90deg);
-            //     display: inline-block;
-            // }
+.homepage {
+    .page-content {
+        @include media($mobile, 'max') {
+            padding-top: 20em;
+        }
+
+        > .wrapper {
+            position: relative;
+
+            @include media($mobile) {
+                padding-top: 10%;
+                padding-bottom: 10%;
+            }
         }
     }
 }
 
+.homepage[data-group="one"]{
+    background: url('/images/jef-in-suit-b&w-one.jpg') no-repeat;
+    background-size: cover;
+    background-position: right 0% bottom 90%;
+    transition: all 0.7s ease;
+}
+
+.homepage[data-group="two"]{
+    background: url('/images/jef-in-suit-b&w-two.jpg') no-repeat;
+    background-size: 133%;
+    background-position: right 100% bottom 85%;
+    transition: all 0.7s ease;
+}
+
+.homepage[data-group="three"]{
+    background: url('/images/jef-in-suit-b&w-three.jpg') no-repeat;
+    background-size: 133%;
+    background-position: right 75% bottom 85%;
+    transition: all 0.7s ease;
+}
+
+.homepage[data-group="four"]{
+    background: url('/images/jef-in-suit-b&w-four.jpg') no-repeat;
+    background-size: 133%;
+    background-position: right 67% bottom 65%;
+    transition: all 0.7s ease;
+}
+
 .side--left {
-    @include media($on-palm) {
+    @include media($mobile) {
         padding: 10%;
     }
 }
 
-// .side--right {
-//     @include media($on-palm) {
-//         display: table-cell;
-//         width: 60%;
-//         position: relative;
-//         overflow: hidden;
-//     }
-    // &:after {
-    //     content: '';
-    //     position: absolute;
-    //     bottom: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 30%;
-    //     background: linear-gradient(to top, rgba(256,256,256,1) 50%,rgba(256,256,256,0) 100%);
-    // }
-    // img {
-    //     transform: rotate(-25deg);
-    //     filter: grayscale(30%);
-    //     -webkit-filter: grayscale(30%);
-    // }
-// }
-
-.menu {
-    li {
-        a {
-            @include media($on-palm) {
-                // &:after {
-                //     content: '';
-                //     position: absolute;
-                //     right: 5%;
-                //     bottom: 0;
-                //     width: 50%;
-                //     height: 100%;
-                //     transform: rotate(90deg);
-                //     opacity: 0;
-                //     transition: all 0.5s ease;
-                // }
-                // &:hover:after {
-                //     opacity: 1;
-                // }
-            }
-        }
-        &:first-of-type a:after {
-            // background: url('/images/IMG_1171.jpg') no-repeat;
-            // background-position: center;
-            // background-size: contain;
-        }
-        &:nth-of-type(2) a:after {
-            // background: url('/images/IMG_1176.jpg') no-repeat;
-            // background-position: center;
-            // background-size: contain;
-        }
-        &:last-of-type a:after {
-            // background: url('/images/IMG_1181.jpg') no-repeat;
-            // background-position: center;
-            // background-size: contain;
-        }
+.homepage .site-footer svg {
+    path,
+    circle {
+        fill: $text-color;
     }
 }
 
-// a:before {
-    // content: '';
-    // position: absolute;
-    // bottom: 0;
-    // right: 5%;
-    // width: 50%;
-    // background: linear-gradient(to left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
-    // z-index: 100;
-    // height: 100%;
-    // transform: rotate(90deg);
-// }
+.homepage {
+
+    h1 {
+        color: $text-color;
+        text-shadow: 1px 1px 1px $black, 1px 1px 2em $black;
+        font-size: 6rem;
+        line-height: 1;
+    }
+
+    p {
+        color: $text-color;
+        text-shadow: 1px 1px 1px $black, 1px 1px 2em $black;
+        font-size: 3rem;
+        font-family: $yellowtail;
+    }
+}
+
+.menu {
+
+    list-style: none;
+    margin: 0;
+
+    li {
+        @include media ($mobile) {
+            display: inline-block;
+            margin-right: 2em;
+        }
+
+        a {
+            color: $text-color;
+            text-shadow: 1px 1px 1px $black, 1px 1px 2em $black;
+            font-size: 2.5rem;
+            text-decoration: none;
+            font-family: $raleway;
+            font-weight: 400;
+
+            &:hover {
+                color: $lime-green;
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<!--In the Liquid templating language you assign variables via the method shown below.
+    Notice the 'page.url' and 'post.url' tags used to get the respective URLs.
+    {% assign currentPage = page.url %}
+    {% assign currentPost = post.url %}
+You write your variables to the document by wrapping them inside double curly braces
+    <p>{{ current }}</p>
+    <p>{{ currentPost }}</p> -->
+
+<aside class="sidebar">
+    <h2>Recent Posts</h2>
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li>
+          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+          <h3>
+            <a class="post-link" {% if page.url == post.url %}id='current'{% endif %} href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h3>
+        </li>
+      {% endfor %}
+    </ul>
+</aside>

@@ -1,0 +1,35 @@
+/**
+ * Forms (connect page)
+ */
+ .form__block {
+     margin-bottom: 1em;
+
+     input,
+     textarea {
+         width: 95%;
+         height: 2em;
+         color: $text-color;
+         font-size: 1rem;
+         margin: 1em auto;
+         transition: all 0.3s ease;
+         border: none;
+         border-bottom: 1px solid $text-color;
+         background: $grey-color;
+
+         &:focus {
+             outline: none;
+             padding: 0 .5em;
+             border-left: 1px solid $text-color;
+         }
+     }
+
+     textarea {
+         &:focus {
+             height: 10em;
+         }
+     }
+ }
+
+ input.button {
+     @extend .button__white--color;
+ }

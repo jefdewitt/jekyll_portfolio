@@ -1,0 +1,33 @@
+/**
+ * Connect (contact) page
+ */
+.connect {
+
+    .content__wrapper {
+        @include media($mobile) {
+            display: inline-block;
+            width: 49%;
+            vertical-align: top;
+
+            .social-media-list {
+                float: left;
+
+                li {
+                    float: left;
+                }
+            }
+        }
+    }
+
+    .icon--email {
+        display: none;
+    }
+}
+
+.form__container {
+    @include media($mobile) {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+    }
+}

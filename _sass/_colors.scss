@@ -1,0 +1,28 @@
+/**
+ * Color Variables
+ */
+
+//$text-color:       #111111;
+$background-color: #fdfdfd;
+$brand-color:      #2a7ae2;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+$white:            #ffffff;
+$text-color:        $background-color;
+
+$black          : #000000;
+$red            : #ff0000;
+
+$green          : #00ff00;
+$lime-green     : #B2FFB2;
+
+$blue           : #0000ff;
+$yellow         : #ffff00;
+$orange         : #ff6600;
+$purple         : #5200a3;
+
+$text-color     : $text-color;
+$text-shadow    : #111111;

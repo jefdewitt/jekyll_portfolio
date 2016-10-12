@@ -1,6 +1,11 @@
 /**
  * Reset some basic elements
  */
+* {
+    box-sizing: border-box;
+}
+
+
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -82,20 +87,49 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: $base-font-weight;
+    // font-weight: $base-font-weight;
+    font-weight: $bold;
+    font-family: $raleway;
 }
 
+/**
+ * Base type elements
+ */
+p, li, a, label, input {
+    font-weight: $base-font-weight;
+    font-family: $raleway;
+    color: $text-color;
 
+    @include media($tablet) {
+        font-size: 1.5rem;
+    }
+}
+
+em {
+    color: $lime-green;
+    font-family: $raleway;
+    font-weight: 700;
+    font-style: normal;
+    text-shadow: 1px 1px 1px $text-shadow, 1px 1px 2em $text-shadow;
+}
+
+label {
+    display: block;
+}
+
+.cursive {
+    font-family: $yellowtail;
+}
 
 /**
  * Links
  */
 a {
-    color: $brand-color;
+    color: $text-color;
     text-decoration: none;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: lighten($text-color, 25%);
     }
 
     &:hover {
@@ -164,14 +198,14 @@ pre {
     padding-left: $spacing-unit;
     @extend %clearfix;
 
-    @include media($on-laptop, 'max') {
+    @include media($tablet, 'max') {
         max-width: -webkit-calc(#{$small-content-width} - (#{$spacing-unit}));
         max-width:         calc(#{$small-content-width} - (#{$spacing-unit}));
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
     }
 
-    @include media($on-desktop) {
+    @include media($desktop) {
         max-width: -webkit-calc(#{$medium-content-width} - (#{$spacing-unit}));
         max-width:         calc(#{$medium-content-width} - (#{$spacing-unit}));
         padding-right: $spacing-unit / 2;
@@ -208,29 +242,8 @@ pre {
 
         path,
         circle {
-            fill: $grey-color;
+            fill: $text-color;
             transition: all 0.3s ease;
-        }
-    }
-}
-
-
-.social-media-list {
-    li {
-        @include media($on-palm, 'max') {
-            width: 14.2%;
-            display: inline-block;
-            text-align: center;
-        }
-    }
-    a:hover svg {
-        @include media($on-palm) {
-            background: $grey-color;
-            border-radius: 50%;
-            path,
-            circle {
-                fill: $off-white;
-            }
         }
     }
 }

@@ -1,0 +1,31 @@
+/**
+ * Sidebar styles
+ */
+
+.sidebar {
+
+    @include media($mobile) {
+        width: 33%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    h2 {
+        position: relative;
+        margin-bottom: 2rem;
+
+        @include media($mobile) {
+            font-size: 1.75rem;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            top: 133%;
+            left: 50%;
+            transform: translatex(-50%);
+            border-bottom: 1px solid $text-color;
+        }
+    }
+}

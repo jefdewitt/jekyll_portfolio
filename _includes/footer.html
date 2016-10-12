@@ -1,103 +1,87 @@
 <footer class="site-footer">
 
-  <div class="wrapper">
+    <div class="site-footer__inner">
 
-    <!-- <h2 class="footer-heading">{{ site.title }}</h2> -->
+      <div class="wrapper">
 
-    <div class="footer-col-wrapper">
-      <!-- <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-        </ul>
-      </div> -->
+        <!-- <h2 class="footer-heading">{{ site.title }}</h2> -->
 
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          {% if site.linkedin_username %}
-          <li>
-              <!-- {% include icon-linkedin.html username=site.linkedin_username %} -->
-            {% include icon-linkedin.html %}
-          </li>
-          {% endif %}
+        <div class="footer-col-wrapper">
+          <!-- <div class="footer-col footer-col-1">
+            <ul class="contact-list">
+              <li>{{ site.title }}</li>
+              <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            </ul>
+          </div> -->
 
-          {% if site.github_username %}
-          <li>
-            {% include icon-github.html %}
-          </li>
-          {% endif %}
+          <div class="footer-col footer-col-2">
+             {% include social-media-links.html %}
+          </div>
 
-          {% if site.twitter_username %}
-          <li>
-            {% include icon-twitter.html %}
-          </li>
-          {% endif %}
+          <!-- <div class="footer-col footer-col-3">
+            <p>{{ site.description }}</p>
+          </div> -->
+        </div>
 
-          {% if site.instagram_username %}
-          <li>
-            {% include icon-instagram.html %}
-          </li>
-          {% endif %}
-
-          {% if site.facebook_username %}
-          <li>
-            {% include icon-facebook.html %}
-          </li>
-          {% endif %}
-
-          {% if site.codepen_username %}
-          <li>
-            {% include icon-codepen.html %}
-          </li>
-          {% endif %}
-
-          {% if site.stackoverflow_username %}
-          <li>
-            {% include icon-stackoverflow.html %}
-          </li>
-          {% endif %}
-
-          {% if site.email_username %}
-          <li>
-            {% include icon-email.html %}
-          </li>
-          {% endif %}
-        </ul>
       </div>
-
-      <!-- <div class="footer-col footer-col-3">
-        <p>{{ site.description }}</p>
-      </div> -->
-    </div>
 
   </div>
 
 </footer>
 
 <script>
-    // Capture the menu items
-    const $menuItemOne = $('.menu li:first-of-type');
-    const $menuItemTwo = $('.menu li:nth-of-type(2)');
-    const $menuItemThree = $('.menu li:last-of-type');
 
-    // On hover, change the src text of the .wrapper background image, maybe
-    $menuItemOne.hover(
-        function() {
-            console.log('first!!!');
-        }
-    );
+    // Capture the menu items from the homepage
+    const $menu = $('.menu');
+    const $menuItemOne = $('.menu li:first-of-type a');
+    const $menuItemTwo = $('.menu li:nth-of-type(2) a');
+    const $menuItemThree = $('.menu li:last-of-type a');
 
-    $menuItemTwo.hover(
-        function() {
-            console.log('second!!!');
-        }
-    );
+    // Capture the homepage background image
+    var $bgImg = $('.homepage');
 
-    $menuItemThree.hover(
-        function() {
-            console.log('third!!!');
-        }
-    );
+    // Store navigation elements
+    const $nav = $('.site-nav');
+    const $trigger = $('.trigger');
+    const $menuIcon = $('.site-nav .menu-icon');
 
+    var $window = $(window).width();
+
+    $menuIcon.on('click', function() {
+        console.log('hola chulo');
+        $menuIcon.toggleClass('clicked', '');
+        $trigger.toggleClass('open', 'closed');
+    });
+
+    if ($window > 767) {
+
+        // $nav.on('click', function() {
+        //     console.log('2');
+        //     $trigger.toggleClass('open', 'closed');
+        // });
+
+
+        $menu.on('mouseleave', function() {
+            //$bgImg.fadeIn("fast", function() {
+                $bgImg.attr( 'data-group', 'one' );
+            //});
+        });
+
+        $menuItemOne.on('mouseenter', function() {
+            console.log('regales especial');
+            //$bgImg.fadeIn("slow", function() {
+                $bgImg.attr( 'data-group', 'two' );
+            //});
+        });
+
+        $menuItemTwo.on('mouseenter', function() {
+            $bgImg.attr( 'data-group', 'three' );
+        });
+
+        $menuItemThree.on('mouseenter', function() {
+            $bgImg.attr( 'data-group', 'four' );
+        });
+
+    }
 
 </script>

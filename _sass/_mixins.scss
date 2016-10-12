@@ -1,0 +1,44 @@
+/**
+ * Mixins
+ */
+
+
+ /* Example:
+    @include media($onpalm, 'max') {
+        mobile device styles here
+    }
+*/
+
+ @mixin media( $bp, $determinate: min, $direction: width ) {
+    @media screen and ( #{$determinate}-#{$direction}: $bp ) { @content; }
+ }
+
+ @mixin button($color) {
+     font-size: 1rem;
+     padding: .5em 2em;
+     background: none;
+     color: $color;
+     border: 2px solid $color;
+     transition: all 0.3s ease;
+
+     &:hover {
+         background: $color;
+         color: $text-color;
+     }
+
+     @include media($mobile) {
+         font-size: 1.5rem;
+     }
+ }
+
+ .button__branding--color {
+     @include button($lime-green);
+ }
+
+ .button__white--color {
+     @include button($text-color);
+
+     &:hover {
+         color: $text-color;
+     }
+ }

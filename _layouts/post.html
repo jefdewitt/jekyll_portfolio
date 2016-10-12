@@ -14,20 +14,7 @@ layout: default
 
 </article>
 
-<aside class="sidebar">
-    <h2>Recent Posts</h2>
-    <ul class="post-list">
-      {% for post in site.posts %}
-        <li>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-          <h3>
-            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-          </h3>
-        </li>
-      {% endfor %}
-    </ul>
-</aside>
+ {% include sidebar.html %}
 
 <div class="PageNavigation">
   {% if page.previous.url %}

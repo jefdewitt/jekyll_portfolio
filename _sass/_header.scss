@@ -1,0 +1,58 @@
+/**
+ * Header style
+ */
+ .site-header {
+    //  border-top: 5px solid $grey-color-dark;
+    //  border-bottom: 1px solid $grey-color-light;
+     min-height: 56px;
+     background: $grey-color-dark;
+     padding: 1em 0 0;
+
+
+     .site-header__inner {
+         margin: auto;
+         // Positioning context for the mobile navigation icon
+         position: relative;
+
+         @include media($tablet, 'max') {
+             max-width: -webkit-calc(#{$small-content-width} - (#{$spacing-unit}));
+             max-width:         calc(#{$small-content-width} - (#{$spacing-unit}));
+             padding-right: $spacing-unit / 2;
+             padding-left: $spacing-unit / 2;
+         }
+
+         @include media($desktop) {
+             max-width: -webkit-calc(#{$medium-content-width} - (#{$spacing-unit}));
+             max-width:         calc(#{$medium-content-width} - (#{$spacing-unit}));
+             padding-right: $spacing-unit / 2;
+             padding-left: $spacing-unit / 2;
+         }
+     }
+ }
+
+ .site-title {
+     font-size: 26px;
+     font-weight: 300;
+     line-height: 56px;
+     letter-spacing: -1px;
+     margin-bottom: 0;
+     float: right;
+
+     &,
+     &:visited {
+         color: $grey-color-dark;
+     }
+ }
+
+.site-title {
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    h1 {
+        color: $text-color;
+        font-weight: 700;
+        //text-shadow: 1px 1px 4px $text-color;
+    }
+}
