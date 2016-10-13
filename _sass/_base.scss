@@ -28,6 +28,7 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
+    letter-spacing: 1px;
 }
 
 
@@ -81,14 +82,12 @@ li {
     }
 }
 
-
-
 /**
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
     // font-weight: $base-font-weight;
-    font-weight: $bold;
+    font-weight: $normal;
     font-family: $raleway;
 }
 
@@ -96,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
  * Base type elements
  */
 p, li, a, label, input {
-    font-weight: $base-font-weight;
+    font-weight: $light;
     font-family: $raleway;
     color: $text-color;
 

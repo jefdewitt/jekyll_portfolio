@@ -60,14 +60,15 @@
 
     h1 {
         color: $text-color;
-        text-shadow: 1px 1px 1px $black, 1px 1px 2em $black;
+        text-shadow: 1px 1px 1px $text-shadow, 1px 1px 2em $text-shadow;
         font-size: 6rem;
         line-height: 1;
+        font-weight: $bold;
     }
 
     p {
         color: $text-color;
-        text-shadow: 1px 1px 1px $black, 1px 1px 2em $black;
+        text-shadow: 1px 1px 1px $text-shadow, 1px 1px 2em $text-shadow;
         font-size: 3rem;
         font-family: $yellowtail;
     }
@@ -86,7 +87,7 @@
 
         a {
             color: $text-color;
-            text-shadow: 1px 1px 1px $black, 1px 1px 2em $black;
+            text-shadow: 1px 1px 1px $text-shadow, 1px 1px 2em $text-shadow;
             font-size: 2.5rem;
             text-decoration: none;
             font-family: $raleway;

@@ -35,9 +35,13 @@
 
          &:hover svg {
              @include media($mobile) {
-                //  background: $grey-color;
-                //  border-radius: 50%;
+
                 transform: scale(1.2);
+
+                path,
+                circle {
+                    fill: $lime-green;
+                }
 
              }
          }

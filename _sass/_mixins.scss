@@ -39,6 +39,6 @@
      @include button($text-color);
 
      &:hover {
-         color: $text-color;
+         color: $grey-color-dark;
      }
  }
