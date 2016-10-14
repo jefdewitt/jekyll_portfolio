@@ -4,6 +4,20 @@
 
 .sidebar {
 
+    @include media($mobile, 'max') {
+        display: flex;
+        flex-direction: column;
+
+        .sidebar__posts {
+            order: 1;
+            margin-bottom: 1em;
+        }
+
+        .headshot {
+            order: 2;
+        }
+    }
+
     @include media($tablet) {
         width: 25%;
         display: inline-block;
@@ -14,7 +28,6 @@
 
     h2 {
         position: relative;
-        margin-bottom: 2rem;
 
         @include media($tablet) {
             font-size: 1.5rem;
@@ -35,14 +48,36 @@
                 transform: none;
             }
         }
+
+        &:last-of-type {
+            margin-bottom: 2rem;
+        }
+    }
+
+    p, a {
+        font-size: 1rem;
+    }
+    
+    .post-link {
+        @include media($tablet) {
+            font-size: 1rem;
+        }
     }
 }
 
-.post-link {
-    @include media($tablet) {
-        font-size: 1rem;
+.headshot {
+    margin-bottom: 1em;
+
+    img {
+        margin-bottom: 2em;
+
+        @include media($tablet) {
+            margin-bottom: 1em;
+            padding-right: 2em;
+        }
     }
 }
+
 
 // Current post
 a#current {
@@ -60,5 +95,4 @@ a#current {
             transform: rotate(360deg);
         }
     }
-
 }

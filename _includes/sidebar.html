@@ -7,16 +7,24 @@ You write your variables to the document by wrapping them inside double curly br
     <p>{{ currentPost }}</p> -->
 
 <aside class="sidebar">
-    <h2>Recent Posts</h2>
-    <ul class="post-list">
-      {% for post in site.posts %}
-        <li>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+    <div class="headshot">
+        <img src="{{ site.baseurl }}/images/DSC_0071.jpg">
+        <h2>Jef DeWitt</h2>
+        <p>I'm a burgeoning Front-end Developer and wannabe Software Engineer in Louisville, KY.</p>
+        <a href="{{ site.baseurl }}/connect">Contact me.</a>
+    </div>
+    <div class="sidebar__posts">
+        <h2>Recent Posts</h2>
+        <ul class="post-list">
+          {% for post in site.posts %}
+            <li>
+              <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-          <h3>
-            <a class="post-link" {% if page.url == post.url %}id='current'{% endif %} href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-          </h3>
-        </li>
-      {% endfor %}
-    </ul>
+              <h3>
+                <a class="post-link" {% if page.url == post.url %}id='current'{% endif %} href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+              </h3>
+            </li>
+          {% endfor %}
+        </ul>
+    </div>
 </aside>

@@ -128,12 +128,12 @@ a {
     text-decoration: none;
 
     &:visited {
-        color: lighten($text-color, 25%);
+        color: darken($text-color, 25%);
     }
 
     &:hover {
-        color: $text-color;
-        text-decoration: underline;
+        color: $lime-green;
+        text-decoration: none;
     }
 }
 

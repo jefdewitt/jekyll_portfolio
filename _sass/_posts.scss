@@ -3,6 +3,8 @@
  */
  .wrapper {
      .post {
+         margin-bottom: 2em;
+
          @include media($tablet) {
              width: 74%;
              display: inline-block;
@@ -11,7 +13,7 @@
              border-radius: 0.5em;
              position: relative;
              z-index: 1;
-             margin-bottom: 4rem;
+             margin-bottom: 4em;
          }
      }
  }
@@ -19,6 +21,16 @@
  .post-list {
      margin-left: 0;
      list-style: none;
+
+     @include media($tablet) {
+         display: inline-block;
+
+         &:after {
+             content: '';
+             display: inline-block;
+             width: 100%;
+         }
+     }
 
      > li {
          margin-bottom: $spacing-unit / 2;
@@ -74,5 +86,11 @@
          @include media($tablet, 'max') {
              font-size: 18px;
          }
+     }
+ }
+
+ .post-excerpt {
+     p, a {
+         font-size: 1rem;
      }
  }
