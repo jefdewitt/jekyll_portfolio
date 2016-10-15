@@ -22,18 +22,27 @@
      margin-left: 0;
      list-style: none;
 
-     @include media($tablet) {
-         display: inline-block;
-
-         &:after {
-             content: '';
-             display: inline-block;
-             width: 100%;
-         }
-     }
-
      > li {
          margin-bottom: $spacing-unit / 2;
+
+         img {
+            margin-bottom: 2em;
+
+             @include media($tablet) {
+                 margin-bottom: 0;
+                 display: inline-block;
+                 width: 38%;
+                 padding: 1em 1em 1em 0;
+             }
+         }
+
+         > div {
+             @include media($tablet) {
+                 display: inline-block;
+                 width: 60%;
+                 vertical-align: middle;
+             }
+         }
      }
  }
 
