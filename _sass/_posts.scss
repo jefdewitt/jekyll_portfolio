@@ -58,6 +58,10 @@
 
  .post-header {
      margin-bottom: $spacing-unit;
+
+     > img {
+         margin-bottom: 2em;
+     }
  }
 
  .post-title {
@@ -72,6 +76,24 @@
 
  .post-content {
      margin-bottom: $spacing-unit;
+
+     img {
+         @include media($tablet) {
+
+             &:nth-of-type(odd) {
+                 float: left;
+                 max-width: 15em;
+                 padding: .5em 1em .5em 0;
+             }
+
+             &:nth-of-type(even) {
+                 float: right;
+                 max-width: 15em;
+                 padding: .5em 0 .5em 1em;
+             }
+
+         }
+     }
 
      h2 {
          font-size: 32px;

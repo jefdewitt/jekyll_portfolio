@@ -10,36 +10,28 @@
     <div class="page-content">
       <div class="wrapper">
         {{ content }}
-        <div class="projects__container">
-            <div class="projects__inner">
-                <div class="project__single1">
-                    <div class="project__image">
-                        <h3>Project Title</h3>
-                    </div>
-                    <div class="project__description">{{ section1 }}</div>
-                </div>
-                <div class="project__single2">
-                    <div class="project__image">
-                        <h3>Project Title</h3>
-                    </div>
-                    <div class="project__description">{{ section2 }}</div>
-                </div>
-                <div class="project__single3">
-                    <div class="project__image">
-                        <h3>Project Title</h3>
-                    </div>
-                    <div class="project__description"><p>section 3</p></div>
-                </div>
-                <div class="project__single4">
-                    <div class="project__image">
-                        <h3>Project Title</h3>
-                    </div>
-                    <div class="project__description"><p>section 4</p></div>
-                </div>
+        <div class="projects__container post">
+
+            <div class="projects__individual">
+
+                {% for project in site.projects %}
+                    <li>
+                      <a href="{{ project.url }}">
+                          <div>
+                              <img src="/images/{{ project.image }}" alt="Project image">
+                              <h2 class="page-link" href="{{ projects.url | prepend: site.baseurl }}">{{ project.title }}</h2>
+                          </div>
+                      </a>
+                    </li>
+                {% endfor %}
+
             </div>
+
         </div>
+        {% include sidebar.html %}
       </div>
     </div>
+
 
     {% include footer.html %}
 

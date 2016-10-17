@@ -26,6 +26,17 @@ linkedin_username:       jefdewitt
 # Build settings
 markdown: kramdown
 
+# New permalink structure for posts
+permalink: /:title/
+
+# New document type
+# Source: https://jekyllrb.com/docs/collections/
+# More on collections here: http://ben.balter.com/2015/02/20/jekyll-collections/
+collections:
+  projects:
+    output: true
+    permalink: /projects/:title/
+
 # Plugins
 # gems: [jekyll-paginate]
 # This will require each of these gems automatically.

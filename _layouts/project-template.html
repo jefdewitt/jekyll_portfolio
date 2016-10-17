@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article class="project post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <!-- <header class="post-header">
+    <img src="{{ site.baseurl }}/images/jefdewitt.com-Blank-Background-1280.png" alt="">
+    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+  </header> -->
+
+  <div class="project__content" itemprop="articleBody">
+    <img src="/images/{{ page.image }}">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <a class="project__link" href="{{ page.link }}">View extra link here.</a>
+    {{ content }}
+  </div>
+
+</article>
+
+{% include sidebar.html %}

@@ -20,3 +20,50 @@
     width: 10em;
     background: #ccc;
 }
+
+.projects__individual {
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        width: 48%;
+        display: inline-block;
+
+        &:nth-of-type(odd) {
+            margin-right: 0.5em;
+        }
+
+        &:nth-of-type(even) {
+            margin-left: 0.5em;
+        }
+
+        div {
+            position: relative;
+
+            h2 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+.project__content {
+
+    .post-title {
+        margin-bottom: 2rem;
+    }
+
+    img {
+        margin-bottom: 2em;
+    }
+}
+
+.project__link {
+    display: inline-block;
+    margin-bottom: 2em;
+}
