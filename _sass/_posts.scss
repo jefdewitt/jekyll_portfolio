@@ -5,11 +5,11 @@
      .post {
          margin-bottom: 2em;
 
-         @include media($tablet) {
+         @include media($mobile) {
              width: 74%;
              display: inline-block;
              background: $grey-color-medium;
-             padding: 1em;
+             padding: 2em;
              border-radius: 0.5em;
              position: relative;
              z-index: 1;
