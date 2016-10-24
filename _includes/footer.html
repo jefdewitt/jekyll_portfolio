@@ -48,7 +48,6 @@
     var $window = $(window).width();
 
     $menuIcon.on('click', function() {
-        console.log('hola chulo');
         $menuIcon.toggleClass('clicked', '');
         $trigger.toggleClass('open', 'closed');
     });
@@ -60,28 +59,44 @@
         //     $trigger.toggleClass('open', 'closed');
         // });
 
+        $trigger.addClass('open');
 
-        $menu.on('mouseleave', function() {
-            //$bgImg.fadeIn("fast", function() {
-                $bgImg.attr( 'data-group', 'one' );
-            //});
-        });
 
-        $menuItemOne.on('mouseenter', function() {
-            console.log('regales especial');
-            //$bgImg.fadeIn("slow", function() {
-                $bgImg.attr( 'data-group', 'two' );
-            //});
-        });
-
-        $menuItemTwo.on('mouseenter', function() {
-            $bgImg.attr( 'data-group', 'three' );
-        });
-
-        $menuItemThree.on('mouseenter', function() {
-            $bgImg.attr( 'data-group', 'four' );
-        });
+        // $menu.on('mouseleave', function() {
+        //     //$bgImg.fadeIn("fast", function() {
+        //         $bgImg.attr( 'data-group', 'one' );
+        //     //});
+        // });
+        //
+        // $menuItemOne.on('mouseenter', function() {
+        //     //$bgImg.fadeIn("slow", function() {
+        //         $bgImg.attr( 'data-group', 'two' );
+        //     //});
+        // });
+        //
+        // $menuItemTwo.on('mouseenter', function() {
+        //     $bgImg.attr( 'data-group', 'three' );
+        // });
+        //
+        // $menuItemThree.on('mouseenter', function() {
+        //     $bgImg.attr( 'data-group', 'four' );
+        // });
 
     }
+
+    // $menu.mousemove(function(e) {
+    //
+    //
+    //
+    //   var $msg = "Handler for .mousemove() called at ";
+    //   $msg += event.pageX + ", " + event.pageY;
+    //   console.log($msg);
+    //
+    //   var x = e.pageX + 20;
+    //   var y = e.pageY + 20;
+    //   //var y = -(e.pageY + this.offsetTop) * 1.1;
+    //   $bgImg.css('background-position', x + 'px ' + y + 'px');
+    //   console.log( $bgImg.css('background-position') );
+    // });
 
 </script>

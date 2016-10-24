@@ -7,36 +7,22 @@
     left: 0;
     width: 100%;
 
+    @include media($mobile) {
+        left: 4em;
+    }
+
     @include media($tablet) {
         width: auto;
     }
 
      .menu-icon {
-         display: none;
-     }
-
-     .page-link {
-         color: $text-color;
-         line-height: $base-line-height;
-
-         // Gaps between nav items, but not on the last one
-         &:not(:last-child) {
-             margin-right: 20px;
-         }
-     }
-
-     .menu-icon {
         display: block;
         position: relative;
-        bottom: 1.75rem;
-        left: 0rem;
+        bottom: 1.25em;
+        left: .5em;
 
-        @include media($tablet) {
-            left: 1.25rem;
-        }
-
-        @include media($desktop) {
-            left: 0.25rem;
+        @include media($mobile) {
+            display: none;
         }
 
          > svg {
@@ -49,58 +35,81 @@
          }
      }
 
-     .trigger {
-         opacity: 0;
-         position: relative;
-         transition: all 0.5s ease;
-
-         @include media($tablet) {
-             right: 20em;
+     .page-link__container {
+         @include media ($mobile) {
+             display: inline-block;
+             padding-right: 3em;
          }
-     }
 
-     .page-link {
-         display: block;
-         font-size: 1.5rem;
-         padding: 1em 0;
-         text-decoration: none;
-         position: relative;
-         transition: all 1s ease;
+         .page-link {
+             display: block;
+             font-size: 1.5rem;
+             text-decoration: none;
+             position: relative;
+             transition: all 1s ease;
+             color: $text-color;
+             line-height: $base-line-height;
 
-         @for $i from 1 through 4 {
-             &:nth-child(#{$i}) {
-                 top: $i * 25rem;
+             &:hover {
+                 color: $lime-green;
+             }
 
-                 @include media($tablet) {
-                     top: auto;
-                     right: $i * 25rem;
+             @include media ($mobile, 'max') {
+                 border-bottom: 1px solid $lime-green;
+                 margin-left: -1em;
+                 padding: 1em 2em;
+             }
+
+             @include media ($mobile, 'max') {
+                 @for $i from 1 through 4 {
+                     &:nth-child(#{$i}) {
+                         top: $i * 25rem;
+                     }
                  }
              }
-         }
 
-         &:not(:last-child) {
-             margin-right: 0;
+             &:not(:last-child) {
+                 margin-right: 0;
+             }
          }
-         margin-left: 20px;
      }
  }
 
-.trigger.open {
-    display: block;
-    padding-bottom: 5px;
-    opacity: 1;
-    right: 0;
-    background: $grey-color-dark;
-    z-index: 100;
 
-    .page-link {
-        top: 0;
+.trigger {
+    opacity: 0;
+    position: relative;
+    transition: all 0.5s ease;
+    margin: 0;
 
-        @include media($tablet) {
-            right: -1rem;
+    @include media($tablet) {
+        right: 20em;
+    }
 
-            &:hover {
-                color: $lime-green;
+    &.open {
+        display: block;
+        opacity: 1;
+        right: 0;
+
+        @include media ($mobile, 'max') {
+            background: $grey-color;
+            z-index: 100;
+        }
+
+        .page-link__container .page-link {
+            top: 0;
+        }
+
+        @include media ($mobile, 'max') {
+            &:after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 150vh;
+                top: 100%;
+                left: 0;
+                background: -webkit-linear-gradient( bottom, rgba(128, 128, 128, 0) 0%, rgba(128,128,128, 1) 100%);
+                background: linear-gradient( bottom, rgba(128, 128, 128, 0) 0%, rgba(128,128,128, 1) 100%);
             }
         }
     }
@@ -190,5 +199,71 @@
     p {
         opacity: 0;
         transition: all 0.5s ease;
+    }
+}
+
+
+#current-page {
+    @include media ($mobile) {
+        position: relative;
+
+        // &:before {
+        //     content: '';
+        //     position: absolute;
+        //     width: 0;
+        //     height: 0;
+        //     left: 50%;
+        //     transform: translatex(-50%);
+        //     top: 105%;
+        //     border-style: solid;
+        //     border-width: 0 5px 8px 5px;
+        //     border-color: transparent transparent $lime-green transparent;
+        //     transition: all .5s ease;
+        // }
+        //
+        // &:after {
+        //     content: '';
+        //     position: absolute;
+        //     width: 0;
+        //     height: 0;
+        //     left: 50%;
+        //     transform: translatex(-50%);
+        //     top: 126%;
+        //     border-top: 2px solid $lime-green;
+        //     transition: all .5s ease;
+        //     width: 100%;
+        // }
+
+        //background: -webkit-linear-gradient(left, rgba(178, 255, 178, 1) 0%, rgba(178, 255, 178, .5) 5%, rgba(178, 255, 178, 0) 15%);
+
+        &:before {
+            content: '';
+            position: absolute;
+            z-index: 100;
+            width: .5rem;
+            height: .5rem;
+            top: 110%;
+            left: 50%;
+            transform: translatex(-50%) rotate(45deg);
+            border-left: 1px solid #B2FFB2;
+            border-top: 1px solid #B2FFB2;
+            background: $grey-color-dark;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            z-index: 10;
+            width: 100%;
+            height: 0;
+            top: 120%;
+            left: 50%;
+            transform: translatex(-50%);
+            border-bottom: 1px solid $lime-green;
+        }
+    }
+
+    &:hover {
+        color: $white;
     }
 }

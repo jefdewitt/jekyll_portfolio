@@ -1,3 +1,12 @@
+/**
+ * Projects
+ */
+.projects .wrapper .post {
+    @include media ($mobile) {
+        padding: 2em 2em 0 2em;
+    }
+}
+
 .projects__container {
     position: relative;
 }
@@ -24,19 +33,24 @@
 .projects__individual {
 
     ul {
-        list-style: none;
     }
 
     li {
-        width: 48%;
-        display: inline-block;
+        list-style: none;
+        width: 100%;
+        margin-bottom: 2em;
 
-        &:nth-of-type(odd) {
-            margin-right: 0.5em;
-        }
+        @include media($mobile) {
+            width: 47%;
+            display: inline-block;
 
-        &:nth-of-type(even) {
-            margin-left: 0.5em;
+            &:nth-of-type(odd) {
+                float: left;
+            }
+
+            &:nth-of-type(even) {
+                float: right;
+            }
         }
 
         div {

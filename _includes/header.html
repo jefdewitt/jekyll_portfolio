@@ -18,16 +18,18 @@
             <p>enu</p>
           </a>
 
-          <div class="trigger">
+          <ul class="trigger">
             {% for my_page in site.pages %}
               {% if my_page.title %}
-              <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+              <li class="page-link__container">
+                  <a class="page-link" {% if page.url == my_page.url %}id='current-page'{% endif %} href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+              </li>
               {% endif %}
             {% endfor %}
-          </div>
+        </ul>
         </nav>
 
-        <a class="site-title" href="{{ site.baseurl }}/home"><h1>J<em>D</em></h1></a>
+        <a class="site-title" href="{{ site.baseurl }}/"><h1><span class="header__less-than">&lt;</span><span class="header__name--first">Jef De</span><span class="header__slash">&#47;</span><span class="header__name--last">Witt</span><span class="header__greater-than">&gt;</span></h1></a>
 
       </div>
 

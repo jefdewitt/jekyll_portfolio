@@ -8,12 +8,14 @@
     {% include header.html %}
 
     <div class="page-content">
-      <div class="wrapper">
-        <div class="content__wrapper">
+        <div class="wrapper">
+
+        <div class="content__container post">
             {{ content }}
             {% include social-media-links.html %}
         </div>
-        <form action="" class="form__container">
+
+        <section action="" class="form__container">
             <form action="" class="form">
 
                 <div class="form__block">
@@ -35,7 +37,8 @@
                 <input class="button" type="submit" value="send"></input>
 
             </form>
-        </form>
+        </section>
+
       </div>
     </div>
 

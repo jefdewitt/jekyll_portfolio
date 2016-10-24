@@ -16,8 +16,8 @@
          position: relative;
 
          @include media($tablet, 'max') {
-             max-width: -webkit-calc(#{$small-content-width} - (#{$spacing-unit}));
-             max-width:         calc(#{$small-content-width} - (#{$spacing-unit}));
+             max-width: -webkit-calc(#{$tablet} - (#{$spacing-unit}));
+             max-width:         calc(#{$tablet} - (#{$spacing-unit}));
              padding-right: $spacing-unit / 2;
              padding-left: $spacing-unit / 2;
          }
@@ -32,28 +32,74 @@
  }
 
  .site-title {
-     font-size: 26px;
-     font-weight: 300;
-     line-height: 56px;
-     letter-spacing: -1px;
-     margin-bottom: 0;
-     float: right;
-
-     &,
-     &:visited {
-         color: $grey-color-dark;
-     }
- }
-
-.site-title {
-
-    &:hover {
-        text-decoration: none;
-    }
+    float: right;
 
     h1 {
-        color: $text-color;
-        font-weight: 700;
-        //text-shadow: 1px 1px 4px $text-color;
+        position: relative;
+        display: table-cell;
+        white-space: nowrap;
+        vertical-align: middle;
+        color: $white;
+        // Removes pesky transition flicker bug
+        -webkit-perspective: 1000;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform:translate3d(0,0,0);
+
+        &:hover {
+            .header__slash {
+                position: absolute;
+                left: 61%;
+                z-index: 2;
+                transform: skewx(15deg) scalex(1.1);
+            }
+            [class^='header__name'] {
+                display: inline-block;
+                opacity: 1;
+            }
+            .header__less-than {
+                margin-right: 3px;
+            }
+            .header__name--first {
+                width: 6.25rem;
+                color: $lime-green;
+            }
+            .header__name--last {
+                width: 4.25rem;
+                color: $lime-green;
+            }
+        }
+    }
+
+    .header__less-than,
+    .header__greater-than,
+    .header__slash {
+        transition: all .5s ease;
+    }
+
+    .header__less-than,
+    .header__greater-than {
+        position: relative;
+        bottom: 3px;
+    }
+
+    [class^='header__name'] {
+        display: inline-block;
+        width: 0;
+        opacity: 0;
+        transition: opacity 3s ease, width 1s ease;
     }
 }
+
+//
+// .site-title {
+//
+//     &:hover {
+//         text-decoration: none;
+//     }
+//
+//     h1 {
+//         color: $text-color;
+//         font-weight: 700;
+//         //text-shadow: 1px 1px 4px $text-color;
+//     }
+// }

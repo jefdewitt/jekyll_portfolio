@@ -3,12 +3,12 @@
  */
 .connect {
 
-    .content__wrapper {
+    .content__container.post{
         @include media($mobile) {
             display: inline-block;
             width: 49%;
             vertical-align: top;
-            padding-right: 2em;
+            margin-right: 2%;
 
             .social-media-list {
                 float: left;
@@ -25,10 +25,10 @@
     }
 }
 
-.form__container {
+.form__container{
     @include media($mobile) {
         display: inline-block;
-        width: 50%;
+        width: 48%;
         vertical-align: top;
     }
 }

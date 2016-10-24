@@ -28,7 +28,7 @@
          img {
             margin-bottom: 2em;
 
-             @include media($tablet) {
+             @include media($mobile) {
                  margin-bottom: 0;
                  display: inline-block;
                  width: 38%;
@@ -37,7 +37,7 @@
          }
 
          > div {
-             @include media($tablet) {
+             @include media($mobile) {
                  display: inline-block;
                  width: 60%;
                  vertical-align: middle;
@@ -78,6 +78,9 @@
      margin-bottom: $spacing-unit;
 
      img {
+
+        padding: .5em 0;
+
          @include media($tablet) {
 
              &:nth-of-type(odd) {
