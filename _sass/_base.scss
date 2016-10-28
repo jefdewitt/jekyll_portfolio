@@ -127,6 +127,7 @@ label {
 a {
     color: $text-color;
     text-decoration: none;
+    transition: all .5s ease;
 
     &:visited {
         color: darken($text-color, 25%);

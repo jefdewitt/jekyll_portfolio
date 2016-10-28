@@ -39,6 +39,7 @@
         list-style: none;
         width: 100%;
         margin-bottom: 2em;
+        overflow: hidden;
 
         @include media($mobile) {
             width: 47%;
@@ -53,14 +54,69 @@
             }
         }
 
-        div {
-            position: relative;
+        a {
+            div {
+                position: relative;
 
-            h2 {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 100%;
+                    width: 50%;
+                    height: 100%;
+                    transition: all .5s ease;
+                    background: rgba(128,128,128,.5);
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 100%;
+                    width: 50%;
+                    height: 100%;
+                    transition: all .5s ease;
+                    background: rgba(128,128,128,.5);
+                }
+
+                h2:first-of-type {
+                    position: absolute;
+                    z-index: 1;
+                    font-size: 2rem;
+                    text-shadow: 1px 1px 1px $grey-color-dark;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-250%, -50%);
+                    transition: all .5s ease;
+                }
+
+                h2:last-of-type {
+                    position: absolute;
+                    z-index: 1;
+                    font-size: 2rem;
+                    text-shadow: 1px 1px 1px $grey-color-dark;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(150%, -50%);
+                    transition: all .5s ease;
+                }
+            }
+            &:hover {
+                div {
+
+                    &:before {
+                        right: 50%;
+                    }
+
+                    &:after {
+                        left: 50%;
+                    }
+
+                    h2 {
+                        transform: translate(-50%, -50%);
+                    }
+                }
             }
         }
     }
@@ -73,7 +129,8 @@
     }
 
     img {
-        margin-bottom: 2em;
+        margin-bottom: 3em;
+        width: 100%;
     }
 }
 

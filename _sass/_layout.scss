@@ -58,3 +58,13 @@ body:not(.homepage) .page-content {
 input {
     border: 1px solid;
 }
+
+/**
+ * Images
+ */
+.project__content {
+.float--right {
+    width: 33%;
+    float: right;
+}
+}

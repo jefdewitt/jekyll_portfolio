@@ -23,8 +23,8 @@
          }
 
          @include media($desktop) {
-             max-width: -webkit-calc(#{$medium-content-width} - (#{$spacing-unit}));
-             max-width:         calc(#{$medium-content-width} - (#{$spacing-unit}));
+             max-width: -webkit-calc(#{$desktop} - (#{$spacing-unit}));
+             max-width:         calc(#{$desktop} - (#{$spacing-unit}));
              padding-right: $spacing-unit / 2;
              padding-left: $spacing-unit / 2;
          }
@@ -33,6 +33,10 @@
 
  .site-title {
     float: right;
+
+        @include media($tablet) {
+            margin-right: 3em;
+        }
 
     h1 {
         position: relative;
@@ -51,6 +55,11 @@
                 left: 61%;
                 z-index: 2;
                 transform: skewx(15deg) scalex(1.1);
+
+                @include media($tablet) {
+                    left: 60%;
+                    transform: skewx(17deg) scalex(1.1);
+                }
             }
             [class^='header__name'] {
                 display: inline-block;
@@ -62,10 +71,18 @@
             .header__name--first {
                 width: 6.25rem;
                 color: $lime-green;
+
+                 @include media($tablet) {
+                     width: 7.5rem;
+                 }
             }
             .header__name--last {
                 width: 4.25rem;
                 color: $lime-green;
+
+                @include media($tablet) {
+                    width: 5.5rem;
+                }
             }
         }
     }
