@@ -63,8 +63,19 @@ input {
  * Images
  */
 .project__content {
-.float--right {
-    width: 33%;
-    float: right;
-}
+    .float--right {
+        width: 33%;
+        float: right;
+        padding-left: 2em;
+    }
+    .float--left {
+        width: 33%;
+        float: left;
+        padding-right: 2em;
+    }
+    .center {
+        width: 33%;
+        text-align: center;
+        margin: auto;
+    }
 }

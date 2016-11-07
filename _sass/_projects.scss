@@ -128,9 +128,13 @@
         margin-bottom: 2rem;
     }
 
-    img {
+    > img {
         margin-bottom: 3em;
         width: 100%;
+    }
+
+    .image {
+        padding-bottom: 2em;
     }
 }
 

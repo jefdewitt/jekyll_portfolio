@@ -145,15 +145,16 @@ a {
  * Blockquotes
  */
 blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
+    color: $text-color;
+    border-left: .25em solid $lime-green;
     padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
 
     > :last-child {
         margin-bottom: 0;
+    }
+
+    p {
+        font-size: 90%;
     }
 }
 
@@ -162,12 +163,19 @@ blockquote {
 /**
  * Code formatting
  */
+.wrapper .highlighter-rouge .highlight {
+    background: $grey-color-medium;
+    margin: 1em 0;
+
+    @include media($mobile) {
+        background: $grey-color-dark;
+    }
+}
+
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
 }
 
 code {

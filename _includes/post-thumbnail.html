@@ -11,16 +11,22 @@
     <img src="{{ site.baseurl }}/images/{{ post.image }}">
 -->
 
-{% assign foundImage = 0 %}
-{% assign images = post.content | split:"<img " %}
-{% for image in images %}
-  {% if image contains 'src' %}
+{% if post.content contains 'img' %}
 
-      {% if foundImage == 0 %}
+    {% assign foundImage = 0 %}
+    {% assign images = post.content | split: "<img " %}
+    {% for image in images %}
+      {% if image contains 'src' %}
+
+        {% if foundImage == 0 %}
           {% assign html = image | split:"/>" | first %}
           <img {{ html }} />
           {% assign foundImage = 1 %}
-      {% endif %}
+        {% endif %}
 
-  {% endif %}
-{% endfor %}
+      {% endif %}
+    {% endfor %}
+
+{% else %}
+    <img src="/images/jef-sidebar-portrait.jpg">
+{% endif %}

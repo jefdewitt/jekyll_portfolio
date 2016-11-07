@@ -27,7 +27,7 @@ linkedin_username:       jefdewitt
 markdown: kramdown
 
 # New permalink structure for posts
-permalink: /:title/
+permalink: /archive/:title/
 
 # New document type
 # Source: https://jekyllrb.com/docs/collections/

@@ -10,23 +10,44 @@
 
 <aside class="sidebar">
     <div class="headshot">
-        <img src="{{ site.baseurl }}/images/DSC_0071.jpg">
+        <img src="{{ site.baseurl }}/images/jef-sidebar-portrait.jpg">
         <h2>Jef DeWitt</h2>
-        <p>I'm a burgeoning Front-end Developer and future Software Engineer in Louisville, KY.</p>
+        <p>I'm a burgeoning Front-end Developer and weeekend Software Engineer in Louisville, KY.</p>
         <a href="{{ site.baseurl }}/connect">Contact me.</a>
     </div>
     <div class="sidebar__posts">
-        <h2>Recent Posts</h2>
-        <ul class="post-list">
-          {% for post in site.posts %}
-            <li>
-              <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        {% if page.url contains 'projects' %}
+            <h2>Recent Projects</h2>
+        {% else %}
+            <h2>Recent Posts</h2>
+        {% endif %}
 
-              <h3>
-                <a class="post-link" {% if page.url == post.url %}id='current'{% endif %} href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-              </h3>
-            </li>
-          {% endfor %}
+        <ul class="post-list">
+          {% if page.url contains 'projects' %}
+
+              {% for project in site.projects %}
+                <li>
+                  <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+                  <h3>
+                    <a class="post-link" {% if page.url == project.url %}id='current'{% endif %} href="{{ post.url | prepend: site.baseurl }}">{{ project.title }}</a>
+                  </h3>
+                </li>
+              {% endfor %}
+
+          {% else %}
+
+              {% for post in site.posts %}
+                <li>
+                  <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+                  <h3>
+                    <a class="post-link" {% if page.url == post.url %}id='current'{% endif %} href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                  </h3>
+                </li>
+              {% endfor %}
+
+          {% endif %}
         </ul>
     </div>
 </aside>

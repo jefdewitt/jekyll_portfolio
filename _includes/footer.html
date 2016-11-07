@@ -32,18 +32,18 @@
 <script>
 
     // Capture the menu items from the homepage
-    const $menu = $('.menu');
-    const $menuItemOne = $('.menu li:first-of-type a');
-    const $menuItemTwo = $('.menu li:nth-of-type(2) a');
-    const $menuItemThree = $('.menu li:last-of-type a');
+    var $menu = $('.menu');
+    var $menuItemOne = $('.menu li:first-of-type a');
+    var $menuItemTwo = $('.menu li:nth-of-type(2) a');
+    var $menuItemThree = $('.menu li:last-of-type a');
 
     // Capture the homepage background image
     var $bgImg = $('.homepage');
 
     // Store navigation elements
-    const $nav = $('.site-nav');
-    const $trigger = $('.trigger');
-    const $menuIcon = $('.site-nav .menu-icon');
+    var $nav = $('.site-nav');
+    var $trigger = $('.trigger');
+    var $menuIcon = $('.site-nav .menu-icon');
 
     var $window = $(window).width();
 
@@ -98,5 +98,7 @@
     //   $bgImg.css('background-position', x + 'px ' + y + 'px');
     //   console.log( $bgImg.css('background-position') );
     // });
+
+
 
 </script>
