@@ -208,30 +208,51 @@
         position: relative;
 
         &:before {
-            content: '';
-            position: absolute;
-            z-index: 100;
-            width: .5rem;
-            height: .5rem;
-            top: 110%;
-            left: 50%;
-            transform: translatex(-50%) rotate(45deg);
-            border-left: 1px solid #B2FFB2;
-            border-top: 1px solid #B2FFB2;
-            background: $grey-color-dark;
+            @include media($mobile) {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0.75rem 0 0.75rem 0.75rem;
+                border-color: transparent transparent transparent $grey-color-medium;
+                left: 50%;
+                top: 105%;
+                transform: rotate(270deg) translatex(-50%);
+                z-index: 10;
+            }
+
+            @include media($tablet) {
+                top: 130%;
+            }
         }
 
-        &:after {
-            content: '';
-            position: absolute;
-            z-index: 10;
-            width: 100%;
-            height: 0;
-            top: 120%;
-            left: 50%;
-            transform: translatex(-50%);
-            border-bottom: 1px solid $lime-green;
-        }
+        // &:before {
+        //     content: '';
+        //     position: absolute;
+        //     z-index: 100;
+        //     width: .5rem;
+        //     height: .5rem;
+        //     top: 110%;
+        //     left: 50%;
+        //     transform: translatex(-50%) rotate(45deg);
+        //     border-left: 1px solid #B2FFB2;
+        //     border-top: 1px solid #B2FFB2;
+        //     background: $grey-color-dark;
+        // }
+        //
+        // &:after {
+        //     content: '';
+        //     position: absolute;
+        //     z-index: 10;
+        //     width: 100%;
+        //     height: 0;
+        //     top: 120%;
+        //     left: 50%;
+        //     transform: translatex(-50%);
+        //     border-bottom: 1px solid $lime-green;
+        // }
+
     }
 
     &:hover {

@@ -32,27 +32,12 @@
             margin: 0 0 1rem -2.5rem;
             border-bottom: 1px solid $lime-green;
             display: inline-block;
-            padding: 0 0 .5rem 2.5rem;    
+            padding: 0 0 .5rem 2.5rem;
         }
 
         @include media($tablet) {
             font-size: 1.5rem;
         }
-
-        // &:after {
-        //     content: '';
-        //     position: absolute;
-        //     width: 100%;
-        //     top: 115%;
-        //     right: 50%;
-        //     transform: translatex(50%);
-        //     border-bottom: 1px solid $lime-green;
-
-        //     @include media($tablet) {
-        //         right: 35%;
-        //         transform: none;
-        //     }
-        // }
 
         &:last-of-type {
             margin-bottom: 2rem;
@@ -88,7 +73,7 @@
 a#current {
 
     &:before {
-        @include media($tablet) {
+        @include media($mobile) {
             content: '';
             position: absolute;
             width: 0;
@@ -96,7 +81,7 @@ a#current {
             border-style: solid;
             border-width: 0.75rem 0 0.75rem 0.75rem;
             border-color: transparent transparent transparent $grey-color-medium;
-            left: -2.2%;
+            left: -2.6%;
             transform: rotate(360deg);
         }
     }

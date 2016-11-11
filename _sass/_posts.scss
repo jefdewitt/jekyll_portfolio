@@ -68,6 +68,7 @@
      font-size: 42px;
      //letter-spacing: -1px;
      line-height: 1;
+     margin-bottom: 2rem;
 
      @include media($tablet, 'max') {
          font-size: 36px;

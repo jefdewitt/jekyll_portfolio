@@ -62,20 +62,39 @@ input {
 /**
  * Images
  */
-.project__content {
+// .project__content {
+    [class*="float"] {
+        @include media($mobile) {
+            font-weight: 300;
+            font-style: italic;
+            text-align: center;
+            width: 33%;
+
+            img {
+                margin-bottom: 1em;
+            }
+        }
+    }
+
     .float--right {
-        width: 33%;
-        float: right;
-        padding-left: 2em;
+        @include media($mobile) {
+            float: right;
+            padding-left: 2em;
+        }
     }
+
     .float--left {
-        width: 33%;
-        float: left;
-        padding-right: 2em;
+        @include media($mobile) {
+            float: left;
+            padding-right: 2em;
+        }
     }
+
     .center {
-        width: 33%;
-        text-align: center;
-        margin: auto;
+        @include media($mobile) {
+            margin: auto;
+            text-align: center;
+            padding: 0 2em;
+        }
     }
-}
+// }

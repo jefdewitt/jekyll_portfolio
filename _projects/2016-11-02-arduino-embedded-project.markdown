@@ -14,7 +14,7 @@ The first hurdle I faced was wiring up the board with the proper connections.  S
 
 {% include image.html url="/images/arduino-ide.png" description="Arduino IDE" %}{: .float--right }
 
-The next step was loading my laptop with the latest version of the eponymously named Arduino IDE (integrated development environment). For the lay person, such as myself, an IDE is a fancy way of saying it's an all-in-one application that includes everything you need to get begin programming your robot. The interface is straightforward and easy enough to use to get started quickly. The platform is built on the C programming language, the grandfather of many of today's more modern languages.  
+The next step was loading my laptop with the latest version of the eponymously named Arduino IDE (integrated development environment). For the lay person, such as myself, an IDE is a fancy way of saying it's an all-in-one application that includes everything you need to get begin programming your robot. The interface is straightforward and easy enough to use to get started quickly. The platform is built on the C programming language, the grandfather of many modern languages.  
 
 A typical program looks like this:
 
