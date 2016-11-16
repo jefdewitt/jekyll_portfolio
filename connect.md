@@ -7,8 +7,4 @@ weight: 3
 
 Get ahold of me.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
-
-Donec consectetur diam mi, sed lacinia lorem maximus sed. Pellentesque tincidunt mattis massa id consectetur. Donec sit amet gravida ex. Donec id finibus mi. Etiam sodales, dui at blandit dignissim, elit erat ultricies ligula, condimentum accumsan purus mi eu nulla.
+Here's your chance! Don't blow it! JK LOL. Whether it's a comment on a project or a blog post of mine, I'd love to hear from you. Also, I love contributing and I have a knack for getting in where I fit in. So, if you have projects that you want to team up on or just have a question don't hesitate to send it my way. Peace!

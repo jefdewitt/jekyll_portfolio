@@ -77,24 +77,38 @@ input {
     }
 
     .float--right {
+
+        a {
+            color: $text-color;
+        }
+
         @include media($mobile) {
             float: right;
-            padding-left: 2em;
+            margin-left: 1em;
         }
     }
 
     .float--left {
+
+        a {
+            color: $text-color;
+        }
+
         @include media($mobile) {
             float: left;
-            padding-right: 2em;
+            margin-right: 1em;
         }
     }
 
     .center {
+
+        a {
+            color: $text-color;
+        }
+
         @include media($mobile) {
-            margin: auto;
+            margin: 0 1em;
             text-align: center;
-            padding: 0 2em;
         }
     }
 // }

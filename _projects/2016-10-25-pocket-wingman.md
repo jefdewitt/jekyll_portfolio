@@ -2,7 +2,7 @@
 layout: project-template
 title:  "Pocket Wingman"
 image:  pocket-wingman-project-banner.jpg
-link:   https://link.link
+link:   https://itunes.apple.com/us/app/pocket-wingman/id1021112996
 ---
 Pocket Wingman is my first foray into mobile app development. It's an iOS app written in Objective-C.  I built it from scratch following an MVC design pattern.  
 
@@ -11,7 +11,7 @@ by Regis Frey" %}{: .float--right }
 
 The Model–view–controller (MVC) way of doing things was hard for me to pick up at first.  I hadn't spent much time working with object-oriented programming or data modeling before.  Initially, I couldn't wrap my head around the distinction between a model, a view, and a controller.
 
-My solution to this problem, as is most often the case, is to bang my head against the keyboard and pray that patterns emerge.  And after considerable effort, patterns did in fact start to appear. The way I began to understand MVC philosophy is that it's similar to website development in how it separates project components. Here's a list of loose correlations to demonstrate what I mean:  
+The way I began to understand MVC philosophy is that it's similar to website development in how it separates project components. Here's a list of loose correlations to demonstrate what I mean:  
 
     MVC               Site Development
 
@@ -30,9 +30,7 @@ Some key lessons I learned from this project are:
 - Working/managing Apple Signing Certificates and Provisioning Profiles
 - App publishing through iTunes Connect
 
-Frankly, this is the first piece of software I'd ever written and as necessity is the mother of invention, it was spurred on by me wanting to learn app development and use technology to improve my life.  When I first thought of this project I got the idea from watching people interacting through their phones with each other.  I was sitting in a bar when I noticed how folks were sharing pictures by passing their phones around.  I was struck by how these people were using them to connect with each other instead of ignoring each other.
-
-So, I thought about how I could leverage my phone to break the ice with people I hadn't met before.  That's the core idea behind Pocket Wingman.  Most of us enjoy playing games on our phones and I thought why can't I use my phone to play games with other people?  All you have to do is pass someone your phone and it does the work for you.
+Frankly, this is the first piece of software I'd ever written and as necessity is the mother of invention, it was spurred on by me wanting to learn app development and use technology to improve my life. When I first thought of this project I got the idea from watching people interacting THROUGH their phones with each other. I was struck by how people used them to connect with each other instead of ignoring each other. That's the core idea behind Pocket Wingman. How could I leverage my phone to break the ice with people? All you have to do is pass someone your phone and it does the work for you.
 
 Pocket Wingman uses games built around the device's features and capabilities:
 

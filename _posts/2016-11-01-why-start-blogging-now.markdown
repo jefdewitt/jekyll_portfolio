@@ -4,11 +4,9 @@ title:  "Why Start Blogging Now"
 date:   2016-11-01 07:29:11 -0400
 categories: jekyll update
 ---
- This is the first blog post I've ever written and I'm a little scared. What if I sound dumb or boring and then judgy (sic) people evaluate me not only on my lack of quality content but also my grammatical errors and, above all else, my misuse of past participles?
+This is the first blog post I've ever written and I'm a little scared. What if I sound dumb or boring and then judgy (sic) people evaluate me not only on my lack of quality content but also my grammatical errors and, above all else, my misuse of past participles?
 
- I resisted joining the fray for years for the usual reasons. Why add to the cacophony of opinion-porn that exists on the web? Why would anyone want to read what I write? Do I really want to share my thoughts with the world? What if it sounds dumb or I'm just plain wrong about something?
-
-Well, suck it up, I say to myself. I may just be denying our planet that essential quality it currently lacks (wink, wink, nudge, nudge).
+I resisted joining the chorus because I thought there were more than enough people 'sharing' their opinions. Besides, how would I be relevant? Why would anyone want to read what I write? What if I'm just plain wrong about something?
 
 Not to draw comparisons between myself and ol' Ben Franklin but I think he addresses my chief concerns best when he said, "For having lived long, I have experienced many instances of being obliged by better information, or fuller consideration, to change opinions even on important subjects, which I once thought right, but found to be otherwise. It is therefore that the older I grow, the more apt I am to doubt my own judgment, and to pay more respect to the judgment of others".
 

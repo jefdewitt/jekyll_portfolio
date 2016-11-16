@@ -125,16 +125,16 @@ label {
  * Links
  */
 a {
-    color: $text-color;
+    color: $lime-green;
     text-decoration: none;
     transition: all .5s ease;
 
     &:visited {
-        color: darken($text-color, 25%);
+        color: lighten($lime-green, 5%);
     }
 
     &:hover {
-        color: $lime-green;
+        color: lighten($lime-green, 10%);
         text-decoration: none;
     }
 }

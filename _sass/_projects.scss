@@ -32,9 +32,6 @@
 
 .projects__individual {
 
-    ul {
-    }
-
     li {
         list-style: none;
         width: 100%;
@@ -136,5 +133,6 @@
 
 .project__link {
     display: inline-block;
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
+    word-break: break-word;
 }
