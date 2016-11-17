@@ -15,32 +15,14 @@
     }
 }
 
-.homepage[data-group="one"]{
+.homepage {
     background: url('/images/jef-in-suit-b&w-one.jpg') no-repeat;
     background-size: cover;
-    //background-position: right 0% bottom 90%;
-    transition: all 0.7s ease;
-}
+    background-position: top right;
 
-.homepage[data-group="two"]{
-    background: url('/images/jef-in-suit-b&w-two.jpg') no-repeat;
-    background-size: 133%;
-    background-position: right 100% bottom 85%;
-    transition: all 0.7s ease;
-}
-
-.homepage[data-group="three"]{
-    background: url('/images/jef-in-suit-b&w-three.jpg') no-repeat;
-    background-size: 133%;
-    background-position: right 75% bottom 85%;
-    transition: all 0.7s ease;
-}
-
-.homepage[data-group="four"]{
-    background: url('/images/jef-in-suit-b&w-four.jpg') no-repeat;
-    background-size: 133%;
-    background-position: right 67% bottom 65%;
-    transition: all 0.7s ease;
+    @include media($mobile) {
+        background-position: initial; 
+    }
 }
 
 .side--left {

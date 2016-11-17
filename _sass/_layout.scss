@@ -64,15 +64,17 @@ input {
  */
 // .project__content {
     [class*="float"] {
-        @include media($mobile) {
-            font-weight: 300;
-            font-style: italic;
-            text-align: center;
-            width: 33%;
+        font-weight: 300;
+        font-style: italic;
+        text-align: center;
 
-            img {
-                margin-bottom: 1em;
-            }
+        @include media($mobile) {
+            width: 33%;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 1em;
         }
     }
 

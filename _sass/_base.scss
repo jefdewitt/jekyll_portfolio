@@ -166,6 +166,7 @@ blockquote {
 .wrapper .highlighter-rouge .highlight {
     background: $grey-color-medium;
     margin: 1em 0;
+    width: 100%;
 
     @include media($mobile) {
         background: $grey-color-dark;

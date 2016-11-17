@@ -36,6 +36,18 @@
      }
 
      .page-link__container {
+
+         position: relative;
+         transition: all 1s ease;
+
+         @include media ($mobile, 'max') {
+             @for $i from 1 through 3 {
+                 &:nth-of-type(#{$i}) {
+                     top: $i * 25rem;
+                 }
+             }
+         }
+
          @include media ($mobile) {
              display: inline-block;
              padding-right: 3em;
@@ -45,8 +57,6 @@
              display: block;
              font-size: 1.5rem;
              text-decoration: none;
-             position: relative;
-             transition: all 1s ease;
              color: $text-color;
              line-height: $base-line-height;
 
@@ -58,14 +68,6 @@
                  border-bottom: 1px solid $lime-green;
                  margin-left: -1em;
                  padding: 1em 2em;
-             }
-
-             @include media ($mobile, 'max') {
-                 @for $i from 1 through 4 {
-                     &:nth-child(#{$i}) {
-                         top: $i * 25rem;
-                     }
-                 }
              }
 
              &:not(:last-child) {
@@ -96,7 +98,7 @@
             z-index: 100;
         }
 
-        .page-link__container .page-link {
+        .page-link__container {
             top: 0;
         }
 
