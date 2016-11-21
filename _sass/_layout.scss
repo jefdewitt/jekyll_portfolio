@@ -64,6 +64,23 @@ input {
 }
 
 /**
+ * Especial extra wide width class
+ */
+ .overflow-width {
+     background: $grey-color-medium;
+     left: -4em;
+     max-width: calc(100% + 8em);
+     padding: 2em 4em;
+     position: relative;
+     width: calc(100% + 8em);
+
+     @include media($mobile){
+         background: $grey-color-dark;
+         padding: 4em;
+     }
+ }
+
+/**
  * Images
  */
 [class*="float"] {
