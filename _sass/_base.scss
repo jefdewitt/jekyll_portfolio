@@ -151,8 +151,22 @@ a {
  */
 blockquote {
     color: $text-color;
-    border-left: .25em solid $lime-green;
-    padding-left: $spacing-unit / 2;
+    @extend .overflow-width;
+
+    &:before {
+        border-left: .25em solid $lime-green;
+        content: '';
+        height: 75%;
+        position: absolute;
+            right: 90%;
+            top: 50%;
+            transform: translatey(-50%);
+        width: 0;
+    }
+
+    @include media($mobile) {
+        right: 95%;
+    }
 
     > :last-child {
         margin-bottom: 0;
@@ -161,27 +175,25 @@ blockquote {
     p {
         font-size: 90%;
     }
+
+    + blockquote {
+        margin-top: -1em;
+    }
+}
+
+.post-content blockquote {
+    padding: 2em 6em;
 }
 
 /**
  * Code formatting
  */
 .wrapper .highlighter-rouge {
-    left: -4em;
-    max-width: calc(100% + 8em);
-    position: relative;
-    width: calc(100% + 8em);
+    @extend .overflow-width;
 
     .highlight {
-        background: $grey-color-medium;
         margin: 0em 0;
-        padding: 2em 4em;
         width: 100%;
-
-        @include media($mobile) {
-            background: $grey-color-dark;
-            padding: 4em;
-        }
     }
 }
 
