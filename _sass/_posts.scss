@@ -6,14 +6,15 @@
          margin-bottom: 2em;
 
          @include media($mobile) {
-             width: 74%;
-             display: inline-block;
              background: $grey-color-medium;
-             padding: 2em;
              border-radius: 0.5em;
-             position: relative;
-             z-index: 1;
+             display: inline-block;
              margin-bottom: 4em;
+             overflow: hidden;
+             padding: 4em;
+             position: relative;
+             width: 74%;
+             z-index: 1;
          }
      }
  }
