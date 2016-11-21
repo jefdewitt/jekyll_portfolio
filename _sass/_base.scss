@@ -6,6 +6,11 @@
 }
 
 
+.header {
+    font-size: 4rem;
+}
+
+
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -158,25 +163,40 @@ blockquote {
     }
 }
 
-
-
 /**
  * Code formatting
  */
-.wrapper .highlighter-rouge .highlight {
-    background: $grey-color-medium;
-    margin: 1em 0;
-    width: 100%;
+.wrapper .highlighter-rouge {
+    left: -4em;
+    max-width: calc(100% + 8em);
+    position: relative;
+    width: calc(100% + 8em);
 
-    @include media($mobile) {
-        background: $grey-color-dark;
+    .highlight {
+        background: $grey-color-medium;
+        margin: 0em 0;
+        padding: 2em 4em;
+        width: 100%;
+
+        @include media($mobile) {
+            background: $grey-color-dark;
+            padding: 4em;
+        }
     }
+}
+
+.highlighter-rouge + h2 {
+    padding-top: 1em;
+}
+
+p + .highlighter-rouge  {
+    margin-top: 2em;
 }
 
 pre,
 code {
-    font-size: 15px;
     border-radius: 3px;
+    font-size: 15px;
 }
 
 code {
@@ -191,6 +211,8 @@ pre {
         border: 0;
         padding-right: 0;
         padding-left: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
 }
 

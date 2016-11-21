@@ -9,6 +9,9 @@
      padding: 1em 0 0;
      border-top: 0.25rem solid $lime-green;
 
+     @include media($mobile) {
+          padding: 3em 0 2em;
+     }
 
      .site-header__inner {
          margin: auto;

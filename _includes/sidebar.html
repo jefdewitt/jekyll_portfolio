@@ -30,7 +30,7 @@
                   <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
                   <h3>
-                    <a class="post-link" {% if page.url == project.url %}id='current'{% endif %} href="{{ post.url | prepend: site.baseurl }}">{{ project.title }}</a>
+                    <a class="post-link" {% if page.url == project.url %}id='current'{% endif %} href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a>
                   </h3>
                 </li>
               {% endfor %}

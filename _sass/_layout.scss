@@ -42,6 +42,10 @@ body:not(.homepage) .page-content {
     background: $grey-color-dark;
     position: relative;
     z-index: 1;
+
+    @include media($mobile) {
+        min-height: 1200px;
+    }
 }
 
 /**
@@ -62,55 +66,63 @@ input {
 /**
  * Images
  */
-// .project__content {
-    [class*="float"] {
-        font-weight: 300;
-        font-style: italic;
+[class*="float"] {
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+
+    @include media($mobile) {
+        width: 33%;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto 1em;
+    }
+}
+
+.float--right {
+
+    a {
+        color: $text-color;
+    }
+
+    @include media($mobile) {
+        float: right;
+        margin-left: 1em;
+    }
+}
+
+.float--left {
+
+    a {
+        color: $text-color;
+    }
+
+    @include media($mobile) {
+        float: left;
+        margin-right: 1em;
+    }
+}
+
+.center {
+
+    a {
+        color: $text-color;
+    }
+
+    @include media($mobile) {
+        margin: 0 1em;
         text-align: center;
-
-        @include media($mobile) {
-            width: 33%;
-        }
-
-        img {
-            display: block;
-            margin: 0 auto 1em;
-        }
     }
+}
 
-    .float--right {
+.full-screen {
 
-        a {
-            color: $text-color;
-        }
-
-        @include media($mobile) {
-            float: right;
-            margin-left: 1em;
-        }
+    @include media($mobile) {
+        left: -4em;
+        max-width: calc(100% + 8em);
+        position: relative;
+        width: calc(100% + 8em);
     }
-
-    .float--left {
-
-        a {
-            color: $text-color;
-        }
-
-        @include media($mobile) {
-            float: left;
-            margin-right: 1em;
-        }
-    }
-
-    .center {
-
-        a {
-            color: $text-color;
-        }
-
-        @include media($mobile) {
-            margin: 0 1em;
-            text-align: center;
-        }
-    }
-// }
+}
