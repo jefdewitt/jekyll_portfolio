@@ -25,7 +25,9 @@ In terms of technology, I really fear that what I put out there may be misinform
 
 ## My Opinions Aren't Set In Stone
 
-Not to draw comparisons between myself and ol' Ben Franklin but I think he addresses my chief concerns best when he said, "For having lived long, I have experienced many instances of being obliged by better information, or fuller consideration, to change opinions even on important subjects, which I once thought right, but found to be otherwise. It is therefore that the older I grow, the more apt I am to doubt my own judgment, and to pay more respect to the judgment of others".
+Not to draw comparisons between myself and ol' Ben Franklin but I think he addresses my chief concerns best when he said, 
+
+>"For having lived long, I have experienced many instances of being obliged by better information, or fuller consideration, to change opinions even on important subjects, which I once thought right, but found to be otherwise. It is therefore that the older I grow, the more apt I am to doubt my own judgment, and to pay more respect to the judgment of others".
 
 More to the point is the truth that blogging appears to be more a cardinal quality of web development. Just as teaching others helps cement our own knowledge, chronicling and rubber-ducking (talking an idea out loud to inanimate object, such as a rubber duck) what I've learned and what I'm trying to learn helps fill in the gaps of my own knowledge. Therefore, this is another tool of the trade. One that helps tighten down the bolts and screws of new ideas in my very own head.
 
