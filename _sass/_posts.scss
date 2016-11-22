@@ -30,6 +30,10 @@
              display: table;
          }
 
+         h2 {
+             margin-bottom: .25rem;
+         }
+
          img {
             margin-bottom: 2em;
 
@@ -46,7 +50,10 @@
              @include media($mobile) {
                  display: table-cell;
                  vertical-align: middle;
-                 width: 60%;
+
+                 &:last-of-type {
+                     width: 60%;
+                 }
              }
          }
      }
@@ -89,7 +96,7 @@
      font-size: 3em;
      line-height: 1;
 
-     @include media($mobile) {
+     @include media($tablet) {
          font-size: 4em;
      }
  }
@@ -98,24 +105,7 @@
      margin-bottom: $spacing-unit;
 
      img {
-
         padding: .5em 0;
-
-        //  @include media($tablet) {
-         //
-        //      &:nth-of-type(odd) {
-        //          float: left;
-        //          max-width: 15em;
-        //          padding: .5em 1em .5em 0;
-        //      }
-         //
-        //      &:nth-of-type(even) {
-        //          float: right;
-        //          max-width: 15em;
-        //          padding: .5em 0 .5em 1em;
-        //      }
-         //
-        //  }
      }
 
      h2 {

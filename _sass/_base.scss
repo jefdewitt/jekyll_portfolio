@@ -55,6 +55,7 @@ ul, ol, dl, figure,
  * Images
  */
 img {
+    width: 100%;
     max-width: 100%;
     vertical-align: middle;
 }
@@ -150,30 +151,40 @@ a {
  * Blockquotes
  */
 blockquote {
+    background: $grey-color-medium;
     color: $text-color;
+    margin-bottom: 0;
     @extend .overflow-width;
+
+    @include media($mobile) {
+        background: $grey-color-dark;
+        right: 95%;
+    }
 
     &:before {
         border-left: .25em solid $lime-green;
         content: '';
         height: 75%;
         position: absolute;
-            right: 90%;
+            left: 4em;
             top: 50%;
             transform: translatey(-50%);
         width: 0;
     }
 
-    @include media($mobile) {
-        right: 95%;
-    }
 
     > :last-child {
         margin-bottom: 0;
     }
 
     p {
-        font-size: 90%;
+        @include media($tablet) {
+            font-size: 1.25em;
+        }
+    }
+
+    + h2 {
+        padding-top: 1em;
     }
 
     + blockquote {
@@ -182,18 +193,28 @@ blockquote {
 }
 
 .post-content blockquote {
-    padding: 2em 6em;
+    padding: 4em 6em;
 }
 
 /**
  * Code formatting
  */
 .wrapper .highlighter-rouge {
+    background: $grey-color-medium;
     @extend .overflow-width;
 
+    @include media($mobile) {
+        background: $grey-color-dark;
+    }
+
     .highlight {
+        background: $grey-color-medium;
         margin: 0em 0;
         width: 100%;
+
+        @include media($mobile) {
+            background: $grey-color-dark;
+        }
     }
 }
 
@@ -201,7 +222,8 @@ blockquote {
     padding-top: 1em;
 }
 
-p + .highlighter-rouge  {
+p + .highlighter-rouge,
+p + blockquote  {
     margin-top: 2em;
 }
 

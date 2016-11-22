@@ -67,7 +67,6 @@ input {
  * Especial extra wide width class
  */
  .overflow-width {
-     background: $grey-color-medium;
      left: -4em;
      max-width: calc(100% + 8em);
      padding: 2em 4em;
@@ -75,7 +74,6 @@ input {
      width: calc(100% + 8em);
 
      @include media($mobile){
-         background: $grey-color-dark;
          padding: 4em;
      }
  }
@@ -98,7 +96,7 @@ input {
     }
 }
 
-.float--right {
+div:not(.home).float--right {
 
     a {
         color: $text-color;
@@ -110,7 +108,7 @@ input {
     }
 }
 
-.float--left {
+div:not(.home).float--left {
 
     a {
         color: $text-color;
@@ -122,7 +120,7 @@ input {
     }
 }
 
-.center {
+div:not(.home).center {
 
     a {
         color: $text-color;
@@ -134,7 +132,7 @@ input {
     }
 }
 
-.full-screen {
+div:not(.home).full-screen {
 
     @include media($mobile) {
         left: -4em;

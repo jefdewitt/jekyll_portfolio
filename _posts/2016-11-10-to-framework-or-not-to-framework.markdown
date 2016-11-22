@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  "To Framework, or not to Framework "
+title:  "Are Frameworks Worth It?"
+image:  house-frame.jpg
 date:   2016-11-10 22:08:11 -0400
 categories: jekyll update
 ---
