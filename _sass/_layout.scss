@@ -74,7 +74,7 @@ input {
      width: calc(100% + 8em);
 
      @include media($mobile){
-         padding: 4em;
+        //  padding: 4em;
      }
  }
 
