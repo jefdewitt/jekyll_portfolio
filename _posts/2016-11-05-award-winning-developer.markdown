@@ -6,7 +6,7 @@ categories: jekyll update
 ---
 In 2016 I won my first award a front-end developer. I didn't receive a trophy but I didn't have to give a cheesy acceptance speech either so I consider it a wash.
 
-![American Advertising Federation logo](/images/afa-logo.svg){: .float--right }
+{% include image.html url="/images/afa-logo.svg" description="" %}{: .float--right }
 
 To keep it 100%, I was the lead developer on the TEAM that won the 2016 Silver Award for microsites from the Louisville, KY chapter of the American Advertising Federation at the American Advertising Awards. I will add that the Louisville chapter repeated in 2016 as the 'AAF Club of the Year'. So yeah, we're kind of a big deal.
 
