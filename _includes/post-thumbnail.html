@@ -27,6 +27,8 @@
       {% endif %}
     {% endfor %}
 
+{% elsif post.image %}
+    <img src="/images/{{ post.image }}">
 {% else %}
     <img src="/images/typewriter.jpg">
 {% endif %}

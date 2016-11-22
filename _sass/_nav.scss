@@ -8,7 +8,7 @@
     width: 100%;
 
     @include media($mobile) {
-        left: 4em;
+        padding-left: 4em;
     }
 
     @include media($tablet) {

@@ -37,9 +37,14 @@
  .site-title {
     float: right;
 
-        @include media($tablet) {
-            margin-right: 3em;
-        }
+    @include media($mobile) {
+        position: relative;
+        top: .66em;
+    }
+
+    @include media($tablet) {
+        margin-right: 3em;
+    }
 
     h1 {
         position: relative;
