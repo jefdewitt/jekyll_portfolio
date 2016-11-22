@@ -205,6 +205,7 @@ blockquote {
 
     @include media($mobile) {
         background: $grey-color-dark;
+        padding: 2em 4em;
     }
 
     .highlight {
@@ -220,6 +221,10 @@ blockquote {
 
 .highlighter-rouge + h2 {
     padding-top: 1em;
+}
+
+.highlighter-rouge + p {
+    padding-top: 2em;
 }
 
 p + .highlighter-rouge,
