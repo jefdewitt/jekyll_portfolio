@@ -1,16 +1,29 @@
 ---
 layout: post
-title:  "Why Start Blogging Now"
+title:  "Why Start Blogging"
 date:   2016-11-01 07:29:11 -0400
 categories: jekyll update
 ---
-This is the first blog post I've ever written and I'm a little scared. What if I sound dumb or boring and then judgy (sic) people evaluate me not only on my lack of quality content but also my grammatical errors and, above all else, my misuse of past participles?
+Do I really want to add to the din of opinions on the Internet? Not really. Yet having read buttloads of blogs and technology documentation I see a real language hurdle in how ideas are conveyed. As I become a better developer over time I see time and again that I actually understand processes and strategies better than I once thought I did, but dispossessing the requisite nomenclature I had grave insecurities.
 
-I resisted joining the chorus because I thought there were more than enough people 'sharing' their opinions. Besides, how would I be relevant? Why would anyone want to read what I write? What if I'm just plain wrong about something?
+There is a real language barrier in web development and I intend to destroy it.
+
+For those following along:
+
+    butt·load
+    ˈbətˌlōd/
+    noun
+    a large number or amount.
+
+## What I'm Afraid Of
+
+This is the first blog post I've ever written and I'm a little scared. What if judgy (sic) people evaluate me not only on my lack of esoteric terminology but also my grammatical errors and, above all else, my misuse of past participles?
+
+In terms of technology, I really fear that what I put out there may be misinformed or misguide others. And there's that little thing that terrifies me -- the idea of being a fraud and getting exposed by 'real' developers. Of course, that's assuming one incredibly long odd; that anyone will actually read a plausibly error-prone work of mine.  
+
+## My Opinions Aren't Set In Stone
 
 Not to draw comparisons between myself and ol' Ben Franklin but I think he addresses my chief concerns best when he said, "For having lived long, I have experienced many instances of being obliged by better information, or fuller consideration, to change opinions even on important subjects, which I once thought right, but found to be otherwise. It is therefore that the older I grow, the more apt I am to doubt my own judgment, and to pay more respect to the judgment of others".
-
-In terms of technology, I'm afraid that what I put out there may be misinformed or misguide others. And there's that little thing that really scares me -- the idea of being a fraud and getting exposed by 'real' developers. Of course, that's assuming one incredibly long odd; that anyone will actually read a plausibly error-prone work of mine.  
 
 More to the point is the truth that blogging appears to be more a cardinal quality of web development. Just as teaching others helps cement our own knowledge, chronicling and rubber-ducking what I've learned and what I'm trying to learn helps fill in the gaps of my own knowledge. Therefore, this is another tool of the trade. One that helps tighten down the bolts and screws of new ideas in my very own head.
 

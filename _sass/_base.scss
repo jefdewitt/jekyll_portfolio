@@ -153,6 +153,7 @@ a {
 blockquote {
     background: $grey-color-medium;
     color: $text-color;
+    margin-bottom: 0;
     @extend .overflow-width;
 
     @include media($mobile) {
@@ -180,6 +181,10 @@ blockquote {
         @include media($tablet) {
             font-size: 1.25em;
         }
+    }
+
+    + h2 {
+        padding-top: 1em;
     }
 
     + blockquote {
@@ -210,7 +215,6 @@ blockquote {
         @include media($mobile) {
             background: $grey-color-dark;
         }
-
     }
 }
 
@@ -218,7 +222,8 @@ blockquote {
     padding-top: 1em;
 }
 
-p + .highlighter-rouge  {
+p + .highlighter-rouge,
+p + blockquote  {
     margin-top: 2em;
 }
 
