@@ -4,17 +4,23 @@ title:  "Arduino Embedded Project"
 image:  arduino-mega-2560-pinout.jpg
 link:   https://www.arduino.cc/
 ---
-Who wouldn't want to build a robot? Over the summer I had the opportunity and I took it. Admittedly, it wasn't high art like the Roomba or a self-driving car but it was still a robot.
+Who wouldn't want to build a robot? Over the summer I had the opportunity and I took it. Admittedly, it wasn't high art like the Roomba or Johnny 5 but it was still a robot.
 
-In June I attended an Arduino workshop at LVL1 Hackerspace in Louisville. The LVL1 guys have an awesome shop with plenty of room and tons of cool gear. If you're an inventor they have what you need, including an enormous laser cutter for precision shaping, multiple 3D printers, and a couch swing.  Yeah, a swing that's made with a couch.
+## The Place
+
+In June I attended an Arduino workshop at LVL1 Hackerspace in Louisville. The LVL1 guys have an awesome shop with plenty of room and tons of cool gear. If you're an inventor they have what you need; an enormous laser cutter for precision shaping, multiple 3D printers, and a couch swing. Yeah, a swing that's made with a couch.
+
+## The Arduino
 
 The robot I made was built on an Arduino microcontroller. A microcontroller (or MCU, short for microcontroller unit) is like a miniaturized version of a desktop computer tower, and contains a processor core, memory, and programmable input/output ports.  The Arduino board is able to read inputs such as light sensors, button presses, or a tweet and turn it into an output.  Outputs are typically something like activating a motor, switching on an LED, or sending another Twitter message, for example.
 
-Wiring up the board with the proper connections took a little time. Some of the inputs/outputs are dedicated and have limits to their voltage capacities so it's important to be precise. One thing that made this easier than I'd anticipated was the lack of required soldering. It was just a matter of threading the wires (or jump cables/jumper wires as I've heard them called) into the appropriate sockets and the pins on the end of the wires held them in place.
+Wiring up the board took a little time. One thing that made this easier than I'd anticipated was the lack of required soldering. It was just a matter of threading the wires (or jump cables/jumper wires as I've heard them called) into the appropriate sockets and the pins on the end of the wires held them in place.
 
 {% include image.html url="/images/arduino-ide.png" description="Arduino IDE" %}{: .float--right }
 
-The next step was loading my laptop with the latest version of the eponymously named Arduino IDE (integrated development environment). For the lay person, such as myself, an IDE is a fancy way of saying it's an all-in-one application that includes everything you need to begin programming your robot. The interface is straightforward and easy enough to use to get started quickly. The platform is built on the C programming language.  
+The next step was loading my laptop with the latest version of the eponymously named Arduino IDE (integrated development environment). An IDE is a fancy way of saying it's an all-in-one application that includes everything you need to begin programming your robot. The interface is straightforward and easy enough to use to get started quickly. The platform is built on the C programming language.  
+
+## The Code
 
 A typical program looks like this:
 
@@ -61,4 +67,6 @@ A typical program looks like this:
 
 You can see here how integers point toward the pin positions of the wires on the board. In essence, you're just telling Arduino where to look for input and where to send the output. This particular program operates a servo, a small device with an output shaft. The output shaft rotates and allows control surfaces, like radio controlled airplane rudders, to be positioned properly. I used a simple knob to communicate with the servo. Based on how far I turned the knob the servo responded in kind. There were also LEDs that indicated if you were approaching the minimum or maximum positions for the servo.  
 
-I can see how a lot of companies are using these technologies in useful, real world ways. Like telecom companies monitoring service connections and sending alerts to your phone when there's an interruption, smart devices notifying you if/when a specified event occurs, and of course, how product interactions like button presses produce expected results. For more info on Arduino click [here](https://www.arduino.cc/).
+## The Wrap Up
+
+For one thing, this project helped me understand the logic of how product interfaces are designed. And I know a lot of companies are using these microcontrollers in useful, real world ways. Like receiving alerts to your phone when there's a utility service interruption, et al. For more info on Arduino click [here](https://www.arduino.cc/).
