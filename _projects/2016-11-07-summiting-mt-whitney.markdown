@@ -14,7 +14,7 @@ At the edge of Sequoia National Park, standing 14,505 feet, Mt. Whitney is the t
 
 {% include image.html url="/images/clif-bar.png" description="I ate a ton of these." %}{: .float--right }
 
-I arrived the evening before my ascent on September 10, 2014 with a full backpack; 5 liters of water and sport drinks; five pounds of food -- including a full bovine of beef jerky. I had a half dozen peanut butter and jelly sandwiches, two pounds of granola, and an entire box of chocolate chip Clif bars. Plus an essential first aid kit, Gerber multi-tool, fixed-blade knife, matches, and an additional tactical flashlight.
+I arrived the evening before my ascent on September 10, 2014 with a full backpack; 5 liters of water and sport drinks; five pounds of food -- including a full bovine of beef jerky. I had a half dozen peanut butter and jelly sandwiches, two pounds of granola, and an entire box of chocolate chip Clif bars. Plus an essential first aid kit, Gerber multi-tool, fixed-blade knife, matches, headlamp, and an additional tactical flashlight.
 
 ## The Ascent
 
