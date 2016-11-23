@@ -22,7 +22,7 @@
                               <h2 class="page-link" href="{{ projects.url | prepend: site.baseurl }}">{{ project.title }}</h2>
                               <h2 class="page-link" href="{{ projects.url | prepend: site.baseurl }}">{{ project.title }}</h2>
                           </div>
-                          <p>{{ project.excerpt }}</p>
+                          <p>{{ project.excerpt | strip_html | truncate:125 }}</p>
                       </a>
                     </li>
                 {% endfor %}

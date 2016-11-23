@@ -12,7 +12,7 @@
     <div class="headshot">
         <img src="{{ site.baseurl }}/images/jef-sidebar-portrait.jpg">
         <h2>Jef DeWitt</h2>
-        <p>I'm a burgeoning Front-end Developer and weekend Software Engineer in Louisville, KY.</p>
+        <p>I'm a burgeoning front-end developer with an idee fixe for software.</p>
         <a href="{{ site.baseurl }}/connect">Contact me.</a>
     </div>
     <div class="sidebar__posts">
@@ -24,8 +24,7 @@
 
         <ul class="post-list">
           {% if page.url contains 'projects' %}
-
-              {% for project in site.projects %}
+              {% for project in site.projects limit:3 %}
                 <li>
                   <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -37,7 +36,7 @@
 
           {% else %}
 
-              {% for post in site.posts %}
+              {% for post in site.posts limit: 3 %}
                 <li>
                   <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
