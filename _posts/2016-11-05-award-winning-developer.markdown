@@ -4,7 +4,7 @@ title:  "Award Winning Developer"
 date:   2016-11-05 11:26:11 -0400
 categories: jekyll update
 ---
-In 2016 I won my first award a front-end developer. I didn't receive a trophy but I didn't have to give a cheesy acceptance speech either so I consider it a wash.
+In 2016 I won my first award as a front-end developer. I didn't receive a trophy but I didn't have to give a cheesy acceptance speech either so I consider it a wash.
 
 {% include image.html url="/images/afa-logo.svg" description="" %}{: .float--right }
 
