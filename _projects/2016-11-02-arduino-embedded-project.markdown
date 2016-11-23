@@ -4,7 +4,7 @@ title:  "Arduino Embedded Project"
 image:  arduino-mega-2560-pinout.jpg
 link:   https://www.arduino.cc/
 ---
-Who wouldn't want to build a robot? Over the summer I had the opportunity and I took it. Admittedly, it wasn't high art like the Roomba or Johnny 5 but it was still a robot.
+Who wouldn't want to build a robot? Over the summer I had the opportunity and I took it. Admittedly, it wasn't high art like the Roomba or Johnny 5 but it was still awesome.
 
 ## The Place
 
