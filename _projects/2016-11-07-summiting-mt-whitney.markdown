@@ -24,4 +24,4 @@ I hiked past pristine alpine lakes and waterfalls. Betwixt 11,000 and 12,000 fee
 
 ## The Takeaway
 
-From planning to training to execution, summiting Mt. Whitney took weeks. And at times, I found myself alone and scared in the darkness miles away from anyone who could help me. It was radical and it took everything I had.
+From planning to training to execution, summiting Mt. Whitney took weeks. And at times, I found myself alone in inhospitable darkness miles away from help. It took everything I had. And it was radical.
