@@ -3,7 +3,7 @@
  */
 .projects .wrapper .post {
     @include media ($mobile) {
-        padding: 2em 2em 0 2em;
+        padding: 4em 4em 0 4em;
     }
 }
 
@@ -54,6 +54,7 @@
         a {
             div {
                 position: relative;
+                margin-bottom: 1em;
 
                 &:before {
                     content: '';
