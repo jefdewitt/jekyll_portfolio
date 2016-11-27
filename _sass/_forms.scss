@@ -6,19 +6,19 @@
 
      input,
      textarea {
-         width: 95%;
-         height: 2em;
-         color: $text-color;
-         font-size: 1rem;
-         margin: 1em auto;
-         transition: all 0.3s ease;
+         background: $grey-color-dark;
          border: none;
          border-bottom: 1px solid $text-color;
-         background: $grey-color-dark;
+         color: $text-color;
+         font-size: 1rem;
+         height: 2em;
+         margin: 1em auto;
+         padding: 0 .5em;
+         transition: all 0.3s ease;
+         width: 95%;
 
          &:focus {
              outline: none;
-             padding: 0 .5em;
              border-left: 1px solid $text-color;
          }
      }
@@ -30,4 +30,9 @@
 
  input.button {
      @extend .button__white--color;
+ }
+
+ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+     -webkit-box-shadow:0 0 0 50px $grey-color-dark inset; /* Change the color to your own background color */
+     -webkit-text-fill-color: $white;
  }

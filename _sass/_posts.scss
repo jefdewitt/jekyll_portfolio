@@ -85,14 +85,17 @@
         position: absolute;
         top: 0;
         width: 100%;
+        z-index: 1;
      }
 
      img + .post-title {
+         margin: 0;
          position: absolute;
-             bottom: 5%;
-             left: 5%;
+             bottom: 2rem;
+             left: 2rem;
          text-shadow: 3px 3px 8px #000;
          width: 50%;
+         z-index: 10;
      }
  }
 
