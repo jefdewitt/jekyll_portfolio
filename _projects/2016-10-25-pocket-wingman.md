@@ -1,7 +1,7 @@
 ---
 layout: project-template
 title:  "Pocket Wingman"
-image:  pocket-wingman-project-banner.jpg
+image:  pocket-wingman-project-banner-narrow.jpg
 link:   https://itunes.apple.com/us/app/pocket-wingman/id1021112996
 ---
 Pocket Wingman is my first foray into mobile app development. It's an iOS app written in Objective-C. I built it from scratch following an MVC design pattern.  
@@ -9,7 +9,7 @@ Pocket Wingman is my first foray into mobile app development. It's an iOS app wr
 {% include image.html url="/images/MVC-Process.svg" description="MVC diagram,
 by Regis Frey" %}{: .float--right }
 
-The Model–view–controller (MVC) way of doing things was too abstract for me at first. Full admission here: I had been coding for a little over a year when I began the project, and although I had worked previously for a startup I hadn't yet worked as a full fledged front-end developer. My way of doing things was fly by the seat of your pants and I had virtually no object-oriented programming experience or work with data modeling before. 
+The Model–view–controller (MVC) way of doing things was too abstract for me at first. Full admission here: I had been coding for a little over a year when I began the project, and although I had worked previously for a startup I hadn't yet worked as a full fledged front-end developer. My way of doing things was fly by the seat of your pants and I had virtually no object-oriented programming experience or work with data modeling before.
 
 ## So What Is A Model, A View, And A Controller
 

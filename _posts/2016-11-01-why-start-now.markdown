@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Why Start Blogging"
+title:  "Why Start Now?"
 date:   2016-11-01 07:29:11 -0400
 categories: jekyll update
 ---

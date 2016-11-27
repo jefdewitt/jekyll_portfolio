@@ -10,7 +10,7 @@
      border-top: 0.25rem solid $lime-green;
 
      @include media($mobile) {
-          padding: 3em 0 2em;
+         padding: 2.5em 0 1.5em;
      }
 
      .site-header__inner {
