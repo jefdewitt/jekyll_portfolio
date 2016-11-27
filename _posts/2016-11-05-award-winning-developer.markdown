@@ -20,7 +20,7 @@ Taken straight from Wikipedia:
 
 The microsite was for a national restaurant chain (for non-disclosure purposes we'll leave the intruigue). What's a microsite you ask? A microsite is basically a child of another, larger site and is accessed mainly from there. It has it's own independent links and address.
 
-The site was built mobile first and featured how-to-videos, quizzes, a live social media feed, and a sweepstakes. Although, initially a seasonal site, It was designed on a WordPress platform and had the full suite of admin controls for our client so they could customize it and keep reusing it even after the sweepstakes was over.
+The site was built mobile first and featured how-to-videos, quizzes, a live social media feed, and a sweepstakes. Although initially a seasonal site, it was designed on a WordPress platform and had the full suite of admin controls for our client so they could customize it and keep reusing it even after the sweepstakes was over.
 
 [comment]: <> The microsite was for Longhorn Steakhouse, named Grill Season.
 [comment]: <> Each year, the AAF hosts numerous programs and initiatives, including the Advertising Hall of Fame, the American Advertising Awards, the National Student Advertising Competition, the Mosaic Center on Multiculturalism and summer Ad Camps for high school students.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Are Frameworks Worth It?"
+title:  "Using Frameworks Right"
 image:  house-frame.jpg
 date:   2016-11-10 22:08:11 -0400
 categories: jekyll update
@@ -24,7 +24,8 @@ Sounds like a no-brainer, right? It is, sort of.
 
 ## The Skinny IMHO
 
-With this in mind, should I just strap on the boots to get my plate boiled so I can quit wasting all this time? Most sapiens that code tell me I should, with one important caveat -- only after I know the underlying technology first. They tell me to learn the hard way, the old fashioned way, the vanilla way. Learn why and how things work so I will know why and how frameworks actually work and can better utilize them. That way, if I'm forced to survive in the wilderness without my security blanket framework at least then I can code my way back to civilization while living off twigs and berries.
+With this in mind, should I just strap on the boots to get my plate boiled so I can quit wasting all this time? Most sapiens that code tell me I should, with one important caveat -- only after I know the underlying technology first. They tell me to learn the hard way, the old fashioned way, the vanilla way. Learn why and how things work so I will know why and how frameworks actually work and can better utilize them. Using frameworks without knowing the underlying technology can end up causing some real headaches later and cost a lot more time in the end.
 
+[comment]: <>That way, if I'm forced to survive in the wilderness without my security blanket framework at least then I can code my way back to civilization while living off twigs and berries.
 
 [comment]: <> Exactly where do you draw the line in defining a framework anyway? Is WordPress not just a blogging platform but also a framework? Drupal? Magento? Are libraries and frameworks all that different? Don't they both reduce the amount of code you write while adding extensibility and making you that much more powerful? What about libraries like GreenSock that have you making dynamite animations right out of the box? Don't I need this in my life?? ![House frame](/images/house-frame.jpg){: .full-screen }
