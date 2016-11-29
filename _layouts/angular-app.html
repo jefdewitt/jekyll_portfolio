@@ -4,17 +4,27 @@
   <title></title>
   <!-- <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <link href='styles/main.css' rel='stylesheet' type="text/css"> -->
+  <link data-require="bootstrap@3.3.5" data-semver="3.3.5" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+ <!-- <script data-require="angular.js@1.4.7" data-semver="1.4.7" src="https://code.angularjs.org/1.4.7/angular.js"></script> -->
 </head>
 <body ng-app="angularApp">
-
   <div first-element></div>
   <second-element></second-element>
 
   <div ng-controller="firstCtrl">
+      <input ng-model="project.completed" type="checkbox">
+      <input ng-model="project.title" type="text" placeholder="Project Title">
+      <label>{[{ project.title }]}</label>
+      <input ng-model="project.time" type="text" placeholder="Project Time">
+      <label ng-bind="project.time">{[{ project.time }]}</label>
+      <span>
+        1+2={[{ 1+2 }]}
+      </span>
       <button ng-click="helloWorld()">Press Me</button>
+  </div>
 
-  <script src="../vendor/angular.js" type="text/javascript"></script>
-  <script src="../scripts/app.js" type="text/javascript"></script>
-  <script src="../scripts/master-log.js" type="text/javascript"></script>
+  <script src="/vendor/angular.js" type="text/javascript"></script>
+  <script src="/scripts/app.js" type="text/javascript"></script>
+  <script src="/scripts/master-log.js" type="text/javascript"></script>
 </body>
 </html>

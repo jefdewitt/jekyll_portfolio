@@ -1,7 +1,9 @@
-angular.module('angularApp', [])
+angular.module('angularApp', []).config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+})
 
-.controller('firstCtrl', function($scope) {
+.controller('firstCtrl', function($scope, $parse) {
     $scope.helloWorld = function() {
-        document.write('You just pressed the button.');
+        console.log('You just pressed the button.');
     };
 });
