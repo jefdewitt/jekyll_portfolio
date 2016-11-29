@@ -12,15 +12,18 @@
   <second-element></second-element>
 
   <div ng-controller="firstCtrl">
-      <input ng-model="project.completed" type="checkbox">
-      <input ng-model="project.title" type="text" placeholder="Project Title">
-      <label>{[{ project.title }]}</label>
+      <!-- <input ng-model="project.completed" type="checkbox"> -->
+      <input ng-model="project.title" ng-hide="editing" type="text" placeholder="Project Title">
+      <label ng-show="editing">{[{ project.title }]}</label>
+
       <input ng-model="project.time" type="text" placeholder="Project Time">
       <label ng-bind="project.time">{[{ project.time }]}</label>
-      <span>
-        1+2={[{ 1+2 }]}
-      </span>
-      <button ng-click="helloWorld()">Press Me</button>
+
+      <div class='actions'>
+          <a href="" ng-click="editing = !editing">Edit</a>
+          <a href="">Save</a>
+          <a href="" ng-click="helloWorld()">Press Me</a>
+      </div>
   </div>
 
   <script src="/vendor/angular.js" type="text/javascript"></script>
