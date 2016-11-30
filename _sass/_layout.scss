@@ -67,11 +67,11 @@ input {
  * Especial extra wide width class
  */
  .overflow-width {
-     left: -4em;
-     max-width: calc(100% + 8em);
+     left: -3em;
+     max-width: calc(100% + 6em);
      padding: 2em 4em;
      position: relative;
-     width: calc(100% + 8em);
+     width: calc(100% + 6em);
 
      @include media($mobile){
         //  padding: 4em;
@@ -135,9 +135,9 @@ div:not(.home).center {
 div:not(.home).full-screen {
 
     @include media($mobile) {
-        left: -4em;
-        max-width: calc(100% + 8em);
+        left: -3em;
+        max-width: calc(100% + 6em);
         position: relative;
-        width: calc(100% + 8em);
+        width: calc(100% + 6em);
     }
 }

@@ -3,7 +3,7 @@
  */
 .projects .wrapper .post {
     @include media ($mobile) {
-        padding: 4em 4em 0 4em;
+        padding: 3em 3em 0 3em;
     }
 }
 
@@ -50,57 +50,73 @@
                 float: right;
             }
         }
+    }
+}
 
-        a {
-            div {
-                position: relative;
-                margin-bottom: 1em;
+.projects__individual {
+    a {
+        div {
+            position: relative;
+            margin-bottom: 1em;
 
-                &:before {
-                    content: '';
-                    position: absolute;
+            &:before {
+                background: rgba(128,128,128,.5);
+                content: '';
+                height: 100%;
+                position: absolute;
+                    right: 50%;
+                    @include media($desktop) {
+                        right: 100%;
+                    }
                     top: 0;
-                    right: 100%;
-                    width: 50%;
-                    height: 100%;
-                    transition: all .5s ease;
-                    background: rgba(128,128,128,.5);
-                }
-
-                &:after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 100%;
-                    width: 50%;
-                    height: 100%;
-                    transition: all .5s ease;
-                    background: rgba(128,128,128,.5);
-                }
-
-                h2:first-of-type {
-                    position: absolute;
-                    z-index: 1;
-                    font-size: 2rem;
-                    text-shadow: 1px 1px 1px $grey-color-dark;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-250%, -50%);
-                    transition: all .5s ease;
-                }
-
-                h2:last-of-type {
-                    position: absolute;
-                    z-index: 1;
-                    font-size: 2rem;
-                    text-shadow: 1px 1px 1px $grey-color-dark;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(150%, -50%);
-                    transition: all .5s ease;
-                }
+                transition: all .5s ease;
+                width: 50%;
             }
-            &:hover {
+
+            &:after {
+                background: rgba(128,128,128,.5);
+                content: '';
+                height: 100%;
+                position: absolute;
+                    left: 50%;
+                    @include media($desktop) {
+                        left: 100%;
+                    }
+                    top: 0;
+                transition: all .5s ease;
+                width: 50%;
+            }
+
+            h2:first-of-type {
+                font-size: 2rem;
+                position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    @include media($desktop) {
+                        transform: translate(-250%, -50%);
+                    }
+                text-shadow: 1px 1px 1px $grey-color-dark;
+                transition: all .5s ease;
+                z-index: 1;
+            }
+
+            h2:last-of-type {
+                font-size: 2rem;
+                position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    @include media($desktop) {
+                        transform: translate(150%, -50%);
+                    }
+                text-shadow: 1px 1px 1px $grey-color-dark;
+                transition: all .5s ease;
+                z-index: 1;
+            }
+        }
+        &:hover {
+            @include media($desktop) {
                 div {
 
                     &:before {

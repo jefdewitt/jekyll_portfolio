@@ -46,54 +46,60 @@
         margin-right: 3em;
     }
 
+    @include media($tablet) {
+        top: .25em;
+    }
+
     h1 {
-        position: relative;
-        display: table-cell;
-        white-space: nowrap;
-        vertical-align: middle;
         color: $white;
+        display: table-cell;
         overflow: hidden;
+        position: relative;
+        vertical-align: middle;
         // Removes pesky transition flicker bug
         -webkit-perspective: 1000;
         -webkit-backface-visibility: hidden;
         -webkit-transform:translate3d(0,0,0);
+        white-space: nowrap;
 
-        &:hover {
-            .header__slash {
-                position: absolute;
-                left: 61%;
-                z-index: 2;
-                transform: skewx(15deg) scalex(1.1);
+        // &:hover {
 
-                @include media($tablet) {
-                    left: 60%;
-                    transform: skewx(17deg) scalex(1.1);
+                .header__slash {
+                    left: 61%;
+                    transform: skewx(15deg) scalex(1.1);
+                    @include media($desktop, 'max') {
+                        position: absolute;
+                            left: 60%;
+                            transform: skewx(17deg) scalex(1.1);
+                        z-index: 2;
+                    }
                 }
-            }
-            [class^='header__name'] {
-                display: inline-block;
-                opacity: 1;
-            }
-            .header__less-than {
-                margin-right: 3px;
-            }
-            .header__name--first {
-                width: 6.25rem;
-                color: $lime-green;
-
-                 @include media($tablet) {
-                     width: 7.5rem;
-                 }
-            }
-            .header__name--last {
-                width: 4.25rem;
-                color: $lime-green;
-
-                @include media($tablet) {
-                    width: 5.5rem;
+                [class^='header__name'] {
+                    @include media($desktop, 'max') {
+                        display: inline-block;
+                        opacity: 1;
+                    }
                 }
-            }
-        }
+                .header__less-than {
+                    @include media($desktop, 'max') {
+                        margin-right: 3px;
+                    }
+                }
+                .header__name--first {
+                    width: 6.25rem;
+                    @include media($desktop, 'max') {
+                        color: $lime-green;
+                        width: 7.5rem;
+                    }
+                }
+                .header__name--last {
+                    width: 4.25rem;
+                    @include media($desktop, 'max') {
+                        color: $lime-green;
+                        width: 5.5rem;
+                    }
+                }
+        // }
     }
 
     .header__less-than,
@@ -115,17 +121,3 @@
         transition: opacity 1s ease, width .3s ease;
     }
 }
-
-//
-// .site-title {
-//
-//     &:hover {
-//         text-decoration: none;
-//     }
-//
-//     h1 {
-//         color: $text-color;
-//         font-weight: 700;
-//         //text-shadow: 1px 1px 4px $text-color;
-//     }
-// }

@@ -102,12 +102,13 @@ h1, h2, h3, h4, h5, h6 {
  * Base type elements
  */
 p, li, a, label, input {
-    font-weight: $light;
+    font-weight: $normal;
     font-family: $raleway;
     color: $text-color;
 
     @include media($tablet) {
         font-size: 1.25rem;
+        font-weight: $light;
     }
 }
 
