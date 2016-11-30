@@ -117,6 +117,7 @@
 
      h2 {
          font-size: 32px;
+         color: $lime-green;
 
          @include media($tablet, 'max') {
              font-size: 28px;
