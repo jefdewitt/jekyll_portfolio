@@ -17,7 +17,7 @@ Of course, landing my first agency job with a team full of bona fide developers 
 
 For the first several months of my agency job I toiled away on tasks feeling completely overwhelmed because I misunderstood what was actually asked of me. I felt dumb. Nowhere was this more apparent than in our weekly developer meetings where ideas were expressed in arcane nomenclature. I couldn't follow along at all. Only after the meetings were over and I researched our talks did I realize I did in fact 'know' the material that was covered, just not the language.
 
-Equally frustrating was the inability express my ideas or voice valid concerns about the validity of instruction I was given. On more than one occasion I went down a known dead-end because I couldn't figure out a way to say this won't work 'for this reason'. This resulted in a lot more work and wasted time.
+Equally frustrating was the inability to express my ideas or voice valid concerns about the validity of instruction I was given. On more than one occasion I went down a known dead-end because I couldn't figure out a way to say this won't work 'for this reason'. This resulted in a lot more work and wasted time.
 
 ## The Fix
 
