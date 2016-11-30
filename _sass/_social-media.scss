@@ -53,6 +53,7 @@
          li {
               @include media($mobile) {
                  float: right;
+                 padding-right: 1em;
              }
          }
      }
