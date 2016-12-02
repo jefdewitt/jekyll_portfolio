@@ -30,12 +30,7 @@
              display: table;
          }
 
-         h2 {
-             margin-bottom: .25rem;
-         }
-
          img {
-            margin-bottom: 2em;
 
              @include media($mobile) {
                  display: table-cell;
@@ -55,6 +50,10 @@
                      width: 60%;
                  }
              }
+         }
+
+         span {
+             display: inline-block;
          }
      }
  }
@@ -88,11 +87,19 @@
         z-index: 1;
      }
 
+     img {
+         margin-bottom: 0;
+     }
+
      img + .post-title {
+         font-size: 10vw;
          margin: 0;
          position: absolute;
-             bottom: 2rem;
-             left: 2rem;
+             bottom: 1rem;
+             left: 1rem;
+              @include media($mobile) {
+                  font-size: 6vw;       
+              }
          text-shadow: 3px 3px 8px #000;
          width: 60%;
          z-index: 10;
@@ -102,14 +109,6 @@
  .post-title {
      font-size: 6vw;
      line-height: 1;
-
-    //  @include media($mobile) {
-    //      font-size: 3em;
-    //  }
-     //
-    //  @include media($tablet) {
-    //      font-size: 4em;
-    //  }
  }
 
  .post-content {
@@ -117,31 +116,6 @@
 
      img {
         padding: .5em 0;
-     }
-
-     h2 {
-         font-size: 32px;
-         color: $lime-green;
-
-         @include media($tablet, 'max') {
-             font-size: 28px;
-         }
-     }
-
-     h3 {
-         font-size: 26px;
-
-         @include media($tablet, 'max') {
-             font-size: 22px;
-         }
-     }
-
-     h4 {
-         font-size: 20px;
-
-         @include media($tablet, 'max') {
-             font-size: 18px;
-         }
      }
  }
 

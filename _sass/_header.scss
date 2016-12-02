@@ -21,8 +21,8 @@
          @include media($tablet, 'max') {
              max-width: -webkit-calc(#{$tablet} - (#{$spacing-unit}));
              max-width:         calc(#{$tablet} - (#{$spacing-unit}));
-             padding-right: $spacing-unit / 2;
-             padding-left: $spacing-unit / 2;
+            //  padding-right: $spacing-unit / 2;
+            //  padding-left: $spacing-unit / 2;
          }
 
          @include media($desktop) {
@@ -37,7 +37,7 @@
  .site-title {
     float: right;
     position: relative;
-    top: .1rem;
+    top: .5rem;
 
 
     @include media($mobile) {

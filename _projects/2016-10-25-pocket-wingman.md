@@ -15,11 +15,11 @@ The Model–view–controller (MVC) way of doing things was too abstract for me 
 
 The way I began to understand MVC philosophy is that it's similar to website development -- you separate content from styles from functionality -- in how it separates project components. Here's a list of loose correlations to demonstrate what I mean:  
 
-    MVC               Site Development
+    MVC          Site Development
 
-    Model        =    Database
-    View         =    HTML/CSS
-    Controller   =    JavaScript
+    Model   =    Database
+    View    =    HTML/CSS
+    Ctlr    =    JavaScript
 
 
 ## What I Learned
