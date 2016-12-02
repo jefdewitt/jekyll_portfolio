@@ -94,18 +94,22 @@
              bottom: 2rem;
              left: 2rem;
          text-shadow: 3px 3px 8px #000;
-         width: 50%;
+         width: 60%;
          z-index: 10;
      }
  }
 
  .post-title {
-     font-size: 3em;
+     font-size: 6vw;
      line-height: 1;
 
-     @include media($tablet) {
-         font-size: 4em;
-     }
+    //  @include media($mobile) {
+    //      font-size: 3em;
+    //  }
+     //
+    //  @include media($tablet) {
+    //      font-size: 4em;
+    //  }
  }
 
  .post-content {

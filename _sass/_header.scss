@@ -36,9 +36,11 @@
 
  .site-title {
     float: right;
+    position: relative;
+    top: .1rem;
+
 
     @include media($mobile) {
-        position: relative;
         top: .66em;
     }
 

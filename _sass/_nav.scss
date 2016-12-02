@@ -2,23 +2,26 @@
  * Navigation
  */
  .site-nav {
+    height: 100vh;
+    overflow-x: hidden;
     position: absolute;
-    top: 33%;
-    left: 0;
+        left: 0;
+        top: 33%;
     width: 100%;
 
     @include media($mobile) {
-        padding-left: 4em;
+        padding-left: 2em;
     }
 
     @include media($tablet) {
+        padding-left: 4em;
         width: auto;
     }
 
      .menu-icon {
         display: block;
         position: relative;
-        bottom: 1.25em;
+        bottom: .6em;
         left: .5em;
 
         @include media($mobile) {
@@ -99,6 +102,7 @@
 
         @include media ($mobile, 'max') {
             background: $grey-color;
+            top: 1rem;
             z-index: 100;
         }
 
@@ -137,9 +141,10 @@
     }
 
     span {
-        border-bottom: 4px solid $text-color;
+        border-bottom: 3px solid $text-color;
         display: inline-block;
-        width: 2rem;
+        width: 1.5rem;
+        // top: .75rem;
         position: relative;
         transition: all 0.3s ease;
 
@@ -149,30 +154,30 @@
 
         &:nth-of-type(2) {
             transform: rotate(55deg);
-            width: 1.5rem;
-            right: 1.7rem;
-            bottom: 0.3rem;
+            width: 1rem;
+            right: 1.4rem;
+            bottom: 0.1rem;
         }
 
         &:nth-of-type(3) {
             transform: rotate(125deg);
-            width: 1.5rem;
-            right: 2.9rem;
-            bottom: 0.3rem;
+            width: 1rem;
+            right: 2.25rem;
+            bottom: 0.2rem;
         }
 
         &:last-of-type {
             transform: rotate(90deg);
-            right: 4.65rem;
+            right: 3.7rem;
         }
     }
 
     p {
         display: inline;
-        font-size: 2rem;
+        font-size: 1.5rem;
         position: relative;
-        right: 5.7rem;
-        top: 0.8rem;
+        right: 4.7rem;
+        top: .5rem;
         color: $text-color;
     }
 }
@@ -186,7 +191,7 @@
             transform: rotate(45deg);
             border-bottom: 3px solid $text-color;
             box-shadow: none;
-            left: 1rem;
+            left: .5rem;
         }
 
         &:nth-of-type(2),
@@ -196,7 +201,7 @@
 
         &:last-of-type {
             transform: rotate(135deg);
-            right: 5.35rem;
+            right: 4.35rem;
             border-bottom: 3px solid $text-color;
             box-shadow: none;
         }

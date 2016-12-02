@@ -88,7 +88,10 @@
             }
 
             h2:first-of-type {
-                font-size: 2rem;
+                font-size: 10vw;
+                @include media($mobile) {
+                    font-size: 3vw;
+                }
                 position: absolute;
                     left: 50%;
                     top: 50%;
@@ -102,7 +105,10 @@
             }
 
             h2:last-of-type {
-                font-size: 2rem;
+                font-size: 10vw;
+                @include media($mobile) {
+                    font-size: 3vw;
+                }
                 position: absolute;
                     left: 50%;
                     top: 50%;
