@@ -42,6 +42,7 @@ body:not(.homepage) .page-content {
     background: $grey-color-dark;
     position: relative;
     z-index: 1;
+    overflow-x: hidden;
 
     @include media($mobile) {
         min-height: 1200px;

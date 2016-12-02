@@ -36,6 +36,10 @@
                  fill: $grey-color-dark;
              }
          }
+
+         > span {
+             margin-bottom: 0;
+         }
      }
 
      .page-link__container {
