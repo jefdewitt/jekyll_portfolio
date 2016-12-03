@@ -251,6 +251,11 @@ blockquote {
         @include media($mobile) {
             background: $grey-color-dark;
         }
+
+        .err {
+            color: $text-color;
+            background: initial;
+        }
     }
 }
 
