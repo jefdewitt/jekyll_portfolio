@@ -1,0 +1,35 @@
+---
+layout: project-template
+title:  "iOS Work"
+image:  ios-work.jpg
+link:
+---
+This project is kind of a two-birds-one-stone kind of deal for me. First off, I'm bolstering my JavaScript chops by creating some pretty rad interactions for this page. Interactions I've seen probably done better by a more senior dev I had the fortune to work with but I've been wanting to do this awhile now. And for the other bird...
+
+## Treehouse
+
+I've got nothing but love for the folks at [Treehouse](https://treehouse.com). They helped me get my start and are the reason I'm in the industry in the first place. If you haven't had the opportunity to check them out yet DO IT NOW. I find their video tutorials concise enough to not feel daunting and the progress tracking they do is motivational. AND they have a ton of technologies to study.
+
+## iOS Development
+
+Here are some mobile apps I built following instruction from Treehouse.
+
+## Algorhythm
+
+The first one I want to show you is Algorhythm. It's a list making app set to the task of creating playlists for different moods and activities. This is the first project I built using Xcode's auto layout capabilities.
+
+{% include image.html url="/images/treehouse/treehouse-algorhythm.jpg" %}{: .offscreen--right .one }
+
+## Blog Reader
+
+Blog Reader does exactly like its name suggests, accesses a list of blogs via a JSON feed. This project is built on a Table View Controller.
+
+{% include image.html url="/images/treehouse/treehouse-blog-reader.jpg" %}{: .offscreen--left .two }
+
+{% include image.html url="/images/treehouse/treehouse-crystal-ball.jpg" %}{: .offscreen--right .three }
+
+{% include image.html url="/images/treehouse/treehouse-diary.jpg" %}{: .offscreen--left .four }
+
+{% include image.html url="/images/treehouse/treehouse-fun-facts.jpg" %}{: .offscreen--right .five }
+
+{% include image.html url="/images/treehouse/treehouse-photo-bomber.jpg" %}{: .offscreen--left .six }

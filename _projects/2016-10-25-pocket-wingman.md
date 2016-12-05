@@ -40,4 +40,4 @@ Frankly, this is the first piece of software I'd ever written and as necessity i
 - The accelerometer prompts user interaction to move forward through views
 - The touch screen is used to continue progress through a variety of gestures
 
-For a free copy visit [here](https://https://itunes.apple.com/us/app/pocket-wingman/id1021112996).  Try it out and tell me if you like it.  I appreciate feedback so if you see a place that needs work, have a suggestion, or an improvement I'd love to hear from you.
+For a free copy visit [here](https://itunes.apple.com/us/app/pocket-wingman/id1021112996).  Try it out and tell me if you like it.  I appreciate feedback so if you see a place that needs work, have a suggestion, or an improvement I'd love to hear from you.

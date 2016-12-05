@@ -27,10 +27,10 @@
     }
 
     h2 {
+        color: $text-color;
 
         @include media($mobile) {
             border-bottom: 1px solid $lime-green;
-            color: $text-color;
             display: inline-block;
             margin: 0 0 1rem -2.5rem;
             padding: 0 0 .5rem 2.5rem;
