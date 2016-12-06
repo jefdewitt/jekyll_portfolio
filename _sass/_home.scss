@@ -21,7 +21,7 @@
     background-position: top right;
 
     @include media($mobile) {
-        background-position: initial; 
+        background-position: initial;
     }
 }
 
@@ -222,13 +222,13 @@
   position: absolute;
   z-index: 2;
   opacity: 0;
-  top: -5rem;
+  top: -6rem;
   left: 3rem;
   animation: appear 1s 4s forwards, shift 1s 6s forwards;
   transition: all .3s ease;
 
   @media screen and (min-width: 768px) {
-    top: -6rem;
+    top: -7rem;
     left: 3.5rem;
     animation: appear 1s 4s forwards, shift2 1s 6s forwards;
   }
@@ -237,13 +237,13 @@
 .greater-than {
   position: absolute;
   opacity: 0;
-  top: -5.5rem;
+  top: -6.5rem;
   left: 7rem;
   animation: appear 1s 5s forwards, move 1s 6s forwards;
   transition: all .3s ease;
 
   @media screen and (min-width: 768px) {
-     top: -6.5rem;
+     top: -7.5rem;
      left: 8.5rem;
      animation: appear 1s 5s forwards, move2 1s 6s forwards;
   }
