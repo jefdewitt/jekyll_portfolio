@@ -39,8 +39,9 @@
         overflow: hidden;
 
         @include media($mobile) {
-            width: 47%;
             display: inline-block;
+            height: 20em;
+            width: 47%;
 
             &:nth-of-type(odd) {
                 float: left;
