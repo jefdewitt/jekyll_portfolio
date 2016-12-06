@@ -26,10 +26,28 @@ Blog Reader does exactly like its name suggests, accesses a list of blogs via a 
 
 {% include image.html url="/images/treehouse/treehouse-blog-reader.jpg" %}{: .offscreen--left .two }
 
+## Crystal Ball
+
+This was my first ever full fledged mobile app. I still have it on my phone. The crystal ball uses the accelerometer to detect shaking or the touch screen to initiate a new reading. It also features a sweet animation of the crystal ball's magic powers courtesy of looping through an array of images.
+
 {% include image.html url="/images/treehouse/treehouse-crystal-ball.jpg" %}{: .offscreen--right .three }
+
+## Diary
+
+The Diary app is the only one I've built that relies on core data, or on device storage. What's great about this one is it makes use of Objective-C Location Services, a powerful built-in GPS technology.
 
 {% include image.html url="/images/treehouse/treehouse-diary.jpg" %}{: .offscreen--left .four }
 
+## Fun Facts
+
+Fun Facts was just a fun little app to build. It's simply designed and displays an interesting fact at the touch of a button.
+
 {% include image.html url="/images/treehouse/treehouse-fun-facts.jpg" %}{: .offscreen--right .five }
 
+## Photo Bomber
+
+Ever heard of Instagram? This is an extremely low budget version of the popular name brand app. Because of asynchronous networking, which is a way of saying that multiple channels of data transfer can occur in the background simultaneously at different speeds, it was a bear to produce. In fact, I just impressed myself with remembering that much about asynchronous networking. The app also makes use of data caching for faster load times.
+
 {% include image.html url="/images/treehouse/treehouse-photo-bomber.jpg" %}{: .offscreen--left .six }
+
+These apps were sort of a turning point for me developmentally speaking. For the first time I had tech I had built that I could bring with me on the go and show others. It made my idee fixe for software suddenly tangible.
