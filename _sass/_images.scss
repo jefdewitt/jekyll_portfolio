@@ -1,0 +1,29 @@
+/**
+ * Offscreen extra wide image classes for 'iOS Work'
+ */
+.offscreen--right {
+    left: 110%;
+    padding-top: 2em;
+    position: relative;
+    transition: left 1s ease;
+    width: calc(100% + 6em);
+}
+
+.offscreen--left {
+    position: relative;
+    padding-top: 2em;
+    right: 125%;
+    transition: right 1s ease;
+    width: calc(100% + 6em);
+}
+
+/**
+ * Bring offscreen images back to center
+ */
+.center-from-right {
+    left: -3em;
+}
+
+.center-from-left {
+    right: 3em;
+}

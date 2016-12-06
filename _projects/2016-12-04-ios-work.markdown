@@ -1,0 +1,53 @@
+---
+layout: project-template
+title:  "iOS Work"
+image:  ios-work.jpg
+link:
+---
+This project is kind of a two-birds-one-stone kind of deal for me. First off, I'm bolstering my JavaScript chops by creating some pretty rad interactions for this page. Interactions I've seen probably done better by a more senior dev I had the fortune to work with but I've been wanting to do this awhile now. And for the other bird...
+
+## Treehouse
+
+I've got nothing but love for the folks at [Treehouse](https://treehouse.com). They helped me get my start and are the reason I'm in the industry in the first place. If you haven't had the opportunity to check them out yet DO IT NOW. I find their video tutorials concise enough to not feel daunting and the progress tracking they do is motivational. AND they have a ton of technologies to study.
+
+## iOS Development
+
+Here are some mobile apps I built following instruction from Treehouse.
+
+## Algorhythm
+
+The first one I want to show you is Algorhythm. It's a list making app set to the task of creating playlists for different moods and activities. This is the first project I built using Xcode's auto layout capabilities.
+
+{% include image.html url="/images/treehouse/treehouse-algorhythm.jpg" %}{: .offscreen--right .one }
+
+## Blog Reader
+
+Blog Reader does exactly like its name suggests, accesses a list of blogs via a JSON feed. This project is built on a Table View Controller.
+
+{% include image.html url="/images/treehouse/treehouse-blog-reader.jpg" %}{: .offscreen--left .two }
+
+## Crystal Ball
+
+This was my first ever full fledged mobile app. I still have it on my phone. The crystal ball uses the accelerometer to detect shaking or the touch screen to initiate a new reading. It also features a sweet animation of the crystal ball's magic powers courtesy of looping through an array of images.
+
+{% include image.html url="/images/treehouse/treehouse-crystal-ball.jpg" %}{: .offscreen--right .three }
+
+## Diary
+
+The Diary app is the only one I've built that relies on core data, or on device storage. What's great about this one is it makes use of Objective-C Location Services, a powerful built-in GPS technology.
+
+{% include image.html url="/images/treehouse/treehouse-diary.jpg" %}{: .offscreen--left .four }
+
+## Fun Facts
+
+Fun Facts was just a fun little app to build. It's simply designed and displays an interesting fact at the touch of a button.
+
+{% include image.html url="/images/treehouse/treehouse-fun-facts.jpg" %}{: .offscreen--right .five }
+
+## Photo Bomber
+
+Ever heard of Instagram? This is an extremely low budget version of the popular name brand app. Because of asynchronous networking, which is a way of saying that multiple channels of data transfer can occur in the background simultaneously at different speeds, it was a bear to produce. In fact, I just impressed myself with remembering that much about asynchronous networking. The app also makes use of data caching for faster load times.
+
+{% include image.html url="/images/treehouse/treehouse-photo-bomber.jpg" %}{: .offscreen--left .six }
+
+These apps were sort of a turning point for me developmentally speaking. For the first time I had tech I had built that I could bring with me on the go and show others. It made my idee fixe for software suddenly tangible.

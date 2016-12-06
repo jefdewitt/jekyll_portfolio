@@ -166,8 +166,8 @@
         &:nth-of-type(3) {
             transform: rotate(125deg);
             width: 1rem;
-            right: 2.25rem;
-            bottom: 0.2rem;
+            right: 2.3rem;
+            bottom: 0.1rem;
         }
 
         &:last-of-type {
@@ -223,19 +223,17 @@
         position: relative;
 
         &:before {
-            @include media($mobile) {
-                content: '';
-                position: absolute;
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 1.75rem 0 1.75rem 1.75rem;
-                border-color: transparent transparent transparent $grey-color-medium;
-                left: 33%;
-                top: 130%;
-                transform: rotate(270deg) translatex(-50%);
-                z-index: 10;
-            }
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 1.75rem 0 1.75rem 1.75rem;
+            border-color: transparent transparent transparent $grey-color-medium;
+            left: 33%;
+            top: 150%;
+            transform: rotate(270deg) translatex(-50%);
+            z-index: 10;
         }
     }
 
