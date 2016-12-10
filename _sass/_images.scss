@@ -2,7 +2,7 @@
  * Offscreen extra wide image classes for 'iOS Work'
  */
 .offscreen--right {
-    left: 110%;
+    left: 115%;
     padding-top: 2em;
     position: relative;
     transition: left 1s ease;
@@ -12,7 +12,7 @@
 .offscreen--left {
     position: relative;
     padding-top: 2em;
-    right: 125%;
+    right: 135%;
     transition: right 1s ease;
     width: calc(100% + 6em);
 }
