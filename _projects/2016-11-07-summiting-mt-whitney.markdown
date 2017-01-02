@@ -3,6 +3,7 @@ layout: project-template
 title:  "Summiting Mount Whitney"
 image:  mt-whitney-sunrise.jpg
 link:   https://www.nps.gov/seki/planyourvisit/whitney.htm
+date:   2016-11-07 09:08:11 -0400
 ---
 Fifteen hours of solo non-stop hiking on a twenty-two mile round trip from start to finish. Hiking in darkness through bear infested forest and known mountain lion territory. Over one mile of vertical feet from trailhead to summit. This project is one I'm most proud of.
 

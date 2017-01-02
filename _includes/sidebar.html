@@ -24,10 +24,8 @@
 
         <ul class="post-list">
           {% if page.url contains 'projects' %}
-              {% for project in site.projects limit: 3 %}
+              {% for project in site.projects reversed sort:'date' %}
                 <li>
-                  <!-- <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span> -->
-
                   <h3>
                     <a class="post-link" {% if page.url == project.url %}id='current'{% endif %} href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a>
                   </h3>

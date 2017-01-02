@@ -3,6 +3,7 @@ layout: project-template
 title:  "iOS Work"
 image:  ios-work.jpg
 link:
+date:   2016-12-04 09:08:11 -0400
 ---
 This project is kind of a two-birds-one-stone kind of deal for me. First off, I'm bolstering my JavaScript chops by creating some pretty rad interactions for this page. Interactions I've seen probably done better by a more senior dev I had the fortune to work with but I've been wanting to do this awhile now. And for the other bird...
 
