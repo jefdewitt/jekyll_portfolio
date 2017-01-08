@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Avidezen"
-image:  avidezen.jpg
+title:  "Avidazen"
+image:  avidazen.jpg
 date:   2017-01-08 09:45:11 -0400
 categories: jekyll update
 ---

@@ -41,4 +41,4 @@ I'm always hacking my way through a dense jungle of distraction and misdirection
 
 ## My Advice
 
-This is a field of altruism; where information is freely given away. Everything that's necessary to succeed and advance is part of the internet itself. If you want to be a part of this, just start building. Shout out to Chris Coyier and Dave Rupert at Shop Talk [Shop Talk](http://shoptalkshow.com/).
+This is a field of altruism; where information is freely given away. Everything that's necessary to succeed and advance is part of the internet itself. If you want to be a part of this, just start building. Shout out to Chris Coyier and Dave Rupert at [Shop Talk](http://shoptalkshow.com/).
