@@ -15,7 +15,7 @@ I've always wanted to write a little on what it is I do and how I do it. I had a
 
 Front-end development is like learning a language while the alphabet keeps changing. So, I ask a lot of questions. Like, a LOT. Knowing how to ask Google the right questions to get the answers I need is a key skill. Stack Overflow is where I land the most when I'm out searching for answers. I'm not only comparing answers but comparing the reputation of the devs that answer questions, differentiating answers based on upvoting, and finding related questions.
 
-I don't worry about memorizing most of what I do -- if I do it enough, it just sticks.
+I used to be really concerned about learning so much code by heart. But that's silly; what I need to know is already committed to memory online, I just have to find it. Now, I don't worry about memorizing most of what I do -- if I do it enough, it just sticks.
 
 For the sake of specificity, here's a short list of some of the technologies I consistently work with:
 
@@ -31,7 +31,7 @@ For the sake of specificity, here's a short list of some of the technologies I c
 
 ## Documentation
 
-As I've written about before, I find that a lot of the documentation written is esoteric in nature and it's just not easily intelligible to me. And this is assuming that the documentation is complete and up to date. It's not unlikely to find outdated or unmaintained material online. I write my own documentation for myself in terms I understand, once I actually comprehend a concept.
+As I've written about before, I find that a lot of the documentation written is esoteric in nature and it's just not easily intelligible to me. And this is assuming that the documentation is complete and up-to-date. It's not unlikely to find outdated or unmaintained material online. I write my own documentation for myself in terms I understand, once I actually comprehend a concept.
 
 ## I Copy Code
 
