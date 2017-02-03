@@ -12,11 +12,7 @@ angular.module('angularApp')
 
     $scope.$storage = $localStorage;
 
-<<<<<<< HEAD
     angular.forEach($scope.$storage.project, function(index) {
-=======
-    angular.forEach($scope.$storage, function(index) {
->>>>>>> 153d35ea4e7cf8daaa98c541550bca73a36a8672
         if( index.selected === true ) {
             $scope.Output = index;
         }
