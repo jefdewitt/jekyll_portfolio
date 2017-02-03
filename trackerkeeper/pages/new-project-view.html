@@ -1,0 +1,34 @@
+<!--
+    New Project
+-->
+
+<section class="content__main">
+
+    <div class="main new">
+        <div class="">
+            <div class="field__container">
+
+                <p>Let's set something up. Gimme a little info to work with.</p>
+
+                <form name="newProjectForm">
+
+                    <div class="input__container">
+                        <input ng-model="formObject.name" type="text" name="projectName" id="name" placeholder="Add track name" required>
+                    </div>
+
+                    <div class="input__container">
+                        <input ng-model="formObject.hours" type="number" min="1" max"10001" name="projectTime" id="time" placeholder="Add track hours" required>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <nav class="">
+        <button ng-click="go('projects-list-view')"class="button">Tracks</button>
+        <button ng-disabled="newProjectForm.$invalid" ng-click="go('project-input-view'); saveGoal()" class="button">Save</button>
+    </nav>
+
+</section>

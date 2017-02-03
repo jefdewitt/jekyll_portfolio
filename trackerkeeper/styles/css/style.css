@@ -1,0 +1,312 @@
+@font-face {
+  font-family: 'Yellowtail';
+  src: url("../../yellowtail-regular-webfont.eot");
+  /* IE9 Compat Modes */
+  src: url("../../yellowtail-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../../yellowtail-regular-webfont.woff2") format("woff2"), url("../../yellowtail-regular-webfont.woff") format("woff"), url("../../yellowtail-regular-webfont.ttf") format("truetype"), url("../../yellowtail-regular-webfont.svg#svgFontName") format("svg");
+  /* Legacy iOS */
+  font-style: italic;
+  font-weight: 400; }
+* {
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%; }
+
+.app__body {
+  background: #aaa;
+  font-family: sans-serif;
+  font-size: 4vh;
+  margin: auto; }
+  .app__body h1, .app__body h2, .app__body h3, .app__body h4, .app__body h5, .app__body h6,
+  .app__body p, .app__body li, .app__body label, .app__body a, .app__body th, .app__body td {
+    color: #fff;
+    margin-top: 0; }
+  .app__body .body__inner {
+    background: #666;
+    margin: auto;
+    min-height: 700px;
+    overflow: hidden;
+    position: relative; }
+    @media screen and (min-width: 768px) {
+      .app__body .body__inner {
+        max-width: 768px; } }
+  .app__body .content__main {
+    background: #666;
+    margin: auto;
+    overflow: hidden; }
+    .app__body .content__main h1, .app__body .content__main h2, .app__body .content__main h3, .app__body .content__main h4, .app__body .content__main h5, .app__body .content__main h6 {
+      text-align: center; }
+  .app__body section > .main {
+    background: #424242;
+    border: 1px solid #B2FFB2;
+    margin: 2rem 2rem 6rem;
+    max-width: 30rem;
+    padding: 2rem; }
+    @media screen and (min-width: 500px) {
+      .app__body section > .main {
+        margin: 2rem auto 6rem; } }
+    .app__body section > .main p {
+      font-size: 3vh;
+      line-height: 1.5;
+      margin-bottom: 0; }
+      .app__body section > .main p:first-of-type {
+        margin-bottom: 2rem; }
+  .app__body a {
+    transition: all .7s ease;
+    text-decoration: none;
+    color: #333; }
+    .app__body a:hover {
+      background: #fff; }
+  .app__body ul {
+    list-style: none;
+    padding-left: 0; }
+  .app__body li {
+    margin-bottom: 1em; }
+  .app__body .content__main--header {
+    text-align: center; }
+  .app__body p {
+    margin: 0 0 1em 0; }
+  .app__body h2 {
+    margin-bottom: 1rem; }
+    .app__body h2.hours {
+      font-size: 1.25em; }
+
+.app__body section > .main button {
+  position: relative;
+  left: -3rem;
+  width: calc(100% + 6rem); }
+  .app__body section > .main button:first-of-type {
+    margin-bottom: 2rem; }
+.app__body section > .main .triple button {
+  display: table-cell;
+  margin-bottom: 0;
+  width: 33%; }
+.app__body .button {
+  background: #fff;
+  border: 1px solid;
+  display: block;
+  font-size: 3vh;
+  padding: 1em 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  width: 100%; }
+  .app__body .button:focus {
+    outline: none; }
+  .app__body .button--delete {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    height: 2em;
+    opacity: 0;
+    padding: .4em .5em 0em .75em;
+    position: absolute;
+    right: -2.5em;
+    top: 50%;
+    transform: translatey(-50%);
+    transition: all .3s ease;
+    width: 2em; }
+.app__body .action {
+  display: table;
+  text-align: center;
+  width: calc(100% + 6rem); }
+  .app__body .action.double .button {
+    display: table-cell;
+    width: 50%; }
+.app__body .slide .button--delete {
+  opacity: 1; }
+
+.app__body header {
+  background: #424242;
+  border-bottom: 1px solid #B2FFB2;
+  border-top: 1px solid #fff;
+  color: #fff;
+  display: block;
+  padding: 2em 0;
+  text-align: center;
+  width: 100%; }
+  .app__body header h1 {
+    color: #B2FFB2;
+    font-family: "Yellowtail";
+    font-size: 7vh;
+    letter-spacing: 3px;
+    margin: 0; }
+
+@media screen and (min-width: 500px) {
+  .main.detail-view {
+    margin: 2rem auto 6rem; } }
+.main.detail-view form {
+  position: relative;
+  left: -3rem;
+  width: calc(100% + 6rem); }
+.main.detail-view td span {
+  background: #ccc;
+  display: block;
+  font-size: 2vh;
+  padding: .1em .25em;
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%); }
+  .main.detail-view td span.today {
+    background: transparent;
+    color: red;
+    font-size: 3vh;
+    position: initial;
+    transform: none; }
+
+#calendar-menu {
+  background: #fff; }
+#calendar-space .main {
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+#calendar-space table {
+  margin: 2em; }
+#calendar-space tr:not(:first-of-type) td {
+  display: inline-block;
+  position: relative;
+  width: 14.28%; }
+
+.form__input--wrapper {
+  display: table;
+  width: calc(100% + 6rem); }
+  .form__input--wrapper input, .form__input--wrapper label {
+    font-size: 3vh;
+    padding: 1em 2em;
+    text-align: center;
+    width: 100%; }
+    .form__input--wrapper input:focus, .form__input--wrapper label:focus {
+      outline: none; }
+  .form__input--wrapper .input__container {
+    display: table-cell;
+    height: 5em;
+    margin-bottom: 1.5rem;
+    position: relative;
+    left: -3rem;
+    width: calc(100% + 6rem); }
+    .form__input--wrapper .input__container:first-of-type {
+      margin-bottom: 2rem; }
+    .form__input--wrapper .input__container:last-of-type label, .form__input--wrapper .input__container:last-of-type input {
+      border-left: 2px solid #333; }
+    .form__input--wrapper .input__container:last-of-type input {
+      padding: 1.1rem .25rem; }
+    .form__input--wrapper .input__container h3, .form__input--wrapper .input__container input, .form__input--wrapper .input__container label {
+      position: absolute;
+      top: 50%;
+      transform: translatey(-50%); }
+    .form__input--wrapper .input__container input {
+      padding: 1em 0em; }
+    .form__input--wrapper .input__container label {
+      background: #fff;
+      border: 1px solid #333;
+      color: #333;
+      padding: 1.1em .5em; }
+    .form__input--wrapper .input__container h3 {
+      padding: 1em .5em;
+      margin: 0;
+      text-align: left; }
+
+.app__body ::-webkit-input-placeholder {
+  color: #333; }
+
+.projects__list li {
+  position: relative;
+  transition: all .5s ease;
+  width: 100%; }
+  .projects__list li.slide {
+    width: 80%; }
+.projects__list span {
+  display: inline-block;
+  margin-bottom: .5em; }
+.projects__list span:nth-of-type(2) {
+  float: right; }
+
+.main.list-view {
+  overflow: hidden; }
+
+.progress__bar {
+  position: relative; }
+  .progress__bar .percent {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translatey(-50%);
+    text-shadow: 2px 2px 5px #000; }
+
+progress {
+  border-radius: 2px;
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  margin: auto;
+  width: 100%; }
+
+progress[value]::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; }
+
+progress[value]::-webkit-progress-value {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%; }
+
+.main.new .field__container {
+  display: table-cell;
+  font-size: 3rem;
+  margin: auto;
+  vertical-align: middle; }
+.main.new .input__container:first-of-type {
+  margin-bottom: 2rem; }
+.main.new .input__container input {
+  font-size: 3vh;
+  padding: 1em;
+  position: relative;
+  left: -3rem;
+  text-align: center;
+  width: calc(100% + 6rem); }
+
+.output {
+  border-collapse: collapse;
+  position: relative;
+  left: -3rem;
+  width: calc(100% + 6rem); }
+  .output tr td {
+    width: 25%; }
+    .output tr td:first-of-type, .output tr td:last-of-type {
+      font-size: 2vh; }
+    .output tr td:first-of-type {
+      text-align: right; }
+    .output tr td:last-of-type {
+      text-align: left; }
+
+.app__body tr {
+  background: #fff;
+  height: 2em; }
+  .app__body tr > td {
+    color: #333;
+    font-size: 3vh;
+    padding: 0 .5em;
+    text-align: center; }
+.app__body thead th {
+  font-size: 3vh; }
+.app__body thead tr {
+  background: initial; }
+
+.app__body nav {
+  bottom: 0;
+  display: table;
+  margin-bottom: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 10; }
+  .app__body nav button.button {
+    background: #424242;
+    color: #B2FFB2;
+    display: table-cell;
+    width: 50%; }
+  .app__body nav.triple button {
+    display: table-cell;
+    margin-bottom: 0;
+    width: 33.3%; }
+
+/*# sourceMappingURL=style.css.map */

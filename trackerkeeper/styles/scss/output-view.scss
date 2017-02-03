@@ -1,0 +1,50 @@
+
+.output {
+
+    border-collapse: collapse;
+    position: relative;
+        left: -3rem;
+    width: calc(100% + 6rem);
+
+    tr {
+        td {
+            width: 25%;
+
+            &:first-of-type,
+            &:last-of-type {
+                font-size: 2vh;
+            }
+
+            &:first-of-type{
+                text-align: right;
+            }
+
+            &:last-of-type {
+                text-align: left;
+            }
+        }
+    }
+}
+
+.app__body {
+    tr {
+        background: $white;
+        height: 2em;
+
+        > td {
+            color: $black;
+            font-size: 3vh;
+            padding: 0 .5em;
+            text-align: center;
+        }
+    }
+
+    thead {
+        th {
+            font-size: 3vh;
+        }
+        tr {
+            background: initial;
+        }
+    }
+}

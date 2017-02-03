@@ -1,0 +1,70 @@
+
+
+.form__input--wrapper {
+    display: table;
+    width: calc(100% + 6rem);
+
+    input, label {
+        font-size: 3vh;
+        padding: 1em 2em;
+        text-align: center;
+        width: 100%;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .input__container {
+        display: table-cell;
+        height: 5em;
+        margin-bottom: 1.5rem;
+        position: relative;
+            left: -3rem;
+        width: calc(100% + 6rem);
+
+        &:first-of-type {
+            margin-bottom: 2rem;
+        }
+
+        &:last-of-type {
+
+            label, input {
+                border-left: 2px solid $black;
+            }
+        }
+
+        &:last-of-type input {
+            padding: 1.1rem .25rem;
+        }
+
+        h3, input, label {
+            position: absolute;
+                top: 50%;
+                transform: translatey(-50%);
+        }
+
+        input {
+            padding: 1em 0em;
+        }
+
+        label {
+            background: $white;
+            border: 1px solid $black;
+            color: $black;
+            padding: 1.1em .5em;
+        }
+
+        h3 {
+            padding: 1em .5em;
+            margin: 0;
+            text-align: left;
+        }
+    }
+}
+
+.app__body {
+    ::-webkit-input-placeholder {
+        color: $black;
+    }
+}

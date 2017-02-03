@@ -1,0 +1,36 @@
+<!--
+    Project Details
+-->
+<section class="content__main">
+
+    <div class="main detail-view">
+        <div class="">
+
+            <div class="field__container">
+
+                <h2>{[{Detail.name }]}</h2>
+
+            </div>
+
+        </div>
+
+        <form id="form">
+
+            <select id="calendar-menu"
+                    ng-options="option for option in listOfOptions"
+                    ng-model="calendar"
+                    ng-change="updateCalendar()">
+                <option style="display:none" value="">select a month</option>";
+            </select>
+
+            <div id="calendar-space"></div>
+
+        </form>
+    </div>
+
+    <nav class="">
+        <button ng-click="go('project-input-view')" class="button">Add Time</button>
+        <button ng-click="go('projects-list-view')"class="button">Tracks</button>
+    </nav>
+
+</section>

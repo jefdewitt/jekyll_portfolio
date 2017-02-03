@@ -1,0 +1,25 @@
+
+.app__body {
+
+    nav {
+        bottom: 0;
+        display: table;
+        margin-bottom: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+
+        button.button {
+            background: $dark-gray;
+            color: $lime-green;
+            display: table-cell;
+            width: 50%;
+        }
+
+        &.triple button {
+            display: table-cell;
+            margin-bottom: 0;
+            width: 33.3%;
+        }
+    }
+}

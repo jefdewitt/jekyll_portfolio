@@ -1,0 +1,58 @@
+
+.projects__list {
+
+    li {
+        position: relative;
+        transition: all .5s ease;
+        width: 100%;
+
+        &.slide {
+            width: 80%;
+        }
+    }
+
+    span {
+        display: inline-block;
+        margin-bottom: .5em;
+    }
+
+    span:nth-of-type(2) {
+        float: right;
+    }
+}
+
+.main.list-view {
+    overflow: hidden;
+}
+
+.progress__bar {
+    position: relative;
+
+    .percent {
+        position: absolute;
+            right: 2%;
+            top: 50%;
+            transform: translatey(-50%);
+        text-shadow: 2px 2px 5px #000;
+    }
+}
+
+progress {
+    border-radius: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+
+progress[value]::-webkit-progress-bar {
+    background: rgba(255,255,255,.4);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+    background: rgba(255,255,255,.6);
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}

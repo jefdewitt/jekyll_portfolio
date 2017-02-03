@@ -1,0 +1,22 @@
+
+.app__body {
+
+    header {
+        background: $dark-gray;
+        border-bottom: 1px solid $lime-green;
+        border-top: 1px solid #fff;
+        color: #fff;
+        display: block;
+        padding: 2em 0;
+        text-align: center;
+        width: 100%;
+
+        h1 {
+            color: $lime-green;
+            font-family: $yellowtail;
+            font-size: 7vh;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+    }
+}

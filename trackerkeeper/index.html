@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href='styles/css/style.css' rel='stylesheet' type="text/css">
+
+  <script src="../vendor/angular_1.2.13/angular.min.js"></script>
+  <script src="../vendor/angular_1.2.13/angular-route.min.js"></script>
+  <script src="../vendor/angular_1.2.13/angular-animate.min.js"></script>
+  <script src="../vendor/angular_1.2.13/ngStorage.min.js"></script>
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.11/angular-ui-router.js"></script>
+
+
+</head>
+
+<!--
+    The ng-app directive indicates which part of the page (all or part, up to
+    you) is the root of the Angular application. Angular reads the HTML within
+    that root and compiles it into an internal representation. This reading and
+    compiling is the bootstrapping process.
+-->
+<body ng-app="angularApp" class="app__body">
+    <div class="body__inner">
+        <header>
+          <h1>Tracker Keeper</h1>
+          <!-- <a href="#projects-list-view">Current Projects List</a> -->
+        </header>
+
+        <div class="content__wrapper" ng-view></div>
+
+        <!-- <fields></fields> -->
+
+        <!-- <script src="vendor/angular.js" type="text/javascript"></script> -->
+        <script src="scripts/app.js" type="text/javascript"></script>
+        <!-- <script src="scripts/master-log.js" type="text/javascript"></script> -->
+        <script src="scripts/controllers/main.js" type="text/javascript"></script>
+        <script src="scripts/services/data.js" type="text/javascript"></script>
+        <script src="scripts/directives/fields.js" type="text/javascript"></script>
+        <!--
+        Scripts added for the views tutorial. angular-route.js is no longer part of
+        the AngularJS core. This is why we add it here.
+        -->
+        <!-- <script src="vendor/angular-route/angular-route.js" type="text/javascript"></script> -->
+        <script src="scripts/controllers/home.js" type="text/javascript"></script>
+        <script src="scripts/controllers/new.js" type="text/javascript"></script>
+        <script src="scripts/controllers/list.js" type="text/javascript"></script>
+        <script src="scripts/controllers/input.js" type="text/javascript"></script>
+        <script src="scripts/controllers/output.js" type="text/javascript"></script>
+        <script src="scripts/controllers/detail.js" type="text/javascript"></script>
+        <script src="scripts/services/project.js" type="text/javascript"></script>
+    </div>
+</body>
+</html>

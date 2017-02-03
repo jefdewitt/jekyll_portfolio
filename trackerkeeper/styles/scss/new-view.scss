@@ -1,0 +1,26 @@
+
+.main.new {
+
+    .field__container {
+        display: table-cell;
+        font-size: 3rem;
+        margin: auto;
+        vertical-align: middle;
+    }
+
+    .input__container {
+
+        &:first-of-type {
+            margin-bottom: 2rem;
+        }
+
+        input {
+            font-size: 3vh;
+            padding: 1em;
+            position: relative;
+                left: -3rem;
+            text-align: center;
+            width: calc(100% + 6rem);
+        }
+    }
+}

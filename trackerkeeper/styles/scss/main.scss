@@ -1,0 +1,185 @@
+
+
+@font-face {
+  font-family: 'Yellowtail';
+  src: url('../../yellowtail-regular-webfont.eot'); /* IE9 Compat Modes */
+  src: url('../../yellowtail-regular-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../yellowtail-regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../yellowtail-regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../../yellowtail-regular-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../../yellowtail-regular-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+       font-style: italic;
+       font-weight: 400;
+}
+
+$yellowtail: 'Yellowtail';
+
+$red: #ff4c4c;
+$white: #fff;
+$black: #333;
+$dark-gray: #424242;
+$gray: #666;
+$light-gray: #aaa;
+$lime-green: #B2FFB2;
+$font-family: sans-serif;
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.app__body {
+
+    h1, h2, h3, h4, h5, h6,
+    p, li, label, a, th, td {
+        color: $white;
+        margin-top: 0;
+    }
+
+    background: $light-gray;
+    font-family: $font-family;
+    font-size: 4vh;
+    margin: auto;
+
+    .body__inner {
+        background: $gray;
+        margin: auto;
+        min-height: 700px;
+        overflow: hidden;
+        position: relative;
+
+        @media screen and (min-width: 768px) {
+            max-width: 768px;
+        }
+    }
+
+    .content__main {
+        background: $gray;
+        margin: auto;
+        overflow: hidden;
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: center;
+        }
+    }
+
+    section > .main {
+        background: $dark-gray;
+        border: 1px solid $lime-green;
+        margin: 2rem 2rem 6rem;
+        max-width: 30rem;
+        padding: 2rem;
+
+        @media screen and (min-width: 500px) {
+            margin: 2rem auto 6rem;
+        }
+
+        p {
+            font-size: 3vh;
+            line-height: 1.5;
+            margin-bottom: 0;
+
+            &:first-of-type {
+                margin-bottom: 2rem;
+            }
+        }
+    }
+
+    a {
+        transition: all .7s ease;
+        text-decoration: none;
+        color: $black;
+
+        &:hover {
+            background: $white;
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    li {
+        margin-bottom: 1em;
+    }
+
+    .content__main--header {
+        text-align: center;
+    }
+
+    p {
+        margin: 0 0 1em 0;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+
+        &.hours {
+            font-size: 1.25em;
+        }
+    }
+
+}
+
+@import
+    'buttons',
+    'header',
+    'detail-view',
+    'input-view',
+    'list-view',
+    'new-view',
+    'output-view',
+    'nav'
+
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// comment
