@@ -20,7 +20,8 @@ angular.module('angularApp')
         this.selected = false;
     }
 
-    $scope.$storage = $localStorage.project;
+    $scope.$storage = $localStorage;
+    console.log('$scope.$storage ' + $scope.$storage);
 
     $scope.saveGoal = function(){
 
@@ -29,7 +30,7 @@ angular.module('angularApp')
         var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
 
         // add the new project object to storage
-        $scope.$storage.push(newGoal);
+        $scope.$storage.project.push(newGoal);
 
         // we match the props of our shared object with project object
         $scope.New.name = newGoal.name;
