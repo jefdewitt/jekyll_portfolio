@@ -20,7 +20,7 @@ angular.module('angularApp')
         this.selected = false;
     }
 
-    $scope.$storage = $localStorage;
+    $scope.$storage = $localStorage.project;
 
     $scope.saveGoal = function(){
 
