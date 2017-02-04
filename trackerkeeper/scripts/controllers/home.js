@@ -12,5 +12,11 @@ angular.module('angularApp')
     }
 
     $scope.Home = goalToBeTracked;
+    
+    $scope.$storage = $localStorage.project;
+    console.log('Heres our scope.storage contents');
+    angular.forEach($scope.$storage, function(index) {
+        console.dir(index.name);
+    });
 
 });
