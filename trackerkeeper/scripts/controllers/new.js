@@ -20,12 +20,24 @@ angular.module('angularApp')
         this.selected = false;
     }
 
-    $scope.$storage = $localStorage;
-    console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
-    console.log('$scope.$storage is a ' + typeof($scope.$storage) + 'type of object');
+//     $scope.$storage = $localStorage;
+//     console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
+//     console.log('$scope.$storage is a ' + typeof($scope.$storage) + 'type of object');
     
-    $scope.$storage.testProperty = [];
-    console.log('$scope.$storage.testProperty ' + $scope.$storage.testProperty);
+//     $scope.$storage.testProperty = [];
+//     console.log('$scope.$storage.testProperty ' + $scope.$storage.testProperty);
+    
+      $scope.$storage = $localStorage.$default({
+        "notes": [{
+          "title": "What is the notes vault?",
+          "content": "It is an AngularJS experiment, done by Joe Steinbring.  I think it is fairly cool."
+        }, {
+          "title": "Things Joe blogs about",
+          "content": "- Movies\n- Photography\n- Coding"
+        }]
+      });
+    
+    console.log('$scope.$storage ' + $scope.$storage);
 
     $scope.saveGoal = function(){
 
@@ -34,7 +46,7 @@ angular.module('angularApp')
         var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
 
         // add the new project object to storage
-        $scope.$storage.testProperty.push(newGoal);
+        $scope.$storage.push(newGoal);
 
         // we match the props of our shared object with project object
         $scope.New.name = newGoal.name;
