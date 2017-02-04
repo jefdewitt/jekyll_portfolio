@@ -22,6 +22,8 @@ angular.module('angularApp')
 
     $scope.$storage = $localStorage;
     console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
+    
+    console.log( 'Object.keys($localStorage) ' + Object.keys($localStorage) );
 
     $scope.saveGoal = function(){
 
