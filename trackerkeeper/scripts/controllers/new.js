@@ -22,6 +22,10 @@ angular.module('angularApp')
 
     $scope.$storage = $localStorage;
     console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
+    
+    var localObject = $localStorage.TestObject;  // Assigning the ngStorage object to a local object
+    localObject.testProperty = "bye"; // Changing the local object property to something else
+    alert($localStorage.TestObject.testProperty); // Prints "bye" (correct?)
 
     $scope.saveGoal = function(){
 
