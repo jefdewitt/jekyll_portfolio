@@ -24,7 +24,7 @@ angular.module('angularApp')
     console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
     console.log('$scope.$storage is a ' + typeof($scope.$storage) + 'type of object');
     
-    $scope.$storage.testProperty = 'hola';
+    $scope.$storage.testProperty = [];
     console.log('$scope.$storage.testProperty ' + $scope.$storage.testProperty);
 
     $scope.saveGoal = function(){
