@@ -22,6 +22,7 @@ angular.module('angularApp')
 
     $scope.$storage = $localStorage;
     console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
+    console.log('$scope.$storage is a ' + typeof($scope.$storage) + 'type of object');
     
     $scope.$storage.testProperty = 'hola';
     console.log('$scope.$storage.testProperty ' + $scope.$storage.testProperty);
