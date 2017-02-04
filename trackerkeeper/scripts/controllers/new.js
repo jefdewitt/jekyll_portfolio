@@ -22,6 +22,12 @@ angular.module('angularApp')
 
     $scope.$storage = $localStorage;
 
+    if ($localStorage.project === undefined) {
+        $localStorage.project = [];
+    }
+
+    console.log('Object.keys($scope.$storage) ' + Object.keys($scope.$storage));
+
     $scope.saveGoal = function(){
 
         // create a new instance of our project object and store values from
