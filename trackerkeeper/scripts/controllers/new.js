@@ -19,10 +19,6 @@ angular.module('angularApp')
         this.timeRepo = [];
         this.selected = false;
     }
-
-//     $scope.$storage = $localStorage;
-//     console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
-//     console.log('$scope.$storage is a ' + typeof($scope.$storage) + 'type of object');
     
 //     $scope.$storage.testProperty = [];
 //     console.log('$scope.$storage.testProperty ' + $scope.$storage.testProperty);
@@ -37,7 +33,9 @@ angular.module('angularApp')
         }]
       });
     
-    console.log('$scope.$storage ' + $scope.$storage);
+    $scope.$storage = $localStorage;
+    console.log( 'Object.keys($scope.$storage) ' + Object.keys($scope.$storage) );
+    console.log('$scope.$storage is a ' + typeof($scope.$storage) + 'type of object');
 
     $scope.saveGoal = function(){
 
