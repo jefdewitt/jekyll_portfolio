@@ -51,7 +51,7 @@ angular.module('angularApp')
         $scope.New.hours = newGoal.hours;
         $scope.New.timeRepo = [];
 
-        angular.forEach($scope.$storage, function(index) {
+        angular.forEach($scope.$storage.testProperty, function(index) {
             if ( index.name === $scope.New.name ) {
                 index.selected = true;
             } else {
