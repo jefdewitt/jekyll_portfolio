@@ -12,7 +12,7 @@
 
             &:first-of-type,
             &:last-of-type {
-                font-size: 2vh;
+                font-size: 1rem;
             }
 
             &:first-of-type{
@@ -29,11 +29,15 @@
 .app__body {
     tr {
         background: $white;
-        height: 2em;
+        height: 3rem;
+
+        @media screen and (min-width: 768px) {
+            height: 5rem;
+        }
 
         > td {
             color: $black;
-            font-size: 3vh;
+            font-size: 1.25rem;
             padding: 0 .5em;
             text-align: center;
         }
@@ -41,7 +45,7 @@
 
     thead {
         th {
-            font-size: 3vh;
+            font-size: 1rem;
         }
         tr {
             background: initial;

@@ -45,22 +45,36 @@ html, body {
     font-size: 4vh;
     margin: auto;
 
+    @media screen and (min-width: 768px) {
+        display: table;
+    }
+
     .body__inner {
         background: $gray;
         margin: auto;
-        min-height: 700px;
-        overflow: hidden;
+        min-height: 720px;
         position: relative;
 
         @media screen and (min-width: 768px) {
+            display: table-cell;
             max-width: 768px;
+            min-height: 1000px;
         }
     }
 
     .content__main {
         background: $gray;
-        margin: auto;
-        overflow: hidden;
+        margin: 1rem auto 5rem;
+        max-width: 80%;
+        min-width: 20rem;
+        vertical-align: middle;
+
+        @media screen and (min-width: 768px) {
+            display: table;
+            margin: auto;
+            max-width: calc(48rem - 4rem);
+            min-width: calc(48rem - 4rem);
+        }
 
         h1, h2, h3, h4, h5, h6 {
             text-align: center;
@@ -70,12 +84,11 @@ html, body {
     section > .main {
         background: $dark-gray;
         border: 1px solid $lime-green;
-        margin: 2rem 2rem 6rem;
-        max-width: 30rem;
         padding: 2rem;
+        vertical-align: middle;
 
-        @media screen and (min-width: 500px) {
-            margin: 2rem auto 6rem;
+        @media screen and (min-width: 768px) {
+            display: table-cell;
         }
 
         p {
@@ -117,10 +130,11 @@ html, body {
     }
 
     h2 {
-        margin-bottom: 1rem;
+        font-size: 3rem;
+        margin-bottom: 0;
 
         &.hours {
-            font-size: 1.25em;
+            font-size: 2rem;
         }
     }
 
