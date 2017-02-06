@@ -42,35 +42,42 @@ html, body {
 
     background: $light-gray;
     font-family: $font-family;
-    font-size: 4vh;
+    // font-size: 4vh;
     margin: auto;
+    overflow: hidden;
 
-    @media screen and (min-width: 768px) {
-        display: table;
-    }
+    // @media screen and (min-width: 768px) {
+        // display: table;
+    // }
 
     .body__inner {
         background: $gray;
         margin: auto;
+        height: 100%;
         min-height: 720px;
-        position: relative;
+        // position: relative;
 
-        @media screen and (min-width: 768px) {
-            display: table-cell;
-            max-width: 768px;
-            min-height: 1000px;
-        }
+        // @media screen and (min-width: 768px) {
+        //     display: table-cell;
+            // max-width: 768px;
+            // min-height: 1000px;
+        // }
+    }
+
+    .content__wrapper {
+        height: 100%;
     }
 
     .content__main {
         background: $gray;
+        display: table;
+        height: 100%;
         margin: 1rem auto 5rem;
         max-width: 80%;
         min-width: 20rem;
         vertical-align: middle;
 
         @media screen and (min-width: 768px) {
-            display: table;
             margin: auto;
             max-width: calc(48rem - 4rem);
             min-width: calc(48rem - 4rem);
@@ -82,13 +89,16 @@ html, body {
     }
 
     section > .main {
-        background: $dark-gray;
-        border: 1px solid $lime-green;
-        padding: 2rem;
+        // background: $dark-gray;
+        // border: 1px solid $lime-green;
+        display: table-cell;
+        // padding: 2rem;
         vertical-align: middle;
 
-        @media screen and (min-width: 768px) {
-            display: table-cell;
+        > div {
+            background: $dark-gray;
+            border: 1px solid $lime-green;
+            padding: 1rem;
         }
 
         p {
@@ -115,10 +125,13 @@ html, body {
     ul {
         list-style: none;
         padding-left: 0;
+        // margin: 0;
     }
 
     li {
-        margin-bottom: 1em;
+        @media screen and (min-width: 768px) {
+            margin-bottom: 1em;
+        }
     }
 
     .content__main--header {
@@ -130,11 +143,19 @@ html, body {
     }
 
     h2 {
-        font-size: 3rem;
+        font-size: 2rem;
         margin-bottom: 0;
 
+        @media screen and (min-width: 768px) {
+            font-size: 3rem;
+        }
+
         &.hours {
-            font-size: 2rem;
+            font-size: 1.75rem;
+
+            @media screen and (min-width: 768px) {
+                font-size: 2rem;
+            }
         }
     }
 

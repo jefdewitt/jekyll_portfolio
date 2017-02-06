@@ -12,20 +12,21 @@
 
             </div>
 
-        </div>
+            <form id="form">
 
-        <form id="form">
-
-            <select id="calendar-menu"
-                    ng-options="option for option in listOfOptions"
-                    ng-model="calendar"
-                    ng-change="updateCalendar()">
+                <select id="calendar-menu"
+                ng-options="option for option in listOfOptions"
+                ng-model="calendar"
+                ng-change="updateCalendar()">
                 <option style="display:none" value="">select a month</option>";
             </select>
 
             <div id="calendar-space"></div>
 
         </form>
+        
+        </div>
+
     </div>
 
 </section>

@@ -3,17 +3,17 @@
 
     border-collapse: collapse;
     position: relative;
-        left: -3rem;
-    width: calc(100% + 6rem);
+        left: -2rem;
+    width: calc(100% + 4rem);
 
     tr {
         td {
             width: 25%;
-
-            &:first-of-type,
-            &:last-of-type {
-                font-size: 1rem;
-            }
+            //
+            // &:first-of-type,
+            // &:last-of-type {
+            //     font-size: 1rem;
+            // }
 
             &:first-of-type{
                 text-align: right;
@@ -29,7 +29,7 @@
 .app__body {
     tr {
         background: $white;
-        height: 3rem;
+        height: 2rem;
 
         @media screen and (min-width: 768px) {
             height: 5rem;
@@ -37,16 +37,16 @@
 
         > td {
             color: $black;
-            font-size: 1.25rem;
+            font-size: 1rem;
             padding: 0 .5em;
             text-align: center;
         }
     }
 
     thead {
-        th {
-            font-size: 1rem;
-        }
+        // th {
+        //     font-size: 1rem;
+        // }
         tr {
             background: initial;
         }

@@ -2,10 +2,10 @@
 .app__body {
 
     nav {
-        top: 100%;
         display: table;
         margin-bottom: 0;
         position: absolute;
+            bottom: 0;
         width: 100%;
         z-index: 10;
 

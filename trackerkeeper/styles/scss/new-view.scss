@@ -3,7 +3,7 @@
 
     .field__container {
         display: table-cell;
-        font-size: 3rem;
+        // font-size: 3rem;
         margin: auto;
         vertical-align: middle;
     }
@@ -15,12 +15,16 @@
         }
 
         input {
-            font-size: 3vh;
+            font-size: 1.25rem;
             padding: 1em;
             position: relative;
-                left: -3rem;
+                left: -2rem;
             text-align: center;
-            width: calc(100% + 6rem);
+            width: calc(100% + 4rem);
+
+            @media screen and (min-width: 768px) {
+                font-size: 1.5rem;
+            }
         }
     }
 }
