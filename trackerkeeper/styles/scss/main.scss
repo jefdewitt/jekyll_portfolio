@@ -40,6 +40,16 @@ html, body {
         margin-top: 0;
     }
 
+    @media screen and (min-width: 1440px) {
+        p, li, td {
+            font-size: 1.5rem;
+        }
+
+        label, input {
+            font-size: 2rem;
+        }
+    }
+
     background: $light-gray;
     font-family: $font-family;
     // font-size: 4vh;
@@ -77,10 +87,10 @@ html, body {
         min-width: 20rem;
         vertical-align: middle;
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 1440px) {
             margin: auto;
-            max-width: calc(48rem - 4rem);
-            min-width: calc(48rem - 4rem);
+            max-width: calc(48rem - 10.5rem);
+            min-width: calc(48rem - 10.5rem);
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -102,12 +112,12 @@ html, body {
         }
 
         p {
-            font-size: 3vh;
+            // font-size: 3vh;
             line-height: 1.5;
             margin-bottom: 0;
 
             &:first-of-type {
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
             }
         }
     }
@@ -146,14 +156,14 @@ html, body {
         font-size: 2rem;
         margin-bottom: 0;
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 1440px) {
             font-size: 3rem;
         }
 
         &.hours {
             font-size: 1.75rem;
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: 1440px) {
                 font-size: 2rem;
             }
         }

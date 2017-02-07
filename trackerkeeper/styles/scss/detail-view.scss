@@ -14,7 +14,7 @@
     td span {
         background: #ccc;
         display: block;
-        font-size: 2vh;
+        // font-size: 2vh;
         padding: .1em .25em;
         position: absolute;
         left: 50%;
@@ -23,7 +23,7 @@
         &.today {
             background: transparent;
             color: red;
-            font-size: 3vh;
+            // font-size: 3vh;
             position: initial;
             transform: none;
         }

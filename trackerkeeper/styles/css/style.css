@@ -22,6 +22,11 @@ html, body {
   .app__body p, .app__body li, .app__body label, .app__body a, .app__body th, .app__body td {
     color: #fff;
     margin-top: 0; }
+  @media screen and (min-width: 1440px) {
+    .app__body p, .app__body li, .app__body td {
+      font-size: 1.5rem; }
+    .app__body label, .app__body input {
+      font-size: 2rem; } }
   .app__body .body__inner {
     background: #666;
     margin: auto;
@@ -37,11 +42,11 @@ html, body {
     max-width: 80%;
     min-width: 20rem;
     vertical-align: middle; }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1440px) {
       .app__body .content__main {
         margin: auto;
-        max-width: calc(48rem - 4rem);
-        min-width: calc(48rem - 4rem); } }
+        max-width: calc(48rem - 10.5rem);
+        min-width: calc(48rem - 10.5rem); } }
     .app__body .content__main h1, .app__body .content__main h2, .app__body .content__main h3, .app__body .content__main h4, .app__body .content__main h5, .app__body .content__main h6 {
       text-align: center; }
   .app__body section > .main {
@@ -52,11 +57,10 @@ html, body {
       border: 1px solid #B2FFB2;
       padding: 1rem; }
     .app__body section > .main p {
-      font-size: 3vh;
       line-height: 1.5;
       margin-bottom: 0; }
       .app__body section > .main p:first-of-type {
-        margin-bottom: 2rem; }
+        margin-bottom: 1rem; }
   .app__body a {
     transition: all .7s ease;
     text-decoration: none;
@@ -76,12 +80,12 @@ html, body {
   .app__body h2 {
     font-size: 2rem;
     margin-bottom: 0; }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1440px) {
       .app__body h2 {
         font-size: 3rem; } }
     .app__body h2.hours {
       font-size: 1.75rem; }
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 1440px) {
         .app__body h2.hours {
           font-size: 2rem; } }
 
@@ -90,7 +94,7 @@ html, body {
   left: -2rem;
   width: calc(100% + 4rem); }
   .app__body section > .main button:first-of-type {
-    margin-bottom: 2rem; }
+    margin-bottom: 1rem; }
 .app__body section > .main .triple button {
   display: table-cell;
   margin-bottom: 0;
@@ -99,7 +103,7 @@ html, body {
   background: #fff;
   border: 1px solid;
   display: block;
-  font-size: 3vh;
+  font-size: 1.25rem;
   padding: 1em 0;
   text-align: center;
   text-decoration: none;
@@ -122,7 +126,7 @@ html, body {
 .app__body .action {
   display: table;
   text-align: center;
-  width: calc(100% + 6rem); }
+  width: calc(100% + 4rem); }
   .app__body .action.double .button {
     display: table-cell;
     width: 50%; }
@@ -157,7 +161,6 @@ html, body {
 .main.detail-view td span {
   background: #ccc;
   display: block;
-  font-size: 2vh;
   padding: .1em .25em;
   position: absolute;
   left: 50%;
@@ -165,7 +168,6 @@ html, body {
   .main.detail-view td span.today {
     background: transparent;
     color: red;
-    font-size: 3vh;
     position: initial;
     transform: none; }
 
@@ -184,9 +186,9 @@ html, body {
 
 .form__input--wrapper {
   display: table;
-  width: calc(100% + 6rem); }
+  width: calc(100% + 4rem); }
   .form__input--wrapper input, .form__input--wrapper label {
-    font-size: 3vh;
+    font-size: 1.25rem;
     padding: 1em 2em;
     text-align: center;
     width: 100%; }
@@ -194,17 +196,24 @@ html, body {
       outline: none; }
   .form__input--wrapper .input__container {
     display: table-cell;
-    height: 5em;
+    height: 6em;
     margin-bottom: 1.5rem;
     position: relative;
-    left: -3rem;
-    width: calc(100% + 6rem); }
+    left: -2rem;
+    width: calc(100% + 4rem); }
     .form__input--wrapper .input__container:first-of-type {
-      margin-bottom: 2rem; }
+      margin-bottom: 1rem; }
     .form__input--wrapper .input__container:last-of-type label, .form__input--wrapper .input__container:last-of-type input {
-      border-left: 2px solid #333; }
+      border-bottom: 0;
+      border-left: 2px solid #333;
+      border-right: 0;
+      border-top: 0;
+      padding: 1.4rem; }
     .form__input--wrapper .input__container:last-of-type input {
-      padding: 1.1rem .25rem; }
+      padding: 1.4rem .25rem;
+      border-bottom: 0;
+      border-right: 0;
+      border-top: 0; }
     .form__input--wrapper .input__container h3, .form__input--wrapper .input__container input, .form__input--wrapper .input__container label {
       position: absolute;
       top: 50%;
@@ -232,11 +241,7 @@ html, body {
     width: 80%; }
 .projects__list span {
   display: inline-block;
-  margin-bottom: .5em;
-  font-size: 1.25rem; }
-  @media screen and (min-width: 768px) {
-    .projects__list span {
-      font-size: 1.5rem; } }
+  margin-bottom: .5em; }
 .projects__list span:nth-of-type(2) {
   float: right; }
 
@@ -274,7 +279,7 @@ progress[value]::-webkit-progress-value {
   margin: auto;
   vertical-align: middle; }
 .main.new .input__container:first-of-type {
-  margin-bottom: 2rem; }
+  margin-bottom: 1rem; }
 .main.new .input__container input {
   font-size: 1.25rem;
   padding: 1em;
@@ -282,9 +287,6 @@ progress[value]::-webkit-progress-value {
   left: -2rem;
   text-align: center;
   width: calc(100% + 4rem); }
-  @media screen and (min-width: 768px) {
-    .main.new .input__container input {
-      font-size: 1.5rem; } }
 
 .output {
   border-collapse: collapse;
@@ -306,7 +308,6 @@ progress[value]::-webkit-progress-value {
       height: 5rem; } }
   .app__body tr > td {
     color: #333;
-    font-size: 1rem;
     padding: 0 .5em;
     text-align: center; }
 .app__body thead tr {

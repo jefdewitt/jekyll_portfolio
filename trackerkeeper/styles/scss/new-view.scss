@@ -11,7 +11,7 @@
     .input__container {
 
         &:first-of-type {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         input {
@@ -23,7 +23,7 @@
             width: calc(100% + 4rem);
 
             @media screen and (min-width: 768px) {
-                font-size: 1.5rem;
+                // font-size: 1.5rem;
             }
         }
     }

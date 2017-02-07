@@ -9,7 +9,7 @@
             width: calc(100% + 4rem);
 
             &:first-of-type {
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
             }
         }
 
@@ -24,12 +24,16 @@
         background: $white;
         border: 1px solid;
         display: block;
-        font-size: 3vh;
+        font-size: 1.25rem;
         padding: 1em 0;
         text-align: center;
         text-decoration: none;
         white-space: nowrap;
         width: 100%;
+
+        @media screen and (min-width: 768px) {
+            // font-size: 2rem;
+        }
 
         &:focus {
             outline: none;
@@ -53,7 +57,7 @@
     .action {
         display: table;
         text-align: center;
-        width: calc(100% + 6rem);
+        width: calc(100% + 4rem);
 
         &.double .button {
             display: table-cell;

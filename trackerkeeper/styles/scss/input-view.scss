@@ -2,10 +2,10 @@
 
 .form__input--wrapper {
     display: table;
-    width: calc(100% + 6rem);
+    width: calc(100% + 4rem);
 
     input, label {
-        font-size: 3vh;
+        font-size: 1.25rem;
         padding: 1em 2em;
         text-align: center;
         width: 100%;
@@ -17,25 +17,32 @@
 
     .input__container {
         display: table-cell;
-        height: 5em;
+        height: 6em;
         margin-bottom: 1.5rem;
         position: relative;
-            left: -3rem;
-        width: calc(100% + 6rem);
+            left: -2rem;
+        width: calc(100% + 4rem);
 
         &:first-of-type {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         &:last-of-type {
 
             label, input {
+                border-bottom: 0;
                 border-left: 2px solid $black;
+                border-right: 0;
+                border-top: 0;
+                padding: 1.4rem;
             }
         }
 
         &:last-of-type input {
-            padding: 1.1rem .25rem;
+            padding: 1.4rem .25rem;
+            border-bottom: 0;
+            border-right: 0;
+            border-top: 0;
         }
 
         h3, input, label {
