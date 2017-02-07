@@ -303,9 +303,6 @@ progress[value]::-webkit-progress-value {
 .app__body tr {
   background: #fff;
   height: 2rem; }
-  @media screen and (min-width: 768px) {
-    .app__body tr {
-      height: 5rem; } }
   .app__body tr > td {
     color: #333;
     padding: 0 .5em;
