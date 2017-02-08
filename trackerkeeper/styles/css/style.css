@@ -109,6 +109,9 @@ html, body {
   text-decoration: none;
   white-space: nowrap;
   width: 100%; }
+  @media screen and (min-width: 1440px) {
+    .app__body .button {
+      font-size: 2rem; } }
   .app__body .button:focus {
     outline: none; }
   .app__body .button--delete {
