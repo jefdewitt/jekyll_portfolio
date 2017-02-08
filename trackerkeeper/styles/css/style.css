@@ -30,8 +30,7 @@ html, body {
   .app__body .body__inner {
     background: #666;
     margin: auto;
-    height: 100%;
-    min-height: 720px; }
+    height: 100%; }
   .app__body .content__wrapper {
     height: 100%; }
   .app__body .content__main {
