@@ -31,6 +31,7 @@
 }
 
 .progress__bar {
+    min-width: 16em;
     position: relative;
 
     .percent {

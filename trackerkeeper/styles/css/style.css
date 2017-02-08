@@ -103,14 +103,15 @@ html, body {
   border: 1px solid;
   display: block;
   font-size: 1.25rem;
-  padding: 1em 0;
+  padding: .5em 0;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
   width: 100%; }
   @media screen and (min-width: 1440px) {
     .app__body .button {
-      font-size: 2rem; } }
+      font-size: 2rem;
+      padding: 1em; } }
   .app__body .button:focus {
     outline: none; }
   .app__body .button--delete {
@@ -142,11 +143,14 @@ html, body {
   border-top: 1px solid #fff;
   color: #fff;
   display: block;
-  padding: 2rem 0;
+  padding: .5rem 0;
   position: absolute;
   top: 0;
   text-align: center;
   width: 100%; }
+  @media screen and (min-width: 1440px) {
+    .app__body header {
+      padding: 2rem 0; } }
   .app__body header h1 {
     color: #B2FFB2;
     font-family: "Yellowtail";
@@ -252,6 +256,7 @@ html, body {
   overflow: hidden; }
 
 .progress__bar {
+  min-width: 16em;
   position: relative; }
   .progress__bar .percent {
     position: absolute;
@@ -285,11 +290,14 @@ progress[value]::-webkit-progress-value {
   margin-bottom: 1rem; }
 .main.new .input__container input {
   font-size: 1.25rem;
-  padding: 1em;
+  padding: .5em;
   position: relative;
   left: -2rem;
   text-align: center;
   width: calc(100% + 4rem); }
+  @media screen and (min-width: 1440px) {
+    .main.new .input__container input {
+      padding: 1em; } }
 
 .output-view .content__main--header {
   margin-bottom: 1rem; }

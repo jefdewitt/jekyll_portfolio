@@ -7,11 +7,15 @@
         border-top: 1px solid #fff;
         color: #fff;
         display: block;
-        padding: 2rem 0;
+        padding: .5rem 0;
         position: absolute;
             top: 0;
         text-align: center;
         width: 100%;
+
+        @media screen and (min-width: 1440px) {
+            padding: 2rem 0;
+        }
 
         h1 {
             color: $lime-green;
