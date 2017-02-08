@@ -1,4 +1,10 @@
 
+.output-view {
+    .content__main--header {
+        margin-bottom: 1rem;
+    }
+}
+
 .output {
 
     border-collapse: collapse;
@@ -9,11 +15,6 @@
     tr {
         td {
             width: 25%;
-            //
-            // &:first-of-type,
-            // &:last-of-type {
-            //     font-size: 1rem;
-            // }
 
             &:first-of-type{
                 text-align: right;
@@ -35,20 +36,11 @@
             // height: 5rem;
         }
 
-        > td {
+        > td,
+        th {
             color: $black;
-            // font-size: 1rem;
             padding: 0 .5em;
             text-align: center;
-        }
-    }
-
-    thead {
-        // th {
-        //     font-size: 1rem;
-        // }
-        tr {
-            background: initial;
         }
     }
 }

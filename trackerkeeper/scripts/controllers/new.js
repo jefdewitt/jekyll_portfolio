@@ -26,39 +26,54 @@ angular.module('angularApp')
         $localStorage.project = [];
     }
 
-    console.log('Object.keys($scope.$storage) ' + Object.keys($scope.$storage));
-
     $scope.saveGoal = function(){
 
-        // create a new instance of our project object and store values from
-        // the input fields on the front-end of the app
-        var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
+        var count = 0;
 
-        // add the new project object to storage
-        $scope.$storage.project.push(newGoal);
-
-        // we match the props of our shared object with project object
-        $scope.New.name = newGoal.name;
-        $scope.New.hours = newGoal.hours;
-        $scope.New.timeRepo = [];
-
+        // check to see if we have a unique track name
         angular.forEach($scope.$storage.project, function(index) {
-            if ( index.name === $scope.New.name ) {
-                index.selected = true;
-            } else {
-                index.selected = false;
+
+            count++;
+
+            // create a new instance of our project object and store values from
+            // the input fields on the front-end of the app
+            var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
+
+            if ( index.name === newGoal.name ) {
+                
+                alert('A track by that name already exists. Please choose a different name.')
+                $scope.formObject.name = '';
+
+            } else if ( index.name != newGoal.name && count === $scope.$storage.project.length ) {
+
+            console.log('count ' + count);
+            console.log('$scope.$storage.project.length ' + $scope.$storage.project.length);
+
+                // add the new project object to storage
+                $scope.$storage.project.push(newGoal);
+
+                // we match the props of our shared object with project object
+                $scope.New.name = newGoal.name;
+                $scope.New.hours = newGoal.hours;
+                $scope.New.timeRepo = [];
+
+                if ( index.name === $scope.New.name ) {
+                    index.selected = true;
+                } else {
+                    index.selected = false;
+                }
+
+                // we set our localStorage object to match our $scope.$storage object
+                $localStorage.project = $scope.$storage.project;
+
+                // here we clear the form
+                $scope.formObject = {
+                    name: '',
+                    time: ''
+                }
+
+                $scope.go('project-input-view');
             }
         })
-
-        // we set our localStorage object to match our $scope.$storage object
-        $localStorage.project = $scope.$storage.project;
-
-        // here we clear the form
-        $scope.formObject = {
-            name: '',
-            time: ''
-        }
-
     }
-
 });

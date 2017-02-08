@@ -113,12 +113,13 @@ html, body {
     outline: none; }
   .app__body .button--delete {
     background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
     color: #fff;
     height: 2em;
     opacity: 0;
     padding: .4em .5em 0em .75em;
     position: absolute;
-    right: -2.5em;
+    right: -3em;
     top: 50%;
     transform: translatey(-50%);
     transition: all .3s ease;
@@ -288,6 +289,9 @@ progress[value]::-webkit-progress-value {
   text-align: center;
   width: calc(100% + 4rem); }
 
+.output-view .content__main--header {
+  margin-bottom: 1rem; }
+
 .output {
   border-collapse: collapse;
   position: relative;
@@ -303,12 +307,11 @@ progress[value]::-webkit-progress-value {
 .app__body tr {
   background: #fff;
   height: 2rem; }
-  .app__body tr > td {
+  .app__body tr > td,
+  .app__body tr th {
     color: #333;
     padding: 0 .5em;
     text-align: center; }
-.app__body thead tr {
-  background: initial; }
 
 .app__body nav {
   display: table;
