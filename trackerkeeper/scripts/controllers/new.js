@@ -32,7 +32,7 @@ angular.module('angularApp')
 
         // check to see if we have a unique track name
 //         angular.forEach($scope.$storage.project, function(index) {
-        for(var i=0; i<$scope.$storage.project.length; i++) { 
+        for(var index=0; index<$scope.$storage.project.length; index++) { 
             console.log('22222');
             count++;
 
