@@ -33,7 +33,7 @@ angular.module('angularApp')
         // check to see if we have a unique track name
 //         angular.forEach($scope.$storage.project, function(index) {
         for( var index in $scope.$storage.project ) { 
-            console.log('index ' + index);
+            console.log('index.name ' + index.name);
             console.log('22222');
             count++;
 
@@ -61,11 +61,11 @@ angular.module('angularApp')
                 $scope.New.timeRepo = [];
                 $scope.New.selected = newGoal.selected;
 
-                if ( index.name === $scope.New.name ) {
-                    index.selected = true;
-                } else {
-                    index.selected = false;
-                }
+//                 if ( index.name === $scope.New.name ) {
+//                     index.selected = true;
+//                 } else {
+//                     index.selected = false;
+//                 }
 
                 // we set our localStorage object to match our $scope.$storage object
                 $localStorage.project = $scope.$storage.project;
