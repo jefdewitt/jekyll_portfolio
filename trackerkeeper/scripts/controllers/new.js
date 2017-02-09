@@ -32,7 +32,7 @@ angular.module('angularApp')
 
         // check to see if we have a unique track name
         angular.forEach($scope.$storage.project, function(index) {
-
+            console.log('22222');
             count++;
 
             // create a new instance of our project object and store values from
@@ -40,7 +40,7 @@ angular.module('angularApp')
             var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
 
             if ( index.name === newGoal.name ) {
-
+                console.log('3333333');
                 alert('A track by that name already exists. Please choose a different name.')
                 $scope.formObject.name = '';
 
@@ -71,7 +71,7 @@ angular.module('angularApp')
                     name: '',
                     time: ''
                 }
-                console.log('22222');
+                console.log('44444');
                 $scope.go('project-input-view');
             }
         })
