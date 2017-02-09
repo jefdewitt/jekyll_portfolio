@@ -31,6 +31,15 @@ angular.module('angularApp')
     $scope.saveGoal = function(){
             console.log('1111111');
         var count = 0;
+        
+        
+        // create a new instance of our project object and store values from
+        // the input fields on the front-end of the app
+        var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
+        newGoal.selected = true;
+     // add the new project object to storage
+        $scope.$storage.project.push(newGoal);
+        
 
         // check to see if we have a unique track name
         angular.forEach($scope.$storage.project, function(index) {
@@ -40,8 +49,8 @@ angular.module('angularApp')
 
             // create a new instance of our project object and store values from
             // the input fields on the front-end of the app
-            var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
-            newGoal.selected = true;
+//             var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
+//             newGoal.selected = true;
 
             if ( index.name === newGoal.name ) {
                 console.log('3333333');
@@ -54,7 +63,7 @@ angular.module('angularApp')
             console.log('$scope.$storage.project.length ' + $scope.$storage.project.length);
 
                 // add the new project object to storage
-                $scope.$storage.project.push(newGoal);
+//                 $scope.$storage.project.push(newGoal);
 
                 // we match the props of our shared object with project object
                 $scope.New.name = newGoal.name;
