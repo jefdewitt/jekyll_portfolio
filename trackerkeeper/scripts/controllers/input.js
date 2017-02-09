@@ -34,7 +34,6 @@ angular.module('angularApp')
     }
 
     $scope.saveNewData = function() {
-        console.log('00000');
         // grab the current interval timer value
         var currentTimerTime = $scope.timerWithInterval;
         // grab the manual time entered
@@ -44,7 +43,6 @@ angular.module('angularApp')
 
         // if diff date is selected add it to our new time object
         if ( $scope.date != undefined ) {
-            console.log('111111');
             $scope.newTime.timeStamp = $scope.date;
         } else {
             // otherwise get today's date & add it to our new time object
@@ -92,9 +90,7 @@ angular.module('angularApp')
             $scope.newTime.minutes = $scope.timer;
 
             angular.forEach($scope.$storage.project, function(index) {
-                    console.log('222222');
                 if (index.name === $scope.Input.name) {
-                        console.log('333333');
                     index.timeRepo.push($scope.newTime);
                     index.selected = true;
                     $scope.Input.timeRepo = index.timeRepo;

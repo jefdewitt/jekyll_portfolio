@@ -25,9 +25,9 @@ angular.module('angularApp')
     if ($localStorage.project === undefined) {
         $localStorage.project = [];
     }
-
+    console.log('000000');
     $scope.saveGoal = function(){
-
+            console.log('1111111');
         var count = 0;
 
         // check to see if we have a unique track name
@@ -40,7 +40,7 @@ angular.module('angularApp')
             var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
 
             if ( index.name === newGoal.name ) {
-                
+
                 alert('A track by that name already exists. Please choose a different name.')
                 $scope.formObject.name = '';
 
@@ -71,7 +71,7 @@ angular.module('angularApp')
                     name: '',
                     time: ''
                 }
-
+                console.log('22222');
                 $scope.go('project-input-view');
             }
         })
