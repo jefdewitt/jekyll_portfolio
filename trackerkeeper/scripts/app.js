@@ -7,7 +7,7 @@
  * tutorial for adding views found @:
  * https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating
  */
-angular.module('angularApp', ['ngRoute', 'ui.router', 'ngStorage'])
+angular.module('angularApp', ['ngRoute', 'ui.router', 'ngStorage', 'ngTouch'])
 
 .config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
