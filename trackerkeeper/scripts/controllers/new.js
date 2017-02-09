@@ -39,6 +39,7 @@ angular.module('angularApp')
             // create a new instance of our project object and store values from
             // the input fields on the front-end of the app
             var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
+            newGoal.selected = true;
 
             if ( index.name === newGoal.name ) {
                 console.log('3333333');
@@ -57,12 +58,13 @@ angular.module('angularApp')
                 $scope.New.name = newGoal.name;
                 $scope.New.hours = newGoal.hours;
                 $scope.New.timeRepo = [];
+                $scope.New.selected = newGoal.selected;
 
-                if ( index.name === $scope.New.name ) {
-                    index.selected = true;
-                } else {
-                    index.selected = false;
-                }
+//                 if ( index.name === $scope.New.name ) {
+//                     index.selected = true;
+//                 } else {
+//                     index.selected = false;
+//                 }
 
                 // we set our localStorage object to match our $scope.$storage object
                 $localStorage.project = $scope.$storage.project;
