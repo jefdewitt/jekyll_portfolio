@@ -75,5 +75,6 @@ angular.module('angularApp')
                 $scope.go('project-input-view');
             }
         })
+        console.log('55555');
     }
 });
