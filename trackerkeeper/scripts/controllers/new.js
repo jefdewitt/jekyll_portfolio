@@ -25,14 +25,15 @@ angular.module('angularApp')
     if ($localStorage.project === undefined) {
         $localStorage.project = [];
     }
+    
     console.log('000000');
+    console.log($scope.$storage);
     $scope.saveGoal = function(){
             console.log('1111111');
         var count = 0;
 
         // check to see if we have a unique track name
-//         angular.forEach($scope.$storage.project, function(index) {
-        for( var index in $scope.$storage.project ) { 
+        angular.forEach($scope.$storage.project, function(index) {
             console.log('index.name ' + index.name);
             console.log('22222');
             count++;
