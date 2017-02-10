@@ -84,13 +84,14 @@ html, body {
         height: 100%;
         margin: 1rem auto 5rem;
         max-width: 80%;
-        min-width: 20rem;
+        min-width: 16rem;
         vertical-align: middle;
 
         @media screen and (min-width: 1440px) {
             margin: auto;
             max-width: calc(48rem - 10.5rem);
             min-width: calc(48rem - 10.5rem);
+            width: 25rem;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -162,6 +163,7 @@ html, body {
 
         &.hours {
             font-size: 1.75rem;
+            margin-bottom: 1rem;
 
             @media screen and (min-width: 1440px) {
                 font-size: 2rem;

@@ -9,6 +9,7 @@
             <div class="content__main--header">
                 <h2>{[{Input.name }]}</h2>
                 <h2 class="hours">{[{Input.hours }]} hours</h2>
+                <p>Enter time in minutes or just press the start button to use the built-in stopwatch. To choose a different date press the date button and enter it manually or from the calendar dropdown.</p>
             </div>
 
             <form name="inputTimeForm" class="form__input" novalidate>
@@ -18,11 +19,11 @@
                     <div class="input__container">
                         <!-- <h3>Timer</h3> -->
                         <label ng-click="resetTimerWithInterval(); editing = true; working = false;" ng-hide="editing" ng-show="working" for="time">{[{timerWithInterval | hhmmss}]}</label>
-                        <input ng-click="resetTimerWithInterval();" ng-model="timer" ng-hide="working" ng-show="editing" type="number" name="timeInput" id="time" placeholder="Enter time in min">
+                        <input ng-click="resetTimerWithInterval();" ng-model="timer" ng-hide="working" ng-show="editing" type="number" name="timeInput" id="time" placeholder="minutes">
                     </div>
 
                     <div class="input__container">
-                        <label ng-click="picking = true" ng-hide="picking" for="date">pick new date</label>
+                        <label ng-click="picking = true" ng-hide="picking" for="date">date</label>
                         <input type="date" ng-hide="!picking" ng-show="picking" ng-model="date">
                     </div>
 

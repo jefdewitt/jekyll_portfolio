@@ -7,7 +7,7 @@
         width: 100%;
 
         &.slide {
-            width: 80%;
+            width: 85%;
         }
     }
 
@@ -41,6 +41,10 @@
             transform: translatey(-50%);
         text-shadow: 2px 2px 5px #000;
     }
+}
+
+.slide .progress__bar {
+    min-width: 12em;
 }
 
 progress {

@@ -11,6 +11,10 @@
         width: calc(100% + 4rem);
     }
 
+    tr {
+        height: 2.5rem;
+    }
+
     td span {
         background: #ccc;
         display: block;
@@ -57,4 +61,8 @@
             }
         }
     }
+}
+
+.minutes {
+    font-size: .75rem;
 }

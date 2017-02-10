@@ -107,8 +107,10 @@ angular.module('angularApp')
         }
 
         if( dataCell ){
+            console.log('00000');
             var para = document.createElement("span");
             var node = document.createTextNode(index.minutes.toFixed(0) + 'min');
+            para.classList.add("minutes");
             para.appendChild(node);
             dataCell.appendChild(para);
         }
