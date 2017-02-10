@@ -31,8 +31,12 @@
 }
 
 .progress__bar {
-    min-width: 16em;
+    // min-width: 16em;
     position: relative;
+
+    @media screen and (min-width: 500px) {
+        // font-size: 1.5rem;
+    }
 
     .percent {
         position: absolute;

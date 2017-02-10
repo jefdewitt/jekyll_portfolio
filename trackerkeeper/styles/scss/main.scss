@@ -83,7 +83,7 @@ html, body {
         display: table;
         height: 100%;
         margin: 1rem auto 5rem;
-        max-width: 80%;
+        // max-width: 80%;
         min-width: 16rem;
         vertical-align: middle;
 
@@ -109,7 +109,9 @@ html, body {
         > div {
             background: $dark-gray;
             border: 1px solid $lime-green;
+            margin: 0 auto 4em;
             padding: 1rem;
+            width: 80%;
         }
 
         p {

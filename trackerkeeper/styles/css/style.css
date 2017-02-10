@@ -38,7 +38,6 @@ html, body {
     display: table;
     height: 100%;
     margin: 1rem auto 5rem;
-    max-width: 80%;
     min-width: 16rem;
     vertical-align: middle; }
     @media screen and (min-width: 1440px) {
@@ -55,7 +54,9 @@ html, body {
     .app__body section > .main > div {
       background: #424242;
       border: 1px solid #B2FFB2;
-      padding: 1rem; }
+      margin: 0 auto 4em;
+      padding: 1rem;
+      width: 80%; }
     .app__body section > .main p {
       line-height: 1.5;
       margin-bottom: 0; }
@@ -146,8 +147,6 @@ html, body {
   color: #fff;
   display: block;
   padding: .5rem 0;
-  position: absolute;
-  top: 0;
   text-align: center;
   width: 100%; }
   @media screen and (min-width: 1440px) {
@@ -279,7 +278,6 @@ html, body {
   overflow: hidden; }
 
 .progress__bar {
-  min-width: 16em;
   position: relative; }
   .progress__bar .percent {
     position: absolute;
