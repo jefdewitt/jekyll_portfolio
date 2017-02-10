@@ -82,8 +82,8 @@ angular.module('angularApp')
 
             // create a new instance of our project object and store values from
             // the input fields on the front-end of the app
-            var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
-            newGoal.selected = true;
+//             var newGoal = new Goal( $scope.formObject.name, $scope.formObject.hours );
+//             newGoal.selected = true;
             $scope.$storage.project.push(newGoal);
 
             // we match the props of our shared object with project object
