@@ -11,7 +11,8 @@
 
 html, body {
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  overflow: hidden; }
 
 .app__body {
   background: #aaa;
@@ -32,7 +33,9 @@ html, body {
     margin: auto;
     height: 100%; }
   .app__body .content__wrapper {
-    height: 100%; }
+    height: 100%;
+    min-height: 460px;
+    position: relative; }
   .app__body .content__main {
     background: #666;
     display: table;
@@ -49,8 +52,10 @@ html, body {
     .app__body .content__main h1, .app__body .content__main h2, .app__body .content__main h3, .app__body .content__main h4, .app__body .content__main h5, .app__body .content__main h6 {
       text-align: center; }
   .app__body section > .main {
-    display: table-cell;
-    vertical-align: middle; }
+    display: table-cell; }
+    @media screen and (min-height: 800px) {
+      .app__body section > .main {
+        vertical-align: middle; } }
     .app__body section > .main > div {
       background: #424242;
       border: 1px solid #B2FFB2;
@@ -71,7 +76,7 @@ html, body {
   .app__body ul {
     list-style: none;
     padding-left: 0; }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1440px) {
     .app__body li {
       margin-bottom: 1em; } }
   .app__body .content__main--header {
@@ -125,7 +130,7 @@ html, body {
     opacity: 0;
     padding: .4em .5em 0em .75em;
     position: absolute;
-    right: -2.75em;
+    right: -2.25em;
     top: 50%;
     transform: translatey(-50%);
     transition: all .3s ease;
@@ -285,9 +290,6 @@ html, body {
     top: 50%;
     transform: translatey(-50%);
     text-shadow: 2px 2px 5px #000; }
-
-.slide .progress__bar {
-  min-width: 12em; }
 
 progress {
   border-radius: 2px;
