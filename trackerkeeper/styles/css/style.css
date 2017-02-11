@@ -285,8 +285,9 @@ html, body {
 .projects__list span:nth-of-type(2) {
   float: right; }
 
-.main.list-view > .div {
-  overflow: hidden; }
+.main.list-view > .list__wrap {
+  overflow: hidden;
+  width: 100%; }
 
 .progress__bar {
   position: relative; }

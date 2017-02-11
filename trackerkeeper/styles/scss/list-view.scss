@@ -28,8 +28,9 @@
 
 .main.list-view {
 
-    > .div {
+    > .list__wrap {
         overflow: hidden;
+        width: 100%;
     }
 }
 
