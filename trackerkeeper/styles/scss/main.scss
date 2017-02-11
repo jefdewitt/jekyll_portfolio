@@ -30,7 +30,7 @@ $font-family: sans-serif;
 html, body {
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .app__body {
@@ -54,7 +54,8 @@ html, body {
     background: $light-gray;
     font-family: $font-family;
     margin: auto;
-    overflow: hidden;
+    min-height: 480px;
+    position: relative;
 
     .body__inner {
         background: $gray;
@@ -66,7 +67,6 @@ html, body {
         background: $gray;
         height: 100%;
         min-height: 460px;
-        // position: relative;
     }
 
     .content__main {
