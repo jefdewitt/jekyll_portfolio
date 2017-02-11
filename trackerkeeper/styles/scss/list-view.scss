@@ -27,7 +27,10 @@
 }
 
 .main.list-view {
-    overflow: hidden;
+
+    > .div {
+        overflow: hidden;
+    }
 }
 
 .progress__bar {
