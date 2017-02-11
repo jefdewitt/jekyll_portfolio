@@ -12,13 +12,14 @@
 html, body {
   height: 100%;
   width: 100%;
-  overflow: hidden; }
+  overflow-x: hidden; }
 
 .app__body {
   background: #aaa;
   font-family: sans-serif;
   margin: auto;
-  overflow: hidden; }
+  min-height: 480px;
+  position: relative; }
   .app__body h1, .app__body h2, .app__body h3, .app__body h4, .app__body h5, .app__body h6,
   .app__body p, .app__body li, .app__body label, .app__body a, .app__body th, .app__body td {
     color: #fff;
@@ -360,7 +361,7 @@ progress[value]::-webkit-progress-value {
   display: table;
   margin-bottom: 0;
   position: absolute;
-  bottom: 0;
+  top: 100%;
   width: 100%;
   z-index: 10; }
   .app__body nav button.button {
