@@ -190,6 +190,9 @@ html, body {
     position: initial;
     transform: none; }
 
+.app__body section > .detail-view .detail__wrap {
+  width: 100%; }
+
 #calendar-menu {
   background: #fff; }
 #calendar-space .main {
@@ -360,8 +363,8 @@ progress[value]::-webkit-progress-value {
 .app__body nav {
   display: table;
   margin-bottom: 0;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  bottom: 0;
   width: 100%;
   z-index: 10; }
   .app__body nav button.button {
