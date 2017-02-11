@@ -70,7 +70,7 @@
             border: 0;
             border-radius: 0;
             padding: .65em 0em;
-            margin: 0
+            margin: 0;
 
             @media screen and (min-width: 1440px) {
                 padding: 1.4rem 0em;
@@ -79,9 +79,7 @@
 
         label {
             background: $white;
-            // border: 1px solid $black;
             color: $black;
-            // padding: 1.1em .5em;
             padding: .8rem;
 
             @media screen and (min-width: 1440px) {
