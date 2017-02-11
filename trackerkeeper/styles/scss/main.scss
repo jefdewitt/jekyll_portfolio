@@ -30,6 +30,7 @@ $font-family: sans-serif;
 html, body {
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 .app__body {
@@ -52,30 +53,19 @@ html, body {
 
     background: $light-gray;
     font-family: $font-family;
-    // font-size: 4vh;
     margin: auto;
     overflow: hidden;
-
-    // @media screen and (min-width: 768px) {
-        // display: table;
-    // }
 
     .body__inner {
         background: $gray;
         margin: auto;
         height: 100%;
-        // min-height: 720px;
-        // position: relative;
-
-        // @media screen and (min-width: 768px) {
-        //     display: table-cell;
-            // max-width: 768px;
-            // min-height: 1000px;
-        // }
     }
 
     .content__wrapper {
         height: 100%;
+        min-height: 460px;
+        position: relative;
     }
 
     .content__main {
@@ -83,7 +73,6 @@ html, body {
         display: table;
         height: 100%;
         margin: 1rem auto 5rem;
-        // max-width: 80%;
         min-width: 16rem;
         vertical-align: middle;
 
@@ -100,11 +89,11 @@ html, body {
     }
 
     section > .main {
-        // background: $dark-gray;
-        // border: 1px solid $lime-green;
         display: table-cell;
-        // padding: 2rem;
-        vertical-align: middle;
+
+        @media screen and (min-height: 800px) {
+            vertical-align: middle;
+        }
 
         > div {
             background: $dark-gray;
@@ -115,7 +104,6 @@ html, body {
         }
 
         p {
-            // font-size: 3vh;
             line-height: 1.5;
             margin-bottom: 0;
 
@@ -138,11 +126,10 @@ html, body {
     ul {
         list-style: none;
         padding-left: 0;
-        // margin: 0;
     }
 
     li {
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 1440px) {
             margin-bottom: 1em;
         }
     }
