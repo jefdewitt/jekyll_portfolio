@@ -67,7 +67,10 @@
         }
 
         input {
-            padding: .5em 0em;
+            border: 0;
+            border-radius: 0;
+            padding: .65em 0em;
+            margin: 0
 
             @media screen and (min-width: 1440px) {
                 padding: 1.4rem 0em;
