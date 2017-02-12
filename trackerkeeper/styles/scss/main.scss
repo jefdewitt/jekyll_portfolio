@@ -55,7 +55,6 @@ html, body {
     font-family: $font-family;
     margin: auto;
     min-height: 480px;
-    position: relative;
 
     .body__inner {
         background: $gray;
@@ -66,7 +65,7 @@ html, body {
     .content__wrapper {
         background: $gray;
         height: 100%;
-        min-height: 460px;
+        position: relative;
     }
 
     .content__main {
@@ -163,7 +162,10 @@ html, body {
             }
         }
     }
+}
 
+.input__container input {
+    border-radius: 0;
 }
 
 @import
