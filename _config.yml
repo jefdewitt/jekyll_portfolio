@@ -41,4 +41,7 @@ collections:
 # This will require each of these gems automatically.
 # paginate: 5
 
-exclude: [trackerkeeper]
+# exclude:
+#   - mydoc_writers_*
+#   - bower_components
+#   - Gemfile
