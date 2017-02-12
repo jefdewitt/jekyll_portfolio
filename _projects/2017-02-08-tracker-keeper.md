@@ -1,11 +1,11 @@
 ---
 layout: project-template
-title:  "Pocket Wingman"
+title:  "Tracker Keeper"
 image:  pocket-wingman-project-banner-narrow.jpg
 link:   https://itunes.apple.com/us/app/pocket-wingman/id1021112996
 date:   2016-10-25 09:08:11 -0400
 ---
-Pocket Wingman is my first foray into mobile app development. It's an iOS app written in Objective-C. I built it from scratch following an MVC design pattern.  
+Test URL for [trackerkeeper](/projects/trackerkeeper)
 
 {% include image.html url="/images/MVC-Process.svg" description="MVC diagram,
 by Regis Frey" %}{: .float--right }

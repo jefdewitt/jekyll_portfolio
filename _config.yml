@@ -40,3 +40,5 @@ collections:
 # gems: [jekyll-paginate]
 # This will require each of these gems automatically.
 # paginate: 5
+
+exclude: [trackerkeeper]
