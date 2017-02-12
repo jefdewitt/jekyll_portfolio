@@ -65,6 +65,7 @@ html, body {
     .content__wrapper {
         background: $gray;
         height: 100%;
+        overflow: hidden;
         position: relative;
     }
 
