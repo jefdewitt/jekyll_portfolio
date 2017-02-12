@@ -18,8 +18,7 @@ html, body {
   background: #aaa;
   font-family: sans-serif;
   margin: auto;
-  min-height: 480px;
-  position: relative; }
+  min-height: 480px; }
   .app__body h1, .app__body h2, .app__body h3, .app__body h4, .app__body h5, .app__body h6,
   .app__body p, .app__body li, .app__body label, .app__body a, .app__body th, .app__body td {
     color: #fff;
@@ -36,7 +35,7 @@ html, body {
   .app__body .content__wrapper {
     background: #666;
     height: 100%;
-    min-height: 460px; }
+    position: relative; }
   .app__body .content__main {
     background: #666;
     display: table;
@@ -99,6 +98,9 @@ html, body {
       @media screen and (min-width: 1440px) {
         .app__body h2.hours {
           font-size: 2rem; } }
+
+.input__container input {
+  border-radius: 0; }
 
 .app__body section > .main button {
   position: relative;
@@ -363,8 +365,8 @@ progress[value]::-webkit-progress-value {
 .app__body nav {
   display: table;
   margin-bottom: 0;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  top: 100%;
   width: 100%;
   z-index: 10; }
   .app__body nav button.button {
