@@ -9,7 +9,7 @@
 
             @include media($mobile) {
                 padding-top: 10%;
-                padding-bottom: 10%;
+                // padding-bottom: 10%;
             }
         }
     }
@@ -27,7 +27,7 @@
 
 .side--left {
     @include media($mobile) {
-        padding: 25% 5%;
+        padding: 25% 5% 0;
     }
 }
 
