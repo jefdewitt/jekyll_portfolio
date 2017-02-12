@@ -41,7 +41,7 @@ collections:
 # This will require each of these gems automatically.
 # paginate: 5
 
-# exclude:
-#   - mydoc_writers_*
-#   - bower_components
-#   - Gemfile
+exclude:
+  - trackerkeeper/node_modules/ngtouch/contributions.md
+  - trackerkeeper/node_modules/ngtouch/roadmap.md
+  - trackerkeeper/node_modules/angular-ui-router/CONTRIBUTING.md
