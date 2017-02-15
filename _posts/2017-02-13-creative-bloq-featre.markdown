@@ -1,11 +1,13 @@
 ---
 layout: post
 title:  "Creative Bloq Feature"
-image:  the-ink-tank.jpg
+image:  
 date:   2017-02-13 09:25:11 -0400
 categories: jekyll update
 ---
 In a feature called '[18 great examples of WordPress websites](http://www.creativebloq.com/web-design/examples-wordpress-11121165){:target="_blank"}' my former dev team and I stood out as #1. The article appeared on [Creative Bloq](http://www.creativebloq.com/){:target="_blank"}, an art and design blog and one of the very best for creative inspiration.
+
+{% include image.html url="/images/creative-bloq-website-logo.png" description="" %}{: .float--right }
 
 ## The InkTank
 
