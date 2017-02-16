@@ -58,6 +58,20 @@
         font-size: 3rem;
         font-family: $yellowtail;
     }
+
+    .site-footer {
+        @include media ($mobile) {
+            padding: 0;
+            position: fixed;
+                bottom: 0%;
+                right: 5%;
+            width: 20em;
+
+            .footer-col-1, .footer-col-2 {
+                width: 100%;
+            }
+        }
+    }
 }
 
 .menu {
