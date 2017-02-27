@@ -3,8 +3,6 @@
 ---
 @charset "utf-8";
 
-
-
 // Our variables
 $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
@@ -28,15 +26,6 @@ $mobile:        767px;
 $tablet:        1025px;
 $desktop:       1280px;
 
-
-
-// Use media queries like this:
-// @include media($mobile, 'max') {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
 @mixin media-query($device) {
     @media screen and (max-width: $device) {
         @content;
@@ -62,5 +51,4 @@ $desktop:       1280px;
         "header",
         "footer",
         "sidebar",
-        "images"
-;
+        "images";

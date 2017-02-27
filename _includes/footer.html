@@ -4,23 +4,12 @@
 
       <div class="wrapper">
 
-        <!-- <h2 class="footer-heading">{{ site.title }}</h2> -->
-
         <div class="footer-col-wrapper">
-          <!-- <div class="footer-col footer-col-1">
-            <ul class="contact-list">
-              <li>{{ site.title }}</li>
-              <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            </ul>
-          </div> -->
 
           <div class="footer-col footer-col-2">
              {% include social-media-links.html %}
           </div>
 
-          <!-- <div class="footer-col footer-col-3">
-            <p>{{ site.description }}</p>
-          </div> -->
         </div>
 
       </div>
@@ -29,78 +18,4 @@
 
 </footer>
 
-<script src="/scripts/global.js" async></script>
-
-<script>
-
-    // Capture the menu items from the homepage
-    var $menu = $('.menu');
-    var $menuItemOne = $('.menu li:first-of-type a');
-    var $menuItemTwo = $('.menu li:nth-of-type(2) a');
-    var $menuItemThree = $('.menu li:last-of-type a');
-
-    // Capture the homepage background image
-    var $bgImg = $('.homepage');
-
-    // Store navigation elements
-    var $nav = $('.site-nav');
-    var $trigger = $('.trigger');
-    var $menuIcon = $('.site-nav .menu-icon');
-
-    var $window = $(window).width();
-
-    $menuIcon.on('click', function() {
-        $menuIcon.toggleClass('clicked', '');
-        $trigger.toggleClass('open', 'closed');
-    });
-
-    if ($window > 767) {
-
-        // $nav.on('click', function() {
-        //     console.log('2');
-        //     $trigger.toggleClass('open', 'closed');
-        // });
-
-        $trigger.addClass('open');
-
-
-        // $menu.on('mouseleave', function() {
-        //     //$bgImg.fadeIn("fast", function() {
-        //         $bgImg.attr( 'data-group', 'one' );
-        //     //});
-        // });
-        //
-        // $menuItemOne.on('mouseenter', function() {
-        //     //$bgImg.fadeIn("slow", function() {
-        //         $bgImg.attr( 'data-group', 'two' );
-        //     //});
-        // });
-        //
-        // $menuItemTwo.on('mouseenter', function() {
-        //     $bgImg.attr( 'data-group', 'three' );
-        // });
-        //
-        // $menuItemThree.on('mouseenter', function() {
-        //     $bgImg.attr( 'data-group', 'four' );
-        // });
-
-    }
-
-    // $menu.mousemove(function(e) {
-    //
-    //
-    //
-    //   var $msg = "Handler for .mousemove() called at ";
-    //   $msg += event.pageX + ", " + event.pageY;
-    //   console.log($msg);
-    //
-    //   var x = e.pageX + 20;
-    //   var y = e.pageY + 20;
-    //   //var y = -(e.pageY + this.offsetTop) * 1.1;
-    //   $bgImg.css('background-position', x + 'px ' + y + 'px');
-    //   console.log( $bgImg.css('background-position') );
-    // });
-
-
-
-</script>
+<script src="/scripts/mainGlobal.min.js" async></script>

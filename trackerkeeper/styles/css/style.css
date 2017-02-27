@@ -1,11 +1,12 @@
 @font-face {
   font-family: 'Yellowtail';
-  src: url("../../yellowtail-regular-webfont.eot");
+  src: url("../fonts/yellowtail-regular-webfont.eot");
   /* IE9 Compat Modes */
-  src: url("../../yellowtail-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../../yellowtail-regular-webfont.woff2") format("woff2"), url("../../yellowtail-regular-webfont.woff") format("woff"), url("../../yellowtail-regular-webfont.ttf") format("truetype"), url("../../yellowtail-regular-webfont.svg#svgFontName") format("svg");
+  src: url("../fonts/yellowtail-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/yellowtail-regular-webfont.woff2") format("woff2"), url("../fonts/yellowtail-regular-webfont.woff") format("woff"), url("../fonts/yellowtail-regular-webfont.ttf") format("truetype"), url("../fonts/yellowtail-regular-webfont.svg#svgFontName") format("svg");
   /* Legacy iOS */
   font-style: italic;
   font-weight: 400; }
+
 * {
   box-sizing: border-box; }
 
@@ -109,10 +110,12 @@ html, body {
   width: calc(100% + 4rem); }
   .app__body section > .main button:first-of-type {
     margin-bottom: 1rem; }
+
 .app__body section > .main .triple button {
   display: table-cell;
   margin-bottom: 0;
   width: 33%; }
+
 .app__body .button {
   background: #fff;
   border: 1px solid;
@@ -142,6 +145,7 @@ html, body {
     transform: translatey(-50%);
     transition: all .3s ease;
     width: 2em; }
+
 .app__body .action {
   display: table;
   text-align: center;
@@ -149,6 +153,7 @@ html, body {
   .app__body .action.double .button {
     display: table-cell;
     width: 50%; }
+
 .app__body .slide .button--delete {
   opacity: 1; }
 
@@ -174,12 +179,15 @@ html, body {
 @media screen and (min-width: 500px) {
   .main.detail-view {
     margin: 2rem auto 6rem; } }
+
 .main.detail-view form {
   position: relative;
   left: -2rem;
   width: calc(100% + 4rem); }
+
 .main.detail-view tr {
   height: 2.5rem; }
+
 .main.detail-view td span {
   background: #ccc;
   display: block;
@@ -198,12 +206,15 @@ html, body {
 
 #calendar-menu {
   background: #fff; }
+
 #calendar-space .main {
   margin: 0;
   padding: 0;
   width: 100%; }
+
 #calendar-space table {
   margin: 2em; }
+
 #calendar-space tr:not(:first-of-type) td {
   display: inline-block;
   position: relative;
@@ -286,9 +297,11 @@ html, body {
   width: 100%; }
   .projects__list li.slide {
     width: 85%; }
+
 .projects__list span {
   display: inline-block;
   margin-bottom: .5em; }
+
 .projects__list span:nth-of-type(2) {
   float: right; }
 
@@ -326,8 +339,10 @@ progress[value]::-webkit-progress-value {
   display: table-cell;
   margin: auto;
   vertical-align: middle; }
+
 .main.new .input__container:first-of-type {
   margin-bottom: 1rem; }
+
 .main.new .input__container input {
   font-size: 1.25rem;
   padding: .5em;

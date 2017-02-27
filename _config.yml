@@ -45,3 +45,6 @@ exclude:
   - trackerkeeper/node_modules/ngtouch/contributions.md
   - trackerkeeper/node_modules/ngtouch/roadmap.md
   - trackerkeeper/node_modules/angular-ui-router/CONTRIBUTING.md
+  - package.json
+  - node_modules
+  - gulpfile.js

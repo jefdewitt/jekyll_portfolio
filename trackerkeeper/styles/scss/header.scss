@@ -4,12 +4,10 @@
     header {
         background: $dark-gray;
         border-bottom: 1px solid $lime-green;
-        border-top: 1px solid #fff;
-        color: #fff;
+        border-top: 1px solid $white;
+        color: $white;
         display: block;
         padding: .5rem 0;
-        // position: absolute;
-        //     top: 0;
         text-align: center;
         width: 100%;
 

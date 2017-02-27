@@ -49,7 +49,31 @@ $("document").ready(function() {
           $imageSix.addClass('center-from-left');
       }
 
-
 	});
+
+    // Capture the menu items from the homepage
+    var $menu = $('.menu');
+    var $menuItemOne = $('.menu li:first-of-type a');
+    var $menuItemTwo = $('.menu li:nth-of-type(2) a');
+    var $menuItemThree = $('.menu li:last-of-type a');
+
+    // Capture the homepage background image
+    var $bgImg = $('.homepage');
+
+    // Store navigation elements
+    var $nav = $('.site-nav');
+    var $trigger = $('.trigger');
+    var $menuIcon = $('.site-nav .menu-icon');
+
+    var $window = $(window).width();
+
+    $menuIcon.on('click', function() {
+        $menuIcon.toggleClass('clicked', '');
+        $trigger.toggleClass('open', 'closed');
+    });
+
+    if ($window > 767) {
+        $trigger.addClass('open');
+    };
 
 });

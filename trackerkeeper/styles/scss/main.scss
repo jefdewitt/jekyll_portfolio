@@ -1,13 +1,11 @@
-
-
 @font-face {
   font-family: 'Yellowtail';
-  src: url('../../yellowtail-regular-webfont.eot'); /* IE9 Compat Modes */
-  src: url('../../yellowtail-regular-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../../yellowtail-regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../../yellowtail-regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../../yellowtail-regular-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('../../yellowtail-regular-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('../fonts/yellowtail-regular-webfont.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/yellowtail-regular-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/yellowtail-regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/yellowtail-regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/yellowtail-regular-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/yellowtail-regular-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
        font-style: italic;
        font-weight: 400;
 }
@@ -177,9 +175,7 @@ html, body {
     'list-view',
     'new-view',
     'output-view',
-    'nav'
-
-;
+    'nav';
 
 
 
