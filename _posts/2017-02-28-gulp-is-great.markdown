@@ -5,25 +5,47 @@ image:
 date:   2017-02-28 09:32:11 -0400
 categories: jekyll update
 ---
-Gulp.js is a task runner for development. It allows you to automate bunches of tasks that you would otherwise have to perform manually. From concatenating and uglifying files to automagically refreshing the browser on file saves, Gulp does a whole lot.
+{% include image.html url="/images/gulp.png" description="" %}{: .float--right }
+
+You've probably already heard of Gulp. But if you haven't, here's the rundown. Gulp.js is a task runner for development. It allows you to automate bunches of tasks that you would otherwise have to perform manually. From concatenating and uglifying files to automagically refreshing the browser on file saves, Gulp runs tasks so you don't have to.
+
+## A Typical Use Case
+
+Jekyll features a killer built-in Sass compiler, but when I'm not developing with Jekyll, I need a separate compiler. Usually that's Compass but if I'm using Gulp I can make the process much more automated and robust. With Gulp, I can compile Sass, concatenate separate style sheets into one, compress those files, rename the file(s), add sourcemaps, detect file changes, and refresh the browser.
+
 
 ## Pipes
 
-I once heard Gulp described best as 'glue' that holds node modules together. It does this by way of pipes.
-Pipes are the gulp method that allows you to join multiple functions for tasks. Pipes are actually the 'glue' that combines gulp methods into tasks.
+In essence, what Gulp really does is it strings node modules together into a single file -- the gulpfile. In this file we use a gulp method, the pipe method, to join functionality from separate node modules to build more complex tasks. You can think of pipes as the 'glue' that holds these tasks together.
 
-In a feature called '[18 great examples of WordPress websites](http://www.creativebloq.com/web-design/examples-wordpress-11121165){:target="_blank"}' my former dev team and I stood out as #1. The article appeared on [Creative Bloq](http://www.creativebloq.com/){:target="_blank"}, an art and design blog and one of the very best for creative inspiration.
+```javascript
+gulp.task('compileMainSass', function() {
+    return gulp.src('_sass/main.scss')
+    .pipe(maps.init())
+    .pipe(sass())
+    .pipe(rename('mainStyle.css'))
+    .pipe(maps.write('./'))
+    .pipe(gulp.dest('css'))
+    .pipe(reload({stream: true}));
+});
+```
 
-{% include image.html url="/images/gulp.png" description="" %}{: .float--right }
+Building on this theme, we can use Gulp tasks in tandem with one another to create ever more powerful commands. Tasks can even take other tasks as dependencies, using their return values and running with them. With this strategy, whole build cycles can be simplified into a single Gulp command.
 
-## The InkTank
+```javascript
+gulp.task('default', ['clean', 'build', 'watch', 'browserSync'], function (){
+// Compile, uglify, clean, and sync devices.
+});
+```
 
-The site getting all the attention is [The InkTank](https://www.kaocollins.com/inktank/){:target="_blank"}. It's a WordPress site that showcases news from the ink industry with a bold, colorful design, and gorgeous full screen videos. Ink actually seems pretty cool.
+## Globbing Patterns
 
-## It All Started At DBS
+One mighty, albeit small, advantage Gulp affords is 'globbing' patterns. This special syntax allows selection of entire folders or very specific files within whole directories and sub-directories using asterisks. Here's an example:
 
-In 2016 I was working at [DBS > Interactive](https://www.dbswebsite.com/), in Louisville, Kentucky. It's a small but talented agency with a lot of good people and some bold clients. Art Director [Emily Clark](https://www.linkedin.com/in/emilyblaineclark?authType=NAME_SEARCH&authToken=y4ye&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A342480981%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1483889616902%2Ctas%3Aem){:target="_blank"}, whom I've written about before, designed a site for Kao Collins, an industry leading ink supplier, that captured first place and is the reason for this post.
+```javascript
+sass/**/*.scss
+```
 
-She does great work but this wasn't a one woman show. [Micheal Large](http://www.codethebeard.com){:target="_blank"} and I were tasked with developing Emily's designs into a working website. And [Mark Shelton](https://www.linkedin.com/in/mark-shelton-b9629436/){:target="_blank"}, my boss at DBS, came up with a custom-built cross-browser solution for playing the full screen background videos on the site.
+Notice the double asterisks. This selects any Sass sub-directories. The single asterisk selects any files ending in .scss. It's saves a ton of writing hard coded file paths.
 
-Of course, the whole team at DBS contributed, from the CEO, VP, marketing, and client relations. It was one of my favorite projects at DBS and I'm glad to see it recognized. Congratulations to everyone at DBS.
+This was just a small stroll down Gulp lane but as you can see, Gulp is great. What it takes to get yourself up to speed in Gulp will be returned ten fold in the time it saves you in development.

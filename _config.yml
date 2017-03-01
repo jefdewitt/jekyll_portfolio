@@ -25,6 +25,9 @@ linkedin_username:       jefdewitt
 # Build settings
 markdown: kramdown
 
+# Syntax highlighting
+highlighter: rouge
+
 # New permalink structure for posts
 permalink: /archive/:title/
 
