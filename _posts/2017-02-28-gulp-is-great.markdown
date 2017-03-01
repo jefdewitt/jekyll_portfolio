@@ -5,6 +5,13 @@ image:
 date:   2017-02-28 09:32:11 -0400
 categories: jekyll update
 ---
+Gulp.js is a task runner for development. It allows you to automate bunches of tasks that you would otherwise have to perform manually. From concatenating and uglifying files to automagically refreshing the browser on file saves, Gulp does a whole lot.
+
+## Pipes
+
+I once heard Gulp described best as 'glue' that holds node modules together. It does this by way of pipes.
+Pipes are the gulp method that allows you to join multiple functions for tasks. Pipes are actually the 'glue' that combines gulp methods into tasks.
+
 In a feature called '[18 great examples of WordPress websites](http://www.creativebloq.com/web-design/examples-wordpress-11121165){:target="_blank"}' my former dev team and I stood out as #1. The article appeared on [Creative Bloq](http://www.creativebloq.com/){:target="_blank"}, an art and design blog and one of the very best for creative inspiration.
 
 {% include image.html url="/images/gulp.png" description="" %}{: .float--right }
