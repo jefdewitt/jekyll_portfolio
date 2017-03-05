@@ -33,11 +33,12 @@
          img {
 
              @include media($mobile) {
-                 display: table-cell;
-                 float: none;
-                 margin-bottom: 0;
-                 padding: 1em 1em 1em 0;
-                 width: 100%;
+                display: table-cell;
+                float: none;
+                margin: auto;
+                padding: 1em 1em 1em 0;
+                max-height: 175px;
+                width: auto;
              }
          }
 
