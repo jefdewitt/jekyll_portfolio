@@ -4,7 +4,7 @@ title:  "Why Start Now?"
 date:   2016-11-01 07:29:11 -0400
 categories: jekyll update
 ---
-Do I really want to add to the din of opinions on the Internet? Not really. Yet having read buttloads of blogs and technology documentation I see real language hurdles in how ideas are conveyed and I think I can help. Technology should be accessible by all, right? It should make our lives easier, not harder.
+Do I really want to add to the din of opinions on the Internet? Nope. Yet having read buttloads of blogs and technology documentation I see real language hurdles in how ideas are conveyed and I think I can help. Technology should be accessible by all, right? It should make our lives easier, not harder.
 
 As I become a better developer I repeatedly encounter that I actually understand processes and strategies better than I initially thought I did based on the language I interpreted. But when someone asks for a proof-of-concept (POC), for example, instead of just simple 'proof' I get lost. So, dispossessing the requisite nomenclature, I still feel left behind a lot.
 

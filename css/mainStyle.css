@@ -970,9 +970,10 @@ div:not(.home).center a {
       .post-list > li img {
         display: table-cell;
         float: none;
-        margin-bottom: 0;
+        margin: auto;
         padding: 1em 1em 1em 0;
-        width: 100%; } }
+        max-height: 175px;
+        width: auto; } }
     @media screen and (min-width: 767px) {
       .post-list > li > div {
         display: table-cell;

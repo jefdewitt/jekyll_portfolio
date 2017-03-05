@@ -1,21 +1,13 @@
 ---
 layout: post
-title:  "Gulp Is Great"
+title:  "Life Of Raspberry Pi"
 image:  
-date:   2017-02-28 09:32:11 -0400
+date:   2017-03-05 07:32:11 -0400
 categories: jekyll update
 ---
-You've probably already heard of Gulp. But if you haven't, here's the rundown. Gulp.js is a task runner for development. It allows you to automate bunches of tasks that you would otherwise have to perform manually. From concatenating and uglifying files to automagically refreshing the browser on file saves, Gulp runs tasks so you don't have to.
-
-{% include image.html url="/images/gulp.png" description="" %}{: .float--right }
-
-## A Typical Use Case
-
-Jekyll features a killer built-in Sass compiler, but when I'm not developing with Jekyll, I need a separate compiler. Usually that's Compass but if I'm using Gulp I can make the process much more automated and robust. With Gulp, I can compile Sass, concatenate separate style sheets into one, compress those files, rename the file(s), add sourcemaps, detect file changes, and refresh the browser.
-
-## Pipes
-
 In essence, what Gulp really does is it strings node modules together into a single file -- the gulpfile. In this file we use a gulp method, the pipe method, to join functionality from separate node modules to build more complex tasks. You can think of pipes as the 'glue' that holds these tasks together.
+
+{% include image.html url="/images/raspberry-pi.png" description="" %}{: .float--right }
 
 ```javascript
 gulp.task('compileMainSass', function() {
