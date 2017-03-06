@@ -295,6 +295,11 @@ pre {
     }
 }
 
+.wrapper p > code.highlighter-rouge {
+    padding: .25em;
+    position: initial;
+}
+
 /**
  * Clearfix
  */
