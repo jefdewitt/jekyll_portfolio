@@ -295,6 +295,10 @@ pre {
     white-space: pre-wrap;
     word-wrap: break-word; }
 
+.wrapper p > code.highlighter-rouge {
+  padding: .25em;
+  position: initial; }
+
 /**
  * Clearfix
  */
@@ -386,7 +390,7 @@ input {
       width: 33%; } }
   [class*="float"] img {
     display: block;
-    margin: 0 auto 1em; }
+    margin: 0 auto .25em; }
 
 div:not(.home).float--right a {
   color: #fdfdfd; }
