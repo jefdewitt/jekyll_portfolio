@@ -3,7 +3,7 @@ layout: project-template
 title:  "Magic Mirror"
 image:  tracker-keeper.jpg
 link:
-date:   2017-03-5 12:08:11 -0400
+date:   2017-03-12 12:08:11 -0400
 ---
 The story goes like this: [Michael Teeuw](http://michaelteeuw.nl/){:target="_blank"} was at the mall with his girlfriend and saw a display mirror with illuminated lighting. He thought he could make a better one at home. The rest is internet history.
 
