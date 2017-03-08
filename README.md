@@ -40,21 +40,17 @@ highlighter: rouge
 And the implementation is easy too. Just denote the language after the top backticks. The markdown looks like this:
 
 '```javascript
+
     var foo = function() {
-      return bar;
+    
+      return 'bar';
     }
 ```'
 
 ```javascript
-gulp.task('compileMainSass', function() {
-    return gulp.src('_sass/main.scss')
-    .pipe(maps.init())
-    .pipe(sass())
-    .pipe(rename('mainStyle.css'))
-    .pipe(maps.write('./'))
-    .pipe(gulp.dest('css'))
-    .pipe(reload({stream: true}));
-});
+    var foo = function() {
+      return 'bar';
+    }
 ```
 
 
