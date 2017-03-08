@@ -42,7 +42,6 @@ And the implementation is easy too. Just denote the language after the top backt
 '```javascript
 
     var foo = function() {
-    
       return 'bar';
     }
 ```'
