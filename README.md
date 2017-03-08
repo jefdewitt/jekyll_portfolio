@@ -37,13 +37,15 @@ For Jekyll versions 2.5+, a mighty built-in feature is syntax highlighting with 
 highlighter: rouge
 ```
 
-And the implementation is easy too. Just denote the language after the top backticks. The markdown looks like this:
+And the implementation is easy too. Just denote the language after the top backticks. If the markdown looks like this...
 
-    '```javascript
+    ```javascript
     var foo = function() {
       return 'bar';
     }
-    ```'
+    ```
+    
+...then the output would render this.
 
 ```javascript
     var foo = function() {
