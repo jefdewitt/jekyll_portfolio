@@ -21,22 +21,21 @@ Here's what you need:
 
 <!-- {% include image.html url="/images/my-raspberry-pi-3.jpg" description="A Raspberry Pi 3" %}{: .float--left } -->
 
-Thats it! Hold on tight 'cause this is gonna go way faster and way easier than you probably think.
+That's it! Hold on tight 'cause this is gonna go way faster and way easier than you probably think.
 
 ## The Hardware
-
 
 For my Magic Mirror I wanted a frame that my LCD can sit inside of and can mount my mirror to. I removed the plastic case the LCD was in and used the leftover screws to attach it to the wooden frame. It's important to leave room for attaching the LCD power supply and USB cable from the Raspberry Pi.
 
 {% include image.html url="/images/magic-mirror-without-mirror.jpg" description="A Magic Mirror without the mirror." %}{: .float--left }
 
-Next, I peeled the glass tint away from its backing and applied it to a glass pane I got from an unused picture frame. I added soapy water to the glass beforehand. This allowed me to used a credit card to 'squeegee' out the air pockets.
+Next, I peeled the glass tint away from its backing and applied it to a glass pane I got from an unused picture frame. I added soapy water to the glass beforehand. This allowed me to used a credit card to 'squeegee' out the air pockets. I sliced off the overlapping tint from the edges with an X-Acto knife.
 
-My wooden frame was deep-set and had room left over for fitting the Raspberry Pi into place. This allowed me to keep the USB and power supply for the Pi tucked away neatly from view. This is also prevents several cables from protruding out of the mirror itself.
+The wooden frame I chose was deep-set and had room left over for fitting the Raspberry Pi into place behind and underneath the circuit board. All that was left to do was tuck the Pi, along with its USB and power supply, neatly away from view. This allowed me to reduce the cables protruding from mirror itself to one.
 
 ## The Software
 
-My Raspberry Pi came with a Micro SD card that was formatted with the latest version of the Raspbian OS. All I had to do was get the Magic Mirror codebase from [Michael Teeuw's](https://github.com/MichMich/MagicMirror){:target="_blank"} GitHub repo.
+My Raspberry Pi came with a Micro SD card that was formatted with the latest version of the Raspbian OS. All I had to do was get the Magic Mirror codebase from the GitHub repo [here](https://github.com/MichMich/MagicMirror){:target="_blank"}.
 
 Once I had that installed it was really a matter of learning a few Terminal commands for restarting the Raspberry Pi after config alterations...
 
