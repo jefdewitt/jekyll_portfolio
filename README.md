@@ -26,4 +26,4 @@ collections:
 
 ```
 
-We add the key `output: true` so Jekyll renders a page per each item file our project folder. More on collections [here](http://ben.balter.com/2015/02/20/jekyll-collections/).
+We add the key `output: true` so Jekyll renders a page per each item file our project folder. Thanks to Ben Balter's article on the subject which really drove the concept home for me. More on what he wrote can be found [here](http://ben.balter.com/2015/02/20/jekyll-collections/).
