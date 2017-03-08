@@ -40,10 +40,11 @@ highlighter: rouge
 And the implementation is easy too. Just denote the language after the top backticks. The markdown looks like this:
 
 '```javascript
+
     var foo = function() {
       return 'bar';
     }
-```'
+    ```'
 
 ```javascript
     var foo = function() {
