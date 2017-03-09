@@ -50,9 +50,15 @@ My `youtubePlayer.html` file:
 </iframe>
 ```
 
-It references the `icon-email.svg` file. The reason for doing it this way is to keep the root and image directories from getting needlessly cluttered with additional items AND anything inside the `_includes` folder can be 'included' with a simple TWIG include statement. It just further componentizes my code.
+Another useful include is my `post-thumbnail.html` file. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail. But I can all this logic squared away in a separate file and only need to include it where I want it.
 
-Another useful include is my `post-thumbnail.html` file. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail.
+This...
+
+```twig
+{% include post-thumbnail.html %}
+```
+
+...equals this.
 
 ```twig
 {% if post.content contains 'img' %}
@@ -76,6 +82,8 @@ Another useful include is my `post-thumbnail.html` file. By including this in my
     <img src="/images/typewriter.jpg" alt="Typewriter">
 {% endif %}
 ```
+
+Anything inside the `_includes` folder can be 'included' with a simple TWIG include statement. It just further componentizes my code.
 
 ## Syntax Highlighting
 
