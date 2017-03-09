@@ -36,7 +36,7 @@ The `_includes` directory contains portions of code to be reused or included els
 {% include youtubePlayer.html %}
 ```
 
-Includes are a great way for incorporating workarounds for common problems without having to touch templates. A simple include statement in a markdown file allows you to add functionality with precision, only where it's needed. Thanks to Adam Harris's [article](http://www.adamwadeharris.com/how-to-easily-embed-youtube-videos-in-jekyll-sites-without-a-plugin/) I found a great way for embedding YouTube videos easily with no 3rd party plugins.
+Includes are a great way to add functionality with precision, only where it's needed. Thanks to Adam Harris's [article](http://www.adamwadeharris.com/how-to-easily-embed-youtube-videos-in-jekyll-sites-without-a-plugin/) I found a way for embedding YouTube videos easily with no 3rd party plugins.
 
 My `youtubePlayer.html` file:
 ```html
@@ -50,7 +50,7 @@ My `youtubePlayer.html` file:
 </iframe>
 ```
 
-Another useful include is my `post-thumbnail.html` file. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail. But I can all this logic squared away in a separate file and only need to include it where I want it.
+Another useful include is my `post-thumbnail.html`. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail. But I can keep all this logic squared away in a separate file and only need to include it where I want it.
 
 This...
 
@@ -83,7 +83,7 @@ This...
 {% endif %}
 ```
 
-Anything inside the `_includes` folder can be 'included' with a simple TWIG include statement. It just further componentizes my code.
+Anything inside the `_includes` folder can be 'included' with a simple TWIG include statement.
 
 ## Syntax Highlighting
 
