@@ -83,7 +83,7 @@ This...
 {% endif %}
 ```
 
-Anything inside the `_includes` folder can be 'included' with a simple TWIG include statement.
+Anything inside the `_includes` folder can be 'included' with a single TWIG include statement.
 
 ## Syntax Highlighting
 
