@@ -6,7 +6,7 @@ I want to use this file as a means to list my customizations, workarounds, and s
 ## Table Of Contents
 
 - [Collections](#collections)
-- [Layout](#layout)
+- [Includes](#includes)
 - [Syntax Highlighting](#syntax-highlighting)
 - [Navigation](#navigation)
 - [Config.yml](#config)
@@ -27,6 +27,44 @@ collections:
 ```
 
 We add the key `output: true` so Jekyll renders a page per each item file our project folder. Thanks to Ben Balter's article on the subject which really drove the concept home for me. More on what he wrote can be found [here](http://ben.balter.com/2015/02/20/jekyll-collections/).
+
+## Includes
+
+The `_includes` directory contains portions of code to be reused or included on whatever pages or posts you like. Things like the footer, header, head, and sidebar are obvious choices for inclusion. What isn't so obvious is how includes can be used to store and organize `svg` files and subsequent blocks of `html` to cleanly place them in the appropriate spots. For example, I have a file `icon-email.html`,
+
+```html
+<a href="mailto:myemail@gmail.com">
+    <span class="icon icon--email">{% include icon-email.svg %}</span>
+    <span class="username">{{ include.username }}</span>
+</a>
+```
+
+that references the `icon-email.svg` file. The reason for doing it this way is to keep the root and image directories from getting needlessly cluttered with additional items AND anything inside the `_includes` folder can be 'included' with a simple TWIG include statement. It just further componentizes my code.
+
+Another useful include is my `post-thumbnail.html` file. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail.
+
+```twig
+{% if post.content contains 'img' %}
+
+    {% assign foundImage = 0 %}
+    {% assign images = post.content | split: "<img " %}
+    {% for image in images %}
+      {% if image contains 'src' %}
+        {% if foundImage == 0 %}
+          {% assign html = image | split:"/>" | first %}
+          <img {{ html }} />
+          {% assign foundImage = 1 %}
+        {% endif %}
+
+      {% endif %}
+    {% endfor %}
+
+{% elsif post.image %}
+    <img src="/images/{{ post.image }}">
+{% else %}
+    <img src="/images/typewriter.jpg" alt="Typewriter">
+{% endif %}
+```
 
 ## Syntax Highlighting
 
