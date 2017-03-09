@@ -39,7 +39,7 @@ The `_includes` directory contains portions of code to be reused or included on 
 </a>
 ```
 
-that references the `icon-email.svg` file. The reason for doing it this way is to keep the root and image directories from getting needlessly cluttered with additional items AND anything inside the `_includes` folder can be 'included' with a simple TWIG include statement. It just further componentizes my code.
+It references the `icon-email.svg` file. The reason for doing it this way is to keep the root and image directories from getting needlessly cluttered with additional items AND anything inside the `_includes` folder can be 'included' with a simple TWIG include statement. It just further componentizes my code.
 
 Another useful include is my `post-thumbnail.html` file. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail.
 
@@ -64,6 +64,20 @@ Another useful include is my `post-thumbnail.html` file. By including this in my
 {% else %}
     <img src="/images/typewriter.jpg" alt="Typewriter">
 {% endif %}
+```
+
+Includes are a great way for incorporating workarounds for common problems without having to touch templates. A simple include statement in a markdown file allows you to add functionality with precision, only where it's needed. Thanks to Adam Harris's [article](http://www.adamwadeharris.com/how-to-easily-embed-youtube-videos-in-jekyll-sites-without-a-plugin/) I found a great way for embedding YouTube videos easily with no 3rd party plugins.
+
+My `youtubePlayer.html` file:
+```html
+<iframe style="max-width: 100%; 
+               min-width: 100%;" 
+               width="560" 
+               height="315" 
+               src="https://www.youtube.com/embed/{{ include.id }}" 
+        frameborder="0" 
+        allowfullscreen>
+</iframe>
 ```
 
 ## Syntax Highlighting
