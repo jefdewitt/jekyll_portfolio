@@ -30,7 +30,13 @@ We add the key `output: true` so Jekyll renders a page per each item file our pr
 
 ## Includes
 
-The `_includes` directory contains portions of code to be reused or included on whatever pages or posts you like. Things like the footer, header, head, and sidebar are obvious choices for inclusion. What isn't so obvious is how includes can be used to store and organize `svg` files and subsequent blocks of `html` to cleanly place them in the appropriate spots. For example, I have a file `icon-email.html`,
+The `_includes` directory contains portions of code to be reused or included elsewhere. These portions can be inluded with a simple include statement, like:
+
+```twig
+{% include icon-email.html %}
+```
+
+Things like the footer, header, head, and sidebar are obvious choices for includes. What isn't so obvious is how includes can be used to store and organize `svg` files and subsequent blocks of `html` to cleanly place them in the appropriate spots. For example, I have a file `icon-email.html`,
 
 ```html
 <a href="mailto:myemail@gmail.com">
