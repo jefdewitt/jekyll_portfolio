@@ -116,7 +116,7 @@ Items appearing in the navigation are markdown files in the root directory. So, 
 
 ## Config.yml
 
-Config.yml is the place for settings that affect the whole site. This is the place where I declared `rouge` as my syntax highlighter and my projects `collection`. Another thing to note is the `exclude` declaration.
+Config.yml is the place for settings that affect the whole site. This is the place where I declared `rouge` as my syntax highlighter and my projects `collection`. Many configurations take place here, such as setting meta data like site title and description. Another thing to note is the `exclude` declaration.
 
 ```yaml
 exclude:
@@ -127,7 +127,7 @@ exclude:
 
 The block above excludes markdown files that live in the base directory from appearing in the navigation.
 
-I've also added a new permalink structure in this file, as follows:
+I've also added a new permalink structure for my site in this file, as follows:
 
 ```yaml
 # New permalink structure for posts
