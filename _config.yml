@@ -9,8 +9,8 @@
 title: Jef DeWitt | Front-end Developer
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
-  Hey, I'm Jef DeWitt, Front-end Developer in Louisville Kentucky. I
-  specialize in PHP, JavaScript, WordPress, Drupal, and mobile development.
+  Hey, I'm Jef DeWitt, Web Developer and weekend software engineer in Louisville Kentucky. I
+  specialize in PHP, AngularJS, and mobile development.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://jefdewitt.com" # the base hostname & protocol for your site
 username:                jefdewitt
