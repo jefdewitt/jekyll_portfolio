@@ -150,9 +150,9 @@ weight: 2
 ---
 ```
 
-What this does is it points to an 'archive' layout type (which we'll get to in a minute), names the navigation item 'Blog', uses the 'archive' permalink keyword as what it will append to the base URL, and the weight indicates what position it will appear in in the nav. An item with a weight of '1' will occur before it and a '3' will appear after it (horizontally or vertically speaking).
+What this does is it points to an `archive` layout type (which we'll get to in a minute), names the navigation item 'Blog', uses the 'archive' permalink keyword as what it will append to the base URL, and the weight indicates what position it will appear in in the nav. An item with a weight of `1` will occur before it and a `3` will appear after it (horizontally or vertically speaking).
 
-Next, create a new 'archive' layout type that lives in the layout subdirectory. Obviously, this folder contains all the different page layout types you want for your site. You'll need `Front Matter` so the page will render correctly and a `TWIG` loop to show the posts in your `_posts` subdirectory.
+Next, create a new `archive` layout type that lives in the layout subdirectory. Obviously, this folder contains all the different page layout types you want for your site. You'll need `Front Matter` so the page will render correctly and a `TWIG` loop to show the posts in your `_posts` subdirectory.
 
 ```yaml
 ---
@@ -183,7 +183,7 @@ layout: default
 {% include sidebar.html %}
 ```
 
-As you can see this file uses another layout type 'default' for its main structure. From here, all your posts will be displayed. And since we already declared our permalink settings in `config.yml`, when a blog post is clicked the resulting URL will be `www.<your-site>/archive/<your-blog-post>`.
+As you can see this file uses another layout type `default` for its main structure. From here, all your posts will be displayed. And since we already declared our permalink settings in `config.yml`, when a blog post is clicked the resulting URL will be `www.<your-site>/archive/<your-blog-post>`.
 
 
 
