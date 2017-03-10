@@ -10,6 +10,7 @@ I want to use this file as a means to list my customizations, workarounds, and s
 - [Syntax Highlighting](#syntax-highlighting)
 - [Navigation](#navigation)
 - [Config.yml](#config)
+- [URL Structure](#url-structure)
 
 ## Collections
 
@@ -134,9 +135,55 @@ I've also added a new permalink structure for my site in this file, as follows:
 permalink: /archive/:title/
 ```
 
+## URL Structure
 
+A new Jekyll install comes with an index, about, and blog pages; similar to a WordPress install. In order to an add, for example, a blog archive or blog index page where all your posts live, you'll need to add a new layout that your navigation points to. 
 
+It's easy to do but not exactly straightforward. Dont worry, I'll hold your hand. Say you want a page where all your blog posts live in the main nav. First thing you need to do is add a markdown file in the root directory that will act as the blog archive/index page. In this file, add the following `Front Matter`.
 
+```yaml
+---
+layout: archive
+title: Blog
+permalink: /archive/
+weight: 2
+---
+```
+
+What this does is it points to an 'archive' layout type (which we'll get to in a minute), names the navigation item 'Blog', uses the 'archive' permalink keyword as what it will append to the base URL, and the weight indicates what position it will appear in in the nav. An item with a weight of '1' will occur before it and a '3' will appear after it (horizontally or vertically speaking).
+
+Next, create a new 'archive' layout type that lives in the layout subdirectory. Obviously, this folder contains all the different page layout types you want for your site. You'll need `Front Matter` so the page will render correctly and a `TWIG` loop to show the posts in your `_posts` subdirectory.
+
+```yaml
+---
+layout: default
+---
+```
+
+```twig
+<div class="home post">
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <div>
+            {% include post-thumbnail.html %}
+        </div>
+          <div>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <h2>
+              <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h2>
+            <div class="post-excerpt">{{ post.excerpt | strip_html | truncate:125 }}</div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% include sidebar.html %}
+```
+
+As you can see this file uses another layout type 'default' for its main structure. From here, all your posts will be displayed. And since we already declared our permalink settings in `config.yml`, when a blog post is clicked the resulting URL will be `www.<your-site>/archive/<your-blog-post>`.
 
 
 
