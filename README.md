@@ -110,7 +110,29 @@ And the implementation is easy too. Just denote the language after the top backt
     }
 ```
 
+## Navigation
 
+Items appearing in the navigation are markdown files in the root directory. So, adding and removing items is as simple as updating the items in the root directory.
+
+## Config.yml
+
+Config.yml is the place for settings that affect the whole site. This is the place where I declared `rouge` as my syntax highlighter and my projects `collection`. Another thing to note is the `exclude` declaration.
+
+```yaml
+exclude:
+  - trackerkeeper/node_modules/ngtouch/contributions.md
+  - trackerkeeper/node_modules/ngtouch/roadmap.md
+  - trackerkeeper/node_modules/angular-ui-router/CONTRIBUTING.md
+```
+
+The block above excludes markdown files that live in the base directory from appearing in the navigation.
+
+I've also added a new permalink structure in this file, as follows:
+
+```yaml
+# New permalink structure for posts
+permalink: /archive/:title/
+```
 
 
 
