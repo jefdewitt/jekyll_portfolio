@@ -3,7 +3,7 @@ This is the fifth iteration of my portfolio site and third Jekyll project overal
 
 I want to use this file as a means to list my customizations, workarounds, tools, and strategies. From enhancing syntax highlighting to handy TWIG statements and control flow, there's a lot going on here. Plus, it's been months since I built this and I've forgotten quite a lot already. It wasn't until I started helping a buddy with his Jekyll site that I realized I needed to do this. Here goes.
 
-If you want your own Jekyll site [here's](https://jekyllrb.com/docs/home/){:target="_blank"} the documentation. 
+If you want your own Jekyll site [here's](https://jekyllrb.com/docs/home/) the documentation. 
 
 The tl;dr version is:
 
@@ -28,7 +28,7 @@ If you already have Jekyll installed, you can check version with this.
 $ jekyll --version
 ```
 
-Now here's what I did differently with mine.
+Now here's some tips and some customizations to improve workflow.
 
 ## Table Of Contents
 
