@@ -213,7 +213,7 @@ As you can see this file uses another layout type `default` for its main structu
 
 ## Screenshot
 
-![Jefdewitt.com screenshot](https://raw.github.com/jefdewitt/jekyll_portfolio/master/images/jefdewitt-website.png?raw=true "Jefdewitt screenshot")
+![Jefdewitt.com screenshot](https://raw.github.com/jefdewitt/jekyll_portfolio/master/images/jefdewitt-website.png?raw=true "Jefdewitt.com screenshot")
 
 ## Comments
 
