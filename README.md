@@ -213,7 +213,7 @@ As you can see this file uses another layout type `default` for its main structu
 
 ## Screenshot
 
-![Alt text](../../../images/jefdewitt-website.png?raw=true "Homepage screenshot")
+![Alt text](../../../../images/jefdewitt-website.png?raw=true "Homepage screenshot")
 
 ## Comments
 
