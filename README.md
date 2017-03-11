@@ -1,7 +1,18 @@
 # jekyll_portfolio
 This is the fifth iteration of my portfolio site and third Jekyll project overall. 
 
-I want to use this file as a means to list my customizations, workarounds, and strategies. From enhancing syntax highlighting to handy TWIG statements and control flow, there's a lot going on here. Plus, it's been months since I build this and I've forgotten quite a lot already. It wasn't until I started helping a buddy with his Jekyll site that I realized I needed to do this. Here goes.
+I want to use this file as a means to list my customizations, workarounds, tools, and strategies. From enhancing syntax highlighting to handy TWIG statements and control flow, there's a lot going on here. Plus, it's been months since I built this and I've forgotten quite a lot already. It wasn't until I started helping a buddy with his Jekyll site that I realized I needed to do this. Here goes.
+
+If you want your own Jekyll site [here's](https://jekyllrb.com/docs/home/){:target="_blank"} the documentation. 
+
+The tl;dr version is:
+
+# Requirements # 
+
+- GNU/Linux, Unix, or macOS
+- Ruby version 2.0 or above, including all development headers
+- RubyGems
+- GCC and Make (in case your system doesn’t have them installed, which you can check by running gcc -v and make -v in your system’s command line interface)
 
 ## Table Of Contents
 
