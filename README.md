@@ -1,7 +1,6 @@
 # jekyll_portfolio
-This is the fifth iteration of my portfolio site and third Jekyll project overall. 
 
-I want to use this file as a means to list my customizations, workarounds, tools, and strategies. From enhancing syntax highlighting to handy TWIG statements and control flow, there's a lot going on here. Plus, it's been months since I built this and I've forgotten quite a lot already. It wasn't until I started helping a buddy with his Jekyll site that I realized I needed to do this. Here goes.
+This is the fifth iteration of my portfolio site and third Jekyll project overall. There's a lot going on here, from identifying useful workarounds to containing a curated list of resources to extend functionality. Jekyll is a great platform right-off-the-bat, but I've added some enhancements and that take it up a notch. Here you'll find tools, tips, tricks, and useful strategies.
 
 If you want your own Jekyll site [here's](https://jekyllrb.com/docs/home/) the documentation. 
 
@@ -28,7 +27,7 @@ If you already have Jekyll installed, you can check version with this.
 $ jekyll --version
 ```
 
-Now here's some tips and some customizations to improve workflow.
+Now here's some tips and customizations to improve your workflow.
 
 ## Table Of Contents
 
