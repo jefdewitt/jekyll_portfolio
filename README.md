@@ -7,12 +7,28 @@ If you want your own Jekyll site [here's](https://jekyllrb.com/docs/home/){:targ
 
 The tl;dr version is:
 
-# Requirements # 
+# Requirements 
 
 - GNU/Linux, Unix, or macOS
 - Ruby version 2.0 or above, including all development headers
 - RubyGems
 - GCC and Make (in case your system doesn’t have them installed, which you can check by running gcc -v and make -v in your system’s command line interface)
+
+# Installation
+
+The best way to install Jekyll is via RubyGems. At the terminal prompt, simply run the following command to install Jekyll:
+
+```shell
+$ gem install jekyll
+```
+
+If you already have Jekyll installed, you can check version with this.
+
+```shell
+$ jekyll --version
+```
+
+Now here's what I did differently with mine.
 
 ## Table Of Contents
 
