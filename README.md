@@ -1,10 +1,8 @@
 # jekyll_portfolio
 
-This is the fifth iteration of my portfolio site and third Jekyll project overall. There's a lot going on here, from identifying useful workarounds to containing a curated list of resources to extend functionality. Jekyll is a great platform right-off-the-bat, but I've added some enhancements and that take it up a notch. Here you'll find tools, tips, tricks, and useful strategies.
+This is the fifth iteration of my portfolio site and third Jekyll project overall. There's a lot going on here, from identifying useful workarounds to containing resources to extend functionality. Jekyll is a great platform right-off-the-bat, but I've added some enhancements and that take it up a notch. Here you'll find tools, tips, tricks, and useful strategies.
 
 If you want your own Jekyll site [here's](https://jekyllrb.com/docs/home/) the documentation. 
-
-The tl;dr version is:
 
 # Requirements 
 
@@ -211,8 +209,8 @@ layout: default
 
 As you can see this file uses another layout type `default` for its main structure. From here, all your posts will be displayed. And since we already declared our permalink settings in `config.yml`, when a blog post is clicked the resulting URL will be `www.<your-site>/archive/<your-blog-post>`.
 
+## Screenshot
 
-
-
+![Alt text](/images/jefdewitt.com.jpg?raw=true "Homepage screenshot")
 
 
