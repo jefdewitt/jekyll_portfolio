@@ -35,6 +35,8 @@ Now here's some tips and customizations to improve your workflow.
 - [Navigation](#navigation)
 - [Config.yml](#config)
 - [URL Structure](#url-structure)
+- [Screeshot](#screeshot)
+- [Comments](#comments)
 
 ## Collections
 
@@ -211,6 +213,8 @@ As you can see this file uses another layout type `default` for its main structu
 
 ## Screenshot
 
-![Alt text](/images/jefdewitt.com.jpg?raw=true "Homepage screenshot")
+![Alt text](/images/jefdewitt.com.png?raw=true "Homepage screenshot")
 
+## Comments
 
+Any questions or comments please send them my way [here](http://www.jefdewitt.com/connect).
