@@ -1,6 +1,4 @@
-# jekyll_portfolio
-
-[jefdewitt.com](http://jefdewitt.com/), a Jekyll site.
+# [jefdewitt.com](http://jefdewitt.com/), a Jekyll site.
 
 This is the fifth iteration of my portfolio site and third Jekyll project overall. There's a lot going on here, from identifying useful workarounds to containing resources to extend functionality. Jekyll is a great platform right-off-the-bat, but I've added some enhancements and that take it up a notch. Here you'll find tools, tips, tricks, and useful strategies.
 
