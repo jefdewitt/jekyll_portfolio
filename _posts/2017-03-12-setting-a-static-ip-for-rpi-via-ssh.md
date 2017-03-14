@@ -29,25 +29,7 @@ Now, for the tricky part. Which file sets the wireless IP address, and more impo
 
 ## Setting A Wireless IP Address Via SSH
 
-After more searches and more time than I care to own up to I found the file I was looking for, `/etc/network/interfaces`. Inside this file I found some short code blocks to edit FTW. To this file...
-
-```shell
-auto lo
-iface lo inet loopback
-
-iface eth0 inet manual
-
-allow-hotplug wlan0
-iface wlan0 inet manual
-wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
-
-allow-hotplug wlan1
-iface wlan1 inet manual
-    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-```
-
-...I added this block (while commenting out some lines):
+After more searches and more time than I care to own up to I found the file I was looking for, `/etc/network/interfaces`. Inside this file I found some short code blocks to edit FTW. To this file I added the block below (while commenting out some lines):
 
 ```shell
 #iface wlan0 inet manual
