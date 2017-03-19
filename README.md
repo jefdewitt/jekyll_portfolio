@@ -77,7 +77,7 @@ We add the key `output: true` so Jekyll renders a page per each item file our pr
 
 The `_includes` directory contains portions of code to be reused or included elsewhere. These portions can be inluded with a simple include statement, like:
 
-```twig
+```liquid
 {% include youtubePlayer.html %}
 ```
 
@@ -95,13 +95,13 @@ My `youtubePlayer.html` file:
 </iframe>
 ```
 
-Anything inside the `_includes` folder can be included with a single TWIG `include` statement.
+Anything inside the `_includes` folder can be included with a single liquid `include` statement.
 
 ## Featured Images
 
 Featured images are representative images for posts. Unlike a traditional CMS, like WordPress, where a featured image for a post can be set in the Dashboard, Jekyll lacks this functionality natively. It is relatively easy to implement, however, and this code block inside of an `include` works nicely. Now, all that needs to be done is to call the `include` where desired.
 
-```twig
+```liquid
 {% if post.content contains 'img' %}
 
     {% assign foundImage = 0 %}
@@ -222,7 +222,7 @@ weight: 2
 
 What this does is it points to an `archive` layout type (which we'll get to in a minute), names the navigation item 'Blog', uses the 'archive' permalink keyword as what it will append to the base URL, and the weight indicates what position it will appear at in the nav. An item with a weight of `1` will occur before it and a `3` will appear after it (horizontally or vertically speaking).
 
-Next, create a new `archive` layout type that lives in the layout subdirectory. Obviously, this folder contains all the different page layout types you want for your site. You'll need `Front Matter` so the page will render correctly and a `TWIG` loop to show the posts in your `_posts` subdirectory.
+Next, create a new `archive` layout type that lives in the layout subdirectory. Obviously, this folder contains all the different page layout types you want for your site. You'll need `Front Matter` so the page will render correctly and a `liquid` loop to show the posts in your `_posts` subdirectory.
 
 ```yaml
 ---
@@ -230,7 +230,7 @@ layout: default
 ---
 ```
 
-```twig
+```liquid
 <div class="home post">
   <ul class="post-list">
     {% for post in site.posts %}
