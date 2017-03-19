@@ -29,6 +29,7 @@ Now here's some tips and customizations to improve your workflow.
 
 ## Table Of Contents
 
+- [Front Matter](#front-matter)
 - [Collections](#collections)
 - [Includes](#includes)
 - [Featured Images](#featured-images)
@@ -39,6 +40,21 @@ Now here's some tips and customizations to improve your workflow.
 - [URL Structure](#url-structure)
 - [Screeshot](#screeshot)
 - [Comments](#comments)
+
+## Front Matter
+
+Taken directly from Jekyll's [documentation](https://jekyllrb.com/docs/frontmatter/):
+
+The front matter is where Jekyll starts to get really cool. Any file that contains a YAML front matter block will be processed by Jekyll as a special file. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines. Here is a basic example:
+
+```liquid
+---
+layout: post
+title: Blogging Like a Hacker
+---
+```
+
+Between these triple-dashed lines, you can set predefined variables (see below for a reference) or even create custom ones of your own. These variables will then be available to you to access using Liquid tags both further down in the file and also in any layouts or includes that the page or post in question relies on.
 
 ## Collections
 
@@ -126,14 +142,14 @@ image: featured-image.jpg
 
 ## Notes On Liquid Syntax
 
-The Liquid templating engine assigns variables via the method shown below. Notice `.url` method used to get the respective URLs.
+The Liquid templating engine assigns variables via the method shown below. Notice the `.url` method used to get the respective URLs.
 
 ```liquid
 {% assign currentPage = page.url %}
 {% assign currentPost = post.url %}
 ```
 
-You evaluate variables to the document by wrapping them inside double curly braces.
+An output statement is a set of double curly braces containing an expression; when the template is rendered, it gets replaced with the value of that expression.
 
 ```liquid
 <p>{{ current }}</p>
