@@ -29,14 +29,32 @@ Now here's some tips and customizations to improve your workflow.
 
 ## Table Of Contents
 
+- [Front Matter](#front-matter)
 - [Collections](#collections)
 - [Includes](#includes)
+- [Featured Images](#featured-images)
+- [Notes On Liquid Syntax](#notes-on-liquid-syntax)
 - [Syntax Highlighting](#syntax-highlighting)
 - [Navigation](#navigation)
 - [Config.yml](#config)
 - [URL Structure](#url-structure)
 - [Screeshot](#screeshot)
 - [Comments](#comments)
+
+## Front Matter
+
+Taken directly from Jekyll's [documentation](https://jekyllrb.com/docs/frontmatter/):
+
+The front matter is where Jekyll starts to get really cool. Any file that contains a YAML front matter block will be processed by Jekyll as a special file. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines. Here is a basic example:
+
+```liquid
+---
+layout: post
+title: Blogging Like a Hacker
+---
+```
+
+Between these triple-dashed lines, you can set predefined variables (see below for a reference) or even create custom ones of your own. These variables will then be available to you to access using Liquid tags both further down in the file and also in any layouts or includes that the page or post in question relies on.
 
 ## Collections
 
@@ -77,15 +95,11 @@ My `youtubePlayer.html` file:
 </iframe>
 ```
 
-Another useful include is my `post-thumbnail.html`. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail. But I can keep all this logic squared away in a separate file and only need to include it where I want it.
+Anything inside the `_includes` folder can be included with a single TWIG `include` statement.
 
-This...
+## Featured Images
 
-```twig
-{% include post-thumbnail.html %}
-```
-
-...equals this.
+Featured images are representative images for posts. Unlike a traditional CMS, like WordPress, where a featured image for a post can be set in the Dashboard, Jekyll lacks this functionality natively. It is relatively easy to implement, however, and this code block inside of an `include` works nicely. Now, all that needs to be done is to call the `include` where desired.
 
 ```twig
 {% if post.content contains 'img' %}
@@ -110,7 +124,37 @@ This...
 {% endif %}
 ```
 
-Anything inside the `_includes` folder can be 'included' with a single TWIG include statement.
+Resource for block shown above and full code can be found [here](http://stackoverflow.com/questions/25463865/in-jekyll-how-do-i-grab-a-posts-first-image).
+
+Another option without using a for loop is adding an image to the post's Front Matter:
+
+```yaml
+-
+image: featured-image.jpg
+-
+```
+
+...and then you can reference the image elsewhere in your code by:
+
+```liquid
+<img src="{{ site.baseurl }}/images/{{ post.image }}">
+```
+
+## Notes On Liquid Syntax
+
+The Liquid templating engine assigns variables via the method shown below. Notice the `.url` method used to get the respective URLs.
+
+```liquid
+{% assign currentPage = page.url %}
+{% assign currentPost = post.url %}
+```
+
+An output statement is a set of double curly braces containing an expression; when the template is rendered, it gets replaced with the value of that expression.
+
+```liquid
+<p>{{ current }}</p>
+<p>{{ currentPost }}</p>
+```
 
 ## Syntax Highlighting
 
