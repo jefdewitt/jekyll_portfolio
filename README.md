@@ -220,7 +220,7 @@ weight: 2
 ---
 ```
 
-What this does is it points to an `archive` layout type (which we'll get to in a minute), names the navigation item 'Blog', uses the 'archive' permalink keyword as what it will append to the base URL, and the weight indicates what position it will appear in in the nav. An item with a weight of `1` will occur before it and a `3` will appear after it (horizontally or vertically speaking).
+What this does is it points to an `archive` layout type (which we'll get to in a minute), names the navigation item 'Blog', uses the 'archive' permalink keyword as what it will append to the base URL, and the weight indicates what position it will appear at in the nav. An item with a weight of `1` will occur before it and a `3` will appear after it (horizontally or vertically speaking).
 
 Next, create a new `archive` layout type that lives in the layout subdirectory. Obviously, this folder contains all the different page layout types you want for your site. You'll need `Front Matter` so the page will render correctly and a `TWIG` loop to show the posts in your `_posts` subdirectory.
 
