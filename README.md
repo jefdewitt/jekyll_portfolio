@@ -31,6 +31,7 @@ Now here's some tips and customizations to improve your workflow.
 
 - [Collections](#collections)
 - [Includes](#includes)
+- [Featured Images](#featured-images)
 - [Syntax Highlighting](#syntax-highlighting)
 - [Navigation](#navigation)
 - [Config.yml](#config)
@@ -77,15 +78,11 @@ My `youtubePlayer.html` file:
 </iframe>
 ```
 
-Another useful include is my `post-thumbnail.html`. By including this in my post's template I can loop thru content looking for images, return the first occurrence, and then display that as the blog post thumbnail. But I can keep all this logic squared away in a separate file and only need to include it where I want it.
+Anything inside the `_includes` folder can be included with a single TWIG `include` statement.
 
-This...
+## Featured Images
 
-```twig
-{% include post-thumbnail.html %}
-```
-
-...equals this.
+Featured images are representative images for posts. Unlike a traditional CMS, like WordPress, where a featured image for a post can be set in the Dashboard, Jekyll lacks this functionality natively. It is relatively easy to implement, however, and this code block inside of an `include` works nicely. Now, all that needs to be done is to call the `include` where desired.
 
 ```twig
 {% if post.content contains 'img' %}
@@ -110,7 +107,21 @@ This...
 {% endif %}
 ```
 
-Anything inside the `_includes` folder can be 'included' with a single TWIG include statement.
+Resource for block shown above and full code can be found [here](http://stackoverflow.com/questions/25463865/in-jekyll-how-do-i-grab-a-posts-first-image).
+
+Another option without using a for loop is adding an image to the post's Front Matter:
+
+```yaml
+-
+image: featured-image.jpg
+-
+```
+
+...and then you can reference the image elsewhere in your code by:
+
+```twig
+<img src="{{ site.baseurl }}/images/{{ post.image }}">
+```
 
 ## Syntax Highlighting
 
