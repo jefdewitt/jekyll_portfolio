@@ -32,6 +32,7 @@ Now here's some tips and customizations to improve your workflow.
 - [Collections](#collections)
 - [Includes](#includes)
 - [Featured Images](#featured-images)
+- [Notes On Liquid Syntax](#notes-on-liquid-syntax)
 - [Syntax Highlighting](#syntax-highlighting)
 - [Navigation](#navigation)
 - [Config.yml](#config)
@@ -119,8 +120,24 @@ image: featured-image.jpg
 
 ...and then you can reference the image elsewhere in your code by:
 
-```twig
+```liquid
 <img src="{{ site.baseurl }}/images/{{ post.image }}">
+```
+
+## Notes On Liquid Syntax
+
+The Liquid templating engine assigns variables via the method shown below. Notice `.url` method used to get the respective URLs.
+
+```liquid
+{% assign currentPage = page.url %}
+{% assign currentPost = post.url %}
+```
+
+You evaluate variables to the document by wrapping them inside double curly braces.
+
+```liquid
+<p>{{ current }}</p>
+<p>{{ currentPost }}</p>
 ```
 
 ## Syntax Highlighting
