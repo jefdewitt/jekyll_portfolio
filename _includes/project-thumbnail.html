@@ -1,15 +1,3 @@
-<!--
-    This for loop with nested if statements loops through our custom category 'projects'
-    and returns the first image it finds.  Resource and full code can be found here:
-    http://stackoverflow.com/questions/25463865/in-jekyll-how-do-i-grab-a-posts-first-image
-
-    Another option without using a for loop is adding an image to the post's Front Matter:
-    -
-    image: featured-image.jpg
-    -
-    ...and then you can reference by:
-    <img src="{{ site.baseurl }}/images/{{ post.image }}">
--->
 
 {% assign foundImage = 0 %}
 {% assign images = project.content | split:"<img " %}

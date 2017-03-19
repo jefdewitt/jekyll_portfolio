@@ -1,10 +1,7 @@
-<!--
- This file is a no-muss, no-fuss social media links include file
- -->
+
  <ul class="social-media-list">
    {% if site.linkedin_username %}
    <li>
-       <!-- {% include icon-linkedin.html username=site.linkedin_username %} -->
      {% include icon-linkedin.html %}
    </li>
    {% endif %}
@@ -15,39 +12,10 @@
    </li>
    {% endif %}
 
-   <!-- {% if site.twitter_username %}
-   <li>
-     {% include icon-twitter.html %}
-   </li>
-   {% endif %} -->
-
-   <!-- {% if site.instagram_username %}
-   <li>
-     {% include icon-instagram.html %}
-   </li>
-   {% endif %} -->
-
-   <!-- {% if site.facebook_username %}
-   <li>
-     {% include icon-facebook.html %}
-   </li>
-   {% endif %} -->
-
    {% if site.codepen_username %}
    <li>
      {% include icon-codepen.html %}
    </li>
    {% endif %}
 
-   <!-- {% if site.stackoverflow_username %}
-   <li>
-     {% include icon-stackoverflow.html %}
-   </li>
-   {% endif %} -->
-
-   <!-- {% if site.email_username %}
-   <li>
-     {% include icon-email.html %}
-   </li>
-   {% endif %} -->
  </ul>
