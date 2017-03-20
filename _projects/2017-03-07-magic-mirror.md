@@ -1,6 +1,7 @@
 ---
 layout: project-template
 title:  "Magic Mirror"
+tech:   "JavaScript"
 image:  magic-mirror-banner.jpg
 link:
 youtubeId: QgDcwEsEm1I

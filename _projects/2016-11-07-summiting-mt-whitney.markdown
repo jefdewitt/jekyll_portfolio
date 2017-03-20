@@ -1,6 +1,7 @@
 ---
 layout: project-template
-title:  "Summiting Mount Whitney"
+title:  "Mt. Whitney"
+tech:   "Solo Summit"
 image:  mt-whitney-sunrise.jpg
 link:   https://www.nps.gov/seki/planyourvisit/whitney.htm
 date:   2016-11-07 09:08:11 -0400
