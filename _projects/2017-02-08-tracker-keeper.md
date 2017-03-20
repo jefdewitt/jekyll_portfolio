@@ -1,6 +1,7 @@
 ---
 layout: project-template
 title:  "Tracker Keeper"
+tech:   "Angular JS"
 image:  tracker-keeper.jpg
 link:   
 date:   2017-02-12 11:08:11 -0400
@@ -25,7 +26,7 @@ I repeated this process every three or four months and found it gave me motivati
 
 ## Lessons Learned
 
-Tracker Keeper is a single page application built with AngularJS and uses local storage to keep your data stored by the browser. The development process taught me a lot about error handling, particularly in terms of handling missing values on page refreshes. Another issue I faced was my approach to data persistence between views, which I accomplished with shared scoped objects. Local storage is achieved uniquely with AngularJS in that there's need for serializing or parsing JSON objects.
+Tracker Keeper is a single page application built with Angular JS and uses local storage to keep your data stored by the browser. The development process taught me a lot about error handling, particularly in terms of handling missing values on page refreshes. Another issue I faced was my approach to data persistence between views, which I accomplished with shared scoped objects. Local storage is achieved uniquely with Angular JS in that there's need for serializing or parsing JSON objects.
 
 What I enjoyed working with most is Angular's two-way data binding  [ngModel](https://docs.angularjs.org/api/ng/directive/ngModel){:target="_blank"} directive. But [ngRepeat](https://docs.angularjs.org/api/ng/directive/ngRepeat){:target="_blank"} and [ngSelect](https://docs.angularjs.org/api/ng/directive/ngOptions){:target="_blank"} sped up development by keeping my markup slim.
 

@@ -1,6 +1,7 @@
 ---
 layout: project-template
 title:  "Pocket Wingman"
+tech:   "Objective-C"
 image:  pocket-wingman-project-banner-narrow.jpg
 link:   https://itunes.apple.com/us/app/pocket-wingman/id1021112996
 date:   2016-10-25 09:08:11 -0400

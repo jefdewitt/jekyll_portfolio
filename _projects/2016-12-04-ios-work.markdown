@@ -1,6 +1,7 @@
 ---
 layout: project-template
 title:  "iOS Work"
+tech:   "Objective-C"
 image:  ios-work.jpg
 link:
 date:   2016-12-04 09:08:11 -0400

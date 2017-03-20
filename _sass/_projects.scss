@@ -40,7 +40,7 @@
 
         @include media($mobile) {
             display: inline-block;
-            height: 20em;
+            // height: 20em;
             width: 47%;
 
             &:nth-of-type(odd) {
@@ -60,87 +60,109 @@
 
 .projects__individual {
     a {
-        div {
+        .image__wrap {
             position: relative;
             margin-bottom: 1em;
 
+            .project__overlay {
+                position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                width: 100%;
+            }
+
+
             &:before {
-                background: rgba(128,128,128,.5);
+                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+1,000000+100&0+0,0.65+100 */
+                background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.01) 1%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+                background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
                 content: '';
                 height: 100%;
                 position: absolute;
-                    right: 50%;
-                    @include media($desktop) {
-                        right: 100%;
-                    }
-                    top: 0;
-                transition: all .5s ease;
-                width: 50%;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                transition: all .3s ease;
+                width: 100%;
             }
 
             &:after {
-                background: rgba(128,128,128,.5);
+                box-shadow: inset 0 0 13px $lime-green;
                 content: '';
                 height: 100%;
                 position: absolute;
                     left: 50%;
-                    @include media($desktop) {
-                        left: 100%;
-                    }
-                    top: 0;
-                transition: all .5s ease;
-                width: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                transition: all .3s ease;
+                width: 100%;
             }
 
-            h2:first-of-type {
-                font-size: 10vw;
-                @include media($mobile) {
-                    font-size: 3vw;
-                }
-                position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    @include media($desktop) {
-                        transform: translate(-250%, -50%);
-                    }
-                text-shadow: 1px 1px 1px $grey-color-dark;
-                transition: all .5s ease;
-                z-index: 1;
-            }
-
-            h2:last-of-type {
-                font-size: 10vw;
-                @include media($mobile) {
-                    font-size: 3vw;
-                }
-                position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    @include media($desktop) {
-                        transform: translate(150%, -50%);
-                    }
-                text-shadow: 1px 1px 1px $grey-color-dark;
-                transition: all .5s ease;
-                z-index: 1;
-            }
-        }
-        &:hover {
             @include media($desktop) {
-                div {
 
-                    &:before {
-                        right: 50%;
-                    }
+                &:before {
+                    opacity: .3;
+                }
 
+                &:after {
+                    opacity: 0;
+                }
+
+                &:hover {
+                    &:before,
                     &:after {
-                        left: 50%;
+                        opacity: 1;
                     }
 
                     h2 {
-                        transform: translate(-50%, -50%);
+                        color: $lime-green;
+                        top: 0;
+
+                        &:last-of-type {
+                            opacity: 1;
+                        }
                     }
+                }
+            }
+
+            h2 {
+                @include media($desktop) {
+                    color: $white;
+                    position: relative;
+                        top: 1em;
+                    transition: all .3s ease;
+                }
+            }
+
+            h2:first-of-type {
+
+                font-size: 10vw;
+                text-align: center;
+                text-shadow: 1px 1px 1px $grey-color-dark;
+                transition: all .5s ease;
+
+                @include media($mobile) {
+                    font-size: 3vw;
+                }
+            }
+
+            h2:last-of-type {
+
+                font-size: 8vw;
+                text-align: center;
+                text-shadow: 1px 1px 1px $grey-color-dark;
+                transition: all .5s ease;
+
+                @include media($mobile) {
+                    font-size: 2vw;
+                }
+
+                @include media($desktop) {
+                    opacity: 0;
                 }
             }
         }

@@ -1,6 +1,7 @@
 ---
 layout: project-template
-title:  "Arduino Embedded Project"
+title:  "Arduino"
+tech:   "Embedded Project"
 image:  arduino-mega-2560-pinout.jpg
 link:   https://www.arduino.cc/
 date:   2016-11-02 09:08:11 -0400

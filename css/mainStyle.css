@@ -597,7 +597,6 @@ div:not(.home).center a {
   @media screen and (min-width: 767px) {
     .projects__individual li {
       display: inline-block;
-      height: 20em;
       width: 47%; }
       .projects__individual li:nth-of-type(odd) {
         float: left; }
@@ -609,45 +608,12 @@ div:not(.home).center a {
 .projects__individual a div {
   position: relative;
   margin-bottom: 1em; }
-  .projects__individual a div:before {
-    background: rgba(128, 128, 128, 0.5);
-    content: '';
-    height: 100%;
-    position: absolute;
-    right: 50%;
-    top: 0;
-    transition: all .5s ease;
-    width: 50%; }
-    @media screen and (min-width: 1280px) {
-      .projects__individual a div:before {
-        right: 100%; } }
-  .projects__individual a div:after {
-    background: rgba(128, 128, 128, 0.5);
-    content: '';
-    height: 100%;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transition: all .5s ease;
-    width: 50%; }
-    @media screen and (min-width: 1280px) {
-      .projects__individual a div:after {
-        left: 100%; } }
   .projects__individual a div h2:first-of-type {
     font-size: 10vw;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-shadow: 1px 1px 1px #424242;
-    transition: all .5s ease;
-    z-index: 1; }
+    text-align: center; }
     @media screen and (min-width: 767px) {
       .projects__individual a div h2:first-of-type {
         font-size: 3vw; } }
-    @media screen and (min-width: 1280px) {
-      .projects__individual a div h2:first-of-type {
-        transform: translate(-250%, -50%); } }
   .projects__individual a div h2:last-of-type {
     font-size: 10vw;
     position: absolute;
