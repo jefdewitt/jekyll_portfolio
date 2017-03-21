@@ -3,7 +3,7 @@ layout: post
 title:  "Focus On JavaScript"
 image:  code-books.jpg
 date:   2017-01-22 11:45:11 -0400
-categories: jekyll update
+categories: javascript
 ---
 I have big goals. I don't set out to just learn how to do stuff. I want to MASTER it. I want to do it better, faster, and more importantly -- more EFFICIENTLY. I want to spend as little time doing what I HAVE to do so I can spend more time doing what I WANT to do. This year my focus is JavaScript.
 

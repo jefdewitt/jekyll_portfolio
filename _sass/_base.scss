@@ -103,7 +103,7 @@ h2 {
     color: $lime-green;
 
     @include media($tablet, 'max') {
-        font-size: 28px;
+        font-size: 30px;
     }
 }
 

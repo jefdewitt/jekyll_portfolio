@@ -969,12 +969,15 @@ div:not(.home).center a {
         display: table-cell;
         vertical-align: middle; }
         .post-list > li > div:last-of-type {
-          width: 60%; } }
+          width: 75%; } }
     .post-list > li span {
-      display: inline-block; }
+      float: right; }
 
 .post > .post-list > li {
-  margin-bottom: 2em; }
+  margin-bottom: 1em; }
+  @media screen and (min-width: 767px) {
+    .post > .post-list > li {
+      margin-bottom: 0; } }
 
 .post-meta {
   font-size: 14px; }
@@ -1500,6 +1503,9 @@ body:not(.homepage) .site-footer {
   color: #ffffff; }
   .sidebar a:hover {
     color: #B2FFB2; }
+.sidebar .post-meta {
+  display: inline-block;
+  float: none; }
 @media screen and (min-width: 1025px) {
   .sidebar .post-link {
     font-size: 1rem; } }
