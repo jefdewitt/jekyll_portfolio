@@ -14,7 +14,9 @@ AngularJS is a JavaScript framework built by the folks at Google. It's a powerfu
 I was making great progress on my app until I came to evaluate a simple expression in the HTML. I'm already accustomed to Liquid syntax so it all seemed like a walk in the park. For testing purposes I wrapped a math expression in double curly braces, like so:
 
 ```liquid
-{{ 1+2 }}
+    {% raw %}
+    {{ 1+2 }}
+    {% endraw %}
 ```
 
 ...and nothing happened. The expression didn't evaluate. Nothing appeared on the page. Whaaa???
