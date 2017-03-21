@@ -13,9 +13,11 @@ AngularJS is a JavaScript framework built by the folks at Google. It's a powerfu
 
 I was making great progress on my app until I came to evaluate a simple expression in the HTML. I'm already accustomed to Liquid syntax so it all seemed like a walk in the park. For testing purposes I wrapped a math expression in double curly braces, like so:
 
+```liquid
     {% raw %}
     {{ 1+2 }}
     {% endraw %}
+```
 
 ...and nothing happened. The expression didn't evaluate. Nothing appeared on the page. Whaaa???
 
@@ -31,13 +33,16 @@ For the curious:
 
 As fate would have it, I stumbled upon an article about templating engines, such as Django, Twig, and Liquid. I remembered how Liquid also uses the same interpolation characters as AngularJS. And that, folks, was when the light bulb came on. I realized that Liquid was stripping out the curly braces from my app. I changed the interpolation characters via:
 
+```javascript
     angular.module('angularApp', []).config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     })
+```
 
 A little switcharoo to...
 
-
+```javascript
     {[{ 1+2 }]}
+```
 
 ...and the expression evaluates! All is right with the world.
