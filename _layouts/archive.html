@@ -4,23 +4,32 @@ layout: default
 
 <div class="home post">
 
+  {% capture categories %}
+    {% for category in site.categories %}
+      {{ category[0] }}
+    {% endfor %}
+  {% endcapture %}
+  {% assign sorted_categories = categories | split:' ' | sort %}
 
-  <ul class="post-list">
-    {% for post in site.posts %}
+  {% for category in sorted_categories %}
+    <h2 id="{{ category }}">{{ category }}</h2>
+    <ul class="post-list">
+      {% for post in site.categories[category] %}
       <li>
         <div>
-            {% include post-thumbnail.html %}
+          {% include post-thumbnail.html %}
         </div>
           <div>
             <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <h2>
+            <h3>
               <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h2>
-            <div class="post-excerpt">{{ post.excerpt | strip_html | truncate:125 }}</div>
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
+            </h3>
+            <div class="post-excerpt">{{ post.excerpt | strip_html | truncate:100 }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
 
 </div>
 

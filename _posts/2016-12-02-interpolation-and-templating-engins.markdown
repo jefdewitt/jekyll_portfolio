@@ -3,7 +3,7 @@ layout: post
 title:  "Interpolation And Templating Engines?"
 image:  laptop-and-pineapples.jpg
 date:   2016-12-02 10:40:11 -0400
-categories: jekyll update
+categories: angular
 ---
 I'm currently working on my first solo Angular project. The idea is to host the app on my Jekyll site (the one you're on right now). Sounds like a simple enough task, right? And in theory it is, or should be.
 

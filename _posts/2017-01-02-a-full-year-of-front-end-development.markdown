@@ -3,7 +3,7 @@ layout: post
 title:  "A Year Of Front-end Development"
 image:  coffee-and-keyboard.jpg
 date:   2017-01-02 09:40:11 -0400
-categories: jekyll update
+categories: opinion
 ---
 For over a month I've been knee-deep in my AngularJS app. I expected to be done a couple weeks ago and as I'd planned on writing this post after I'd finished the project, this article got pushed back. And I'm still not done with my Angular project. But hey, it's a new year and it's time to kick the tires and take this post for a spin.
 

@@ -40,9 +40,6 @@
             font-size: 1.5rem;
         }
 
-        // &:last-of-type {
-        //     margin-bottom: 2rem;
-        // }
     }
 
     h3 {
@@ -59,6 +56,11 @@
         &:hover {
             color: $lime-green;
         }
+    }
+
+    .post-meta {
+        display: inline-block;
+        float: none;
     }
 
     .post-link {

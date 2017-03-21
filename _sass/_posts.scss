@@ -19,6 +19,10 @@
      }
  }
 
+ .home.post h2 {
+     text-align: right;
+ }
+
  .post-list {
      list-style: none;
      margin-left: 0;
@@ -48,24 +52,27 @@
                  vertical-align: middle;
 
                  &:last-of-type {
-                     width: 60%;
+                     width: 75%;
                  }
              }
          }
 
          span {
-             display: inline-block;
+             float: right;
          }
      }
  }
 
  .post > .post-list > li {
-     margin-bottom: 2em;
+     margin-bottom: 1em;
+
+     @include media($desktop) {
+         margin-bottom: 0;
+     }
  }
 
  .post-meta {
      font-size: $small-font-size;
-     //color: $grey-color;
  }
 
  .post-link {
