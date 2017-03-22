@@ -2,7 +2,7 @@
 layout: post
 title:  "Why Start Now?"
 date:   2016-11-01 07:29:11 -0400
-categories: opinion
+categories: Opinion
 ---
 Do I really want to add to the din of opinions on the Internet? Nope. Yet having read buttloads of blogs and technology documentation I see real language hurdles in how ideas are conveyed and I think I can help. Technology should be accessible by all, right? It should make our lives easier, not harder.
 

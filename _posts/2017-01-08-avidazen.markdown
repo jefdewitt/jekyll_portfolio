@@ -3,7 +3,7 @@ layout: post
 title:  "Avidazen"
 image:  avidazen.jpg
 date:   2017-01-08 09:45:11 -0400
-categories: opinion
+categories: Opinion
 ---
 First off, much love to the folks at [Unsplash](https://unsplash.com){:target="_blank"}. They're the home of free (do whatever you want) high-resolution photos. Yeah, free, you read that right. I use them for a lot of my posts' and projects' images. Great pics. Use them. Do it.
 

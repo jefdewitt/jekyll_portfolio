@@ -26,6 +26,7 @@ The next step was loading my laptop with the latest version of the eponymously n
 
 A typical program looks like this:
 
+```c
     int potInputPin = 0;
     int servoOutputPin = 11;
     int smallAngleLEDPin = 2;
@@ -66,6 +67,7 @@ A typical program looks like this:
       }
       delay(10);
     }
+```
 
 You can see here how integers point toward the pin positions of the wires on the board. In essence, you're just telling Arduino where to look for input and where to send the output. This particular program operates a servo, a small device with an output shaft. The output shaft rotates and allows control surfaces, like radio controlled airplane rudders, to be positioned properly. I used a simple knob to communicate with the servo. Based on how far I turned the knob the servo responded in kind. There were also LEDs that indicated if you were approaching the minimum or maximum positions for the servo.  
 
