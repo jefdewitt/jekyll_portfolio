@@ -3,7 +3,7 @@ layout: post
 title:  "Life Of Raspberry Pi"
 image:  
 date:   2017-03-05 07:32:11 -0400
-categories: software
+categories: Software
 ---
 I finally got a Raspberry Pi a couple weeks ago and I've been slowly losing my mind ever since. I'm sure you've heard of a Raspberry Pi, right? The [Raspberry Pi](https://www.raspberrypi.org/){:target="_blank"} is a tiny, super inexpensive computer that has a cult following. Which is great because that means it has a huge community of support out there. And that is the real advantage of RPi (we're gonna call it RPi from now on because I'm tired of typing the whole name out) over others. When your looking for answers you can trust that someone has probably already found what you're looking for.
 

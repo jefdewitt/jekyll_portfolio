@@ -3,7 +3,7 @@ layout: post
 title:  "The Language Of Development"
 image:  text-editor-image.jpg
 date:   2016-11-27 12:02:11 -0400
-categories: opinion
+categories: Opinion
 ---
 I touched on this subject in my very first post and I believe it deserves a little more fleshing out. Understanding and using the language of software engineering is the single biggest challenge I faced in breaking into the industry and improving as a developer. This is a battle on two fronts: understanding others and making yourself understood.
 

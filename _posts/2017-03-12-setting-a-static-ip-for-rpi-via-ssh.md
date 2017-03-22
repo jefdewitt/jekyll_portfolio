@@ -3,7 +3,7 @@ layout: post
 title:  "Setting A Static WIFI IP For RPi Via SSH"
 image:
 date:   2017-03-12 10:32:11 -0400
-categories: software
+categories: Software
 ---
 I'm a total RPi noob, so I bought a [complete starter kit](https://www.amazon.com/gp/product/B01IYC0LT0/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1){:target="_blank"} of the RPi 3 to get myself up and running. The RPi 3 comes WIFI enabled out-of-the-box. Since I don't have an extra monitor or wireless keyboard and mouse I had to find another way to access my RPi.
 

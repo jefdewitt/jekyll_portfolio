@@ -3,7 +3,7 @@ layout: post
 title:  "Using Frameworks Right"
 image:  house-frame.jpg
 date:   2016-11-10 22:08:11 -0400
-categories: opinion
+categories: Opinion
 ---
 Do you use frameworks in front-end development? Or do you code everything from scratch? Of course you use frameworks, right?! They save you tons of time and effort. But do they?
 
