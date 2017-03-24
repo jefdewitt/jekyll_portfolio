@@ -51,4 +51,6 @@ This way, I can just push new objects to my `$scope.storage.project` array.
 $scope.$storage.project.push(newObject);
 ```
 
-What's really nice about this module is its persistence. The memory persists even after the browser tabs are closed; even after browser restarts. 
+And data sticks around till you manually delete it with a JavaScript command or clearing browser data. That means data will persist after browser tabs are closed; even after browser restarts. 
+
+All the info here is based on [gsklee](https://github.com/gsklee)'s work on GitHub. For the ngStorage docs, click [here](https://github.com/gsklee/ngStorage).
