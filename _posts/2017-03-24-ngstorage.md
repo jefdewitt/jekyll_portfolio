@@ -18,6 +18,9 @@ With my Angular JS app, [Tracker Keeper]('http://jefdewitt.com/trackerkeeper') t
 ```shell
 npm install ngstorage
 ```
+
+Yeah, it's that easy.
+
 ## Usage
 
 Just add `ngStorage` as a requirement to your app and use `Dependency Injection` to make it available to your controller(s).
@@ -32,7 +35,7 @@ angular.module('app', ['ngStorage'])
   });
 ```
 
-Then hook into it via a `$scope` reference.
+Then, hook into it via a `$scope` reference and set a `$localStorage` property to act as array.
 
 ```javascript
 $scope.$storage = $localStorage;
@@ -41,3 +44,11 @@ if ($localStorage.project === undefined) {
   $localStorage.project = [];
 }
 ```
+
+This way, I can just push new objects to my `$scope.storage.project` array.
+
+```javascript
+$scope.$storage.project.push(newObject);
+```
+
+What's really nice about this module is its persistence. The memory persists even after the browser tabs are closed; even after browser restarts. 
