@@ -25,7 +25,7 @@ Just add `ngStorage` as a requirement to your app and use `Dependency Injection`
 ```javascript
 angular.module('app', ['ngStorage'])
 
-.controller('mainCtrl, function(
+.controller('mainCtrl', function(
   $scope,
   $localStorage){
     // Controller logic goes here...
