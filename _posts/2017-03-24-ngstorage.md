@@ -11,13 +11,12 @@ With my Angular JS app, [Tracker Keeper]('http://jefdewitt.com/trackerkeeper') t
 
 ## ngStorage
 
-[ngStorage](https://github.com/gsklee/ngStorage) is an Angular JS module for using local storage the Angular Way. Its method for saving data is remarkably straight forward. No getting and setting, no parsing & stringifying each time you store or retrieve.
+[ngStorage](https://github.com/gsklee/ngStorage) is an Angular JS module for using local storage the Angular Way. Its method for saving data is remarkably straight forward. No getting and setting, no parsing & serializing each time you store or retrieve.
 
-
-
+## Install
 
 ```shell
-$ ssh pi@192.168.2.29
+npm install ngstorage
 ```
 
 Then, I was prompted for a password and just like that, I was in. No muss no fuss.
