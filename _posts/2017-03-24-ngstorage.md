@@ -7,7 +7,7 @@ categories: Angular
 ---
 As a front-end dev my need for data storage was never a chief concern. Not that it isn't important, but I usually didn't have to get my hands dirty with managing databases. That was something for the back-end guys.
 
-With my Angular JS app, [Tracker Keeper]('http://jefdewitt.com/trackerkeeper') that changed. I knew that using a database would be overkill, as my storage needs were minimal. So, I turned to local storage, or data stored in the browser.
+With my Angular JS app, [Tracker Keeper]('http://jefdewitt.com/trackerkeeper'), that changed. I knew that using a database would be overkill, as my storage needs were minimal. So, I turned to local storage, or data stored in the browser, as the solution I was looking for.
 
 ## ngStorage
 
