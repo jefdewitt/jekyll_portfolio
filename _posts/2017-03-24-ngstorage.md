@@ -11,43 +11,46 @@ With my Angular JS app, [Tracker Keeper]('http://jefdewitt.com/trackerkeeper') t
 
 ## ngStorage
 
-[ngStorage](https://github.com/gsklee/ngStorage) is an Angular JS module for using local storage the Angular Way. Its method for saving data is remarkably straight forward. No getting and setting, no parsing & stringifying each time you store or retrieve.
+[ngStorage](https://github.com/gsklee/ngStorage) is an Angular JS module for using local storage the Angular Way. Its method for saving data is remarkably straight forward. No getting and setting, no parsing & serializing each time you store or retrieve.
 
-
-
-
-```shell
-$ ssh pi@192.168.2.29
-```
-
-Then, I was prompted for a password and just like that, I was in. No muss no fuss.
-
-Now, for the tricky part. Which file sets the wireless IP address, and more importantly, how do I set it?
-
-## Setting A Wireless IP Address Via SSH
-
-After more searches and more time than I care to own up to I found the file I was looking for, `/etc/network/interfaces`. Inside this file I found some short code blocks to edit FTW. To this file I added the block below (while commenting out some lines):
+## Install
 
 ```shell
-#iface wlan0 inet manual
-#wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
-
-iface wlan0 inet static
-address 192.168.2.28
-netmask 255.255.248.0
-network 192.168.2.1
-gateway 192.168.2.1
-wpa-passphrase <network password>
-wpa-ssid <network name>
+npm install ngstorage
 ```
 
-Here, you can view key components. Of which, the `address` was the only piece of information I created. The last two digits are just a number between 1 and 255, indicating an open local IP address on my network. It goes without saying that it must be a unique number -- you can't choose digits that are already in use by another device.
+Yeah, it's that easy.
 
-The rest of the info came from my router dashboard, which we read about accessing earlier. Just like that I'm now able to log in remotely via:
+## Usage
 
-```shell
-$ ssh pi@192.168.2.28
+Just add `ngStorage` as a requirement to your app and use `Dependency Injection` to make it available to your controller(s).
+
+```javascript
+angular.module('app', ['ngStorage'])
+
+.controller('mainCtrl', function(
+  $scope,
+  $localStorage){
+    // Controller logic goes here...
+  });
 ```
 
-While this isn't a necessary step in RPi development, it certainly increases convenience. Plus, it makes use of RPi 3s built-in hardware. And considering I've done all the legwork here, I wholeheartedly support making this a part of your RPi workflow too.
+Then, hook into it via a `$scope` reference and set a `$localStorage` property to act as array.
+
+```javascript
+$scope.$storage = $localStorage;
+
+if ($localStorage.project === undefined) {
+  $localStorage.project = [];
+}
+```
+
+This way, I can just push new objects to my `$scope.storage.project` array.
+
+```javascript
+$scope.$storage.project.push(newObject);
+```
+
+And data sticks around till you manually delete it with a JavaScript command or clearing browser data. That means data will persist after browser tabs are closed; even after browser restarts. 
+
+All the info here is based on [gsklee](https://github.com/gsklee)'s work on GitHub. For the ngStorage docs, click [here](https://github.com/gsklee/ngStorage).
