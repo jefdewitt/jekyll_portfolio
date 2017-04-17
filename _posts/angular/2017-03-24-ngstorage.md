@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "ngStorage"
-image:
-date:   2017-03-24 07:32:11 -0400
+title: "ngStorage"
+image: storage.jpg
+date: 2017-03-24 07:32:11 -0400
 categories: Angular
 ---
 As a front-end dev my need for data storage was never a chief concern. Not that it isn't important, but I usually didn't have to get my hands dirty with managing databases. That was something for the back-end guys.
@@ -51,6 +51,6 @@ This way, I can just push new objects to my `$scope.storage.project` array.
 $scope.$storage.project.push(newObject);
 ```
 
-And data sticks around till you manually delete it with a JavaScript command or clearing browser data. That means data will persist after browser tabs are closed; even after browser restarts. 
+And data sticks around till you manually delete it with a JavaScript command or clearing browser data. That means data will persist after browser tabs are closed; even after browser restarts.
 
 All the info here is based on [gsklee](https://github.com/gsklee)'s work on GitHub. For the ngStorage docs, click [here](https://github.com/gsklee/ngStorage).
