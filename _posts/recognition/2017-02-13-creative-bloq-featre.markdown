@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Creative Bloq Feature"
-image:  
-date:   2017-02-13 09:25:11 -0400
+image: fireworks.jpg
+date: 2017-02-13 09:25:11 -0400
 categories: Recognition
 ---
 In a feature called '[18 great examples of WordPress websites](http://www.creativebloq.com/web-design/examples-wordpress-11121165){:target="_blank"}' my former dev team and I stood out as #1. The article appeared on [Creative Bloq](http://www.creativebloq.com/){:target="_blank"}, an art and design blog and one of the very best for creative inspiration.
