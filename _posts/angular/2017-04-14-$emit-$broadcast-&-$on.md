@@ -9,7 +9,7 @@ Ever try to fire off an event in one controller from another in your Angular app
 
 ## $emit $broadcast & $on
 
-Some quick rules of thumb: $scope.$emit fires up the $scope hierarchy, $scope.emit fire down the $scope hierarchy. Put simply, use $emit to reach parent $scopes/controllers and use $broadcast to reach child $scopes/controllers. $scope.$on listens for these events.
+Some quick rules of thumb: $scope.$emit fires up the $scope hierarchy, $scope.broadcast fires down the $scope hierarchy. Put simply, use $emit to reach parent $scopes/controllers and use $broadcast to reach child $scopes/controllers. $scope.$on listens for these events.
 
 ```javascript
 // event fires up to parent $scope

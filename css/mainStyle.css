@@ -573,6 +573,8 @@ div:not(.home).center a {
 
 .projects__container {
   position: relative; }
+  .projects__container h1 {
+    margin-bottom: 2rem; }
 
 .projects__inner {
   width: 100%;
