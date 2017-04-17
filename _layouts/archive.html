@@ -2,35 +2,70 @@
 layout: default
 ---
 
-<div class="home post">
+<div class="categories post">
 
-  {% capture categories %}
-    {% for category in site.categories %}
-      {{ category[0] }}
-    {% endfor %}
-  {% endcapture %}
-  {% assign sorted_categories = categories | split:' ' | sort %}
+    <h1>Categories</h1>
 
-  {% for category in sorted_categories %}
-    <h2 id="{{ category }}">{{ category }}</h2>
-    <ul class="post-list">
-      {% for post in site.categories[category] %}
-      <li>
-        <div>
-          {% include post-thumbnail.html %}
-        </div>
-          <div>
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <h3>
-              <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h3>
-            <div class="post-excerpt">{{ post.excerpt | strip_html | truncate:100 }}</div>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
+    <div class="categories__container projects__container">
+
+        <div class="categories__individual projects__individual">
+
+          <ul class="category-list">
+            {% assign pages = site.pages | sort:"weight" %}
+            {% for my_page in pages %}
+              {% if my_page.title and my_page.navigation == false %}
+                  {% assign currentPageURL = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+                  {% assign currentNavItemURL = my_page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+                  <li class="page-link__container">
+                    <a {% if currentPageURL == currentNavItemURL %}id='current-page'{% endif %} href="{{ my_page.url | prepend: site.baseurl }}">
+                      <div class="image__wrap">
+                        <img src="/images/{{ my_page.image }}" alt="Project image">
+                        <div class="category__overlay project__overlay">
+                          <h2 class="page-link">
+                            {{ my_page.title }}
+                          </h2>
+                          <h2>Posts</h2>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+
+      </div>
+
+    </div>
 
 </div>
 
 {% include sidebar.html %}
+
+{% comment %}
+{% capture categories %}
+{% for category in site.categories %}
+  {{ category[0] }}
+{% endfor %}
+{% endcapture %}
+{% assign sorted_categories = categories | split:' ' | sort %}
+{% for category in sorted_categories %}
+
+  <a class="post-link" href="{{ category.url | prepend: site.baseurl }}"><h2 id="{{ category }}">{{ category }}</h2></a>
+    <ul class="post-list">
+    {% for post in site.categories[category] %}
+    <li>
+      <div>
+        {% include post-thumbnail.html %}
+      </div>
+        <div>
+          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <h3>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h3>
+          <div class="post-excerpt">{{ post.excerpt | strip_html | truncate:100 }}</div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+{%  endcomment %}
