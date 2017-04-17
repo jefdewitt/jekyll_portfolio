@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "$emit $broadcast & $on"
+title: "$emit, $broadcast, & $on"
 image: microphone.jpg
 date: 2017-04-14 14:32:11 -0400
 categories: Angular
