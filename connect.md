@@ -3,6 +3,7 @@ layout: connect
 title: Connect
 permalink: /connect/
 weight: 3
+navigation: true
 ---
 
 Get ahold of me.

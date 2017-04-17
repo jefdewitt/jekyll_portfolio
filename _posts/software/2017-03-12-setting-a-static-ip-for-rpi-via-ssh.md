@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Setting A Static WIFI IP For RPi Via SSH"
-image:
+image:  raspberry-2.jpg
 date:   2017-03-12 10:32:11 -0400
 categories: Software
 ---

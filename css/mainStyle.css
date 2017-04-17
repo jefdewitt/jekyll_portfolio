@@ -605,16 +605,16 @@ div:not(.home).center a {
   .projects__individual li img {
     margin-bottom: 0; }
 
-.projects__individual a .image__wrap {
+.image__wrap {
   position: relative;
   margin-bottom: 1em; }
-  .projects__individual a .image__wrap .project__overlay {
+  .image__wrap .project__overlay {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 100%; }
-  .projects__individual a .image__wrap:before {
+  .image__wrap:before {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+1,000000+100&0+0,0.65+100 */
     background: -moz-radial-gradient(center, ellipse cover, transparent 0%, rgba(0, 0, 0, 0.01) 1%, rgba(0, 0, 0, 0.65) 100%);
     /* FF3.6-15 */
@@ -632,7 +632,7 @@ div:not(.home).center a {
     transform: translate(-50%, -50%);
     transition: all .3s ease;
     width: 100%; }
-  .projects__individual a .image__wrap:after {
+  .image__wrap:after {
     box-shadow: inset 0 0 13px #B2FFB2;
     content: '';
     height: 100%;
@@ -643,41 +643,41 @@ div:not(.home).center a {
     transition: all .3s ease;
     width: 100%; }
   @media screen and (min-width: 1280px) {
-    .projects__individual a .image__wrap:before {
+    .image__wrap:before {
       opacity: .3; }
-    .projects__individual a .image__wrap:after {
+    .image__wrap:after {
       opacity: 0; }
-    .projects__individual a .image__wrap:hover:before, .projects__individual a .image__wrap:hover:after {
+    .image__wrap:hover:before, .image__wrap:hover:after {
       opacity: 1; }
-    .projects__individual a .image__wrap:hover h2 {
+    .image__wrap:hover h2 {
       color: #B2FFB2;
       top: 0; }
-      .projects__individual a .image__wrap:hover h2:last-of-type {
+      .image__wrap:hover h2:last-of-type {
         opacity: 1; } }
   @media screen and (min-width: 1280px) {
-    .projects__individual a .image__wrap h2 {
+    .image__wrap h2 {
       color: #ffffff;
       position: relative;
       top: 1em;
       transition: all .3s ease; } }
-  .projects__individual a .image__wrap h2:first-of-type {
+  .image__wrap h2:first-of-type {
     font-size: 10vw;
     text-align: center;
     text-shadow: 1px 1px 1px #424242;
     transition: all .5s ease; }
     @media screen and (min-width: 767px) {
-      .projects__individual a .image__wrap h2:first-of-type {
+      .image__wrap h2:first-of-type {
         font-size: 3vw; } }
-  .projects__individual a .image__wrap h2:last-of-type {
+  .image__wrap h2:last-of-type {
     font-size: 8vw;
     text-align: center;
     text-shadow: 1px 1px 1px #424242;
     transition: all .5s ease; }
     @media screen and (min-width: 767px) {
-      .projects__individual a .image__wrap h2:last-of-type {
+      .image__wrap h2:last-of-type {
         font-size: 2vw; } }
     @media screen and (min-width: 1280px) {
-      .projects__individual a .image__wrap h2:last-of-type {
+      .image__wrap h2:last-of-type {
         opacity: 0; } }
 
 .project-header {
@@ -970,19 +970,25 @@ div:not(.home).center a {
       width: 74%;
       z-index: 1; } }
 
+.categories h1 {
+  margin-bottom: 2rem; }
+
 .home.post h2 {
   color: #ffffff; }
+
+.post-link {
+  color: #B2FFB2; }
 
 .post-list {
   list-style: none;
   margin-left: 0; }
-  .post-list > li {
+  .post-list a > li {
     margin-bottom: 16px; }
     @media screen and (min-width: 767px) {
-      .post-list > li {
+      .post-list a > li {
         display: table; } }
     @media screen and (min-width: 767px) {
-      .post-list > li img {
+      .post-list a > li img {
         display: table-cell;
         float: none;
         margin: auto;
@@ -990,13 +996,16 @@ div:not(.home).center a {
         max-height: 175px;
         width: auto; } }
     @media screen and (min-width: 767px) {
-      .post-list > li > div {
+      .post-list a > li > div {
         display: table-cell;
         vertical-align: middle; }
-        .post-list > li > div:last-of-type {
+        .post-list a > li > div:last-of-type {
           width: 75%; } }
-    .post-list > li span {
+    .post-list a > li span {
       float: right; }
+
+.category-list {
+  margin-left: 0; }
 
 .post > .post-list > li {
   margin-bottom: 1em; }
@@ -1053,7 +1062,7 @@ div:not(.home).center a {
   .post-content img {
     padding: .5em 0; }
 
-.post-excerpt p, .post-excerpt a {
+.post-excerpt {
   font-size: 1rem; }
 
 /**

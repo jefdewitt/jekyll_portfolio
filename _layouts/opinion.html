@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div class="post">
+
+<h1>Opinion Posts</h1>
+
+  <ul class="post-list">
+    {% assign blog_pages = site.categories.Opinion %}
+    {% for my_post in blog_pages %}
+    <a class="post-link" href="{{ my_post.url | prepend: site.baseurl }}">
+        <li>
+          <div>
+            {% if my_post.image %}
+              <img src="../images/{{ my_post.image }}">
+            {% else %}
+              {% include post-thumbnail.html %}
+            {% endif %}
+          </div>
+          <div>
+            <span class="post-meta">{{ my_post.date | date: "%b %-d, %Y" }}</span>
+            <h2 class="post-link"> {{ my_post.title }} </h2>
+            <div class="post-excerpt">{{ my_post.excerpt | strip_html | truncate:100 }}</div>
+          </div>
+        </li>
+    </a>
+    {% endfor %}
+  </ul>
+
+</div>
+
+{% include sidebar.html %}
