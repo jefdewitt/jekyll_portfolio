@@ -24,7 +24,9 @@
                                   <h2 class="page-link" href="{{ projects.url | prepend: site.baseurl }}">{{ project.tech }}</h2>
                               </div>
                           </div>
-                          <!-- <p>{{ project.excerpt | strip_html | truncate:125 }}</p> -->
+                          {% comment %}
+                              <p>{{ project.excerpt | strip_html | truncate:125 }}</p>
+                          {% endcomment %}
                       </a>
                     </li>
                 {% endfor %}
