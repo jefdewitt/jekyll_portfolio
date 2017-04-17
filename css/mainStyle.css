@@ -1004,6 +1004,9 @@ div:not(.home).center a {
     .post-list a > li span {
       float: right; }
 
+.sidebar .post-list {
+  margin-bottom: 1em; }
+
 .category-list {
   margin-left: 0; }
 
