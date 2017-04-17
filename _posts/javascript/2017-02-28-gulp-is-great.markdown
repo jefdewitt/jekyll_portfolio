@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Gulp Is Great"
-image:  
-date:   2017-02-28 09:32:11 -0400
+image: drinking-bird.jpg
+date: 2017-02-28 09:32:11 -0400
 categories: JavaScript
 ---
 You've probably already heard of Gulp. But if you haven't, here's the rundown. Gulp.js is a task runner for development. It allows you to automate bunches of tasks that you would otherwise have to perform manually. From concatenating and uglifying files to automagically refreshing the browser on file saves, Gulp runs tasks so you don't have to.
