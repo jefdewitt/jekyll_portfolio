@@ -2,7 +2,8 @@
 
 angular.module('angularApp')
 
-.controller('detailCtlr', function ($scope, $location, $localStorage, goalToBeTracked) {
+.controller('detailCtlr', function ($scope, $location, $localStorage, goalToBeTracked, $compile, $rootScope) {
+
 
     $scope.go = function ( path ) {
         $location.path( path );
@@ -69,23 +70,39 @@ angular.module('angularApp')
                 var main = document.querySelector('.main:last-of-type');
                 document.getElementById("calendar-space").innerHTML=calendarstr;
 
+                var count = 0;
+
                 angular.forEach($scope.Detail.timeRepo, function(index) {
 
-                    if ( document.getElementById(index.timeStamp) != null ) {
-                        var dataCell = document.getElementById(index.timeStamp);
-                        var dataCellId = dataCell.id;
-                    }
+                    var dataCell = document.getElementById(index.timeStamp);
 
                     if( dataCell ){
                         var para = document.createElement("span");
+                        para.classList.add('timeStamp-' + index.timeStamp);
+                        para.setAttribute('ng-click', 'testFunc($event)');
                         var node = document.createTextNode(index.minutes.toFixed(0) + 'min');
                         para.appendChild(node);
                         dataCell.appendChild(para);
                     }
+
+                    $scope.activateView = function(ele) {
+                        $compile(ele)($scope);
+                        $scope.$apply();
+                    };
+
+                    $scope.setCnt = function() {
+                        var e1 = document.querySelector('span.timeStamp-' + index.timeStamp);
+                        var mController = angular.element(document.getElementById("calendar-space"));
+                        mController.scope().activateView(e1);
+                    }
+
+                    $scope.setCnt();
+
                 })
             }
         }
     }
+
 
     $scope.listOfOptions = [];
 
@@ -107,12 +124,46 @@ angular.module('angularApp')
         }
 
         if( dataCell ){
-            console.log('00000');
             var para = document.createElement("span");
+            para.classList.add('timeStamp-' + index.timeStamp);
+            para.setAttribute('ng-click', 'testFunc($event)');
             var node = document.createTextNode(index.minutes.toFixed(0) + 'min');
-            para.classList.add("minutes");
             para.appendChild(node);
             dataCell.appendChild(para);
         }
+
+        $scope.activateView = function(ele) {
+            $compile(ele)($scope);
+            $scope.$apply();
+        };
+
+        $scope.setCnt = function() {
+            var e1 = document.querySelector('span.timeStamp-' + index.timeStamp);
+            var mController = angular.element(document.getElementById("calendar-space"));
+            mController.scope().activateView(e1);
+        }
+
+        $scope.setCnt();
     })
+
+    // Here we grab the minutes clicked and send it over to the input controller
+    $scope.testFunc = function (e) {
+        // Grab the span clicked
+        var targetClass = e.target.classList;
+        // Focus on the timeStamp class for comparison
+        var classDate = targetClass[0].split('timeStamp-');
+
+        // A faster solution is a standard for loop -----------------
+        // var i for (i=0; i < $scope.Detail.timeRepo.length; i++) {};
+        angular.forEach($scope.Detail.timeRepo, function(index) {
+            if ( index.timeStamp === classDate[1]  ) {
+                index.edit = true;
+            }
+        })
+
+        // we set our localStorage object to match our $scope.$storage object
+        $localStorage.project = $scope.$storage;
+
+        $scope.go('project-input-view')
+    }
 });

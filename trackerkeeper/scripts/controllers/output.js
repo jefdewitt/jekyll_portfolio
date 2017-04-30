@@ -31,17 +31,23 @@ angular.module('angularApp')
     var year = dateObj.getFullYear();
     var today = year + "-" + month + "-" + day;
 
+    var todaysMin;
+
     angular.forEach($scope.Output.timeRepo, function(index) {
-        // compare today's date to the date of the last item in our array
+        // compare today's date to the date of the items in our array
         if ( index.timeStamp === today ) {
-            // convert today's time entry into hours
-            $scope.todaysTime = index.minutes / 60;
-            $scope.todaysPctg = ( index.minutes * 100 ) / $scope.goalTimeInMin;
-        } else {
-            $scope.todaysTime = 0;
-            $scope.todaysPctg = 0;
+            todaysMin = index.minutes
         }
     });
+
+    if ( todaysMin != undefined ) {
+        // convert today's time entry into hours
+        $scope.todaysTime = todaysMin / 60;
+        $scope.todaysPctg = ( todaysMin * 100 ) / $scope.goalTimeInMin;
+    } else {
+        $scope.todaysTime = 0;
+        $scope.todaysPctg = 0;
+    }
 
     // we use map to grab object properties from within arrays -- SO STOKED!!!
     $scope.arrayMinutes = $scope.Output.timeRepo.map(function(object) {
