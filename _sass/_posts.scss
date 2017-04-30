@@ -19,15 +19,23 @@
      }
  }
 
+ .categories h1 {
+     margin-bottom: 2rem;
+ }
+
  .home.post h2 {
      color: $white;
+ }
+
+ .post-link {
+     color: $lime-green;
  }
 
  .post-list {
      list-style: none;
      margin-left: 0;
 
-     > li {
+     a > li {
          margin-bottom: $spacing-unit / 2;
 
          @include media($mobile) {
@@ -61,6 +69,14 @@
              float: right;
          }
      }
+ }
+
+ .sidebar .post-list li {
+     margin-bottom: 1em;
+ }
+
+ .category-list {
+     margin-left: 0;
  }
 
  .post > .post-list > li {
@@ -138,7 +154,5 @@
  }
 
  .post-excerpt {
-     p, a {
-         font-size: 1rem;
-     }
+    font-size: 1rem;
  }

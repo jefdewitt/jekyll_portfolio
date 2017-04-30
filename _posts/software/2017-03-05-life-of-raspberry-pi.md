@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Life Of Raspberry Pi"
-image:  
+image:  raspberry-1.jpg
 date:   2017-03-05 07:32:11 -0400
 categories: Software
 ---

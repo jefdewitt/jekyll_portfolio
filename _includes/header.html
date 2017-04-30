@@ -21,12 +21,15 @@
           <ul class="trigger">
             {% assign pages = site.pages | sort:"weight"  %}
             {% for my_page in pages %}
-              {% if my_page.title %}
+              {% if my_page.title and my_page.navigation == true %}
                   {% assign currentPageURL = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
                   {% assign currentNavItemURL = my_page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
-                  <li class="page-link__container">
-                      <a class="page-link" {% if currentPageURL == currentNavItemURL %}id='current-page'{% endif %} href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
-                  </li>
+                    {% if page.navigation == false %}
+                        {% assign currentPageURL = 'archive' %}
+                    {% endif %}
+                    <li class="page-link__container">
+                        <a class="page-link" {% if currentPageURL == currentNavItemURL %}id='current-page'{% endif %} href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+                    </li>
               {% endif %}
             {% endfor %}
           </ul>
