@@ -618,6 +618,13 @@ angular.module('angularApp')
         }
     })
 
+    angular.forEach($scope.Input.timeRepo, function(index) {
+        if( index.edit === true) {
+            $scope.timer = index.minutes;
+            $scope.date = index.timeStamp;
+        }
+    })
+
     $scope.timeStamp = function() {
         var dateObj = new Date();
         var month = dateObj.getMonth() + 1; //months from 1-12
@@ -646,12 +653,9 @@ angular.module('angularApp')
             $scope.newTime.timeStamp = $scope.timeStamp();
         }
 
-        if ( currentTimerTime > 0 ) {
-            // store the actual object properties in the timeRepo array
-            $scope.newTime.minutes = Math.ceil($scope.timerWithInterval / 60);
-
+        // Storage function
+        var storeData = function() {
             angular.forEach($scope.$storage.project, function(index) {
-
                 if (index.name === $scope.Input.name) {
                     index.timeRepo.push($scope.newTime);
                     index.selected = true;
@@ -666,19 +670,33 @@ angular.module('angularApp')
 
             var count = 0;
             angular.forEach(newArray, function(index) {
-                // if they're made the same day combine the minutes property
+                // If timeStamps don't match, do nothing, the object's minutes will be added
                 if( $scope.Input.timeRepo.slice(-1)[0].timeStamp != index.timeStamp ){
                     count++;
+                // If the time was clicked on from the calendar, the minutes will be overwritten
+                } else if ( index.edit ){
+                    index.minutes = $scope.timer;
+                    index.edit = false;
+                    $scope.timer = '';
+                    $scope.date = '';
+                    // Else if they objects are made the same day and the object was not selected
+                    // to edit from the calendar then combine the minutes property
                 } else {
-                    var match = count;
-                    index.timeStamp = $scope.Input.timeRepo.slice(-1)[0].timeStamp,
-                    index.minutes = $scope.Input.timeRepo.slice(-1)[0].minutes + index.minutes
+                    index.timeStamp = $scope.Input.timeRepo.slice(-1)[0].timeStamp;
+                    index.minutes = $scope.Input.timeRepo.slice(-1)[0].minutes + index.minutes;
                 }
             })
             if ( count < newArray.length ) {
                 $scope.Input.timeRepo.pop();
             }
             count = 0;
+        }
+
+        if ( currentTimerTime > 0 ) {
+            // store the actual object properties in the timeRepo array
+            $scope.newTime.minutes = Math.ceil($scope.timerWithInterval / 60);
+
+            storeData();
 
             $scope.timerWithInterval = '';
 
@@ -686,34 +704,7 @@ angular.module('angularApp')
             // store the actual object properties in the array item object
             $scope.newTime.minutes = $scope.timer;
 
-            angular.forEach($scope.$storage.project, function(index) {
-                if (index.name === $scope.Input.name) {
-                    index.timeRepo.push($scope.newTime);
-                    index.selected = true;
-                    $scope.Input.timeRepo = index.timeRepo;
-                } else {
-                    console.log('no match');
-                }
-            })
-
-            var newArray = $scope.Input.timeRepo.slice();
-            newArray.pop();
-
-            var count = 0;
-            angular.forEach(newArray, function(index) {
-                // if they're made the same day combine the minutes property
-                if( $scope.Input.timeRepo.slice(-1)[0].timeStamp != index.timeStamp ){
-                    count++;
-                } else {
-                    var match = count;
-                    index.timeStamp = $scope.Input.timeRepo.slice(-1)[0].timeStamp,
-                    index.minutes = $scope.Input.timeRepo.slice(-1)[0].minutes + index.minutes
-                }
-            })
-            if ( count < newArray.length ) {
-                $scope.Input.timeRepo.pop();
-            }
-            count = 0;
+            storeData();
 
             $scope.timer = '';
         }
@@ -820,17 +811,23 @@ angular.module('angularApp')
     var year = dateObj.getFullYear();
     var today = year + "-" + month + "-" + day;
 
+    var todaysMin;
+
     angular.forEach($scope.Output.timeRepo, function(index) {
-        // compare today's date to the date of the last item in our array
+        // compare today's date to the date of the items in our array
         if ( index.timeStamp === today ) {
-            // convert today's time entry into hours
-            $scope.todaysTime = index.minutes / 60;
-            $scope.todaysPctg = ( index.minutes * 100 ) / $scope.goalTimeInMin;
-        } else {
-            $scope.todaysTime = 0;
-            $scope.todaysPctg = 0;
+            todaysMin = index.minutes
         }
     });
+
+    if ( todaysMin != undefined ) {
+        // convert today's time entry into hours
+        $scope.todaysTime = todaysMin / 60;
+        $scope.todaysPctg = ( todaysMin * 100 ) / $scope.goalTimeInMin;
+    } else {
+        $scope.todaysTime = 0;
+        $scope.todaysPctg = 0;
+    }
 
     // we use map to grab object properties from within arrays -- SO STOKED!!!
     $scope.arrayMinutes = $scope.Output.timeRepo.map(function(object) {
@@ -981,7 +978,8 @@ angular.module('angularApp')
 
 angular.module('angularApp')
 
-.controller('detailCtlr', function ($scope, $location, $localStorage, goalToBeTracked) {
+.controller('detailCtlr', function ($scope, $location, $localStorage, goalToBeTracked, $compile, $rootScope) {
+
 
     $scope.go = function ( path ) {
         $location.path( path );
@@ -1048,23 +1046,39 @@ angular.module('angularApp')
                 var main = document.querySelector('.main:last-of-type');
                 document.getElementById("calendar-space").innerHTML=calendarstr;
 
+                var count = 0;
+
                 angular.forEach($scope.Detail.timeRepo, function(index) {
 
-                    if ( document.getElementById(index.timeStamp) != null ) {
-                        var dataCell = document.getElementById(index.timeStamp);
-                        var dataCellId = dataCell.id;
-                    }
+                    var dataCell = document.getElementById(index.timeStamp);
 
                     if( dataCell ){
                         var para = document.createElement("span");
+                        para.classList.add('timeStamp-' + index.timeStamp);
+                        para.setAttribute('ng-click', 'testFunc($event)');
                         var node = document.createTextNode(index.minutes.toFixed(0) + 'min');
                         para.appendChild(node);
                         dataCell.appendChild(para);
                     }
+
+                    $scope.activateView = function(ele) {
+                        $compile(ele)($scope);
+                        $scope.$apply();
+                    };
+
+                    $scope.setCnt = function() {
+                        var e1 = document.querySelector('span.timeStamp-' + index.timeStamp);
+                        var mController = angular.element(document.getElementById("calendar-space"));
+                        mController.scope().activateView(e1);
+                    }
+
+                    $scope.setCnt();
+
                 })
             }
         }
     }
+
 
     $scope.listOfOptions = [];
 
@@ -1086,14 +1100,48 @@ angular.module('angularApp')
         }
 
         if( dataCell ){
-            console.log('00000');
             var para = document.createElement("span");
+            para.classList.add('timeStamp-' + index.timeStamp);
+            para.setAttribute('ng-click', 'testFunc($event)');
             var node = document.createTextNode(index.minutes.toFixed(0) + 'min');
-            para.classList.add("minutes");
             para.appendChild(node);
             dataCell.appendChild(para);
         }
+
+        $scope.activateView = function(ele) {
+            $compile(ele)($scope);
+            $scope.$apply();
+        };
+
+        $scope.setCnt = function() {
+            var e1 = document.querySelector('span.timeStamp-' + index.timeStamp);
+            var mController = angular.element(document.getElementById("calendar-space"));
+            mController.scope().activateView(e1);
+        }
+
+        $scope.setCnt();
     })
+
+    // Here we grab the minutes clicked and send it over to the input controller
+    $scope.testFunc = function (e) {
+        // Grab the span clicked
+        var targetClass = e.target.classList;
+        // Focus on the timeStamp class for comparison
+        var classDate = targetClass[0].split('timeStamp-');
+
+        // A faster solution is a standard for loop -----------------
+        // var i for (i=0; i < $scope.Detail.timeRepo.length; i++) {};
+        angular.forEach($scope.Detail.timeRepo, function(index) {
+            if ( index.timeStamp === classDate[1]  ) {
+                index.edit = true;
+            }
+        })
+
+        // we set our localStorage object to match our $scope.$storage object
+        $localStorage.project = $scope.$storage;
+
+        $scope.go('project-input-view')
+    }
 });
 
 /**

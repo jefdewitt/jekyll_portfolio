@@ -21,6 +21,13 @@ angular.module('angularApp')
         }
     })
 
+    angular.forEach($scope.Input.timeRepo, function(index) {
+        if( index.edit === true) {
+            $scope.timer = index.minutes;
+            $scope.date = index.timeStamp;
+        }
+    })
+
     $scope.timeStamp = function() {
         var dateObj = new Date();
         var month = dateObj.getMonth() + 1; //months from 1-12
@@ -49,12 +56,9 @@ angular.module('angularApp')
             $scope.newTime.timeStamp = $scope.timeStamp();
         }
 
-        if ( currentTimerTime > 0 ) {
-            // store the actual object properties in the timeRepo array
-            $scope.newTime.minutes = Math.ceil($scope.timerWithInterval / 60);
-
+        // Storage function
+        var storeData = function() {
             angular.forEach($scope.$storage.project, function(index) {
-
                 if (index.name === $scope.Input.name) {
                     index.timeRepo.push($scope.newTime);
                     index.selected = true;
@@ -69,19 +73,33 @@ angular.module('angularApp')
 
             var count = 0;
             angular.forEach(newArray, function(index) {
-                // if they're made the same day combine the minutes property
+                // If timeStamps don't match, do nothing, the object's minutes will be added
                 if( $scope.Input.timeRepo.slice(-1)[0].timeStamp != index.timeStamp ){
                     count++;
+                // If the time was clicked on from the calendar, the minutes will be overwritten
+                } else if ( index.edit ){
+                    index.minutes = $scope.timer;
+                    index.edit = false;
+                    $scope.timer = '';
+                    $scope.date = '';
+                    // Else if they objects are made the same day and the object was not selected
+                    // to edit from the calendar then combine the minutes property
                 } else {
-                    var match = count;
-                    index.timeStamp = $scope.Input.timeRepo.slice(-1)[0].timeStamp,
-                    index.minutes = $scope.Input.timeRepo.slice(-1)[0].minutes + index.minutes
+                    index.timeStamp = $scope.Input.timeRepo.slice(-1)[0].timeStamp;
+                    index.minutes = $scope.Input.timeRepo.slice(-1)[0].minutes + index.minutes;
                 }
             })
             if ( count < newArray.length ) {
                 $scope.Input.timeRepo.pop();
             }
             count = 0;
+        }
+
+        if ( currentTimerTime > 0 ) {
+            // store the actual object properties in the timeRepo array
+            $scope.newTime.minutes = Math.ceil($scope.timerWithInterval / 60);
+
+            storeData();
 
             $scope.timerWithInterval = '';
 
@@ -89,34 +107,7 @@ angular.module('angularApp')
             // store the actual object properties in the array item object
             $scope.newTime.minutes = $scope.timer;
 
-            angular.forEach($scope.$storage.project, function(index) {
-                if (index.name === $scope.Input.name) {
-                    index.timeRepo.push($scope.newTime);
-                    index.selected = true;
-                    $scope.Input.timeRepo = index.timeRepo;
-                } else {
-                    console.log('no match');
-                }
-            })
-
-            var newArray = $scope.Input.timeRepo.slice();
-            newArray.pop();
-
-            var count = 0;
-            angular.forEach(newArray, function(index) {
-                // if they're made the same day combine the minutes property
-                if( $scope.Input.timeRepo.slice(-1)[0].timeStamp != index.timeStamp ){
-                    count++;
-                } else {
-                    var match = count;
-                    index.timeStamp = $scope.Input.timeRepo.slice(-1)[0].timeStamp,
-                    index.minutes = $scope.Input.timeRepo.slice(-1)[0].minutes + index.minutes
-                }
-            })
-            if ( count < newArray.length ) {
-                $scope.Input.timeRepo.pop();
-            }
-            count = 0;
+            storeData();
 
             $scope.timer = '';
         }
