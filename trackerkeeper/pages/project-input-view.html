@@ -1,6 +1,3 @@
-<!--
-    Project Input
--->
 
 <section class="content__main">
 
@@ -17,7 +14,6 @@
                 <div class="form__input--wrapper">
 
                     <div class="input__container">
-                        <!-- <h3>Timer</h3> -->
                         <label ng-click="resetTimerWithInterval(); editing = true; working = false;" ng-hide="editing" ng-show="working" for="time">{[{timerWithInterval | hhmmss}]}</label>
                         <input ng-click="resetTimerWithInterval();" ng-model="timer" ng-hide="working" ng-show="editing" type="number" name="timeInput" id="time" placeholder="minutes">
                     </div>
@@ -42,6 +38,6 @@
 </section>
 
 <nav class="">
-    <button ng-click="go('projects-list-view')"class="button">Tracks</button>
+    <button ng-click="go('projects-list-view'); clearAll();"class="button">Tracks</button>
     <button ng-disabled="inputTimeForm.$invalid" ng-click="confirmTime();" class="button">Confirm</button>
 </nav>

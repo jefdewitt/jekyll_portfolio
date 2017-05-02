@@ -28,6 +28,14 @@ angular.module('angularApp')
         }
     })
 
+    $scope.clearAll = function() {
+        angular.forEach($scope.Input.timeRepo, function(index) {
+            index.edit = false;
+        });
+        $scope.timer = '';
+        $scope.date = '';
+    }
+
     $scope.timeStamp = function() {
         var dateObj = new Date();
         var month = dateObj.getMonth() + 1; //months from 1-12
@@ -79,9 +87,7 @@ angular.module('angularApp')
                 // If the time was clicked on from the calendar, the minutes will be overwritten
                 } else if ( index.edit ){
                     index.minutes = $scope.timer;
-                    index.edit = false;
-                    $scope.timer = '';
-                    $scope.date = '';
+                    $scope.clearAll();
                     // Else if they objects are made the same day and the object was not selected
                     // to edit from the calendar then combine the minutes property
                 } else {
