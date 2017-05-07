@@ -4,8 +4,6 @@ angular.module('angularApp')
 
 .controller('detailCtlr', function ($scope, $location, $localStorage, goalToBeTracked, $compile, $rootScope) {
 
-    console.log('detail controller hit');
-    
     $scope.go = function ( path ) {
         $location.path( path );
     }
