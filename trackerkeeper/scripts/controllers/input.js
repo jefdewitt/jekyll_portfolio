@@ -29,6 +29,7 @@ angular.module('angularApp')
     })
 
     $scope.clearAll = function() {
+        console.log('test');
         angular.forEach($scope.Input.timeRepo, function(index) {
             index.edit = false;
         });
