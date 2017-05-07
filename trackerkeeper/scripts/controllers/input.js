@@ -27,6 +27,8 @@ angular.module('angularApp')
             $scope.date = index.timeStamp;
         }
     })
+    
+    console.log('00000000000');
 
     $scope.clearAll = function() {
         console.log('test');
