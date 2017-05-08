@@ -61,8 +61,6 @@ html, body {
         bottom: 5em;
         vertical-align: middle; } }
     .app__body section > .main > div {
-      background: #424242;
-      border: 1px solid #B2FFB2;
       margin: 0 auto 4em;
       max-width: 25em;
       padding: 1rem;
@@ -133,18 +131,19 @@ html, body {
   .app__body .button:focus {
     outline: none; }
   .app__body .button--delete {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     color: #fff;
-    height: 2em;
+    height: 4rem;
     opacity: 0;
-    padding: .4em .5em 0em .75em;
+    padding-top: .33em;
     position: absolute;
     right: -2.25em;
-    top: 50%;
-    transform: translatey(-50%);
+    top: 62%;
+    transform: translate(50%, -50%);
     transition: all .3s ease;
-    width: 2em; }
+    width: 4rem;
+    font-size: 2em; }
 
 .app__body .action {
   display: table;
@@ -155,11 +154,11 @@ html, body {
     width: 50%; }
 
 .app__body .slide .button--delete {
-  opacity: 1; }
+  opacity: 1;
+  right: 50%; }
 
 .app__body header {
   background: #424242;
-  border-bottom: 1px solid #B2FFB2;
   border-top: 1px solid #fff;
   color: #fff;
   display: block;
@@ -291,39 +290,47 @@ html, body {
 .app__body ::-webkit-input-placeholder {
   color: #333; }
 
-.projects__list li {
-  position: relative;
-  transition: all .5s ease;
-  width: 100%; }
-  .projects__list li.slide {
-    width: 85%; }
-
-.projects__list span {
+.projects__list {
   display: inline-block;
-  margin-bottom: .5em; }
-
-.projects__list span:nth-of-type(2) {
-  float: right; }
+  text-align: center;
+  width: 50%; }
+  .projects__list li {
+    position: relative;
+    transition: all .5s ease;
+    width: 100%; }
+  .projects__list span {
+    display: inline-block;
+    margin-bottom: .5em; }
+  .projects__list span:nth-of-type(2) {
+    float: right; }
 
 .main.list-view > .list__wrap {
   overflow: hidden;
   width: 100%; }
 
 .progress__bar {
-  position: relative; }
+  border-radius: 50%;
+  display: inline-block;
+  height: 4em;
+  overflow: hidden;
+  position: relative;
+  width: 4em; }
   .progress__bar .percent {
     position: absolute;
-    right: 2%;
+    right: 50%;
     top: 50%;
-    transform: translatey(-50%);
+    transform: translate(50%, -50%);
     text-shadow: 2px 2px 5px #000; }
 
 progress {
-  border-radius: 2px;
-  appearance: none;
-  -webkit-appearance: none;
+  border-radius: 50%;
   display: block;
   margin: auto;
+  position: absolute;
+  transform: rotate(-90deg);
+  height: 4em;
+  width: 4em;
+  -webkit-appearance: none;
   width: 100%; }
 
 progress[value]::-webkit-progress-bar {
@@ -387,6 +394,7 @@ progress[value]::-webkit-progress-value {
   z-index: 10; }
   .app__body nav button.button {
     background: #424242;
+    border: none;
     color: #B2FFB2;
     display: table-cell;
     width: 50%; }

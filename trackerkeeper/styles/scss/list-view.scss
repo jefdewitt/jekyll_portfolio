@@ -1,14 +1,18 @@
 
 .projects__list {
 
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+
     li {
         position: relative;
         transition: all .5s ease;
         width: 100%;
 
-        &.slide {
-            width: 85%;
-        }
+        // &.slide {
+        //     width: 85%;
+        // }
     }
 
     span {
@@ -35,18 +39,22 @@
 }
 
 .progress__bar {
-    // min-width: 16em;
+    border-radius: 50%;
+    display: inline-block;
+    height: 4em;
+    overflow: hidden;
     position: relative;
+    width: 4em;
 
-    @media screen and (min-width: 500px) {
+    // @media screen and (min-width: 500px) {
         // font-size: 1.5rem;
-    }
+    // }
 
     .percent {
         position: absolute;
-            right: 2%;
+            right: 50%;
             top: 50%;
-            transform: translatey(-50%);
+            transform: translate(50%,-50%);
         text-shadow: 2px 2px 5px #000;
     }
 }
@@ -56,11 +64,14 @@
 }
 
 progress {
-    border-radius: 2px;
-    appearance: none;
-    -webkit-appearance: none;
+    border-radius: 50%;
     display: block;
     margin: auto;
+    position: absolute;
+        transform: rotate(-90deg);
+    height: 4em;
+    width: 4em;
+    -webkit-appearance: none;
     width: 100%;
 }
 

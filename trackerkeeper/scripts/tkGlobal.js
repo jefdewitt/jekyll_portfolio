@@ -624,11 +624,8 @@ angular.module('angularApp')
             $scope.date = index.timeStamp;
         }
     })
-    
-    console.log('00000000000');
 
     $scope.clearAll = function() {
-        console.log('test');
         angular.forEach($scope.Input.timeRepo, function(index) {
             index.edit = false;
         });
@@ -988,7 +985,6 @@ angular.module('angularApp')
 angular.module('angularApp')
 
 .controller('detailCtlr', function ($scope, $location, $localStorage, goalToBeTracked, $compile, $rootScope) {
-
 
     $scope.go = function ( path ) {
         $location.path( path );

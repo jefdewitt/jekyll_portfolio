@@ -14,7 +14,7 @@
                     <li ng-click="deleting||loadData(project); deleting||go('project-output-view')"><span>{[{project.name }]}</span></br>
                         <div class="progress__bar">
                             <progress max="100" value="{[{pctgCompleted(project) }]}"></progress>
-                            <span class="percent">{[{pctgCompleted(project) }]}% done</span>
+                            <span class="percent">{[{pctgCompleted(project) }]}%</span>
                         </div>
                         <span class='button--delete' ng-click="deleteTrack(project)">x</span>
                     </li>
