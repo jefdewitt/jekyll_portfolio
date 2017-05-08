@@ -15,6 +15,6 @@ As a dev who's struggled through on-boarding processes I understand the importan
 
 ## Good Documentation
 
-A hallmark of good documentation is that it doesn't make you think. It explains steps clearly, concepts simply, and uses examples, when necessary, to demonstrate how it works. There's no researching who knows what and in what order this should be installed before that.
+Good documentation explains steps clearly, concepts simply, and uses examples to demonstrate syntax or commands. What's pertinent is gathered in one place. And instructions are laid out sequentially and organized logically. There's no researching who knows what and in what order this should be installed before that.
 
 The sooner you get someone solving product defects the more profitable you are. Too often I've spent too much time solving on-boarding documentation defects instead. And in the process, tying up other devs, slowing the whole team.
