@@ -4,8 +4,10 @@
     <div class="main input-view">
         <div class="">
             <div class="content__main--header">
-                <h2>{[{Input.name }]}</h2>
-                <h2 class="hours">{[{Input.hours }]} hours</h2>
+                <label ng-click="edit = true" ng-hide="edit" for="name"><h2>{[{Input.name }]}</h2></label>
+                <input ng-hide="!edit" ng-model="Input.name" placeholder="{[{Input.name }]}">
+                <label ng-click="change = true" ng-hide="change" for="hours"><h2 class="hours">{[{Input.hours }]} hours</h2></label>
+                <input ng-hide="!change" ng-model="Input.hours" placeholder="{[{Input.hours }]} hours">
                 <p>Enter time in minutes or just press the start button to use the built-in stopwatch. To choose a different date press the date button.</p>
             </div>
 
