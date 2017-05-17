@@ -101,7 +101,7 @@ angular.module('angularApp')
             count = 0;
         }
 
-        if ( currentTimerTime >= 0 ) {
+        if ( currentTimerTime > 0 ) {
             // store the actual object properties in the timeRepo array
             $scope.newTime.minutes = Math.ceil($scope.timerWithInterval / 60);
 
@@ -160,7 +160,7 @@ angular.module('angularApp')
     $scope.confirmTime = function() {
         if (confirm('Are you sure you want to confirm this time?')) {
 
-            if ( $scope.Input.hours >= 0 && ( $scope.timer >= 0 || $scope.timerWithInterval >= 0) ) {
+            if ( $scope.Input.hours > 0 && ( $scope.timer >= 0 || $scope.timerWithInterval >= 0) ) {
             // if confirm is true we save our object and go to the next view
                 $scope.saveNewData();
                 $scope.go('project-output-view');
