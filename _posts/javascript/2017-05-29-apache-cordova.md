@@ -50,6 +50,6 @@ $ cordova emulate ios
 
 For all intents and purposes, all your work will happen inside the `www` directory. This is the place where you'll find your `index.html` file, as well as your `css`, `img`, and `js` directories. All the work you do here gets compiled out to the various platforms of your project on a build.
 
-And that really is that. With four commands in Terminal you've a got a fully functioning mobile application without ever having to touch Xcode or Android Studio.
+And that really is that. With four commands in Terminal you've got a fully functioning mobile application without ever having to touch Xcode or Android Studio.
 
 Click [here](http://cordova.apache.org){:target="_blank"} for the full documentaion.
