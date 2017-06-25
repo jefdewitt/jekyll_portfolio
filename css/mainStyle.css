@@ -704,6 +704,66 @@ div:not(.home).center a {
   margin-bottom: 2rem;
   word-break: break-word; }
 
+.background__overlay {
+  background: rgba(0, 0, 0, 0.75);
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  animation: fade 10s ease forwards; }
+
+@keyframes fade {
+  0% {
+    background: rgba(0, 0, 0, 0.75); }
+  95% {
+    background: rgba(0, 0, 0, 0.75); }
+  100% {
+    background: transparent;
+    pointer-events: none; } }
+
+.homepage .logo__container {
+  animation: vanish 10s ease forwards;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 25%);
+  z-index: 3; }
+  .homepage .logo__container p {
+    animation: add-on 10s ease forwards;
+    font-family: "Yellowtail";
+    font-size: 7vw;
+    transition: all 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11); }
+    @media screen and (max-width: 767px) {
+      .homepage .logo__container p {
+        font-size: 4vh; } }
+    @media screen and (min-width: 1280px) {
+      .homepage .logo__container p {
+        font-size: 4rem; } }
+
+@keyframes vanish {
+  0% {
+    opacity: 1; }
+  95% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    pointer-events: none; } }
+
+@keyframes add-on {
+  0% {
+    opacity: 0; }
+  65% {
+    opacity: 0; }
+  75% {
+    opacity: 1; }
+  100% {
+    opacity: 1; } }
+
+@media screen and (max-width: 767px) {
+  .homepage__logo {
+    position: relative;
+    right: 3rem; } }
+
 .homepage .page-content,
 .homepage .wrapper {
   padding: 0; }

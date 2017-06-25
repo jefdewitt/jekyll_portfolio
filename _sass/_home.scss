@@ -1,21 +1,86 @@
-// .homepage {
-//     .page-content {
-//         @include media($mobile, 'max') {
-//             padding-top: 20em;
-//         }
-//
-//         > .wrapper {
-//             position: relative;
-//
-//             @include media($mobile) {
-//                 padding-top: 10%;
-//                 // padding-bottom: 10%;
-//             }
-//         }
-//     }
-// }
+
+.background__overlay {
+    background: rgba(0,0,0,.75);
+    height: 100%;
+    position: absolute;
+        z-index: 2;
+    width: 100%;
+    animation: fade 10s ease forwards;
+}
+
+@keyframes fade {
+    0% {
+        background: rgba(0,0,0,.75);
+    }
+    95% {
+        background: rgba(0,0,0,.75);
+    }
+    100% {
+        background: rgba(0,0,0,0);
+        pointer-events: none;
+    }
+}
+
+.homepage .logo__container {
+    animation: vanish 10s ease forwards;
+    position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 25%);
+        z-index: 3;
+
+    p {
+        animation: add-on 10s ease forwards;
+        font-family: $yellowtail;
+        font-size: 7vw;
+        transition: all 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+
+        @include media($mobile, 'max') {
+            font-size: 4vh;
+        }
+
+        @include media ($desktop) {
+            font-size: 4rem;
+        }
+    }
+}
+
+@keyframes vanish {
+    0% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@keyframes add-on {
+    0% {
+        opacity: 0;
+    }
+    65% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 .homepage {
+
+    &__logo {
+        @include media($mobile, 'max') {
+            position: relative;
+            right: 3rem;
+        }
+    }
 
     .page-content,
     .wrapper {
@@ -31,7 +96,6 @@
           @include media ($mobile) {
               flex-direction: row;
           }
-
     }
 
     .panel {
@@ -135,7 +199,6 @@
 
     .panel.open {
       flex: 3;
-    //   font-size:40px;
     }
 
     .cta {
