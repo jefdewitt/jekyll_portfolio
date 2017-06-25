@@ -1118,18 +1118,18 @@ div:not(.home).center a {
   @media screen and (max-width: 767px) {
     .kerick {
       display: none; } }
+  .kerick:before {
+    background: url("/images/wigflip-ds.png") no-repeat;
+    background-size: contain;
+    content: '';
+    display: inline-block;
+    height: 100px;
+    position: absolute;
+    bottom: 200px;
+    right: 50%;
+    width: 300px; }
   .kerick.open-up {
     animation: popup 2s ease forwards; }
-    .kerick.open-up:before {
-      background: url("/images/wigflip-ds.png") no-repeat;
-      background-size: contain;
-      content: '';
-      display: inline-block;
-      height: 100px;
-      position: absolute;
-      bottom: 200px;
-      right: 50%;
-      width: 300px; }
 
 @keyframes popup {
   0% {

@@ -551,10 +551,7 @@
         top: 110%;
     width: 400px;
     z-index: 1;
-
-    &.open-up {
-        animation: popup 2s ease forwards;
-
+    
         &:before {
             background: url('/images/wigflip-ds.png') no-repeat;
             background-size: contain;
@@ -562,10 +559,14 @@
             display: inline-block;
             height: 100px;
             position: absolute;
-                bottom: 200px;
-                right: 50%;
+            bottom: 200px;
+            right: 50%;
             width: 300px;
         }
+
+    &.open-up {
+        animation: popup 2s ease forwards;
+
     }
 }
 
