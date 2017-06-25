@@ -705,12 +705,13 @@ div:not(.home).center a {
   word-break: break-word; }
 
 .background__overlay {
+  animation: fade 10s ease forwards;
   background: rgba(0, 0, 0, 0.75);
   height: 100%;
+  pointer-events: none;
   position: absolute;
   z-index: 2;
-  width: 100%;
-  animation: fade 10s ease forwards; }
+  width: 100%; }
 
 @keyframes fade {
   0% {
@@ -723,13 +724,14 @@ div:not(.home).center a {
 
 .homepage .logo__container {
   animation: vanish 10s ease forwards;
+  pointer-events: none;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, 25%);
   z-index: 3; }
   .homepage .logo__container p {
-    animation: add-on 10s ease forwards;
+    animation: add-on 2s 30s ease forwards;
     font-family: "Yellowtail";
     font-size: 7vw;
     transition: all 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11); }
@@ -746,8 +748,7 @@ div:not(.home).center a {
   95% {
     opacity: 1; }
   100% {
-    opacity: 0;
-    pointer-events: none; } }
+    opacity: 0; } }
 
 @keyframes add-on {
   0% {
@@ -766,6 +767,7 @@ div:not(.home).center a {
 
 .homepage .page-content,
 .homepage .wrapper {
+  max-width: 100%;
   padding: 0; }
 
 .homepage .panels {
@@ -850,7 +852,10 @@ div:not(.home).center a {
       font-size: 2rem; } }
 
 .homepage .panel div:nth-child(2) {
-  position: absolute; }
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
   .homepage .panel div:nth-child(2) p {
     font-size: 7vw; }
 
@@ -1099,6 +1104,40 @@ div:not(.home).center a {
   100% {
     opacity: 1;
     color: #B2FFB2; } }
+
+.kerick {
+  background: url("/images/kericks-head.png") no-repeat;
+  background-size: contain;
+  display: inline-block;
+  height: 240px;
+  position: absolute;
+  right: 50px;
+  top: 110%;
+  width: 400px;
+  z-index: 1; }
+  @media screen and (max-width: 767px) {
+    .kerick {
+      display: none; } }
+  .kerick.open-up {
+    animation: popup 2s ease forwards; }
+    .kerick.open-up:before {
+      background: url("/images/wigflip-ds.png") no-repeat;
+      background-size: contain;
+      content: '';
+      display: inline-block;
+      height: 100px;
+      position: absolute;
+      bottom: 200px;
+      right: 50%;
+      width: 300px; }
+
+@keyframes popup {
+  0% {
+    top: 100%; }
+  25% {
+    top: 67%; }
+  100% {
+    top: 67%; } }
 
 /**
  * Blog posts

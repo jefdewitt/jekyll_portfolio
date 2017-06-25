@@ -9,21 +9,48 @@ $("document").ready(function() {
 
     function toggleOpen() {
         this.classList.toggle('open');
-        console.log(this.classList);
     }
 
     function toggleActive(e) {
-        console.log(e.propertyName);
         if (e.propertyName.includes('flex')) {
           this.classList.toggle('open-active');
-          console.log(this.classList);
         }
     }
 
+    // Loops thru nodelist -- not the empty array brackets, son
     [].forEach.call(panels, function(panel) {
         panel.addEventListener('click', toggleOpen);
         panel.addEventListener('transitionend', toggleActive);
     });
+
+    // Special click event to stop opening animation
+    var homepage = document.querySelector('.homepage');
+    var background = document.querySelector('.background__overlay');
+    var logo = document.querySelector('.logo__container');
+
+    // nilla' js version of jQuery click event handler
+    homepage.onclick = function() {
+        // nilla' JS added style property
+        document.querySelector('.background__overlay').style.display = 'none';
+        document.querySelector('.logo__container').style.display = 'none';
+    };
+
+    var idleTime = 0;
+    //Increment the idle time counter every minute.
+    var idleInterval = setInterval(timerIncrement, 30000); // 1 minute
+    //Zero the idle timer on mouse movement.
+    homepage.onclick = function (e) {
+       idleTime = 0;
+    };
+
+    function timerIncrement() {
+        idleTime = idleTime + 1;
+        if (idleTime > 1) { // 30 sec
+            document.querySelector('.kerick').classList.toggle('open-up');
+        } else if (idleTime > 2) {
+            document.querySelector('.kerick').classList.toggle('open-up');
+        }
+    }
 
   $(window).on( "scroll", function(){
 
