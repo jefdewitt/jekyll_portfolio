@@ -6,10 +6,13 @@
   {% include head.html %}
 
   <body class="homepage" data-group="one">
+    <div class="background__overlay"></div>
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="site-intro side--left">
+        <!-- <div class="site-intro side--left"> -->
+
+        <div class="logo__container">
             <div class="homepage__logo">
               <h1>
                 <span class="cursor">|</span>
@@ -20,17 +23,45 @@
                 <span class="name--last">DeWitt</span>
               </h1>
             </div>
-            <p>Front-end Developer</p>
-            <div class="menu__container">
-                <ul class="menu">
-                    <li class="menu__item1"><a href="/projects">Projects</a></li>
-                    <li class="menu__item2"><a href="/archive">Blog</a></li>
-                    <li class="menu__item3"><a href="/connect">Connect</a></li>
-                </ul>
+            <p>Software Engineer</p>
+        </div>
+
+        <div class="panels">
+          <div class="panel panel1">
+            <div>
+                <p>Take a</p>
             </div>
+            <div>
+                <p>Second</p>
+            </div>
+            <div>
+                <p>and read my <a href="/archive">blog<span>.</span></a></p>
+            </div>
+          </div>
+          <div class="panel panel2">
+            <div>
+                <p>Learn how</p>
+            </div>
+            <div>
+                <p>To</p>
+            </div>
+            <div>
+                <p>make cool <a href="/projects">projects<span>.</span></a></p>
+            </div>
+          </div>
+          <div class="panel panel3">
+            <div>
+                <p>Impressed? Overwhelmed?</p>
+            </div>
+            <div>
+                <p>None</p>
+            </div>
+            <div>
+                <p>of that surprises me.<br>Contact me <a href="/connect">here<span>.</span></a></p>
+            </div>
+          </div>
         </div>
-        <div class="image__container side--right">
-        </div>
+
       </div>
 
     {% include footer.html %}

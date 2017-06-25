@@ -1,28 +1,211 @@
-.homepage {
-    .page-content {
+
+.background__overlay {
+    background: rgba(0,0,0,.75);
+    height: 100%;
+    position: absolute;
+        z-index: 2;
+    width: 100%;
+    animation: fade 10s ease forwards;
+}
+
+@keyframes fade {
+    0% {
+        background: rgba(0,0,0,.75);
+    }
+    95% {
+        background: rgba(0,0,0,.75);
+    }
+    100% {
+        background: rgba(0,0,0,0);
+        pointer-events: none;
+    }
+}
+
+.homepage .logo__container {
+    animation: vanish 10s ease forwards;
+    position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 25%);
+        z-index: 3;
+
+    p {
+        animation: add-on 10s ease forwards;
+        font-family: $yellowtail;
+        font-size: 7vw;
+        transition: all 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+
         @include media($mobile, 'max') {
-            padding-top: 20em;
+            font-size: 4vh;
         }
 
-        > .wrapper {
-            position: relative;
-
-            @include media($mobile) {
-                padding-top: 10%;
-                // padding-bottom: 10%;
-            }
+        @include media ($desktop) {
+            font-size: 4rem;
         }
     }
 }
 
-.homepage {
-    background: url('/images/jef-in-suit-b&w-one.jpg') no-repeat;
-    background-size: cover;
-    background-position: top right;
-
-    @include media($mobile) {
-        background-position: initial;
+@keyframes vanish {
+    0% {
+        opacity: 1;
     }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@keyframes add-on {
+    0% {
+        opacity: 0;
+    }
+    65% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.homepage {
+
+    &__logo {
+        @include media($mobile, 'max') {
+            position: relative;
+            right: 3rem;
+        }
+    }
+
+    .page-content,
+    .wrapper {
+        padding: 0;
+    }
+
+    .panels {
+      min-height:100vh;
+      overflow: hidden;
+      display: flex;
+          flex-direction: column;
+
+          @include media ($mobile) {
+              flex-direction: row;
+          }
+    }
+
+    .panel {
+      align-items:center;
+      color:white;
+      background:#6B0F9C;
+      background-position:center;
+      background-size:cover;
+      box-shadow:inset 0 0 0 5px rgba(255,255,255,0.1);
+      display: flex;
+          flex: 1;
+          flex-direction: column;
+          justify-content: center;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+
+      > div {
+          display:flex;
+              align-items: center;
+              flex: 1 0 auto;
+              justify-content: center;
+          margin:0;
+          max-width: 100%;
+          transition:transform 0.5s;
+
+          @include media($mobile) {
+              padding: 0 2rem;
+          }
+      }
+    }
+
+    .panel1 {
+        background: url('/images/jef-country-profile.JPG') no-repeat;
+        background-size: cover;
+        background-position: center 20%;
+
+        @include media($mobile) {
+            background-position: center;
+        }
+    }
+
+    .panel2 {
+        background: url('/images/jef-hater-blocking.jpg') no-repeat;
+        background-size: cover;
+        background-position: center 20%;
+
+        @include media ($mobile) {
+            background-position: center right;
+        }
+    }
+
+    .panel3 {
+        background: url('/images/jef-dapper.jpg') no-repeat;
+        background-size: cover;
+        background-position: center 20%;
+
+        @include media($mobile) {
+            background-position: center;
+        }
+    }
+
+    .panel > *:first-child { transform: translateY(-100%); }
+    .panel.open-active > *:first-child { transform: translateY(0); }
+    .panel > *:last-child { transform: translateY(100%); }
+    .panel.open-active > *:last-child { transform: translateY(0); }
+
+    .panel p {
+      text-transform: uppercase;
+    //   font-family: 'Amatic SC', cursive;
+      text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 1em;
+
+      @include media($mobile) {
+          font-size: 2rem;
+      }
+    }
+    .panel div:nth-child(2) {
+      position: absolute;
+
+      p {
+          font-size: 7vw;
+      }
+    }
+
+    .panel a {
+
+        @include media($mobile) {
+            font-size: 2rem;
+        }
+
+        span {
+            color: $white;
+        }
+    }
+
+    .panel.open {
+      flex: 3;
+    }
+
+    .cta {
+      color:white;
+      text-decoration: none;
+    }
+
 }
 
 .side--left {
@@ -55,8 +238,8 @@
     p {
         color: $text-color;
         text-shadow: 1px 1px 1px $text-shadow, 1px 1px 2em $text-shadow;
-        font-size: 3rem;
-        font-family: $yellowtail;
+        font-size: 2rem;
+        // font-family: $yellowtail;
     }
 
     .site-footer {

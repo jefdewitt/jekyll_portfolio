@@ -2,12 +2,17 @@
  * Site footer
  */
 .site-footer {
-    // border-top: 1px solid $grey-color-light;
+
+    @include media($mobile, 'max') {
+        padding: 32px 0 0;
+        background: gray;
+    }
+
     padding: $spacing-unit 0;
 
     .site-footer__inner {
         margin: auto;
-        
+
         @include media($tablet, 'max') {
             max-width: -webkit-calc(#{$small-content-width} - (#{$spacing-unit}));
             max-width:         calc(#{$small-content-width} - (#{$spacing-unit}));
