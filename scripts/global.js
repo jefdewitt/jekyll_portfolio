@@ -1,6 +1,30 @@
 
 $("document").ready(function() {
 
+    /**
+    * Homepage
+    */
+
+    var panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+        this.classList.toggle('open');
+        console.log(this.classList);
+    }
+
+    function toggleActive(e) {
+        console.log(e.propertyName);
+        if (e.propertyName.includes('flex')) {
+          this.classList.toggle('open-active');
+          console.log(this.classList);
+        }
+    }
+
+    [].forEach.call(panels, function(panel) {
+        panel.addEventListener('click', toggleOpen);
+        panel.addEventListener('transitionend', toggleActive);
+    });
+
   $(window).on( "scroll", function(){
 
       /**
@@ -21,12 +45,24 @@ $("document").ready(function() {
       var $middle = ( $(window).scrollTop() + $changePos );
 
       // Pixel distance of images from top of document
-      var $imageOffsetOne =   $imageOne.offset().top;
-      var $imageOffsetTwo =   $imageTwo.offset().top;
-      var $imageOffsetThree = $imageThree.offset().top;
-      var $imageOffsetFour =  $imageFour.offset().top;
-      var $imageOffsetFive =  $imageFive.offset().top;
-      var $imageOffsetSix =   $imageSix.offset().top;
+      if ($imageOne) {
+          var $imageOffsetOne =   $imageOne.offset().top;
+      }
+      if ($imageOne) {
+          var $imageOffsetTwo =   $imageTwo.offset().top;
+      }
+      if ($imageTwo) {
+          var $imageOffsetThree = $imageThree.offset().top;
+      }
+      if ($imageThree) {
+          var $imageOffsetFour =  $imageFour.offset().top;
+      }
+      if ($imageFour) {
+          var $imageOffsetFive =  $imageFive.offset().top;
+      }
+      if ($imageFive) {
+          var $imageOffsetSix =   $imageSix.offset().top;
+      }
 
       // When the the pixel count above the middle of the viewport is greater than the distance of the
       // images from the top of the document.
