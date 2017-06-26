@@ -74,7 +74,22 @@
     }
 }
 
+.side--left {
+    @include media($mobile) {
+        padding: 25% 5% 0;
+    }
+}
+
+.homepage .site-footer svg {
+    path,
+    circle {
+        fill: $text-color;
+    }
+}
+
 .homepage {
+
+    overflow: hidden;
 
     &__logo {
         @include media($mobile, 'max') {
@@ -210,23 +225,6 @@
       color:white;
       text-decoration: none;
     }
-
-}
-
-.side--left {
-    @include media($mobile) {
-        padding: 25% 5% 0;
-    }
-}
-
-.homepage .site-footer svg {
-    path,
-    circle {
-        fill: $text-color;
-    }
-}
-
-.homepage {
 
     h1 {
         color: $text-color;
@@ -551,7 +549,7 @@
         top: 110%;
     width: 400px;
     z-index: 1;
-    
+
         &:before {
             background: url('/images/wigflip-ds.png') no-repeat;
             background-size: contain;

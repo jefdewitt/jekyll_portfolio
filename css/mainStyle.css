@@ -760,119 +760,6 @@ div:not(.home).center a {
   100% {
     opacity: 1; } }
 
-@media screen and (max-width: 767px) {
-  .homepage__logo {
-    position: relative;
-    right: 3rem; } }
-
-.homepage .page-content,
-.homepage .wrapper {
-  max-width: 100%;
-  padding: 0; }
-
-.homepage .panels {
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column; }
-  @media screen and (min-width: 767px) {
-    .homepage .panels {
-      flex-direction: row; } }
-
-.homepage .panel {
-  align-items: center;
-  color: white;
-  background: #6B0F9C;
-  background-position: center;
-  background-size: cover;
-  box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), background 0.2s;
-  font-size: 20px; }
-  .homepage .panel > div {
-    display: flex;
-    align-items: center;
-    flex: 1 0 auto;
-    justify-content: center;
-    margin: 0;
-    max-width: 100%;
-    transition: transform 0.5s; }
-    @media screen and (min-width: 767px) {
-      .homepage .panel > div {
-        padding: 0 2rem; } }
-
-.homepage .panel1 {
-  background: url("/images/jef-country-profile.jpg") no-repeat;
-  background-size: cover;
-  background-position: center 20%; }
-  @media screen and (min-width: 767px) {
-    .homepage .panel1 {
-      background-position: center; } }
-
-.homepage .panel2 {
-  background: url("/images/jef-hater-blocking.jpg") no-repeat;
-  background-size: cover;
-  background-position: center 20%; }
-  @media screen and (min-width: 767px) {
-    .homepage .panel2 {
-      background-position: center right; } }
-
-.homepage .panel3 {
-  background: url("/images/jef-dapper.jpg") no-repeat;
-  background-size: cover;
-  background-position: center 20%; }
-  @media screen and (min-width: 767px) {
-    .homepage .panel3 {
-      background-position: center; } }
-
-.homepage .panel > *:first-child {
-  transform: translateY(-100%); }
-
-.homepage .panel.open-active > *:first-child {
-  transform: translateY(0); }
-
-.homepage .panel > *:last-child {
-  transform: translateY(100%); }
-
-.homepage .panel.open-active > *:last-child {
-  transform: translateY(0); }
-
-.homepage .panel p {
-  text-transform: uppercase;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
-  font-size: 1em; }
-  @media screen and (min-width: 767px) {
-    .homepage .panel p {
-      font-size: 2rem; } }
-
-.homepage .panel div:nth-child(2) {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); }
-  .homepage .panel div:nth-child(2) p {
-    font-size: 7vw; }
-
-@media screen and (min-width: 767px) {
-  .homepage .panel a {
-    font-size: 2rem; } }
-
-.homepage .panel a span {
-  color: #ffffff; }
-
-.homepage .panel.open {
-  flex: 3; }
-
-.homepage .cta {
-  color: white;
-  text-decoration: none; }
-
 @media screen and (min-width: 767px) {
   .side--left {
     padding: 25% 5% 0; } }
@@ -881,30 +768,126 @@ div:not(.home).center a {
 .homepage .site-footer svg circle {
   fill: #fdfdfd; }
 
-.homepage h1 {
-  color: #fdfdfd;
-  text-shadow: 1px 1px 1px #111111;
-  font-size: 5rem;
-  line-height: 1;
-  font-weight: 700; }
+.homepage {
+  overflow: hidden; }
+  @media screen and (max-width: 767px) {
+    .homepage__logo {
+      position: relative;
+      right: 3rem; } }
+  .homepage .page-content,
+  .homepage .wrapper {
+    max-width: 100%;
+    padding: 0; }
+  .homepage .panels {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; }
+    @media screen and (min-width: 767px) {
+      .homepage .panels {
+        flex-direction: row; } }
+  .homepage .panel {
+    align-items: center;
+    color: white;
+    background: #6B0F9C;
+    background-position: center;
+    background-size: cover;
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), background 0.2s;
+    font-size: 20px; }
+    .homepage .panel > div {
+      display: flex;
+      align-items: center;
+      flex: 1 0 auto;
+      justify-content: center;
+      margin: 0;
+      max-width: 100%;
+      transition: transform 0.5s; }
+      @media screen and (min-width: 767px) {
+        .homepage .panel > div {
+          padding: 0 2rem; } }
+  .homepage .panel1 {
+    background: url("/images/jef-country-profile.jpg") no-repeat;
+    background-size: cover;
+    background-position: center 20%; }
+    @media screen and (min-width: 767px) {
+      .homepage .panel1 {
+        background-position: center; } }
+  .homepage .panel2 {
+    background: url("/images/jef-hater-blocking.jpg") no-repeat;
+    background-size: cover;
+    background-position: center 20%; }
+    @media screen and (min-width: 767px) {
+      .homepage .panel2 {
+        background-position: center right; } }
+  .homepage .panel3 {
+    background: url("/images/jef-dapper.jpg") no-repeat;
+    background-size: cover;
+    background-position: center 20%; }
+    @media screen and (min-width: 767px) {
+      .homepage .panel3 {
+        background-position: center; } }
+  .homepage .panel > *:first-child {
+    transform: translateY(-100%); }
+  .homepage .panel.open-active > *:first-child {
+    transform: translateY(0); }
+  .homepage .panel > *:last-child {
+    transform: translateY(100%); }
+  .homepage .panel.open-active > *:last-child {
+    transform: translateY(0); }
+  .homepage .panel p {
+    text-transform: uppercase;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+    font-size: 1em; }
+    @media screen and (min-width: 767px) {
+      .homepage .panel p {
+        font-size: 2rem; } }
+  .homepage .panel div:nth-child(2) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+    .homepage .panel div:nth-child(2) p {
+      font-size: 7vw; }
   @media screen and (min-width: 767px) {
-    .homepage h1 {
-      font-size: 6rem; } }
-
-.homepage p {
-  color: #fdfdfd;
-  text-shadow: 1px 1px 1px #111111, 1px 1px 2em #111111;
-  font-size: 2rem; }
-
-@media screen and (min-width: 767px) {
-  .homepage .site-footer {
-    padding: 0;
-    position: fixed;
-    bottom: 0%;
-    right: 5%;
-    width: 20em; }
-    .homepage .site-footer .footer-col-1, .homepage .site-footer .footer-col-2 {
-      width: 100%; } }
+    .homepage .panel a {
+      font-size: 2rem; } }
+  .homepage .panel a span {
+    color: #ffffff; }
+  .homepage .panel.open {
+    flex: 3; }
+  .homepage .cta {
+    color: white;
+    text-decoration: none; }
+  .homepage h1 {
+    color: #fdfdfd;
+    text-shadow: 1px 1px 1px #111111;
+    font-size: 5rem;
+    line-height: 1;
+    font-weight: 700; }
+    @media screen and (min-width: 767px) {
+      .homepage h1 {
+        font-size: 6rem; } }
+  .homepage p {
+    color: #fdfdfd;
+    text-shadow: 1px 1px 1px #111111, 1px 1px 2em #111111;
+    font-size: 2rem; }
+  @media screen and (min-width: 767px) {
+    .homepage .site-footer {
+      padding: 0;
+      position: fixed;
+      bottom: 0%;
+      right: 5%;
+      width: 20em; }
+      .homepage .site-footer .footer-col-1, .homepage .site-footer .footer-col-2 {
+        width: 100%; } }
 
 .menu {
   list-style: none;
