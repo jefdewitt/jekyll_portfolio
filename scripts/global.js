@@ -30,20 +30,27 @@ $("document").ready(function() {
     //Increment the idle time counter every minute.
     var idleInterval = setInterval(timerIncrement, 30000); // 1 minute
     // nilla' js version of jQuery click event handler
-    homepage.onclick = function (e) {
-        //Zero the idle timer on mouse movement.
-       idleTime = 0;
-       // nilla' JS added style property
-       document.querySelector('.background__overlay').style.display = 'none';
-       document.querySelector('.logo__container').style.display = 'none';
-    };
+    if (homepage) {
+        homepage.onclick = function (e) {
+            //Zero the idle timer on mouse movement.
+           idleTime = 0;
+           // nilla' JS added style property
+           document.querySelector('.background__overlay').style.display = 'none';
+           document.querySelector('.logo__container').style.display = 'none';
+           document.querySelector('.kerick').classList.remove('open-up');
+        };
+    }
+
 
     function timerIncrement() {
-        idleTime = idleTime + 1;
-        if (idleTime > 1) { // 30 sec
-            document.querySelector('.kerick').classList.toggle('open-up');
-        } else if (idleTime > 2) {
-            document.querySelector('.kerick').classList.toggle('open-up');
+        var kerick = document.querySelector('.kerick');
+        if (kerick) {
+            idleTime = idleTime + 1;
+            if (idleTime > 1) { // 30 sec
+                kerick.classList.toggle('open-up');
+            } else if (idleTime > 2) {
+                kerick.classList.toggle('open-up');
+            }
         }
     }
 
