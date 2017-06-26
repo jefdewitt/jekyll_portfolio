@@ -25,22 +25,17 @@ $("document").ready(function() {
 
     // Special click event to stop opening animation
     var homepage = document.querySelector('.homepage');
-    var background = document.querySelector('.background__overlay');
-    var logo = document.querySelector('.logo__container');
-
-    // nilla' js version of jQuery click event handler
-    homepage.onclick = function() {
-        // nilla' JS added style property
-        document.querySelector('.background__overlay').style.display = 'none';
-        document.querySelector('.logo__container').style.display = 'none';
-    };
 
     var idleTime = 0;
     //Increment the idle time counter every minute.
     var idleInterval = setInterval(timerIncrement, 30000); // 1 minute
-    //Zero the idle timer on mouse movement.
+    // nilla' js version of jQuery click event handler
     homepage.onclick = function (e) {
+        //Zero the idle timer on mouse movement.
        idleTime = 0;
+       // nilla' JS added style property
+       document.querySelector('.background__overlay').style.display = 'none';
+       document.querySelector('.logo__container').style.display = 'none';
     };
 
     function timerIncrement() {
@@ -72,22 +67,22 @@ $("document").ready(function() {
       var $middle = ( $(window).scrollTop() + $changePos );
 
       // Pixel distance of images from top of document
-      if ($imageOne) {
+      if ($imageOne.length) {
           var $imageOffsetOne =   $imageOne.offset().top;
       }
-      if ($imageOne) {
-          var $imageOffsetTwo =   $imageTwo.offset().top;
-      }
-      if ($imageTwo) {
+      if ($imageTwo.length) {
           var $imageOffsetThree = $imageThree.offset().top;
       }
-      if ($imageThree) {
+      if ($imageThree.length) {
           var $imageOffsetFour =  $imageFour.offset().top;
       }
-      if ($imageFour) {
+      if ($imageFour.length) {
           var $imageOffsetFive =  $imageFive.offset().top;
       }
-      if ($imageFive) {
+      if ($imageFive.length) {
+          var $imageOffsetSix =   $imageSix.offset().top;
+      }
+      if ($imageSix.length) {
           var $imageOffsetSix =   $imageSix.offset().top;
       }
 
