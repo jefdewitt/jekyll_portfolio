@@ -28,17 +28,22 @@
     position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, 25%);
+        transform: translate(-50%, -50%) scale(.75);
         z-index: 3;
 
+        @include media($mobile) {
+            transform: translate(-50%, 25%);
+        }
+
     p {
-        animation: add-on 2s 30s ease forwards;
+        animation: add-on 10s ease forwards;
         font-family: $yellowtail;
         font-size: 7vw;
         transition: all 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+        white-space: nowrap;
 
         @include media($mobile, 'max') {
-            font-size: 4vh;
+            font-size: 5vh;
         }
 
         @include media ($desktop) {
@@ -188,7 +193,7 @@
     .panel p {
       text-transform: uppercase;
     //   font-family: 'Amatic SC', cursive;
-      text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+    //   text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
       font-size: 1em;
 
       @include media($mobile) {
@@ -545,8 +550,8 @@
     display: inline-block;
     height: 240px;
     position: absolute;
+        bottom: -110%;
         right: 50px;
-        top: 110%;
     width: 400px;
     z-index: 1;
 
@@ -570,12 +575,12 @@
 
 @keyframes popup {
     0% {
-        top: 100%;
+        bottom: -110%;
     }
     25% {
-        top: 67%;
+        bottom: 0%;
     }
     100% {
-        top: 67%;
+        bottom: 0%;
     }
 }

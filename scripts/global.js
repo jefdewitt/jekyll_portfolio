@@ -54,67 +54,79 @@ $("document").ready(function() {
         }
     }
 
-  $(window).on( "scroll", function(){
+    /**
+    * This is for our 'iOS Work' project page
+    */
 
-      /**
-       * This is for our 'iOS Work' project page
-       */
+    // Images we want to slide into place on scroll
+    var $imageOne =   $('.offscreen--right.one');
+    var $imageTwo =   $('.offscreen--left.two');
+    var $imageThree = $('.offscreen--right.three');
+    var $imageFour =  $('.offscreen--left.four');
+    var $imageFive =  $('.offscreen--right.five');
+    var $imageSix =   $('.offscreen--left.six');
 
-      // Images we want to slide into place on scroll
-      var $imageOne =   $('.offscreen--right.one');
-      var $imageTwo =   $('.offscreen--left.two');
-      var $imageThree = $('.offscreen--right.three');
-      var $imageFour =  $('.offscreen--left.four');
-      var $imageFive =  $('.offscreen--right.five');
-      var $imageSix =   $('.offscreen--left.six');
+    $(window).on( "scroll", function(){
 
-      // Find the middle of the viewport window
-      var $changePos = ( $(window).height() * .5 );
-      // Add that to the scrollTop function so we start counting from the middle of the window on scroll
-      var $middle = ( $(window).scrollTop() + $changePos );
+        // Find the middle of the viewport window
+        var $changePos = ( $(window).height() * .5 );
+        // Add that to the scrollTop function so we start counting from the middle of the window on scroll
+        var $middle = ( $(window).scrollTop() + $changePos );
 
-      // Pixel distance of images from top of document
-      if ($imageOne.length) {
-          var $imageOffsetOne =   $imageOne.offset().top;
-      }
-      if ($imageTwo.length) {
-          var $imageOffsetThree = $imageThree.offset().top;
-      }
-      if ($imageThree.length) {
-          var $imageOffsetFour =  $imageFour.offset().top;
-      }
-      if ($imageFour.length) {
-          var $imageOffsetFive =  $imageFive.offset().top;
-      }
-      if ($imageFive.length) {
-          var $imageOffsetSix =   $imageSix.offset().top;
-      }
-      if ($imageSix.length) {
-          var $imageOffsetSix =   $imageSix.offset().top;
-      }
+        // Pixel distance of images from top of document
+        if ($imageOne.length) {
+            var $imageOffsetOne =   $imageOne.offset().top;
+        } else {
+            $imageOffsetOne = 10000;
+        }
+        if ($imageTwo.length) {
+            var $imageOffsetTwo = $imageTwo.offset().top;
+        } else {
+            $imageOffsetTwo = 10000;
+        }
+        if ($imageThree.length) {
+            var $imageOffsetThree =  $imageThree.offset().top;
+        } else {
+            $imageOffsetThree = 10000;
+        }
+        if ($imageFour.length) {
+            var $imageOffsetFour =  $imageFour.offset().top;
+        } else {
+            $imageOffsetFour = 10000;
+        }
+        if ($imageFive.length) {
+            var $imageOffsetFive =   $imageFive.offset().top;
+        } else {
+            $imageOffsetFive = 10000;
+        }
+        if ($imageSix.length) {
+            var $imageOffsetSix =   $imageSix.offset().top;
+        } else {
+            $imageOffsetSix = 10000;
+        }
 
-      // When the the pixel count above the middle of the viewport is greater than the distance of the
-      // images from the top of the document.
-      if ( $middle > $imageOffsetOne ) {
+        // When the the pixel count above the middle of the viewport is greater than the distance of the
+        // images from the top of the document.
+        if ( $middle > $imageOffsetOne ) {
           $imageOne.addClass('center-from-right');
-      }
-      if ( $middle > $imageOffsetTwo ) {
+        }
+        if ( $middle > $imageOffsetTwo ) {
           $imageTwo.addClass('center-from-left');
-      }
-      if ( $middle > $imageOffsetThree ) {
+        }
+        if ( $middle > $imageOffsetThree ) {
           $imageThree.addClass('center-from-right');
-      }
-      if ( $middle > $imageOffsetFour ) {
+        }
+        if ( $middle > $imageOffsetFour ) {
           $imageFour.addClass('center-from-left');
-      }
-      if ( $middle > $imageOffsetFive) {
+        }
+        if ( $middle > $imageOffsetFive) {
           $imageFive.addClass('center-from-right');
-      }
-      if ( $middle > $imageOffsetSix ) {
+        }
+        if ( $middle > $imageOffsetSix ) {
           $imageSix.addClass('center-from-left');
-      }
+        }
 
-	});
+    });
 
     // Capture the menu items from the homepage
     var $menu = $('.menu');
@@ -132,7 +144,7 @@ $("document").ready(function() {
 
     var $window = $(window).width();
 
-    $menuIcon.on('click', function() {
+        $menuIcon.on('click', function() {
         $menuIcon.toggleClass('clicked', '');
         $trigger.toggleClass('open', 'closed');
     });
