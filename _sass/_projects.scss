@@ -199,3 +199,21 @@
     margin-bottom: 2rem;
     word-break: break-word;
 }
+
+/**
+ *    Special rule for API project
+ */
+.api-container {
+    @include media($mobile) {
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            width: 25%;
+
+            img {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

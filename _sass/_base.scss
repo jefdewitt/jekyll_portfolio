@@ -78,11 +78,14 @@ figcaption {
 /**
  * Lists
  */
-ul, ol {
-    margin-left: $spacing-unit;
-}
+// ul, ol {
+//     margin-left: $spacing-unit;
+// }
 
 li {
+
+    list-style: none;
+
     > ul,
     > ol {
          margin-bottom: 0;
@@ -141,13 +144,13 @@ p + h2 {
     padding-top: 1em;
 }
 
-em {
-    color: $lime-green;
-    font-family: $raleway;
-    font-weight: 700;
-    font-style: normal;
-    text-shadow: 1px 1px 1px $text-shadow, 1px 1px 2em $text-shadow;
-}
+// em {
+//     color: $lime-green;
+//     font-family: $raleway;
+//     font-weight: 700;
+//     font-style: normal;
+//     text-shadow: 1px 1px 1px $text-shadow, 1px 1px 2em $text-shadow;
+// }
 
 label {
     display: block;
@@ -234,7 +237,8 @@ blockquote {
 /**
  * Code formatting
  */
-.wrapper .highlighter-rouge {
+.wrapper .highlighter-rouge,
+dl {
     background: $grey-color-medium;
     @extend .overflow-width;
 
@@ -290,14 +294,24 @@ pre {
         border: 0;
         padding-right: 0;
         padding-left: 0;
-        white-space: pre-wrap;
+        white-space: pre;
         word-wrap: break-word;
     }
 }
 
-.wrapper p > code.highlighter-rouge {
-    padding: .25em;
-    position: initial;
+.wrapper {
+
+    p, li {
+
+        > code.highlighter-rouge {
+            padding: .25em;
+            position: initial;
+        }
+    }
+}
+
+dt {
+    margin-bottom: 1em;
 }
 
 /**
