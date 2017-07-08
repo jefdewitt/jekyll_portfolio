@@ -9,7 +9,7 @@ date:   2017-06-18 17:08:11 -0400
 ---
 The term `REST API` has always intimidated me. If you've read any of my blog rants on the subject, technology documentation has a way of taking concepts and ramping up the difficulty level by orders of magnitude; simple examples are often overlooked in favor of showing off the writer's more advanced knowledge.
 
-Don't sweat it. I'm gonna break it down to an easy level even *I* can understand. *I Keep It Simple, Stupid*.
+Don't sweat it. I'm gonna break it down to an easy level even *I* can understand. I *Keep It Simple, Stupid*.
 
 In a nutshell, a `REST API` is just a way to get data, in the form of a JSON or XML object, via a URL. The technical definition goes like this:
 

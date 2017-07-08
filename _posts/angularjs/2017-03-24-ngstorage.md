@@ -3,7 +3,7 @@ layout: post
 title: "ngStorage"
 image: storage.jpg
 date: 2017-03-24 07:32:11 -0400
-categories: Angular
+categories: AngularJS
 ---
 As a front-end dev my need for data storage was never a chief concern. Not that it isn't important, but I usually didn't have to get my hands dirty with managing databases. That was something for the back-end guys.
 

@@ -204,6 +204,9 @@
  *    Special rule for API project
  */
 .api-container {
+
+    margin-bottom: 3em;
+
     @include media($mobile) {
         display: flex;
         flex-wrap: wrap;

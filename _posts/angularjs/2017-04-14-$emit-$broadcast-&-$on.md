@@ -3,7 +3,7 @@ layout: post
 title: "$emit, $broadcast, & $on"
 image: microphone.jpg
 date: 2017-04-14 14:32:11 -0400
-categories: Angular
+categories: AngularJS
 ---
 Ever try to fire off an event in one controller from another in your Angular app? Neither had I. Where services share data between controllers (factories and providers will work just as well), Angular's event system can do much more. It shares events, like updates to a form field or triggering style changes based on a state, from one $scope to another. Pretty dope stuff.
 
