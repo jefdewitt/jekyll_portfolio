@@ -36,7 +36,6 @@ Here's what the entire API code looks like...
 
 ```javascript
 var token = '<generated-token-code-goes-here>',
-    userid = self,
     num_photos = 12;
 
 $.ajax({

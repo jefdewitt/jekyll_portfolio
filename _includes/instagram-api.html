@@ -2,7 +2,7 @@
 
 <script>
     var token = '431338868.1677ed0.8acc7f000704491aab51854c27e5dbd4',
-        userid = self,
+        // userid = self,
         num_photos = 12;
 
     $.ajax({
@@ -11,10 +11,7 @@
     	type: 'GET',
     	data: {access_token: token, count: num_photos},
     	success: function(data){
-     		console.log(data);
-            console.log(data.data);
     		for( x in data.data ){
-                console.log(x);
     			$('ul.api-container').append('<li><a href="'+data.data[x].images.standard_resolution.url+'" target="_blank"><img src="'+data.data[x].images.low_resolution.url+'"></a></li>');
     		}
     	},
