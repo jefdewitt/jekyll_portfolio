@@ -41,15 +41,18 @@ gulp.task("concatTkScripts", function() {
     .pipe(maps.init())
     .pipe(concat("tkGlobal.js"))
     .pipe(maps.write('./'))
-    .pipe(gulp.dest("trackerkeeper/scripts"));
+    .pipe(gulp.dest("trackerkeeper/dest/scripts"));
 });
 
-gulp.task('minifyTkScripts', ['concatTkScripts'], function() {
-    return gulp.src('trackerkeeper/scripts/tkGlobal.js')
-    .pipe(uglify())
-    .pipe(rename('tkGlobal.min.js'))
-    .pipe(gulp.dest('trackerkeeper/dest/scripts'));
-});
+/**
+ * minifyTkScripts is currently not in use - minification breaks the world
+ */
+// gulp.task('minifyTkScripts', ['concatTkScripts'], function() {
+//     return gulp.src('trackerkeeper/scripts/tkGlobal.js')
+//     .pipe(uglify())
+//     .pipe(rename('tkGlobal.min.js'))
+//     .pipe(gulp.dest('trackerkeeper/dest/scripts'));
+// });
 
 gulp.task('compileTkSass', function() {
     return gulp.src('trackerkeeper/styles/scss/main.scss')
@@ -126,7 +129,7 @@ gulp.task('cleanTk', function() {
     del(['trackerkeeper/dest/scripts/*']);
 });
 gulp.task('concatTk', ['concatTkScripts']);    // compile our scripts
-gulp.task('minTk', ['minifyTkSass', 'minifyTkScripts']); // compress our scripts & styles
+gulp.task('minTk', ['minifyTkSass']); // compress our styles
 gulp.task('buildTk', ['cleanTk', 'concatTk', 'minTk']); // get it all ready for production
 
 /**
@@ -148,5 +151,5 @@ gulp.task('buildTk', ['cleanTk', 'concatTk', 'minTk']); // get it all ready for 
  });
 
  gulp.task('default', ['buildTk', 'buildMain', 'watch', 'browserSync'], function (){
-     Run our main tasks for compliling, minifying, cleaning, & browser syncing.
+     // Run our main tasks for compliling, minifying, cleaning, & browser syncing.
  });
