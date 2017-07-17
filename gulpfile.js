@@ -48,7 +48,7 @@ gulp.task('minifyTkScripts', ['concatTkScripts'], function() {
     return gulp.src('trackerkeeper/scripts/tkGlobal.js')
     .pipe(uglify())
     .pipe(rename('tkGlobal.min.js'))
-    .pipe(gulp.dest('trackerkeeper/scripts'));
+    .pipe(gulp.dest('trackerkeeper/dest/scripts'));
 });
 
 gulp.task('compileTkSass', function() {
@@ -64,7 +64,7 @@ gulp.task("minifyTkSass", ['compileTkSass'], function() {
     return gulp.src('trackerkeeper/styles/css/style.css')
     .pipe(cleanCss())
     .pipe(rename('style.min.css'))
-    .pipe(gulp.dest('trackerkeeper/styles/css'));
+    .pipe(gulp.dest('trackerkeeper/dest/styles'));
 });
 
 /***************************
@@ -77,7 +77,7 @@ gulp.task("minifyMainScripts", function() {
     .pipe(uglify())
     .pipe(rename('mainGlobal.min.js'))
     .pipe(maps.write('./'))
-    .pipe(gulp.dest('scripts'));
+    .pipe(gulp.dest('dest/scripts'));
 });
 
 gulp.task('compileMainSass', function() {
@@ -94,7 +94,7 @@ gulp.task("minifyMainSass", ['compileMainSass'], function() {
     return gulp.src('css/mainStyle.css')
     .pipe(cleanCss())
     .pipe(rename('mainStyle.min.css'))
-    .pipe(gulp.dest('css'));
+    .pipe(gulp.dest('dest/styles'));
 });
 
 /**
@@ -118,16 +118,35 @@ gulp.task('browserSync', ['jekyll-build'], function() {
     });
 });
 
-gulp.task('clean', function() {
-    del(['trackerkeeper/styles/css/*']);
+/**
+ * Separate TK gulp commands
+ */
+gulp.task('cleanTk', function() {
+    del(['trackerkeeper/dest/styles/*']);
+    del(['trackerkeeper/dest/scripts/*']);
 });
+gulp.task('concatTk', ['concatTkScripts']);    // compile our scripts
+gulp.task('minTk', ['minifyTkSass', 'minifyTkScripts']); // compress our scripts & styles
+gulp.task('buildTk', ['cleanTk', 'concatTk', 'minTk']); // get it all ready for production
 
-gulp.task('build', ['minifyTkScripts', 'minifyMainScripts','minifyTkSass', 'minifyMainSass']);
+/**
+ * Main site gulp commands
+ */
+ gulp.task('cleanMain', function() {
+     del(['./dest/css/*']);
+     del(['./dest/scripts/*']);
+ });
+ gulp.task('minMain', ['minifyMainSass', 'minifyMainScripts']); // compress our scripts & styles
+ gulp.task('buildMain', ['cleanMain', 'minMain']);  // get it all ready for production
 
-gulp.task('watch', function() {
-    gulp.watch(['_sass/**/*.scss', 'trackerkeeper/styles/scss/**/*.scss'], ['compileTkSass', 'minifyTkSass', 'compileMainSass', 'minifyMainSass',]);
-});
+/**
+ * Generic all around tasks
+ */
 
-gulp.task('default', ['clean', 'build', 'watch', 'browserSync'], function (){
-    // Run our main tasks for compliling, minifying, cleaning, & browser syncing.
-});
+ gulp.task('watch', function() {
+     gulp.watch(['_sass/**/*.scss', 'trackerkeeper/styles/scss/**/*.scss'], ['compileTkSass', 'minifyTkSass', 'compileMainSass', 'minifyMainSass',]);
+ });
+
+ gulp.task('default', ['buildTk', 'buildMain', 'watch', 'browserSync'], function (){
+     Run our main tasks for compliling, minifying, cleaning, & browser syncing.
+ });

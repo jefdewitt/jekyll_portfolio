@@ -92,6 +92,11 @@ li {
     }
 }
 
+ol li {
+    list-style-type: decimal;
+    margin-left: 2em;
+}
+
 /**
  * Headings
  */

@@ -28,7 +28,7 @@ $("document").ready(function() {
 
     var idleTime = 0;
     //Increment the idle time counter every minute.
-    var idleInterval = setInterval(timerIncrement, 30000); // 1 minute
+    var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
     // nilla' js version of jQuery click event handler
     if (homepage) {
         homepage.onclick = function (e) {

@@ -36,7 +36,7 @@ Here's what the entire API code looks like...
 
 ```javascript
 var token = '<generated-token-code-goes-here>',
-    num_photos = 12;
+num_photos = 12;
 
 $.ajax({
     url: 'https://api.instagram.com/v1/users/' + 'self/media/recent',
