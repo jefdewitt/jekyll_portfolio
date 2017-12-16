@@ -21,7 +21,7 @@ Only after a year of immersing myself in good old fashioned vanilla JavaScript, 
 
 ## The Result
 
-As much as I'd like to delete my old posts to hide my ignorance, how hard it's been for me to work my way up to this skill level, I'm leaving it all be. I recently learned Da Vinci burned a ton of his sketches and earlier work before his death to hide how hard he actually had to work to produce his masterpieces. But how great would it be so see how far he had to come to reach his virtuoso level. 
+As much as I'd like to delete my old posts to hide my ignorance, how hard it's been for me to work my way up to this skill level, I'm leaving it all be. I recently learned Da Vinci burned a ton of his sketches and earlier work before his death to hide how hard he actually had to work to produce his masterpieces. But how great would it be so see how far he had to come to reach his virtuoso level? 
 
 It might inspire more people to know that he, too, sucked like the rest of us at some point.
 
