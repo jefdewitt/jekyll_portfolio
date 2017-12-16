@@ -40,7 +40,7 @@ What's more, even if you're working with minified files you'll know exactly wher
 
 Something to keep in mind is that this technique only works on runtime exceptions. So, syntax errors will still slip through the cracks and cause a program to fail.
 
-## The `finally` Part
+## The finally Part
 
 The last part of a `try ... catch` is the `finally`. This part is optional. But what's useful about this is that `finally` will ALWAYS run (even if `try` throws an exception). In the event you just need to move on you have a failsafe you can turn to. Again, `finally` *always* executes -- exception or not.
 
