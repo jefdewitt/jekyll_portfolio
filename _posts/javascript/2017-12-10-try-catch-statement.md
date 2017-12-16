@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "try...catch Statement"
-image: catch.jpg
+image: catcher.jpg
 date: 2017-12-10 09:32:11 -0400
 categories: JavaScript
 ---
