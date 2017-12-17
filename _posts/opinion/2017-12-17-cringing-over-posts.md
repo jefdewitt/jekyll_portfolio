@@ -13,7 +13,7 @@ Which begs the question: what will I look back at a year from now and cringe whe
 
 ## JavaScript
 
-Nearly a year ago I wrote that 2017 was my year to focus on JavaScript. You know, try to master more nuanced aspects of it. I'd used it for a couple years without ever feeling like I understood more than the basics I need to to do my job. And boy, I found out I was only too right.
+Nearly a year ago I wrote that 2017 was my year to focus on JavaScript. You know, try to master more nuanced aspects of it. I'd used it for a couple years without ever feeling like I understood more than the basics I needed to do my job. And boy, I found out I was only too right.
 
 Earlier this year, in a job interview, I was asked to rate my JavaScript skills on a scale to 5, and I naively said I was a 2.5, but a _solid_ 2.5. Now, if I were honest I'd have to say was 2.5 on a *10* point scale. 
 
