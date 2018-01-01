@@ -1,0 +1,61 @@
+/**
+JS Promises
+
+`Promises` are the new hotness way to do callbacks. Asynchronous callbacks like in an http request. Wait, they're not exactly the 
+the _new_ hotness but they're new to me. Okay, wait again, they're actually not _new_ to me either but now I understand them,
+how to use them, and why to use them.
+
+If you're familiar with jQuery's `$.ajax()` method then you've been using them already. And Angular implements `Promise` methods as 
+well. And with JavaScript, when you see `.then()` or `.catch()` methods with http requests you're using promises.
+
+## What Promises Are
+
+A JavaScript `Promise` is an object that performs an action on data requests (AKA asynchronous operations). By 'action' I mean execute a 
+particular function -- either a competion or failure function based on the results from the request. These 'actions' are known as 
+executors and they are associated with the _resolve_ and _reject_ states. 
+
+Speaking of states, the `Promise` object exists in three states:
+
+- Pending
+- Resolve
+- Reject
+
+As the request has been made, the promise exists as _pending_. If a promise is successfully fulfilled with a value it moves into 
+the _resolve_ state. And you guessed it, if there is an error, the state of the promise becomes _reject_.
+
+## A Helpful Example
+
+```javascript
+function makeAjaxCall(methodType, url){
+  return new Promise(function(resolve, reject) {
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+    req.onload = function(data) {
+      if (req.status == 200) {
+        // If successful, fulfill the promise
+        resolve(data.currentTarget.response);
+      }
+      else {
+        // If unsuccessful, reject the promise
+        reject('This is the reject statement.')
+      }
+    }
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+    req.send();
+  })
+}
+
+// The then method returns what's passed to the resolve function.
+makeAjaxCall('GET', url).then(function(fromResolve){
+  body.append(fromResolve);
+// The catch method returns what's passed to the reject function.
+}).catch(function(fromReject){
+  body.append(fromReject);
+})
+```
+
+Confused? No worries, you're in good company. This stuff took me the better part of a week to wrap my head around.
+
+ */
