@@ -1,3 +1,0 @@
-<ul>
-    <li *ngFor="let track of tracks"><a href="/Track Input" [routerLink]="['/Track Input']" (click)="makeSelectedTrack($event)"><h2>{{ track.name }}</h2><h2>{{ track.time }} hours</h2><span>{{ findPercentCompleted(track.name) }}% done</span></a></li>
-</ul>
