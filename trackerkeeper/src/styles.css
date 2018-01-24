@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    margin: 0;
+}
+
+app-root {
+    /* padding: 0 1em; */
+    width: 100%;
+    text-align: center;
+    max-width: 768px;
+    max-height: 1024px;
+}
+
+app-app-new,
+app-app-input,
+app-app-output,
+app-app-calendar,
+app-app-list {
+    display: block;
+    margin: 0 1em;
+}
+
+nav {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: wheat;
+    padding: 1em 0;
+}
+
+img {
+    height: 30px;
+    width: 30px;
+}
+
+nav a {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainWrapper {
+    height: 66%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}

@@ -1,0 +1,8 @@
+<form class="mainWrapper">
+  <h2>Name of Track</h2>
+  <input type="text" name="name" [(ngModel)]="name">
+  <h2>Time to Track (in hours)</h2>
+  <input type="number" name="time" [(ngModel)]="time">
+  <button (click) = 'createNewGoal(name, time)'>Submit</button>
+</form>
+
