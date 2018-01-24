@@ -1,0 +1,10 @@
+input {
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    font-size: 2em;
+    width: 100%;
+}
+
+input ~ button {
+    margin-top: 2em;
+}

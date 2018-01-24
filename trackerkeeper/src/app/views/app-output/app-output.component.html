@@ -1,0 +1,21 @@
+<h2 id="progressHeader">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>
+<div id="progressContainer">   
+    <div class="progressBar" [class.monthView]="isMonthView" [class.yearView]="isYearView" *ngFor="let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count"><span class="before">{{ dailyRecordedTime['date'] }}</span><progress max="12" value="{{ dailyRecordedTime['time'] }}"></progress><span class="after">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>
+</div>
+<div id="formContainer">
+    <h2>Your {{ timePeriod }} was
+        {{ dailyMinutes.toFixed(2) }} minutes or
+        {{ dailyPercentage.toFixed(2) }}% completed!
+    </h2>
+    <form action="">
+        <input type="checkbox" name="today" id="today" class="checkbox" (click)="changeTimeFrame($event)">
+        <label for="today">Today</label>
+        <input type="checkbox" name="week" id="week" class="checkbox" (click)="changeTimeFrame($event)">
+        <label for="week">Week</label>
+        <input type="checkbox" name="month" id="month" class="checkbox" (click)="changeTimeFrame($event)">
+        <label for="month">Month</label>
+        <input type="checkbox" name="year" id="year" class="checkbox" (click)="changeTimeFrame($event)">
+        <label for="year">Year</label>
+    </form>
+</div>
+

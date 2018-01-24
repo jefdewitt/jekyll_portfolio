@@ -1,0 +1,19 @@
+<div id="calendarOptions">
+  <select id="calendar-menu" (change)="onSelected($event)">
+    <!-- <option style="display:none" value="">select a month</option>"; -->
+    <option *ngFor="let option of options">{{ option }}</option>
+  </select>
+
+  <form>
+    <input type="checkbox" name="minutes" id="minutes" class="checkbox" (click)="changeCheckbox($event)">
+    <label for="minutes">Minutes</label>
+    <input type="checkbox" name="hours" id="hours" class="checkbox" (click)="changeCheckbox($event)">
+    <label for="hours">Hours</label>
+  </form>
+</div>
+
+<div id="calendar"></div>
+
+<!-- <ul>
+    <li *ngFor="let option of options">{{ option }}</li>
+</ul> -->
