@@ -43,7 +43,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: '', redirectTo: '/New Track', pathMatch: 'full' },
+    { path: '', redirectTo: '', pathMatch: 'full' },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_3__views_app_new_app_new_component__["a" /* AppNewComponent */] },
     { path: 'New Track', component: __WEBPACK_IMPORTED_MODULE_3__views_app_new_app_new_component__["a" /* AppNewComponent */] },
     { path: 'Input', component: __WEBPACK_IMPORTED_MODULE_6__views_app_input_app_input_component__["a" /* AppInputComponent */] },
     { path: 'Track Output', component: __WEBPACK_IMPORTED_MODULE_1__views_app_output_app_output_component__["a" /* AppOutputComponent */] },
