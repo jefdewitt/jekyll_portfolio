@@ -142,7 +142,18 @@ var AppComponent = (function () {
             }
         });
     }
-    AppComponent.prototype.ngOnInit = function () { };
+    AppComponent.prototype.ngOnInit = function () {
+        this.routeToNewView();
+    };
+    /**
+     * If there's no selected tracks (i.e., 0 tracks) go the new track view.
+     */
+    AppComponent.prototype.routeToNewView = function () {
+        var selectedTrack = this.goalTrackService.findSelectedTrack();
+        if (!selectedTrack) {
+            this.router.navigateByUrl('/New Track');
+        }
+    };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
             selector: 'app-root',
@@ -482,6 +493,9 @@ var GoalTrackService = (function () {
     // Create a date object with today's date, format YYYY-MM-DD
     GoalTrackService.prototype.createDateObject = function () {
         var dateObj = new Date();
+        // console.log(dateObj);
+        dateObj.setHours(dateObj.getHours() + 5);
+        // console.log(dateObj);
         var month;
         month = dateObj.getUTCMonth() + 1; //months from 1-12
         if (month < 10) {
@@ -506,6 +520,7 @@ var GoalTrackService = (function () {
     GoalTrackService.prototype.dateOfNthDaysAgo = function (daysAgo) {
         try {
             var newDate = new Date();
+            newDate.setHours(newDate.getHours() + 5);
             newDate.setDate(newDate.getDate() - daysAgo);
             var nthDaysAgo;
             nthDaysAgo = newDate.getDate();
@@ -841,7 +856,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-input/app-input.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form>\n  <h2>Made Progress? Add Time Here</h2>\n  <input type=\"text\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter Minutes\">\n  <input type=\"checkbox\" name=\"hours\" id=\"hours\" (click)=\"minutesOrHours()\">\n  <label for=\"hours\">Hours</label>\n  <button (click)='addMinutes(minutes)'>Submit</button>\n</form>\n<div *ngIf=\"routeFromCal\">\n  <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n</div>\n"
+module.exports = "<div *ngIf=\"!noTracks\"> \n  <form>\n    <h2>Made Progress? Add Time Here</h2>\n    <input type=\"text\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter Minutes\">\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" (click)=\"minutesOrHours()\">\n    <label for=\"hours\">Hours</label>\n    <button (click)='addMinutes(minutes)'>Submit</button>\n  </form>\n  <div *ngIf=\"routeFromCal\">\n    <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n  </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n"
 
 /***/ }),
 
@@ -874,6 +889,7 @@ var AppInputComponent = (function () {
         this.calendarService = calendarService;
         this.router = router;
         this.selected = this.goalTrackService.findSelectedTrack();
+        this.noTracks = false;
         this.router.events.subscribe(function (event) {
             try {
                 if (event.url) {
@@ -896,6 +912,12 @@ var AppInputComponent = (function () {
     }
     ;
     AppInputComponent.prototype.ngOnInit = function () { };
+    AppInputComponent.prototype.ngAfterContentInit = function () {
+        var track = this.goalTrackService.findSelectedTrack();
+        if (!track) {
+            this.noTracks = true;
+        }
+    };
     AppInputComponent.prototype.setRouteTrigger = function (routeFromCal) {
         this.minutesAlreadyEntered = this.calendarService.minutesFromCal;
         this.routeFromCal = routeFromCal;
@@ -905,8 +927,6 @@ var AppInputComponent = (function () {
         this.routeFromCal = '';
         this.calendarService.minutesFromCal = '';
         this.minutesAlreadyEntered = '';
-    };
-    AppInputComponent.prototype.changeTime = function () {
     };
     /**
      * Check to see if user is inputting time in hours.
@@ -1054,7 +1074,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 1px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .25em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n/* div {\n    width: 100%;\n    height: 100px;\n    position: relative;\n} */\n\n.noTracks h2 {\n    /* position: absolute;\n    left: 50%;\n    top: 50%; */\n    color: #000;\n    font-size: 1.5em;\n    /* -webkit-transform: translate(-50%,-50%);\n    transform: translatex(-50%);\n    width: 80%;\n    height: 200px; */\n}", ""]);
+exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 1px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .25em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
 
 // exports
 
@@ -1272,7 +1292,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-output/app-output.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h2>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(2) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h2>\n        <form action=\"\">\n            <input type=\"checkbox\" name=\"today\" id=\"today\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"checkbox\" name=\"week\" id=\"week\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"checkbox\" name=\"month\" id=\"month\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"checkbox\" name=\"year\" id=\"year\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n\n"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">\n            <input type=\"radio\" name=\"timeFrame\" id=\"today\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n\n"
 
 /***/ }),
 
@@ -1306,22 +1326,20 @@ var AppOutputComponent = (function () {
         this.timePeriod = 'progress today';
         this.completed = ' today';
         this.dailyRecordedTimes = [];
+        this.noTracks = false;
         var track = this.goalTrackService.findSelectedTrack();
         if (!track) {
             this.noTracks = true;
         }
         else {
+            debugger;
             var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
             this.dailyMinAndPerc(track, sumInInterval, 0);
-            this.dailyRecordedTimes = this.populateProgressBars(1);
         }
     }
-    AppOutputComponent.prototype.ngOnInit = function () {
-        if (!this.noTracks) {
-            var todayCheckbox = document.getElementById("today");
-            todayCheckbox.checked = true;
-            this.populateProgressBars(7);
-        }
+    AppOutputComponent.prototype.ngOnInit = function () { };
+    AppOutputComponent.prototype.ngAfterContentInit = function () {
+        this.dailyRecordedTimes = this.populateProgressBars(7);
     };
     /**
      *
@@ -1350,13 +1368,13 @@ var AppOutputComponent = (function () {
     AppOutputComponent.prototype.changeTimeFrame = function ($event) {
         var timeValue = $event.target.id;
         try {
-            var checkboxes = document.getElementsByClassName('checkbox');
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].attributes[4].ownerElement.checked = false;
-            }
+            // let checkboxes : any = document.getElementsByClassName('checkbox');
+            // for(var i=0; i<checkboxes.length; i++){
+            //   checkboxes[i].attributes[4].ownerElement.checked = false;
+            // }
             this.isMonthView = false;
             this.isYearView = false;
-            $event.target.attributes[4].ownerElement.checked = true;
+            // $event.target.attributes[4].ownerElement.checked = true;
             var track = this.goalTrackService.findSelectedTrack();
             switch (timeValue) {
                 case 'today':
@@ -1403,12 +1421,15 @@ var AppOutputComponent = (function () {
      */
     AppOutputComponent.prototype.trimmedDate = function (time) {
         time = time.split('-');
-        var trimmedDate = time[1];
-        if (trimmedDate.startsWith('0')) {
-            trimmedDate = trimmedDate[1];
+        var trimmedDayDate = time[1];
+        var trimmedMonthDate = time[2];
+        if (trimmedDayDate.startsWith('0')) {
+            trimmedDayDate = trimmedDayDate[1];
         }
-        trimmedDate += '/' + time[2];
-        console.log(trimmedDate);
+        if (trimmedMonthDate.startsWith('0')) {
+            trimmedMonthDate = trimmedMonthDate[1];
+        }
+        var trimmedDate = trimmedDayDate + '/' + trimmedMonthDate;
         return trimmedDate;
     };
     /**
