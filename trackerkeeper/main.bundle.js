@@ -43,8 +43,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_3__views_app_new_app_new_component__["a" /* AppNewComponent */] },
+    { path: '', redirectTo: 'List Tracks', pathMatch: 'full' },
     { path: 'New Track', component: __WEBPACK_IMPORTED_MODULE_3__views_app_new_app_new_component__["a" /* AppNewComponent */] },
     { path: 'Input', component: __WEBPACK_IMPORTED_MODULE_6__views_app_input_app_input_component__["a" /* AppInputComponent */] },
     { path: 'Track Output', component: __WEBPACK_IMPORTED_MODULE_1__views_app_output_app_output_component__["a" /* AppOutputComponent */] },
@@ -291,7 +290,7 @@ var CalendarService = (function () {
             var dayOne = firstDayOfYear.getDay() + 1; //DD replaced line to fix date bug when current day is 31st
             var scanForToday = (year == todayDate.getFullYear() && month == todayDate.getMonth() + 1) ? todayDate.getDate() : 0; //DD added
             lastDayOfMonths[1] = (((firstDayOfYear.getFullYear() % 100 != 0) && (firstDayOfYear.getFullYear() % 4 == 0)) || (firstDayOfYear.getFullYear() % 400 == 0)) ? 29 : 28;
-            var table = '<div class="main"><table class="" cols="7" cellpadding="0" border="0" cellspacing="0"><tr align="center">';
+            var table = '<div (click)="navigateFromCal()" class="main"><table class="" cols="7" cellpadding="0" border="0" cellspacing="0"><tr align="center">';
             table += '<td colspan="7" align="center" class="">' + twelveMonths[month - 1] + ' - ' + year + '</td></tr><tr align="center">';
             var s;
             for (s = 0; s < 7; s++)
@@ -1055,7 +1054,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 1px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n}\n\nh2 {\n    color: #b06d06;\n}\n\nh2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\nh2:last-of-type {\n    position: absolute;\n    bottom: .25em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}", ""]);
+exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 1px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .25em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n/* div {\n    width: 100%;\n    height: 100px;\n    position: relative;\n} */\n\n.noTracks h2 {\n    /* position: absolute;\n    left: 50%;\n    top: 50%; */\n    color: #000;\n    font-size: 1.5em;\n    /* -webkit-transform: translate(-50%,-50%);\n    transform: translatex(-50%);\n    width: 80%;\n    height: 200px; */\n}", ""]);
 
 // exports
 
@@ -1068,7 +1067,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-list/app-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul>\n    <li *ngFor=\"let track of tracks\"><a href=\"/Track Input\" [routerLink]=\"['/Track Input']\" (click)=\"makeSelectedTrack($event)\"><h2>{{ track.name }}</h2><h2>{{ track.time }} hours</h2><span>{{ findPercentCompleted(track.name) }}% done</span></a></li>\n</ul>"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\"><a href=\"/Track Input\" [routerLink]=\"['/Track Input']\" (click)=\"makeSelectedTrack($event)\"><h2>{{ track.name }}</h2><h2>{{ track.time }} hours</h2><span>{{ findPercentCompleted(track.name) }}% done</span></a></li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>"
 
 /***/ }),
 
@@ -1099,8 +1098,6 @@ var AppListComponent = (function () {
     }
     AppListComponent.prototype.ngOnInit = function () {
         this.getAllTracks();
-        console.log(this.goalTrackService.timeInInterval('firstTrack', 0, 0));
-        console.log(this.goalTrackService.timeInInterval('firstTrack', 0, 7));
     };
     // Display all the tracks from localstorage
     AppListComponent.prototype.getAllTracks = function () {
@@ -1111,7 +1108,12 @@ var AppListComponent = (function () {
                 track = JSON.parse(track);
                 this.tracks.push(track);
             }
-            return this.tracks;
+            if (this.tracks.length > 0) {
+                return this.tracks;
+            }
+            else {
+                this.noTracks = true;
+            }
         }
         catch (error) {
             console.log('Unable to retrive tracks list. ' + error.message);
@@ -1270,7 +1272,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-output/app-output.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>\n<div id=\"progressContainer\">   \n    <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n</div>\n<div id=\"formContainer\">\n    <h2>Your {{ timePeriod }} was\n        {{ dailyMinutes.toFixed(2) }} minutes or\n        {{ dailyPercentage.toFixed(2) }}% completed!\n    </h2>\n    <form action=\"\">\n        <input type=\"checkbox\" name=\"today\" id=\"today\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n        <label for=\"today\">Today</label>\n        <input type=\"checkbox\" name=\"week\" id=\"week\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n        <label for=\"week\">Week</label>\n        <input type=\"checkbox\" name=\"month\" id=\"month\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n        <label for=\"month\">Month</label>\n        <input type=\"checkbox\" name=\"year\" id=\"year\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n        <label for=\"year\">Year</label>\n    </form>\n</div>\n\n"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h2>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(2) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h2>\n        <form action=\"\">\n            <input type=\"checkbox\" name=\"today\" id=\"today\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"checkbox\" name=\"week\" id=\"week\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"checkbox\" name=\"month\" id=\"month\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"checkbox\" name=\"year\" id=\"year\" class=\"checkbox\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n\n"
 
 /***/ }),
 
@@ -1305,17 +1307,21 @@ var AppOutputComponent = (function () {
         this.completed = ' today';
         this.dailyRecordedTimes = [];
         var track = this.goalTrackService.findSelectedTrack();
-        var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
-        this.dailyMinAndPerc(track, sumInInterval, 0);
-        // this.dailyRecordedTimes = this.goalTrackService.findRecentTime(track['name'], 1);
-        // this.dayOfMonth = this.addDayOfMonth(this.dailyRecordedTimes);
-        this.dailyRecordedTimes = this.populateProgressBars(1);
+        if (!track) {
+            this.noTracks = true;
+        }
+        else {
+            var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
+            this.dailyMinAndPerc(track, sumInInterval, 0);
+            this.dailyRecordedTimes = this.populateProgressBars(1);
+        }
     }
     AppOutputComponent.prototype.ngOnInit = function () {
-        var todayCheckbox = document.getElementById("today");
-        todayCheckbox.checked = true;
-        this.populateProgressBars(7);
-        // this.dailyTimes = this.goalTrackService.findRecentTime(7);
+        if (!this.noTracks) {
+            var todayCheckbox = document.getElementById("today");
+            todayCheckbox.checked = true;
+            this.populateProgressBars(7);
+        }
     };
     /**
      *
