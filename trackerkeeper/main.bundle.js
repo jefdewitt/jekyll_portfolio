@@ -1074,7 +1074,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 1px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .25em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
+exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 1px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0 0 0 1em;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .25em;\n    right: 1em;\n    margin: 0;\n}\n\nspan#delete {\n    position: absolute;\n    left: 16px;\n    top: 50%;\n    -webkit-transform: translatey(-50%);\n            transform: translatey(-50%);\n    font-family: sans-serif;\n}\n\nspan.delete:before {\n\n}\n\nspan.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
 
 // exports
 
@@ -1087,7 +1087,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-list/app-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\"><a href=\"/Track Input\" [routerLink]=\"['/Track Input']\" (click)=\"makeSelectedTrack($event)\"><h2>{{ track.name }}</h2><h2>{{ track.time }} hours</h2><span>{{ findPercentCompleted(track.name) }}% done</span></a></li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\"><a href=\"/Track Input\" [routerLink]=\"['/Track Input']\" (click)=\"makeSelectedTrack($event)\"><span id=\"delete\" (click)=\"deleteTrack($event)\">x</span><h2>{{ track.name }}</h2><h2>{{ track.time }} hours</h2><span class=\"percent\">{{ findPercentCompleted(track.name) }}% done</span></a></li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>"
 
 /***/ }),
 
@@ -1165,6 +1165,13 @@ var AppListComponent = (function () {
     AppListComponent.prototype.findPercentCompleted = function (trackName) {
         var percentCompleted = this.goalTrackService.overallCompleted(trackName);
         return percentCompleted.toFixed(0);
+    };
+    AppListComponent.prototype.deleteTrack = function ($event) {
+        alert('Are you sure you want to delete this track? It can\'t be recovered.');
+        var track = $event.target.nextSibling.innerHTML;
+        this.goalTrackService.findTrackByName(track);
+        localStorage.removeItem(track);
+        this.getAllTracks();
     };
     AppListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
