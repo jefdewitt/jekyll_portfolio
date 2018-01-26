@@ -29,12 +29,14 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_app_input_app_input_component__ = __webpack_require__("../../../../../src/app/views/app-input/app-input.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -56,7 +58,8 @@ var AppRoutingModule = (function () {
     AppRoutingModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["I" /* NgModule */])({
             imports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* RouterModule */].forRoot(routes)],
-            exports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* RouterModule */]]
+            exports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* RouterModule */]],
+            providers: [{ provide: __WEBPACK_IMPORTED_MODULE_7__angular_common__["g" /* LocationStrategy */], useClass: __WEBPACK_IMPORTED_MODULE_7__angular_common__["d" /* HashLocationStrategy */] }]
         })
     ], AppRoutingModule);
     return AppRoutingModule;
@@ -1375,13 +1378,8 @@ var AppOutputComponent = (function () {
     AppOutputComponent.prototype.changeTimeFrame = function ($event) {
         var timeValue = $event.target.id;
         try {
-            // let checkboxes : any = document.getElementsByClassName('checkbox');
-            // for(var i=0; i<checkboxes.length; i++){
-            //   checkboxes[i].attributes[4].ownerElement.checked = false;
-            // }
             this.isMonthView = false;
             this.isYearView = false;
-            // $event.target.attributes[4].ownerElement.checked = true;
             var track = this.goalTrackService.findSelectedTrack();
             switch (timeValue) {
                 case 'today':
