@@ -23,7 +23,7 @@ rando.sort(); // ['apples', 'blue', 10, 2];
 ```
 
 Did ya spot the gotcha?? An interesting thing about this method is that the elements of the array are converted to 
-strings. So, '1' *and* '0' come before '2' (instead of being interpreted as the number 10) and end up sorted before it in the resulting sorted array. And I'm not finished. The sorting actually occurs via Unicode code points, which I don't know exactly what that means, but I do know that will also result in uppercase words sorting before lowercase words. For more info check out this [link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort){target:_blank}.
+strings. So, '1' *and* '0' come before '2' (instead of being interpreted as the number 10) and end up sorted before it in the resulting sorted array. And I'm not finished. The sorting actually occurs via Unicode code points, which I don't know exactly what that means, but I do know that will also result in uppercase words sorting before lowercase words. For more info check out this [link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort){:target="_blank"}.
 
 ## The Compare Function
 
