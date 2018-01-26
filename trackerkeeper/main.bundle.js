@@ -59,7 +59,12 @@ var AppRoutingModule = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["I" /* NgModule */])({
             imports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* RouterModule */].forRoot(routes)],
             exports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* RouterModule */]],
-            providers: [{ provide: __WEBPACK_IMPORTED_MODULE_7__angular_common__["g" /* LocationStrategy */], useClass: __WEBPACK_IMPORTED_MODULE_7__angular_common__["d" /* HashLocationStrategy */] }]
+            providers: [
+                {
+                    provide: __WEBPACK_IMPORTED_MODULE_7__angular_common__["g" /* LocationStrategy */],
+                    useClass: __WEBPACK_IMPORTED_MODULE_7__angular_common__["d" /* HashLocationStrategy */]
+                }
+            ]
         })
     ], AppRoutingModule);
     return AppRoutingModule;
@@ -1344,7 +1349,7 @@ var AppOutputComponent = (function () {
         else {
             debugger;
             var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
-            this.dailyMinAndPerc(track, sumInInterval, 0);
+            this.dailyMinAndPerc(track, sumInInterval, 1);
         }
     }
     AppOutputComponent.prototype.ngOnInit = function () { };
