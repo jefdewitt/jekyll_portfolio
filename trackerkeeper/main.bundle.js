@@ -157,9 +157,14 @@ var AppComponent = (function () {
      * If there's no selected tracks (i.e., 0 tracks) go the new track view.
      */
     AppComponent.prototype.routeToNewView = function () {
-        var selectedTrack = this.goalTrackService.findSelectedTrack();
-        if (!selectedTrack) {
-            this.router.navigateByUrl('/New Track');
+        try {
+            var selectedTrack = this.goalTrackService.findSelectedTrack();
+            if (selectedTrack['name'] == 'null') {
+                this.router.navigateByUrl('/New Track');
+            }
+        }
+        catch (error) {
+            console.log('Unable to reroute to New Track view ' + error.message);
         }
     };
     AppComponent = __decorate([
@@ -424,6 +429,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var GoalTrackService = (function () {
     function GoalTrackService() {
+        this.trackToEdit = '';
     }
     // Returns the current selected track
     GoalTrackService.prototype.findSelectedTrack = function () {
@@ -435,6 +441,8 @@ var GoalTrackService = (function () {
                     return track;
                 }
             }
+            // If there's no selected tracks
+            return false;
         }
         catch (error) {
             console.log('Currently there\'s no selected track. ' + error.message);
@@ -762,7 +770,6 @@ var AppCalendarComponent = (function () {
          */
         var selector = document.querySelector('.main');
         selector.addEventListener('click', function ($event) {
-            debugger;
             try {
                 var multiEl = document.querySelectorAll('.days');
                 var spanTime = void 0;
@@ -864,7 +871,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-input/app-input.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\"> \n  <form>\n    <h2>Made Progress? Add Time Here</h2>\n    <input type=\"text\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter Minutes\">\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" (click)=\"minutesOrHours()\">\n    <label for=\"hours\">Hours</label>\n    <button (click)='addMinutes(minutes)'>Submit</button>\n  </form>\n  <div *ngIf=\"routeFromCal\">\n    <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n  </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n"
+module.exports = "<div *ngIf=\"!noTracks\"> \n  <form>\n    <h2>Made Progress? Add Time Here</h2>\n    <input  type=\"tel\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter Minutes\" autocomplete=\"off\" min=\"0\" max=\"1440\">\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" (click)=\"minutesOrHours()\">\n    <label for=\"hours\">Hours</label>\n    <button (click)='addMinutes(minutes)'>Submit</button>\n  </form>\n  <div *ngIf=\"routeFromCal\">\n    <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n  </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n"
 
 /***/ }),
 
@@ -925,6 +932,7 @@ var AppInputComponent = (function () {
         if (!track) {
             this.noTracks = true;
         }
+        return;
     };
     AppInputComponent.prototype.setRouteTrigger = function (routeFromCal) {
         this.minutesAlreadyEntered = this.calendarService.minutesFromCal;
@@ -1021,7 +1029,6 @@ var AppInputComponent = (function () {
         catch (error) {
             console.log('Dates array is unavailable ' + error.message);
         }
-        console.log(localStorage);
         localStorage.setItem(this.selected['name'], JSON.stringify(this.selected));
         this.minutes = null;
         this.routeFromCal = '';
@@ -1082,7 +1089,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 1px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0 0 0 1em;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .25em;\n    right: 1em;\n    margin: 0;\n}\n\nspan#delete {\n    position: absolute;\n    left: 16px;\n    top: 50%;\n    -webkit-transform: translatey(-50%);\n            transform: translatey(-50%);\n    font-family: sans-serif;\n}\n\nspan.delete:before {\n\n}\n\nspan.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
+exports.push([module.i, "li {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 3em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\nh2:first-of-type:after {\n    content: '';\n    border-bottom: 5px solid #ddd;\n    display: inline-block;\n    width: 100%;\n    height: 0;\n    position: absolute;\n    bottom: 6%;\n    left: 0;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 49%;\n    /* position: absolute;\n    left: 16px;\n    top: 50%;\n    transform: translatey(-50%);\n    font-family: sans-serif; */\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
 
 // exports
 
@@ -1095,7 +1102,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-list/app-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\"><a href=\"/Track Input\" [routerLink]=\"['/Track Input']\" (click)=\"makeSelectedTrack($event)\"><span id=\"delete\" (click)=\"deleteTrack($event)\">x</span><h2>{{ track.name }}</h2><h2>{{ track.time }} hours</h2><span class=\"percent\">{{ findPercentCompleted(track.name) }}% done</span></a></li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\">\n            <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\">\n                <h2>{{ track.name }}</h2>\n                <h2>{{ track.time }} hours</h2>\n                <span class=\"percent\">{{ findPercentCompleted(track.name) }}% done</span>\n            </a>\n            <span id=\"edit\" class=\"listButtons\" (click)=\"editTrack($event)\">edit</span>\n            <span id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack($event)\">delete</span>\n        </li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are no selected tracks. Please select one or create a new track.</h2></div>"
 
 /***/ }),
 
@@ -1154,7 +1161,13 @@ var AppListComponent = (function () {
      */
     AppListComponent.prototype.makeSelectedTrack = function ($event) {
         try {
-            var clickedTrack = $event.target.innerHTML;
+            var clickedTrack = void 0;
+            if ($event.target.id === 'trackWrapper') {
+                clickedTrack = $event.target.firstElementChild.innerText;
+            }
+            else {
+                clickedTrack = $event.target.parentElement.children["0"].children['0'].innerText;
+            }
             this.goalTrackService.deselectTracks();
             for (var i = 0; i < localStorage.length; i++) {
                 var storedTrack = localStorage.getItem(localStorage.key(i));
@@ -1162,7 +1175,12 @@ var AppListComponent = (function () {
                 if (storedTrack['name'] === clickedTrack) {
                     storedTrack['selected'] = true;
                     localStorage.setItem(storedTrack['name'], JSON.stringify(storedTrack));
-                    this.router.navigateByUrl('/Input');
+                    if ($event.target.id === 'trackWrapper') {
+                        this.router.navigateByUrl('/Input');
+                    }
+                    else {
+                        this.router.navigateByUrl('/New Track');
+                    }
                 }
             }
         }
@@ -1175,11 +1193,17 @@ var AppListComponent = (function () {
         return percentCompleted.toFixed(0);
     };
     AppListComponent.prototype.deleteTrack = function ($event) {
-        alert('Are you sure you want to delete this track? It can\'t be recovered.');
-        var track = $event.target.nextSibling.innerHTML;
-        this.goalTrackService.findTrackByName(track);
-        localStorage.removeItem(track);
-        this.getAllTracks();
+        if (confirm('Are you sure you want to delete this track? It can\'t be recovered.')) {
+            var track = $event.target.parentElement.children["0"].children["0"].innerText;
+            this.goalTrackService.findTrackByName(track);
+            localStorage.removeItem(track);
+            this.getAllTracks();
+        }
+    };
+    AppListComponent.prototype.editTrack = function ($event) {
+        this.makeSelectedTrack($event);
+        var track = this.goalTrackService.findSelectedTrack();
+        this.goalTrackService.trackToEdit = track['name'];
     };
     AppListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
@@ -1217,7 +1241,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-new/app-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"mainWrapper\">\n  <h2>Name of Track</h2>\n  <input type=\"text\" name=\"name\" [(ngModel)]=\"name\">\n  <h2>Time to Track (in hours)</h2>\n  <input type=\"number\" name=\"time\" [(ngModel)]=\"time\">\n  <button (click) = 'createNewGoal(name, time)'>Submit</button>\n</form>\n\n"
+module.exports = "<form class=\"mainWrapper\">\n  <h2>Name of Track</h2>\n  <input type=\"text\" name=\"name\" [(ngModel)]=\"name\" placeholder=\"{{editTrackTitle}}\" autocomplete=\"off\">\n  <h2>Time to Track (in hours)</h2>\n  <input type=\"tel\" name=\"time\" [(ngModel)]=\"time\" placeholder=\"{{editTrackTime}}\" autocomplete=\"off\" min=\"0\" max=\"10000\">\n  <button id=\"button\" (click)='createNewGoal(name, time)'>Submit</button>\n</form>\n\n"
 
 /***/ }),
 
@@ -1246,7 +1270,15 @@ var AppNewComponent = (function () {
         this.goalTrackService = goalTrackService;
         this.router = router;
     }
-    AppNewComponent.prototype.ngOnInit = function () { };
+    AppNewComponent.prototype.ngOnInit = function () {
+        if (this.goalTrackService.trackToEdit) {
+            this.track = this.goalTrackService.findSelectedTrack();
+            this.editTrackTitle = 'Edit \'' + this.track['name'] + '\' here';
+            this.editTrackTime = 'Edit \'' + this.track['time'] + '\' here';
+            var button = document.getElementById("button");
+            button.innerText = 'Update';
+        }
+    };
     /**
        * Handles name and time for goal, and updates the storage service to reflect the change.
        *
@@ -1256,18 +1288,26 @@ var AppNewComponent = (function () {
     AppNewComponent.prototype.createNewGoal = function (name, time) {
         var nameCheck = this.goalTrackService.nameCheck(this.name);
         var timeCheck = this.goalTrackService.timeCheck(this.time);
+        var button = document.getElementById("button");
         if (nameCheck && timeCheck) {
-            this.goal = {
-                name: this.name,
-                time: this.time,
-                selected: true,
-                dates: []
-            };
-            localStorage.setItem(this.goal.name, JSON.stringify(this.goal));
+            if (button.innerText == 'Submit') {
+                this.goal = {
+                    name: this.name,
+                    time: this.time,
+                    selected: true,
+                    dates: []
+                };
+                localStorage.setItem(this.goal.name, JSON.stringify(this.goal));
+            }
+            else {
+                this.track['name'] = this.name;
+                this.track['time'] = this.time;
+                localStorage.setItem(this.track['name'], JSON.stringify(this.track));
+                var track = this.goalTrackService.findTrackByName(this.goalTrackService.trackToEdit);
+                localStorage.removeItem(track['name']);
+            }
             this.name = '';
             this.time = null;
-            // localStorage.clear();
-            console.log(localStorage);
             this.router.navigateByUrl('/Input');
         }
     };
@@ -1347,7 +1387,6 @@ var AppOutputComponent = (function () {
             this.noTracks = true;
         }
         else {
-            debugger;
             var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
             this.dailyMinAndPerc(track, sumInInterval, 1);
         }
@@ -1492,7 +1531,6 @@ var AppOutputComponent = (function () {
                 };
                 progressArray.push(progressBarObject);
             }
-            console.log(progressArray);
             return progressArray.reverse();
         }
         catch (error) {
