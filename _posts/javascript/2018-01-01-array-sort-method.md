@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Array .sort Method"
-image: catcher.jpg
+image: sort.jpg
 date: 2018-01-01 09:32:11 -0400
 categories: JavaScript
 ---
