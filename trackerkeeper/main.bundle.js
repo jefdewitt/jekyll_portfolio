@@ -509,18 +509,22 @@ var GoalTrackService = (function () {
     // Create a date object with today's date, format YYYY-MM-DD
     GoalTrackService.prototype.createDateObject = function () {
         var dateObj = new Date();
+        console.log(dateObj);
         var month;
-        month = dateObj.getUTCMonth() + 1; //months from 1-12
+        month = dateObj.getMonth() + 1; //months from 1-12
+        console.log(month);
         if (month < 10) {
             month = '0' + month;
         }
         var day;
-        day = dateObj.getUTCDate();
+        day = dateObj.getDate();
+        console.log(day);
         if (day < 10) {
             day = '0' + day;
         }
-        var year = dateObj.getUTCFullYear();
+        var year = dateObj.getFullYear();
         var newDate = year + "-" + month + "-" + day;
+        console.log(newDate);
         return newDate;
     };
     /**
