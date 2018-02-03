@@ -280,6 +280,7 @@ var CalendarService = (function () {
         this.curMonth = this.todayDate.getMonth() + 1;
         this.curYear = this.todayDate.getFullYear();
         this.twelveMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        this.monthString = this.twelveMonths[this.curMonth - 1];
     }
     // Find an element with a specific ID (#calendar) and bind the calendar to it
     CalendarService.prototype.addCalendarToPage = function () {
@@ -509,22 +510,18 @@ var GoalTrackService = (function () {
     // Create a date object with today's date, format YYYY-MM-DD
     GoalTrackService.prototype.createDateObject = function () {
         var dateObj = new Date();
-        console.log(dateObj);
         var month;
         month = dateObj.getMonth() + 1; //months from 1-12
-        console.log(month);
         if (month < 10) {
             month = '0' + month;
         }
         var day;
         day = dateObj.getDate();
-        console.log(day);
         if (day < 10) {
             day = '0' + day;
         }
         var year = dateObj.getFullYear();
         var newDate = year + "-" + month + "-" + day;
-        console.log(newDate);
         return newDate;
     };
     /**
@@ -710,7 +707,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n/* @import '~angular-calendar/css/angular-calendar.css'; */\n\ntable {\n    width: 100%;\n    height: 20em;\n}\n\ntr:nth-of-type(n+3) td {\n    position: relative;\n    padding-right: 20px;\n    font-size: 20px;\n    border: 1px solid #ddd;\n}\n\nspan[class^=\"timeStamp\"]{\n    pointer-events: none;\n    position: absolute;\n    bottom: 0;\n    right: 4px;\n    color: red;\n    font-size: 14px;\n}\n\n#calendarOptions form {\n    float: right;\n}", ""]);
+exports.push([module.i, "\n/* @import '~angular-calendar/css/angular-calendar.css'; */\n\ntable {\n    width: 100%;\n    height: 20em;\n}\n\ntr:nth-of-type(n+3) td {\n    position: relative;\n    padding-right: 20px;\n    font-size: 20px;\n    border: 1px solid #ddd;\n}\n\nspan[class^=\"timeStamp\"]{\n    pointer-events: none;\n    position: absolute;\n    bottom: 0;\n    right: 4px;\n    color: red;\n    font-size: 14px;\n}\n\n#calendarOptions {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n}\n\n#calendarOptions form {\n    float: right;\n}", ""]);
 
 // exports
 
@@ -723,7 +720,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-calendar/app-calendar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"calendarOptions\">\n  <select id=\"calendar-menu\" (change)=\"onSelected($event)\">\n    <!-- <option style=\"display:none\" value=\"\">select a month</option>\"; -->\n    <option *ngFor=\"let option of options\">{{ option }}</option>\n  </select>\n\n  <form>\n    <input type=\"checkbox\" name=\"minutes\" id=\"minutes\" class=\"checkbox\" (click)=\"changeCheckbox($event)\">\n    <label for=\"minutes\">Minutes</label>\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" class=\"checkbox\" (click)=\"changeCheckbox($event)\">\n    <label for=\"hours\">Hours</label>\n  </form>\n</div>\n\n<div id=\"calendar\"></div>\n\n<!-- <ul>\n    <li *ngFor=\"let option of options\">{{ option }}</li>\n</ul> -->\n"
+module.exports = "<div id=\"calendarOptions\">\n  <select id=\"calendar-menu\" (change)=\"onSelected($event)\" [(ngModel)]=\"month\">\n    <option *ngFor=\"let option of options\">{{ option }}</option>\n  </select>\n\n  <form>\n    <input type=\"checkbox\" name=\"minutes\" id=\"minutes\" class=\"checkbox\" (click)=\"changeCheckbox($event)\">\n    <label for=\"minutes\">Minutes</label>\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" class=\"checkbox\" (click)=\"changeCheckbox($event)\">\n    <label for=\"hours\">Hours</label>\n  </form>\n</div>\n\n<div id=\"calendar\"></div>\n"
 
 /***/ }),
 
@@ -751,6 +748,7 @@ var AppCalendarComponent = (function () {
     function AppCalendarComponent(calendarService, router) {
         this.calendarService = calendarService;
         this.router = router;
+        this.month = this.calendarService.monthString;
     }
     AppCalendarComponent.prototype.ngOnInit = function () {
         this.calendarService.addCalendarToPage();
@@ -871,7 +869,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-input/app-input.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\"> \n  <form>\n    <h2>Made Progress? Add Time Here</h2>\n    <input  type=\"tel\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter Minutes\" autocomplete=\"off\" min=\"0\" max=\"1440\">\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" (click)=\"minutesOrHours()\">\n    <label for=\"hours\">Hours</label>\n    <button (click)='addMinutes(minutes)'>Submit</button>\n  </form>\n  <div *ngIf=\"routeFromCal\">\n    <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n  </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n"
+module.exports = "<div *ngIf=\"!noTracks\"> \n  <form>\n    <h2>Made Progress? Add Time Here</h2>\n    <input  type=\"tel\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter Minutes\" autocomplete=\"off\" min=\"0\" max=\"1440\">\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\">\n    <label for=\"hours\">Hours</label>\n    <button (click)='addMinutes(minutes)'>Submit</button>\n  </form>\n  <div *ngIf=\"routeFromCal\">\n    <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n  </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n"
 
 /***/ }),
 
@@ -1102,7 +1100,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-list/app-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\">\n            <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\">\n                <h2>{{ track.name }}</h2>\n                <h2>{{ track.time }} hours</h2>\n                <span class=\"percent\">{{ findPercentCompleted(track.name) }}% done</span>\n            </a>\n            <span id=\"edit\" class=\"listButtons\" (click)=\"editTrack($event)\">edit</span>\n            <span id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack($event)\">delete</span>\n        </li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are no selected tracks. Please select one or create a new track.</h2></div>"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\">\n            <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\">\n                <h2>{{ track.name }}</h2>\n                <h2>{{ track.time }} hours</h2>\n                <span class=\"percent\">{{ findPercentCompleted(track.name) }}% done</span>\n            </a>\n            <span id=\"edit\" class=\"listButtons\" (click)=\"editTrack($event)\">edit</span>\n            <span id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack($event)\">delete</span>\n        </li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>"
 
 /***/ }),
 
@@ -1334,7 +1332,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#progressContainer {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    min-height: 100px;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    max-width: 330px;\n    margin: 0 auto 50px;\n}\n\n#progressHeader {\n    margin-bottom: 50px;\n}\n\n/* #progressContainer div {\n    transform: rotate(270deg);\n} */\n\n.progressBar {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n    height: 4px;\n    width: 100px;\n    position: relative;\n}\n\nprogress {\n    position: absolute;\n    /* height: 10px; */\n    /* min-height: 20px; */\n    /* width: 100px; */\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    left: 50%;\n    top: 50%;\n    display: inline-block;\n    /* background: #666; */\n}\n\nprogress[value] {\n    box-sizing: border-box;\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n         appearance: none;\n    opacity: .5;\n    height: 47px;\n    width: 100px;\n}\n\nprogress[value]::-webkit-progress-bar {\n    /* color: red; */\n    background-color: #eee;\n    border-radius: 2px;\n    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; */\n}\n\n/* progress[value]::-webkit-progress-value::before {\n    content: '80%';\n    position: absolute;\n    right: 0;\n    top: -125%;\n} */\n\n.before {\n    content: '';\n    position: absolute;\n    left: -55px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    width: 100%;\n    height: 100%;\n}\n\n.after {\n    position: absolute;\n    right: -45px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n}\n\nprogress::-webkit-progress-value {\n    transition: 1s width ease-in-out;\n}\n\n#formContainer h2 {\n    /* text-align: center; */\n}\n\nform {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n\n\nul {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n\nli {\n    padding: 0;\n    margin: 0;\n    height: 100px;\n    width: 20px;\n}\n\n.monthView progress{\n    height: 11px;\n}\n\n.monthView .before,\n.monthView .after {\n    font-size: 4px;\n}\n\n.yearView progress{\n    height: 1px;\n}\n\n.yearView .before,\n.yearView .after {\n    display: none;\n}", ""]);
+exports.push([module.i, "#progressContainer {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    min-height: 100px;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    max-width: 330px;\n    margin: 0 auto 50px;\n}\n\n#progressHeader {\n    margin-bottom: 50px;\n}\n\n/* #progressContainer div {\n    transform: rotate(270deg);\n} */\n\n.progressBar {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n    height: 4px;\n    width: 100px;\n    position: relative;\n}\n\nprogress {\n    position: absolute;\n    /* height: 10px; */\n    /* min-height: 20px; */\n    /* width: 100px; */\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    left: 50%;\n    top: 50%;\n    display: inline-block;\n    /* background: #666; */\n}\n\nprogress[value] {\n    box-sizing: border-box;\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n         appearance: none;\n    opacity: .5;\n    height: 47px;\n    width: 100px;\n}\n\nprogress[value]::-webkit-progress-bar {\n    /* color: red; */\n    background-color: #eee;\n    border-radius: 2px;\n    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; */\n}\n\n/* progress[value]::-webkit-progress-value::before {\n    content: '80%';\n    position: absolute;\n    right: 0;\n    top: -125%;\n} */\n\n.before {\n    content: '';\n    position: absolute;\n    left: -55px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    width: 100%;\n    height: 100%;\n}\n\n.after {\n    position: absolute;\n    right: -45px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n}\n\nprogress::-webkit-progress-value {\n    transition: 1s width ease-in-out;\n}\n\n#formContainer h2 {\n    /* text-align: center; */\n}\n\nform {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n\n\nul {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n\nli {\n    padding: 0;\n    margin: 0;\n    height: 100px;\n    width: 20px;\n}\n\n.monthView progress{\n    height: 11px;\n}\n\n.monthView progress:before {\n    content: '';\n    width: 2px;\n    height: 12px;\n    position: absolute;\n    background: #fff;\n    left: -1px;\n}\n\n.monthView .before,\n.monthView .after {\n    font-size: 4px;\n}\n\n.yearView progress{\n    height: 1px;\n}\n\n.yearView progress:before {\n    content: '';\n    width: 2px;\n    height: 2px;\n    position: absolute;\n    background:#fff;\n    left: -1px;\n}\n\n.yearView .before,\n.yearView .after {\n    display: none;\n}", ""]);
 
 // exports
 
@@ -1347,7 +1345,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-output/app-output.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">\n            <input type=\"radio\" name=\"timeFrame\" id=\"today\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are 0 tracks. Please create one, dummy.</h2></div>\n\n"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">\n            <input type=\"radio\" name=\"timeFrame\" id=\"today\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n\n"
 
 /***/ }),
 
