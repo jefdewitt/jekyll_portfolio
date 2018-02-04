@@ -869,7 +869,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-input/app-input.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\"> \n  <form>\n    <h2>Made Progress? Add Time Here</h2>\n    <input  type=\"tel\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter Minutes\" autocomplete=\"off\" min=\"0\" max=\"1440\">\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\">\n    <label for=\"hours\">Hours</label>\n    <button (click)='addMinutes(minutes)'>Submit</button>\n  </form>\n  <div *ngIf=\"routeFromCal\">\n    <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n  </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n"
+module.exports = "<div *ngIf=\"!noTracks\"> \n  <form>\n    <h2>Made Progress? Add Time Here</h2>\n    <input  type=\"tel\" name=\"minutes\" id=\"minutes\" [(ngModel)]=\"minutes\" placeholder=\"Enter {{ hoursOrMinutes }}\" autocomplete=\"off\" min=\"0\" max=\"1440\">\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" (click)=\"hours()\">\n    <label for=\"hours\">Hours</label>\n    <button (click)='addMinutes(minutes)'>Submit</button>\n  </form>\n  <div *ngIf=\"routeFromCal\">\n    <p>Pressing submit will overwrite the <strong>{{ minutesAlreadyEntered }} {{ increment }}</strong> you've already entered for <strong>{{ routeFromCal }}</strong>.</p>\n  </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n"
 
 /***/ }),
 
@@ -903,6 +903,7 @@ var AppInputComponent = (function () {
         this.router = router;
         this.selected = this.goalTrackService.findSelectedTrack();
         this.noTracks = false;
+        this.hoursOrMinutes = 'minutes';
         this.router.events.subscribe(function (event) {
             try {
                 if (event.url) {
@@ -942,23 +943,26 @@ var AppInputComponent = (function () {
         this.calendarService.minutesFromCal = '';
         this.minutesAlreadyEntered = '';
     };
+    // Just changes the placeholder string in the input field
+    AppInputComponent.prototype.hours = function () {
+        if (this.hoursOrMinutes === 'minutes') {
+            this.hoursOrMinutes = 'hours';
+        }
+        else {
+            this.hoursOrMinutes = 'minutes';
+        }
+    };
     /**
      * Check to see if user is inputting time in hours.
      * We declares these as lets instead of class properties cuz they aren't
      * loaded in time for Angular to find them in the DOM otherwise.
      */
     AppInputComponent.prototype.minutesOrHours = function () {
-        var minutesInput = document.getElementById("minutes");
-        var hours = document.getElementById("hours");
-        var isChecked = hours.checked;
-        if (isChecked) {
-            minutesInput.setAttribute('placeholder', 'Enter Hours');
-            if (this.minutes) {
-                this.minutes = this.minutes * 60;
-            }
+        if (this.hoursOrMinutes === 'hours') {
+            return this.minutes * 60;
         }
         else {
-            minutesInput.setAttribute('placeholder', 'Enter Minutes');
+            return this.minutes;
         }
     };
     // Have previous times been entered for the date being checked?
@@ -1016,10 +1020,10 @@ var AppInputComponent = (function () {
                 this.editTimeFromCal(this.routeFromCal);
             }
             else {
+                // Check if minutes or hours
+                this.minutes = this.minutesOrHours();
                 // Create new time object for the dates array
                 this.setTimeObject(this.goalTrackService.createDateObject());
-                // Check if minutes or hours
-                this.minutesOrHours();
                 // Check if min > 0 and if there are prev. date entries in dates array
                 this.checkForValidMinAndDate();
             }
