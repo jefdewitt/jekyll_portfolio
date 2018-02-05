@@ -364,6 +364,12 @@ var CalendarService = (function () {
             console.log('Unable to populate calendar dropdown ' + error.message);
         }
     };
+    CalendarService.prototype.resetCheckboxes = function () {
+        var minuteCheckbox = document.getElementById("minutes");
+        var hourCheckbox = document.getElementById("hours");
+        minuteCheckbox.checked = true;
+        minuteCheckbox.checked = false;
+    };
     // Rebuild calendar when a new month is selected from the dropdown
     CalendarService.prototype.updateCalendarMonth = function ($event) {
         try {
@@ -371,6 +377,7 @@ var CalendarService = (function () {
             var updatedMonth = this.buildCal(this.todayDate, theMonth, this.curYear, this.twelveMonths);
             document.getElementById("calendar").innerHTML = updatedMonth;
             this.addDateSpan();
+            this.resetCheckboxes();
         }
         catch (error) {
             console.log('Unable to update calendar month ' + error.message);
@@ -720,7 +727,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-calendar/app-calendar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"calendarOptions\">\n  <select id=\"calendar-menu\" (change)=\"onSelected($event)\" [(ngModel)]=\"month\">\n    <option *ngFor=\"let option of options\">{{ option }}</option>\n  </select>\n\n  <form>\n    <input type=\"checkbox\" name=\"minutes\" id=\"minutes\" class=\"checkbox\" (click)=\"changeCheckbox($event)\">\n    <label for=\"minutes\">Minutes</label>\n    <input type=\"checkbox\" name=\"hours\" id=\"hours\" class=\"checkbox\" (click)=\"changeCheckbox($event)\">\n    <label for=\"hours\">Hours</label>\n  </form>\n</div>\n\n<div id=\"calendar\"></div>\n"
+module.exports = "<div id=\"calendarOptions\">\n  <select id=\"calendar-menu\" (change)=\"onSelected($event)\" [(ngModel)]=\"month\">\n    <option *ngFor=\"let option of options\">{{ option }}</option>\n  </select>\n\n  <form>\n    <input type=\"radio\" name=\"timeFrame\" id=\"minutes\" class=\"radio\" (click)=\"changeToMinutes($event)\" checked>\n    <label for=\"minutes\">Minutes</label>\n    <input type=\"radio\" name=\"timeFrame\" id=\"hours\" class=\"radio\" (click)=\"changeToHours($event)\">\n    <label for=\"hours\">Hours</label>\n  </form>\n</div>\n\n<div id=\"calendar\"></div>\n"
 
 /***/ }),
 
@@ -749,16 +756,16 @@ var AppCalendarComponent = (function () {
         this.calendarService = calendarService;
         this.router = router;
         this.month = this.calendarService.monthString;
+        this.alreadyHours = false;
     }
     AppCalendarComponent.prototype.ngOnInit = function () {
         this.calendarService.addCalendarToPage();
         this.options = this.calendarService.options;
-        this.hourCheckbox = document.getElementById("hours");
-        this.minuteCheckbox = document.getElementById("minutes");
-        this.minuteCheckbox.checked = true;
     };
     AppCalendarComponent.prototype.onSelected = function ($event) {
         this.calendarService.updateCalendarMonth($event);
+        var minuteRadioButton = document.getElementById("minutes");
+        minuteRadioButton.checked = true;
     };
     AppCalendarComponent.prototype.ngAfterContentInit = function () {
         var _this = this;
@@ -793,25 +800,12 @@ var AppCalendarComponent = (function () {
             }
         });
     };
-    AppCalendarComponent.prototype.changeCheckbox = function ($event) {
-        if ($event.target.id === "minutes") {
-            if (this.minuteCheckbox.checked = true) {
-                this.calendarService.hoursSelected = false;
-                this.hourCheckbox.checked = false;
-            }
-            else {
-                this.hourCheckbox.checked = true;
-            }
-        }
-        else if ($event.target.id === "hours") {
-            if (this.hourCheckbox.checked = true) {
-                this.calendarService.hoursSelected = true;
-                this.minuteCheckbox.checked = false;
-            }
-            else {
-                this.minuteCheckbox.checked = true;
-            }
-        }
+    AppCalendarComponent.prototype.changeToHours = function ($event) {
+        this.hoursSelected = true;
+        this.hoursToMinutes($event);
+    };
+    AppCalendarComponent.prototype.changeToMinutes = function ($event) {
+        this.hoursSelected = false;
         this.hoursToMinutes($event);
     };
     AppCalendarComponent.prototype.hoursToMinutes = function ($event) {
@@ -821,13 +815,29 @@ var AppCalendarComponent = (function () {
             spanTimeStamp = spanTimeStamp[0];
             var savedTimeInMin = multiSpans[i].innerHTML;
             if (spanTimeStamp === 'timeStamp') {
-                if (this.hourCheckbox.checked) {
-                    var singleSpan = multiSpans[i].innerHTML / 60;
-                    multiSpans[i].innerHTML = singleSpan.toFixed(2);
+                if (this.hoursSelected) {
+                    // Check to see if hour radio button is already checked -- if so, do nothing
+                    var hourRadioButton = document.getElementById("hours");
+                    if (this.alreadyHours) {
+                        return;
+                    }
+                    else {
+                        var singleSpan = multiSpans[i].innerHTML / 60;
+                        multiSpans[i].innerHTML = singleSpan.toFixed(2);
+                        this.alreadyHours = true;
+                    }
                 }
                 else {
-                    var singleSpan = multiSpans[i].innerHTML * 60;
-                    multiSpans[i].innerHTML = singleSpan.toFixed(0);
+                    // Check to see if minute radio button is already checked -- if so, do nothing
+                    var minuteRadioButton = document.getElementById("minutes");
+                    if (!this.alreadyHours) {
+                        return;
+                    }
+                    else {
+                        var singleSpan = multiSpans[i].innerHTML * 60;
+                        multiSpans[i].innerHTML = singleSpan.toFixed(0);
+                        this.alreadyHours = false;
+                    }
                 }
             }
         }
@@ -1192,7 +1202,7 @@ var AppListComponent = (function () {
     };
     AppListComponent.prototype.findPercentCompleted = function (trackName) {
         var percentCompleted = this.goalTrackService.overallCompleted(trackName);
-        return percentCompleted.toFixed(0);
+        return percentCompleted.toFixed(1);
     };
     AppListComponent.prototype.deleteTrack = function ($event) {
         if (confirm('Are you sure you want to delete this track? It can\'t be recovered.')) {
