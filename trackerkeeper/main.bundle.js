@@ -801,12 +801,16 @@ var AppCalendarComponent = (function () {
         });
     };
     AppCalendarComponent.prototype.changeToHours = function ($event) {
-        this.hoursSelected = true;
-        this.hoursToMinutes($event);
+        if (!this.alreadyHours) {
+            this.hoursSelected = true;
+            this.hoursToMinutes($event);
+        }
     };
     AppCalendarComponent.prototype.changeToMinutes = function ($event) {
-        this.hoursSelected = false;
-        this.hoursToMinutes($event);
+        if (this.alreadyHours) {
+            this.hoursSelected = false;
+            this.hoursToMinutes($event);
+        }
     };
     AppCalendarComponent.prototype.hoursToMinutes = function ($event) {
         var multiSpans = document.querySelectorAll('span');
@@ -816,28 +820,14 @@ var AppCalendarComponent = (function () {
             var savedTimeInMin = multiSpans[i].innerHTML;
             if (spanTimeStamp === 'timeStamp') {
                 if (this.hoursSelected) {
-                    // Check to see if hour radio button is already checked -- if so, do nothing
-                    var hourRadioButton = document.getElementById("hours");
-                    if (this.alreadyHours) {
-                        return;
-                    }
-                    else {
-                        var singleSpan = multiSpans[i].innerHTML / 60;
-                        multiSpans[i].innerHTML = singleSpan.toFixed(2);
-                        this.alreadyHours = true;
-                    }
+                    var singleSpan = multiSpans[i].innerHTML / 60;
+                    multiSpans[i].innerHTML = singleSpan.toFixed(2);
+                    this.alreadyHours = true;
                 }
                 else {
-                    // Check to see if minute radio button is already checked -- if so, do nothing
-                    var minuteRadioButton = document.getElementById("minutes");
-                    if (!this.alreadyHours) {
-                        return;
-                    }
-                    else {
-                        var singleSpan = multiSpans[i].innerHTML * 60;
-                        multiSpans[i].innerHTML = singleSpan.toFixed(0);
-                        this.alreadyHours = false;
-                    }
+                    var singleSpan = multiSpans[i].innerHTML * 60;
+                    multiSpans[i].innerHTML = singleSpan.toFixed(0);
+                    this.alreadyHours = false;
                 }
             }
         }
@@ -1060,11 +1050,12 @@ var AppInputComponent = (function () {
     AppInputComponent.prototype.editTimeFromCal = function (routeFromCal) {
         try {
             alert('Overwrite the ' + this.minutesAlreadyEntered + ' ' + this.increment + ' you already have saved for ' + this.routeFromCal + '?');
-            this.minutesOrHours();
             for (var i = 0; i < this.selected['dates'].length; i++) {
                 var storeDate = this.selected['dates'][i].recordedDate;
                 var storeTime = this.selected['dates'][i].recordedMinutes;
                 if (routeFromCal === storeDate) {
+                    // Check if minutes or hours
+                    this.minutes = this.minutesOrHours();
                     this.selected['dates'][i].recordedMinutes = +this.minutes;
                     this.disableRouteTrigger();
                     return;
@@ -1359,7 +1350,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-output/app-output.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(0) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">\n            <input type=\"radio\" name=\"timeFrame\" id=\"today\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n\n"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(1) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">\n            <input type=\"radio\" name=\"timeFrame\" id=\"today\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n\n"
 
 /***/ }),
 
