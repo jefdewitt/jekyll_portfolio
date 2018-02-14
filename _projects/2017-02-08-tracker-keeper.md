@@ -1,7 +1,7 @@
 ---
 layout: project-template
-title:  "Tracker Keeper"
-tech:   "Angular JS"
+title:  "Trackerkeeper Original"
+tech:   "AngularJS"
 image:  tracker-keeper.jpg
 link:   
 date:   2017-02-12 11:08:11 -0400
