@@ -1337,7 +1337,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#progressContainer {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    min-height: 100px;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    max-width: 330px;\n    margin: 0 auto 50px;\n}\n\n#progressHeader {\n    margin-bottom: 50px;\n}\n\n/* #progressContainer div {\n    transform: rotate(270deg);\n} */\n\n.progressBar {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n    height: 4px;\n    width: 100px;\n    position: relative;\n}\n\nprogress {\n    position: absolute;\n    /* height: 10px; */\n    /* min-height: 20px; */\n    /* width: 100px; */\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    left: 50%;\n    top: 50%;\n    display: inline-block;\n    /* background: #666; */\n}\n\nprogress[value] {\n    box-sizing: border-box;\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n         appearance: none;\n    opacity: .5;\n    height: 47px;\n    width: 100px;\n}\n\nprogress[value]::-webkit-progress-bar {\n    /* color: red; */\n    background-color: #eee;\n    border-radius: 2px;\n    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; */\n}\n\n/* progress[value]::-webkit-progress-value::before {\n    content: '80%';\n    position: absolute;\n    right: 0;\n    top: -125%;\n} */\n\n.before {\n    content: '';\n    position: absolute;\n    left: -55px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    width: 100%;\n    height: 100%;\n}\n\n.after {\n    position: absolute;\n    right: -45px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n}\n\nprogress::-webkit-progress-value {\n    transition: 1s width ease-in-out;\n}\n\n#formContainer h2 {\n    /* text-align: center; */\n}\n\nform {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n\n\nul {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n\nli {\n    padding: 0;\n    margin: 0;\n    height: 100px;\n    width: 20px;\n}\n\n.monthView progress{\n    height: 11px;\n}\n\n.monthView progress:before {\n    content: '';\n    width: 2px;\n    height: 12px;\n    position: absolute;\n    background: #fff;\n    left: -1px;\n}\n\n.monthView .before,\n.monthView .after {\n    font-size: 4px;\n}\n\n.yearView progress{\n    height: 1px;\n}\n\n.yearView progress:before {\n    content: '';\n    width: 2px;\n    height: 2px;\n    position: absolute;\n    background:#fff;\n    left: -1px;\n}\n\n.yearView .before,\n.yearView .after {\n    display: none;\n}", ""]);
+exports.push([module.i, "#progressContainer {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    min-height: 100px;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    max-width: 330px;\n    margin: 0 auto 50px;\n    position: relative;\n}\n\n.top {\n    position: absolute;\n    bottom: 90%;\n    width: 100%;\n    text-align: right;\n    z-index: 1;\n}\n\n.top:before {\n    content: '';\n    background: white;\n    width: 15%;\n    height: 16px;\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    right: -1%;\n}\n\n.top:after {\n    content: '';\n    width: 85%;\n    border-bottom: 1px solid;\n    height: 1px;\n    position: absolute;\n    left: 0;\n    top: 50%;\n    -webkit-transform: translatey(-50%);\n    transform: translatey(-50%);\n    z-index: -1;\n}\n\n.bottom {\n    position: absolute;\n    top: 90%;\n    width: 100%;\n    text-align: left;\n    z-index: 1;\n}\n\n.bottom:before {\n    content: '';\n    background: white;\n    width: 15%;\n    height: 16px;\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    left: -1%;\n}\n\n.bottom:after {\n    content: '';\n    width: 85%;\n    border-bottom: 1px solid;\n    height: 1px;\n    position: absolute;\n    right: 0;\n    top: 50%;\n    -webkit-transform: translatey(-50%);\n    transform: translatey(-50%);\n    z-index: -1;\n}\n\n#progressHeader {\n    margin-bottom: 50px;\n}\n\n.progressBar {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n    height: 4px;\n    width: 100px;\n    position: relative;\n}\n\nprogress {\n    position: absolute;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    left: 50%;\n    top: 50%;\n    display: inline-block;\n}\n\nprogress[value] {\n    box-sizing: border-box;\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n         appearance: none;\n    opacity: .5;\n    height: 47px;\n    width: 100px;\n}\n\nprogress[value]::-webkit-progress-bar {\n    background-color: #eee;\n    border-radius: 2px;\n}\n\n.before {\n    content: '';\n    position: absolute;\n    left: -65px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    width: 100%;\n    height: 100%;\n}\n\n.after {\n    position: absolute;\n    right: -45px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n}\n\nprogress::-webkit-progress-value {\n    transition: 1s width ease-in-out;\n}\n\nform {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n\n\nul {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n\nli {\n    padding: 0;\n    margin: 0;\n    height: 100px;\n    width: 20px;\n}\n\n.monthView progress{\n    height: 11px;\n}\n\n.monthView .before,\n.yearView .before {\n    display: none;\n}\n\n.monthView:nth-of-type(4n-1) .before {\n    display: inline-block;\n}\n\n.yearView progress{\n    height: 1px;\n}\n\n.yearView:nth-of-type(52n-36) .before {\n    display: inline-block;\n}", ""]);
 
 // exports
 
@@ -1350,7 +1350,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-output/app-output.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(1) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"12\" value=\"{{ dailyRecordedTime['time'] }}\"></progress><span class=\"after\">{{ dailyRecordedTime['time'] }}<br>hrs</span></div>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">\n            <input type=\"radio\" name=\"timeFrame\" id=\"today\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"today\">Today</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"week\">Week</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"month\">Month</label>\n            <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">\n            <label for=\"year\">Year</label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n\n"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(1) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <span class=\"top\">{{ this.mostTime }} hrs</span>\n            <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"{{ this.mostTime }}\" value=\"{{ dailyRecordedTime['time'] }}\"></progress></div>\n        <span class=\"bottom\">&nbsp;&nbsp;0 hrs</span>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">            \n            <label for=\"week\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\" checked>Week\n            </label>\n            <label for=\"month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">Month\n            </label>\n            <label for=\"year\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">Year\n            </label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n\n"
 
 /***/ }),
 
@@ -1429,15 +1429,15 @@ var AppOutputComponent = (function () {
             this.isYearView = false;
             var track = this.goalTrackService.findSelectedTrack();
             switch (timeValue) {
-                case 'today':
-                    var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
-                    this.dailyMinAndPerc(track, sumInInterval, 1);
-                    this.timePeriod = 'progress today';
-                    this.completed = ' today';
-                    this.dailyRecordedTimes = this.populateProgressBars(1);
-                    break;
+                // case 'today':
+                //     let sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
+                //     this.dailyMinAndPerc(track, sumInInterval, 1); 
+                //     this.timePeriod = 'progress today';
+                //     this.completed = ' today';
+                //     this.dailyRecordedTimes = this.populateProgressBars(1);
+                //     break;
                 case 'week':
-                    sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 6);
+                    var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 6);
                     this.dailyMinAndPerc(track, sumInInterval, 7);
                     this.timePeriod = 'daily average this week';
                     this.completed = ' this week';
@@ -1534,10 +1534,31 @@ var AppOutputComponent = (function () {
                 };
                 progressArray.push(progressBarObject);
             }
+            this.findMostTime(progressArray);
+            // this.bottomTime = this.findBottomTime(progressArray);
             return progressArray.reverse();
         }
         catch (error) {
             console.log('Unable to populate progress bar array ' + error.message);
+        }
+    };
+    AppOutputComponent.prototype.compareFunction = function (a, b) {
+        return a - b;
+    };
+    AppOutputComponent.prototype.findMostTime = function (progressArray) {
+        try {
+            var timeArray = [];
+            for (var i = 0; i < progressArray.length; i++) {
+                var time = progressArray[i].time;
+                timeArray.push(time);
+            }
+            var sortedArray = timeArray.sort(this.compareFunction);
+            // Find the most time in the array
+            var mostTime = sortedArray.pop();
+            this.mostTime = mostTime;
+        }
+        catch (error) {
+            console.log('Unable to find top time' + error.message);
         }
     };
     AppOutputComponent = __decorate([
