@@ -95,7 +95,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"titleContainer\" [class.tkTitle]=\"tkTitle\">\n  <h1>{{ title }}</h1>\n  <h1>{{ time }}</h1>\n</div>\n<router-outlet></router-outlet>\n<nav>\n  <a routerLink=\"/New Track\"><img src=\"./assets/new.svg\"></a>\n  <a routerLink=\"/Input\"><img src=\"./assets/input.svg\"></a>\n  <a routerLink=\"/Track Output\"><img src=\"./assets/charts.svg\"></a>\n  <a routerLink=\"/Calendar\"><img src=\"./assets/calendar.svg\"></a>\n  <a routerLink=\"/List Tracks\"><img src=\"./assets/list.svg\"></a>\n</nav>\n\n"
+module.exports = "<div id=\"titleContainer\" [class.tkTitle]=\"tkTitle\" [class.selected]=\"selected\">\n  <h1>{{ title }}</h1>\n  <h1>{{ time }}</h1>\n</div>\n<router-outlet></router-outlet>\n<nav>\n  <a routerLink=\"/New Track\"><img src=\"./assets/new.svg\"></a>\n  <a routerLink=\"/Input\"><img src=\"./assets/input.svg\"></a>\n  <a routerLink=\"/Track Output\"><img src=\"./assets/charts.svg\"></a>\n  <a routerLink=\"/Calendar\"><img src=\"./assets/calendar.svg\"></a>\n  <a routerLink=\"/List Tracks\"><img src=\"./assets/list.svg\"></a>\n</nav>\n\n"
 
 /***/ }),
 
@@ -127,6 +127,7 @@ var AppComponent = (function () {
         this.goalTrackService = goalTrackService;
         this.calendarService = calendarService;
         this.router = router;
+        this.selected = true;
         this.router.events.subscribe(function (event) {
             try {
                 if (event.url) {
@@ -140,6 +141,9 @@ var AppComponent = (function () {
                         _this.title = (_this.track) ? _this.track['name'] : 'Tracker';
                         _this.time = (_this.track) ? _this.track['time'] + ' hrs' : 'Keeper';
                         _this.tkTitle = false;
+                        if (_this.title === 'Tracker') {
+                            _this.selected = false;
+                        }
                     }
                     if (event.url != '/Input') {
                         _this.calendarService.dateFromCal = '';
