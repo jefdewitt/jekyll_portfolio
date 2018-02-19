@@ -95,7 +95,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"titleContainer\" [class.tkTitle]=\"tkTitle\" [class.selected]=\"selected\">\n  <h1>{{ title }}</h1>\n  <h1>{{ time }}</h1>\n</div>\n<router-outlet></router-outlet>\n<nav>\n  <a routerLink=\"/New Track\"><img src=\"./assets/new.svg\"></a>\n  <a routerLink=\"/Input\"><img src=\"./assets/input.svg\"></a>\n  <a routerLink=\"/Track Output\"><img src=\"./assets/charts.svg\"></a>\n  <a routerLink=\"/Calendar\"><img src=\"./assets/calendar.svg\"></a>\n  <a routerLink=\"/List Tracks\"><img src=\"./assets/list.svg\"></a>\n</nav>\n\n"
+module.exports = "<div id=\"titleContainer\" [class.tkTitle]=\"tkTitle\">\n  <h1>{{ title }}</h1>\n  <h1>{{ time }}</h1>\n</div>\n<router-outlet></router-outlet>\n<nav>\n  <a routerLink=\"/New Track\"><img src=\"./assets/new.svg\"></a>\n  <a routerLink=\"/Input\"><img src=\"./assets/input.svg\"></a>\n  <a routerLink=\"/Track Output\"><img src=\"./assets/charts.svg\"></a>\n  <a routerLink=\"/Calendar\"><img src=\"./assets/calendar.svg\"></a>\n  <a routerLink=\"/List Tracks\"><img src=\"./assets/list.svg\"></a>\n</nav>\n\n"
 
 /***/ }),
 
@@ -1098,7 +1098,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".trackList {\n    width: 100%;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\nli.hasTracks:last-child {\n    margin-bottom: 5em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\nh2:first-of-type:after {\n    content: '';\n    border-bottom: 5px solid #ddd;\n    display: inline-block;\n    width: 100%;\n    height: 0;\n    position: absolute;\n    bottom: 6%;\n    left: 0;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 49%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
+exports.push([module.i, ".trackList {\n    width: 100%;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\nh2:first-of-type:after {\n    content: '';\n    border-bottom: 5px solid #ddd;\n    display: inline-block;\n    width: 100%;\n    height: 0;\n    position: absolute;\n    bottom: 6%;\n    left: 0;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 49%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
 
 // exports
 
