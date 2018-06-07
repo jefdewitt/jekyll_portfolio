@@ -38,6 +38,7 @@ Now here's some tips and customizations to improve your workflow.
 - [Navigation](#navigation)
 - [Config.yml](#config)
 - [URL Structure](#url-structure)
+- [Liquid Escape Characters](#liguid-escape-characters)
 - [Screeshot](#screeshot)
 - [Comments](#comments)
 
@@ -251,6 +252,14 @@ layout: default
 </div>
 
 {% include sidebar.html %}
+```
+
+## Liquid Escape Characters
+
+The Liquid engine that powers Jekyll will strip out the usual escape characters you might be familiar with from other languages. This is especially irritating inside code blocks when you need to use curly brackets and such. Try this instead:
+
+```liquid
+{% raw %}{{ dataFromParent }}{% endraw %}
 ```
 
 As you can see this file uses another layout type `default` for its main structure. From here, all your posts will be displayed. And since we already declared our permalink settings in `config.yml`, when a blog post is clicked the resulting URL will be `www.<your-site>/archive/<your-blog-post>`.
