@@ -22,7 +22,7 @@ Some examples might fill in the holes.
 Inside our child we're going to decorate a property to accept input from its parent component.
 
 ```typescript
-    import { Component, Input } from '@angular/core'; // import Input symbolf
+    import { Component, Input } from '@angular/core'; // import Input symbol
 
     @Component({
     selector: 'child',
