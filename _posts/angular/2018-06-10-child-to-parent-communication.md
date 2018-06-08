@@ -2,7 +2,7 @@
 layout: post
 title: "Talkin' Back To Our Parents"
 image: machining-components.jpg
-date: 2018-06-06 09:32:11 -0400
+date: 2018-06-10 09:32:11 -0400
 categories: Angular
 ---
 Anyone who's spent time in therapy knows the importance of good communication. And when it comes to parents and their children it can be a real challenge. But Angular makes this easy!
