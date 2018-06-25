@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unit Testing with Angular"
-image: machining-components.jpg
+image: testing.jpg
 date: 2018-03-05 09:32:11 -0400
 categories: Angular
 ---

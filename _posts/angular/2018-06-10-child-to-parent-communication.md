@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Talkin' Back To Our Parents"
-image: machining-components.jpg
+image: talking-back.jpg
 date: 2018-06-10 09:32:11 -0400
 categories: Angular
 ---

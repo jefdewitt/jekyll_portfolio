@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Binding A Select Element"
-image: machining-components.jpg
+image: binding.jpg
 date: 2018-02-20 09:32:11 -0400
 categories: Angular
 ---

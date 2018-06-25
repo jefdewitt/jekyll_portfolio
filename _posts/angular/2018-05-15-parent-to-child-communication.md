@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Component Communication"
-image: machining-components.jpg
+image: component-communication.jpg
 date: 2018-05-15 09:32:11 -0400
 categories: Angular
 ---
