@@ -104,9 +104,9 @@ module.exports = "<div id=\"titleContainer\" [class.tkTitle]=\"tkTitle\">\n  <h1
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_calendar_service__ = __webpack_require__("../../../../../src/app/services/calendar.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_services_goal_track_service__ = __webpack_require__("../../../../../src/app/services/goal-track.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_services_goal_track_service__ = __webpack_require__("../../../../../src/app/services/goal-track.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_calendar_service__ = __webpack_require__("../../../../../src/app/services/calendar.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -174,12 +174,12 @@ var AppComponent = (function () {
         }
     };
     AppComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__app_services_goal_track_service__["a" /* GoalTrackService */], __WEBPACK_IMPORTED_MODULE_0__services_calendar_service__["a" /* CalendarService */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__app_services_goal_track_service__["a" /* GoalTrackService */], __WEBPACK_IMPORTED_MODULE_2__services_calendar_service__["a" /* CalendarService */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -701,6 +701,45 @@ var GoalTrackService = (function () {
             console.log('Currently there\'s no selected track. ' + error.message);
         }
     };
+    GoalTrackService.prototype.exportTrackData = function (trackName) {
+        var email = prompt("Provide an email address to send this data to.");
+        var trackData = this.formatTrackData(trackName);
+        window.location.href = "mailto:" + email + "?subject=" + trackName + " Data&body=" + trackData + "";
+    };
+    /**
+     *
+     * @param trackName
+     *
+     * Get the track minutes and export them in an easy to read JSON file.
+     */
+    GoalTrackService.prototype.formatTrackData = function (trackName) {
+        var trackDataOutput = 'Track name = ' + trackName + '%0D%0A%0D%0A';
+        var track = localStorage.getItem(localStorage.key(trackName));
+        var parsedTrack = JSON.parse(track);
+        var trackDates = parsedTrack['dates'];
+        var sortTrackDates = trackDates.sort(this.compareFunction);
+        for (var i = 0; i < trackDates.length; i++) {
+            var itemDate = parsedTrack['dates'][i]['recordedDate'];
+            var itemTime = parsedTrack['dates'][i]['recordedMinutes'];
+            var trackDataString = itemDate + ' = ' + itemTime + '%0D%0A';
+            trackDataOutput += trackDataString;
+        }
+        trackDataOutput += '%0D%0A' + track;
+        return trackDataOutput;
+    };
+    /**
+     *
+     * @param first
+     * @param second
+     *
+     * Sort track entries by date. First, these need to have hyphens
+     * removed so we can properly parse them and then compare.
+     */
+    GoalTrackService.prototype.compareFunction = function (first, second) {
+        var firstString = first.recordedDate.replace(/-/g, '');
+        var secondString = second.recordedDate.replace(/-/g, '');
+        return (parseInt(firstString) - parseInt(secondString));
+    };
     GoalTrackService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [])
@@ -745,6 +784,8 @@ module.exports = "<div id=\"calendarOptions\">\n  <select id=\"calendar-menu\" (
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_calendar_service__ = __webpack_require__("../../../../../src/app/services/calendar.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_fromEvent__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/fromEvent.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -757,12 +798,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AppCalendarComponent = (function () {
     function AppCalendarComponent(calendarService, router) {
         this.calendarService = calendarService;
         this.router = router;
         this.month = this.calendarService.monthString;
         this.alreadyHours = false;
+        this.key = '';
     }
     AppCalendarComponent.prototype.ngOnInit = function () {
         this.calendarService.addCalendarToPage();
@@ -779,30 +823,31 @@ var AppCalendarComponent = (function () {
          * Listen for clicks that occur on calendar cells and move to the input view
          * with any completed time for that date already loaded to be overwritten.
          */
-        var selector = document.querySelector('.main');
-        selector.addEventListener('click', function ($event) {
-            try {
-                var multiEl = document.querySelectorAll('.days');
-                var spanTime = void 0;
-                if ($event.target.children.length === 2) {
-                    spanTime = $event.target.children[1].innerHTML;
-                }
-                else if ($event.target.children.length === 1) {
-                    spanTime = $event.target.firstElementChild.innerHTML;
-                }
-                else {
-                    spanTime = 0;
-                }
-                _this.calendarService.minutesFromCal = spanTime;
-                if (multiEl.length > 0) {
-                    if ($event.target.id) {
-                        _this.calendarService.dateFromCal = $event.target.id;
-                        _this.router.navigateByUrl('/Input');
+        this.subscription = __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["a" /* Observable */].fromEvent(document, 'click').subscribe(function (event) {
+            if (event['target']['className'] === 'days') {
+                try {
+                    var multiEl = document.querySelectorAll('.days');
+                    var spanTime = void 0;
+                    if (event['target']['children'].length === 2) {
+                        spanTime = event['target']['children'][1].innerHTML;
+                    }
+                    else if (event['target']['children'].length === 1) {
+                        spanTime = event['target']['.firstElementChild'].innerHTML;
+                    }
+                    else {
+                        spanTime = 0;
+                    }
+                    _this.calendarService.minutesFromCal = spanTime;
+                    if (multiEl.length > 0) {
+                        if (event['target']['id']) {
+                            _this.calendarService.dateFromCal = event['target']['id'];
+                            _this.router.navigateByUrl('/Input');
+                        }
                     }
                 }
-            }
-            catch (error) {
-                console.log('Unable to find calendar cell id ' + error.message);
+                catch (error) {
+                    console.log('Unable to find calendar cell id ' + error.message);
+                }
             }
         });
     };
@@ -1022,12 +1067,13 @@ var AppInputComponent = (function () {
     // Adds minutes to local storage for submit button clicks
     AppInputComponent.prototype.addMinutes = function () {
         try {
+            // Check if minutes or hours
+            this.minutes = this.minutesOrHours();
             if (this.routeFromCal) {
                 this.editTimeFromCal(this.routeFromCal);
             }
             else {
-                // Check if minutes or hours
-                this.minutes = this.minutesOrHours();
+                console.log('this.minutes', this.minutes);
                 // Create new time object for the dates array
                 this.setTimeObject(this.goalTrackService.createDateObject());
                 // Check if min > 0 and if there are prev. date entries in dates array
@@ -1060,8 +1106,6 @@ var AppInputComponent = (function () {
                 var storeDate = this.selected['dates'][i].recordedDate;
                 var storeTime = this.selected['dates'][i].recordedMinutes;
                 if (routeFromCal === storeDate) {
-                    // Check if minutes or hours
-                    this.minutes = this.minutesOrHours();
                     this.selected['dates'][i].recordedMinutes = +this.minutes;
                     this.disableRouteTrigger();
                     return;
@@ -1098,7 +1142,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".trackList {\n    width: 100%;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n    background: #fff;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\nh2:first-of-type:after {\n    content: '';\n    border-bottom: 5px solid #ddd;\n    display: inline-block;\n    width: 100%;\n    height: 0;\n    position: absolute;\n    bottom: 6%;\n    left: 0;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 49%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
+exports.push([module.i, ".trackList {\n    width: 100%;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n    background: #fff;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\nh2:first-of-type:after {\n    content: '';\n    border-bottom: 5px solid #ddd;\n    display: inline-block;\n    width: 100%;\n    height: 0;\n    position: absolute;\n    bottom: 6%;\n    left: 0;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 32%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}", ""]);
 
 // exports
 
@@ -1111,7 +1155,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-list/app-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\">\n            <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\">\n                <h2>{{ track.name }}</h2>\n                <h2>{{ track.time }} hours</h2>\n                <span class=\"percent\">{{ findPercentCompleted(track.name) }}% done</span>\n            </a>\n            <span id=\"edit\" class=\"listButtons\" (click)=\"editTrack($event)\">edit</span>\n            <span id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack($event)\">delete</span>\n        </li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>"
+module.exports = "<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks\" class=\"hasTracks\">\n            <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\">\n                <h2>{{ track.name }}</h2>\n                <h2>{{ track.time }} hours</h2>\n                <span class=\"percent\">{{ findPercentCompleted(track.name) }}% done</span>\n            </a>\n            <span id=\"edit\" class=\"listButtons\" (click)=\"editTrack($event)\">edit</span>\n            <span id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack($event)\">delete</span>\n            <span id=\"delete\" class=\"listButtons\" (click)=\"exportTrackData(track.name)\">export</span> \n        </li>\n    </ul>\n</div>\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" ><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>"
 
 /***/ }),
 
@@ -1213,6 +1257,9 @@ var AppListComponent = (function () {
         this.makeSelectedTrack($event);
         var track = this.goalTrackService.findSelectedTrack();
         this.goalTrackService.trackToEdit = track['name'];
+    };
+    AppListComponent.prototype.exportTrackData = function (trackName) {
+        this.goalTrackService.exportTrackData(trackName);
     };
     AppListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
@@ -1356,7 +1403,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/app-output/app-output.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(1) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <span class=\"top\">{{ this.mostTime }} hrs</span>\n            <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"{{ this.mostTime }}\" value=\"{{ dailyRecordedTime['time'] }}\"></progress></div>\n        <span class=\"bottom\">&nbsp;&nbsp;0 hrs</span>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">            \n            <label for=\"week\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\" checked>Week\n            </label>\n            <label for=\"month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">Month\n            </label>\n            <label for=\"year\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">Year\n            </label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n\n"
+module.exports = "<div *ngIf=\"!noTracks\">\n    <h2 id=\"progressHeader\">You've completed {{ percentageDone.toFixed(1) }}%<br> of your goal{{ completed }}!</h2>\n    <div id=\"progressContainer\">   \n        <span class=\"top\">{{ this.mostTime }} hrs</span>\n            <div class=\"progressBar\" [class.monthView]=\"isMonthView\" [class.yearView]=\"isYearView\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"><span class=\"before\">{{ dailyRecordedTime['date'] }}</span><progress max=\"{{ this.mostTime }}\" value=\"{{ dailyRecordedTime['time'] }}\"></progress></div>\n        <span class=\"bottom\">&nbsp;&nbsp;0 hrs</span>\n    </div>\n    <div id=\"formContainer\">\n        <h3>Your {{ timePeriod }} was\n            {{ dailyMinutes.toFixed(0) }} minutes or\n            {{ dailyPercentage.toFixed(2) }}% completed!\n        </h3>\n        <form action=\"\">            \n            <label for=\"week\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"week\" class=\"radio\" (click)=\"changeTimeFrame($event)\">Week\n            </label>\n            <label for=\"month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">Month\n            </label>\n            <label for=\"year\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"year\" class=\"radio\" (click)=\"changeTimeFrame($event)\">Year\n            </label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2></div>\n\n"
 
 /***/ }),
 
