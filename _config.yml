@@ -6,11 +6,10 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Jef DeWitt | Web Developer
+title: Jef DeWitt | Engineer
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
-  Hey, I'm Jef DeWitt, Web Developer and weekend software engineer in Louisville Kentucky. I
-  specialize in PHP, AngularJS, and mobile development.
+  Hey, I'm Jef DeWitt -- JavaScript, Angular and mobile development specialist.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://jefdewitt.com" # the base hostname & protocol for your site
 username:                jefdewitt
