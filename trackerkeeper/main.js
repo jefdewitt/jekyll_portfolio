@@ -90,7 +90,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#titleContainer {\n    position: relative;\n    margin: 1em 0 1em;\n    background: #fff;\n}\n\nh1 {\n    color: #b06d06;\n    font-family: Arial, Helvetica, sans-serif;\n    margin: 0;\n}\n\nul {\n    padding-left: 0;\n}\n\n.trackList ul {\n    padding-left: 0;\n}\n\nli {\n    list-style: none;\n}\n\nimg {\n    width: 2rem;\n}\n\nnav {\n    position: fixed;\n        bottom: 0;\n        left: 50%;\n    width: 100%;\n    padding-top: 1em;\n    -webkit-transform: translatex(-50%);\n            transform: translatex(-50%);\n    max-width: 768px;\n\n}\n\nnav a {\n    width: 33%;\n    display: inline-block;\n    text-align: center;\n}\n"
+module.exports = "#titleContainer {\n    position: relative;\n    margin-top: 1em;\n    background: #fff;\n}\n\nh1 {\n    color: #b06d06;\n    font-family: Arial, Helvetica, sans-serif;\n    margin: 0;\n}\n\nul {\n    padding-left: 0;\n}\n\n.trackList ul {\n    padding-left: 0;\n}\n\nli {\n    list-style: none;\n}\n\nnav {\n    position: fixed;\n        bottom: 0;\n        left: 50%;\n    width: 100%;\n    padding-top: 1em;\n    -webkit-transform: translatex(-50%);\n            transform: translatex(-50%);\n    max-width: 768px;\n    background: #fff;\n    z-index: 10;\n}\n\nnav a {\n    width: 33%;\n    display: inline-block;\n    text-align: center;\n}\n"
 
 /***/ }),
 
