@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\nhtml,\nbody {\n    height: 100%;\n}\nbody {\n    position: relative;\n}\n.sub-header {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n}\n.sub-header div img {\n    vertical-align: middle;\n}\nimg {\n    width: 2em;\n}\n.controls p {\n    display: none;\n}\nbutton {\n    width: 100%;\n    border: 3px solid #ddd;\n    margin-bottom: 3px;\n}\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\nhtml,\nbody {\n    height: 100%;\n}\nbody {\n    position: relative;\n    max-width: 768px;\n    margin: auto;\n}\n.sub-header {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n}\n.sub-header div img {\n    vertical-align: middle;\n}\nimg {\n    width: 2em;\n}\n.controls p {\n    display: none;\n}\nbutton {\n    width: 100%;\n    border: 3px solid #ddd;\n    margin-bottom: 3px;\n}\n"
 
 /***/ }),
 

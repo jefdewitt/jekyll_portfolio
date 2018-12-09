@@ -90,7 +90,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#titleContainer {\n    position: relative;\n    margin: 1em 0 1em;\n    background: #fff;\n}\n\nh1 {\n    color: #b06d06;\n    font-family: Arial, Helvetica, sans-serif;\n    margin: 0;\n}\n\nul {\n    padding-left: 0;\n}\n\n.trackList ul {\n    padding-left: 0;\n}\n\nli {\n    list-style: none;\n}\n\nimg {\n    width: 2rem;\n}\n\nnav {\n    position: fixed;\n        bottom: 0;\n        left: 0;\n    width: 100%;\n    padding-top: 1em;\n}\n\nnav a {\n    width: 33%;\n    display: inline-block;\n    text-align: center;\n}\n"
+module.exports = "#titleContainer {\n    position: relative;\n    margin: 1em 0 1em;\n    background: #fff;\n}\n\nh1 {\n    color: #b06d06;\n    font-family: Arial, Helvetica, sans-serif;\n    margin: 0;\n}\n\nul {\n    padding-left: 0;\n}\n\n.trackList ul {\n    padding-left: 0;\n}\n\nli {\n    list-style: none;\n}\n\nimg {\n    width: 2rem;\n}\n\nnav {\n    position: fixed;\n        bottom: 0;\n        left: 50%;\n    width: 100%;\n    padding-top: 1em;\n    -webkit-transform: translatex(-50%);\n            transform: translatex(-50%);\n    max-width: 768px;\n\n}\n\nnav a {\n    width: 33%;\n    display: inline-block;\n    text-align: center;\n}\n"
 
 /***/ }),
 
@@ -101,7 +101,7 @@ module.exports = "#titleContainer {\n    position: relative;\n    margin: 1em 0 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"titleContainer\" [class.tkTitle]=\"tkTitle\">\n  <h1>{{ appTitle }}</h1>\n  <!-- <h1>{{ time }}</h1> -->\n</div>\n<router-outlet></router-outlet>\n<nav>\n  <a routerLink=\"/Input\"><img src=\"./assets/input.svg\"></a>\n  <a routerLink=\"/Track Output\"><img src=\"./assets/charts.svg\"></a>\n  <!-- <a routerLink=\"/Calendar\"><img src=\"./assets/calendar.svg\"></a> -->\n  <a routerLink=\"/List Tracks\"><img src=\"./assets/list.svg\"></a>\n</nav>\n\n"
+module.exports = "<div id=\"titleContainer\" [class.tkTitle]=\"tkTitle\">\n  <h1>{{ appTitle }}</h1>\n</div>\n<router-outlet></router-outlet>\n<nav>\n  <a routerLink=\"/Input\"><img src=\"./assets/input.svg\"></a>\n  <a routerLink=\"/Track Output\"><img src=\"./assets/charts.svg\"></a>\n  <a routerLink=\"/List Tracks\"><img src=\"./assets/list.svg\"></a>\n</nav>\n\n"
 
 /***/ }),
 
@@ -137,7 +137,7 @@ var AppComponent = /** @class */ (function () {
         this.router = router;
         this.selected = true;
         // appTitle = 'TrackerKeeper';
-        this.appTitle = 'Test app';
+        this.appTitle = 'TK3';
         this.router.events.subscribe(function (event) {
             try {
                 if (event.url) {
@@ -294,7 +294,15 @@ var GoalTrackService = /** @class */ (function () {
             _this.track = track;
             return track;
         });
-        this.example['name'] = 'new track ';
+        // The Track object needs to be initialized with values
+        this.example = {
+            dates: [],
+            name: 'new track ',
+            selected: true,
+            time: 0,
+            editName: false,
+            editTime: false
+        };
     }
     /**
      *
@@ -309,8 +317,8 @@ var GoalTrackService = /** @class */ (function () {
     /**
      *
      * @param date string
-     * @param day number
-     * @param time string | number
+     * @param day number | string
+     * @param time string
      *
      * This method is called when clicking on a calendar data cell.
      *
@@ -441,7 +449,7 @@ var GoalTrackService = /** @class */ (function () {
             console.log('Deselecting tracks failed. ' + error.message);
         }
     };
-    // Create a date object with today's date, format YYYY-MM-DD
+    // Create a string from a Date object with today's date, format YYYY-MM-DD
     GoalTrackService.prototype.createDateObject = function () {
         var dateObj = new Date();
         var month = dateObj.getMonth() + 1; // getMonth is 0-based
@@ -669,26 +677,30 @@ var GoalTrackService = /** @class */ (function () {
      */
     GoalTrackService.prototype.createNewTrack = function () {
         var tracks = this.getAllTracks();
-        var newTrackName = 'new track';
-        var newTrackArray = [];
-        for (var i = 0; i < tracks.length; i++) {
-            var name_1 = tracks[i].name;
-            //.indexOf is a older/clunkier (ES5) version of .includes
-            if (name_1.indexOf(newTrackName) !== -1) {
-                newTrackArray.push(name_1);
-            }
-        }
-        var newestTrack = '';
+        var newTrackName = 'new track ';
+        // FYI -- .indexOf is a older/clunkier (ES5) version of .includes()
+        var newTrackArray = tracks.filter(function (item) {
+            return item.name.includes(newTrackName);
+        });
+        var newestTrack;
         if (newTrackArray.length > 0) {
             newestTrack = newTrackArray.pop();
         }
-        var number = newestTrack.match(/\d/g);
+        // .match() returns an array matching the regex; in this case, any numbers
+        var number = newestTrack.name.match(/\d/g);
+        // Is there a number in the track name?
         if (newestTrack && number) {
+            // .join returns a string from the number array
             number = number.join("");
+            // Get the number from the string
             number = parseInt(number, 10);
         }
+        // If there's a number in the track name, iterate the number, else just create a 'new track'
         if (number || newestTrack) {
             this.example.name = 'new track ' + (number + 1);
+        }
+        else {
+            this.example.name = 'new track ';
         }
         localStorage.setItem(this.example.name, JSON.stringify(this.example));
         this.event.emit(this.example.name);
@@ -1334,13 +1346,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AppListComponent = /** @class */ (function () {
     function AppListComponent(goalTrackService) {
         this.goalTrackService = goalTrackService;
-        this.track = this.goalTrackService.track;
         this.noTracks = false;
         this.nameSelected = false;
         this.timeSelected = false;
     }
     AppListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.track = this.goalTrackService.track;
         this.tracks = this.goalTrackService.getAllTracks();
         if (this.tracks.length === 0) {
             this.noTracks = true;
@@ -1374,7 +1386,7 @@ var AppListComponent = /** @class */ (function () {
             this.noTracks = false;
         }
         catch (error) {
-            console.error('Could not create a new track.' + error.message);
+            console.error('Could not create a new track. ' + error.message);
         }
     };
     AppListComponent.prototype.findPercentCompleted = function (track) {
@@ -1392,7 +1404,7 @@ var AppListComponent = /** @class */ (function () {
                 this.goalTrackService.deleteTrack(track);
                 // Update class member to maintain localStorage sync.
                 if (this.track.name === track.name) {
-                    this.track = '';
+                    this.track = null;
                 }
                 for (var i = 0; i < this.tracks.length; i++) {
                     if (track.name === this.tracks[i].name) {
@@ -1405,7 +1417,7 @@ var AppListComponent = /** @class */ (function () {
             }
         }
         catch (error) {
-            console.log('Could not delete track from localStorage and/or class property.' + error.message);
+            console.log('Could not delete track from localStorage and/or class property. ' + error.message);
         }
     };
     AppListComponent.prototype.editTrack = function ($event) {
