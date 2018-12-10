@@ -687,7 +687,7 @@ var GoalTrackService = /** @class */ (function () {
             newestTrack = newTrackArray.pop();
         }
         // .match() returns an array matching the regex; in this case, any numbers
-        var number = newestTrack.name.match(/\d/g);
+        var number = newestTrack ? newestTrack.name.match(/\d/g) : null;
         // Is there a number in the track name?
         if (newestTrack && number) {
             // .join returns a string from the number array
