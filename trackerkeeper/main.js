@@ -432,7 +432,7 @@ var GoalTrackService = /** @class */ (function () {
             return true;
         }
         else {
-            alert('Please enter a time greater than 0.');
+            // alert('Please enter a time greater than 0.');
         }
     };
     // Defaults all tracks selected property to false
@@ -1019,7 +1019,6 @@ var AppCalendarComponent = /** @class */ (function () {
      * time entered when you click on a calendar cell.
      */
     AppCalendarComponent.prototype.updateStorage = function (date, day, time) {
-        console.log('this.track', this.track);
         this.goalTrackService.updateTrackTimeInStorage(date, day, time);
         day.minutes = time;
         day.edit = false;
@@ -1304,7 +1303,7 @@ var AppInputComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".trackList {\n    width: 100%;\n    padding-bottom: 3em;\n}\n\nul {\n    list-style: none;\n    padding: 0;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n    background: #fff;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 32%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}\n\n.track-wrapper {\n    width: 100%;\n    display: flex;\n    align-items: center;\n}\n\n.track-wrapper div:first-child,\n.track-wrapper div:last-child {\n    flex: 1;\n}\n\n.track-details {\n    flex: 3;\n    padding-left: 1em;\n}\n\n.buttons-wrapper {\n    display: inline-block;\n}\n\n.buttons-wrapper button {\n    display: block;\n    width: 100%;\n    white-space: nowrap; \n}"
+module.exports = ".trackList {\n    width: 100%;\n    padding-bottom: 3em;\n}\n\nul {\n    list-style: none;\n    padding: 0;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n    background: #fff;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 32%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}\n\n.track-wrapper {\n    width: 100%;\n    display: flex;\n    align-items: center;\n}\n\n.track-wrapper div:first-child,\n.track-wrapper div:last-child {\n    flex: 1;\n}\n\n.track-details {\n    flex: 3;\n    padding-left: 1em;\n}\n\n.buttons-wrapper {\n    display: inline-block;\n}\n\n.buttons-wrapper button {\n    display: block;\n    width: 100%;\n    white-space: nowrap; \n}\n\n/* .disabled {\n    pointer-events: none;\n} */"
 
 /***/ }),
 
@@ -1315,7 +1314,7 @@ module.exports = ".trackList {\n    width: 100%;\n    padding-bottom: 3em;\n}\n\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"list-view sub-header\">\n    <h2>Active: {{ track?.name }}</h2>\n    <div class=\"controls\">\n        <p>Create new</p>\n        <img class=\"add-button\" (click)=\"createNew()\" src=\"./assets/new.svg\"/>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks; let i = index;\" class=\"track-{{i}}\" (click)=\"makeSelectedTrack(track)\">\n            <!-- <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\"> -->\n            <div class=\"track-wrapper\">\n                <div>\n                    <span class=\"percent\">{{ findPercentCompleted(track) }}%<br>done</span>\n                </div>\n                <div class=\"track-details\">\n                    <div>\n                        <label *ngIf=\"!track.editName\" \n                            (click)=\"editTrackDetails(track, 'name')\" \n                            name=\"name\">{{ track.name }}</label>\n                        <input *ngIf=\"track.editName\" \n                            (blur)=\"track.editName = false; updateTrackName($event, track, name.value)\"\n                            (keyup)=\"updateName($event, track, name.value)\"\n                            class=\"name\"\n                            value=\"{{ track.name }}\" \n                            type=\"text\" \n                            name=\"name\" \n                            pattern=\"[a-zA-Z\\s]+\"\n                            autofocus #name>\n                    </div>\n                    <div>\n                        <label *ngIf=\"!track.editTime\" \n                            (click)=\"editTrackDetails(track, 'time')\" \n                            name=\"time\">{{ track?.time }} hours</label>\n                        <input *ngIf=\"track.editTime\" \n                            (blur)=\"track.editTime = false; updateTrackTime(track, time.value)\" \n                            (keypress)=\"updateTime($event, track, time.value)\"\n                            class=\"time\"\n                            value=\"{{ track?.time }}\" \n                            type=\"text\" \n                            name=\"time\" \n                            pattern=\"/^\\d*\\.?\\d*$/\"\n                            autofocus #time>\n                    </div>\n                </div>\n                <div class=\"buttons-wrapper\">\n                    <button type=\"button\" id=\"edit\" class=\"listButtons\" (click)=\"makeSelectedTrack(track)\" [routerLink]=\"['/Input']\">add time</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack(track)\">delete</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"exportTrackData(track.name)\">export</button> \n                </div>\n            </div>\n        </li>\n    </ul>\n</div>\n<!-- <div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2>\n</div> -->\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo</h3>\n</div>"
+module.exports = "<div class=\"list-view sub-header\">\n    <h2>Active: {{ track?.name }}</h2>\n    <div class=\"controls\">\n        <p>Create new</p>\n        <img class=\"add-button\" (click)=\"createNew()\" src=\"./assets/new.svg\"/>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks; let i = index;\" \n            class=\"track-{{i}}\"\n            [class.disabled]=\"disabled\"\n            (click)=\"makeSelectedTrack(track)\"\n            [routerLink]=\"!disabled ? ['/Input'] : null\"\n            >\n            <!-- <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\"> -->\n            <div class=\"track-wrapper\">\n                <div>\n                    <span class=\"percent\">{{ findPercentCompleted(track) }}%<br>done</span>\n                </div>\n                <div class=\"track-details\">\n                    <div>\n                        <label *ngIf=\"!track.editName\" \n                            (click)=\"editTrackDetails(track, 'name')\" \n                            name=\"name\">{{ track.name }}</label>\n                        <input *ngIf=\"track.editName\" \n                            (blur)=\"track.editName = false; updateTrackName($event, track, name.value)\"\n                            (keyup)=\"updateName($event, track, name.value)\"\n                            class=\"name\"\n                            value=\"{{ track.name }}\" \n                            type=\"text\" \n                            name=\"name\" \n                            pattern=\"[a-zA-Z\\s]+\"\n                            autofocus #name>\n                    </div>\n                    <div>\n                        <label *ngIf=\"!track.editTime\" \n                            (click)=\"editTrackDetails(track, 'time')\" \n                            name=\"time\">{{ track?.time }} hours</label>\n                        <input *ngIf=\"track.editTime\" \n                            (blur)=\"track.editTime = false; updateTrackTime(track, time.value)\" \n                            (keypress)=\"updateTime($event, track, time.value)\"\n                            class=\"time\"\n                            value=\"{{ track?.time }}\" \n                            type=\"text\" \n                            name=\"time\" \n                            pattern=\"/^\\d*\\.?\\d*$/\"\n                            autofocus #time>\n                    </div>\n                </div>\n                <div class=\"buttons-wrapper\">\n                    <!-- <button type=\"button\" id=\"edit\" class=\"listButtons\" (click)=\"makeSelectedTrack(track)\" [routerLink]=\"['/Input']\">add time</button> -->\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack(track)\">delete</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"exportTrackData(track.name)\">export</button> \n                </div>\n            </div>\n        </li>\n    </ul>\n</div>\n<!-- <div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2>\n</div> -->\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo</h3>\n</div>"
 
 /***/ }),
 
@@ -1344,11 +1343,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var AppListComponent = /** @class */ (function () {
+    // private nameVetted;
     function AppListComponent(goalTrackService) {
         this.goalTrackService = goalTrackService;
         this.noTracks = false;
         this.nameSelected = false;
         this.timeSelected = false;
+        this.disabled = false;
     }
     AppListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1428,6 +1429,7 @@ var AppListComponent = /** @class */ (function () {
         this.goalTrackService.exportTrackData(trackName);
     };
     AppListComponent.prototype.updateTrackName = function (event, track, property) {
+        var _this = this;
         var nameIsNotTaken;
         if (event.type === 'blur') {
             nameIsNotTaken = this.goalTrackService.nameCheck(property);
@@ -1439,8 +1441,12 @@ var AppListComponent = /** @class */ (function () {
             localStorage.removeItem(formerName);
         }
         track.editName = false;
+        setTimeout(function () {
+            _this.disabled = false;
+        }), 500;
     };
     AppListComponent.prototype.updateTrackTime = function (track, property) {
+        var _this = this;
         // Check if number starts with 0
         if (property.charAt(0) === '0') {
             property = parseFloat(property);
@@ -1448,8 +1454,12 @@ var AppListComponent = /** @class */ (function () {
         track.time = property > 0 ? property : 0;
         localStorage.setItem(this.track['name'], JSON.stringify(track));
         track.editTime = false;
+        setTimeout(function () {
+            _this.disabled = false;
+        }), 500;
     };
     AppListComponent.prototype.editTrackDetails = function (track, property) {
+        this.disabled = true;
         if (property === 'name') {
             track.editName = true;
         }
