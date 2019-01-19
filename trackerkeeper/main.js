@@ -290,7 +290,6 @@ var GoalTrackService = /** @class */ (function () {
         this.count = 2;
         this.event = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.findSelectedTrack().subscribe(function (track) {
-            console.log('this.track', _this.track);
             _this.track = track;
             return track;
         });
@@ -432,7 +431,23 @@ var GoalTrackService = /** @class */ (function () {
             return true;
         }
         else {
-            // alert('Please enter a time greater than 0.');
+            return;
+        }
+    };
+    /**
+    * Check to see if user is inputting time in hours.
+    * We declare these as lets instead of class properties cuz they aren't
+    * loaded in time for Angular to find them in the DOM otherwise.
+    */
+    GoalTrackService.prototype.minutesOrHours = function (hours, minutes) {
+        if (hours === true && minutes <= 24) {
+            return minutes * 60;
+        }
+        else if (hours === false && minutes <= 1440) {
+            return minutes;
+        }
+        else {
+            return;
         }
     };
     // Defaults all tracks selected property to false
@@ -630,10 +645,16 @@ var GoalTrackService = /** @class */ (function () {
             console.log('Currently there\'s no selected track. ' + error.message);
         }
     };
-    GoalTrackService.prototype.exportTrackData = function (trackName) {
+    GoalTrackService.prototype.exportTrackData = function (track) {
         var email = prompt('Provide an email address to send this data to.');
-        var trackData = this.formatTrackData(trackName);
-        window.location.href = 'mailto:' + email + '?subject=' + trackName + ' Data&body=' + trackData + '';
+        // Was email address provided?
+        if (email === null || email === '' || !email) {
+            return false;
+        }
+        else {
+            var trackData = this.formatTrackData(track);
+            window.location.href = 'mailto:' + email + '?subject=' + track.name + ' Data&body=' + trackData + '';
+        }
     };
     /**
      *
@@ -641,10 +662,10 @@ var GoalTrackService = /** @class */ (function () {
      *
      * Get the track minutes and export them in an easy to read JSON file.
      */
-    GoalTrackService.prototype.formatTrackData = function (trackName) {
-        var trackDataOutput = 'Track name = ' + trackName + '%0D%0A%0D%0A';
-        var track = localStorage.getItem(localStorage.key(trackName));
-        var parsedTrack = JSON.parse(track);
+    GoalTrackService.prototype.formatTrackData = function (track) {
+        var trackDataOutput = 'Track name = ' + track.name + '%0D%0A%0D%0A';
+        var selectedTrack = localStorage.getItem(track.name);
+        var parsedTrack = JSON.parse(selectedTrack);
         var trackDates = parsedTrack['dates'];
         var sortTrackDates = trackDates.sort(this.compareFunction);
         for (var i = 0; i < trackDates.length; i++) {
@@ -653,7 +674,7 @@ var GoalTrackService = /** @class */ (function () {
             var trackDataString = itemDate + ' = ' + itemTime + '%0D%0A';
             trackDataOutput += trackDataString;
         }
-        trackDataOutput += '%0D%0A' + track;
+        trackDataOutput += '%0D%0A' + selectedTrack;
         return trackDataOutput;
     };
     /**
@@ -1019,9 +1040,12 @@ var AppCalendarComponent = /** @class */ (function () {
      * time entered when you click on a calendar cell.
      */
     AppCalendarComponent.prototype.updateStorage = function (date, day, time) {
-        this.goalTrackService.updateTrackTimeInStorage(date, day, time);
-        day.minutes = time;
-        day.edit = false;
+        var isValidTime = this.goalTrackService.minutesOrHours(false, time);
+        if (isValidTime) {
+            this.goalTrackService.updateTrackTimeInStorage(date, day, time);
+            day.minutes = time;
+            day.edit = false;
+        }
     };
     /**
    *
@@ -1164,19 +1188,6 @@ var AppInputComponent = /** @class */ (function () {
     AppInputComponent.prototype.disableRouteTrigger = function () {
         this.minutesAlreadyEntered = '';
     };
-    /**
-     * Check to see if user is inputting time in hours.
-     * We declares these as lets instead of class properties cuz they aren't
-     * loaded in time for Angular to find them in the DOM otherwise.
-     */
-    AppInputComponent.prototype.minutesOrHours = function () {
-        if (this.hours === true) {
-            return this.minutes * 60;
-        }
-        else {
-            return this.minutes;
-        }
-    };
     // Have previous times been entered for the date being checked?
     AppInputComponent.prototype.sameDateCheck = function () {
         for (var i = 0; i < this.track['dates'].length; i++) {
@@ -1218,7 +1229,7 @@ var AppInputComponent = /** @class */ (function () {
                 return true;
             }
             else {
-                alert('Please provide a time greater than 0.');
+                alert('Please enter an actual amount of time, dummy.');
                 return false;
             }
         }
@@ -1230,7 +1241,7 @@ var AppInputComponent = /** @class */ (function () {
     AppInputComponent.prototype.addMinutes = function () {
         try {
             // Check if minutes or hours
-            this.minutes = this.minutesOrHours();
+            this.minutes = this.goalTrackService.minutesOrHours(this.hours, this.minutes);
             // Create new time object for the dates array
             this.setTimeObject(this.goalTrackService.createDateObject());
             // Check if min > 0 and if there are prev. date entries in dates array
@@ -1314,7 +1325,7 @@ module.exports = ".trackList {\n    width: 100%;\n    padding-bottom: 3em;\n}\n\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"list-view sub-header\">\n    <h2>Active: {{ track?.name }}</h2>\n    <div class=\"controls\">\n        <p>Create new</p>\n        <img class=\"add-button\" (click)=\"createNew()\" src=\"./assets/new.svg\"/>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks; let i = index;\" \n            class=\"track-{{i}}\"\n            [class.disabled]=\"disabled\"\n            (click)=\"makeSelectedTrack(track)\"\n            [routerLink]=\"!disabled ? ['/Input'] : null\"\n            >\n            <!-- <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\"> -->\n            <div class=\"track-wrapper\">\n                <div>\n                    <span class=\"percent\">{{ findPercentCompleted(track) }}%<br>done</span>\n                </div>\n                <div class=\"track-details\">\n                    <div>\n                        <label *ngIf=\"!track.editName\" \n                            (click)=\"editTrackDetails(track, 'name')\" \n                            name=\"name\">{{ track.name }}</label>\n                        <input *ngIf=\"track.editName\" \n                            (blur)=\"track.editName = false; updateTrackName($event, track, name.value)\"\n                            (keyup)=\"updateName($event, track, name.value)\"\n                            class=\"name\"\n                            value=\"{{ track.name }}\" \n                            type=\"text\" \n                            name=\"name\" \n                            pattern=\"[a-zA-Z\\s]+\"\n                            autofocus #name>\n                    </div>\n                    <div>\n                        <label *ngIf=\"!track.editTime\" \n                            (click)=\"editTrackDetails(track, 'time')\" \n                            name=\"time\">{{ track?.time }} hours</label>\n                        <input *ngIf=\"track.editTime\" \n                            (blur)=\"track.editTime = false; updateTrackTime(track, time.value)\" \n                            (keypress)=\"updateTime($event, track, time.value)\"\n                            class=\"time\"\n                            value=\"{{ track?.time }}\" \n                            type=\"text\" \n                            name=\"time\" \n                            pattern=\"/^\\d*\\.?\\d*$/\"\n                            autofocus #time>\n                    </div>\n                </div>\n                <div class=\"buttons-wrapper\">\n                    <!-- <button type=\"button\" id=\"edit\" class=\"listButtons\" (click)=\"makeSelectedTrack(track)\" [routerLink]=\"['/Input']\">add time</button> -->\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack(track)\">delete</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"exportTrackData(track.name)\">export</button> \n                </div>\n            </div>\n        </li>\n    </ul>\n</div>\n<!-- <div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2>\n</div> -->\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo</h3>\n</div>"
+module.exports = "<div class=\"list-view sub-header\">\n    <h2>Active: {{ track?.name }}</h2>\n    <div class=\"controls\">\n        <p>Create new</p>\n        <img class=\"add-button\" (click)=\"createNew()\" src=\"./assets/new.svg\"/>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks; let i = index;\" \n            class=\"track-{{i}}\"\n            [class.disabled]=\"disabled\"\n            (click)=\"makeSelectedTrack(track)\"\n            [routerLink]=\"!disabled ? ['/Input'] : null\"\n            >\n            <!-- <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\"> -->\n            <div class=\"track-wrapper\">\n                <div>\n                    <span class=\"percent\">{{ findPercentCompleted(track) }}%<br>done</span>\n                </div>\n                <div class=\"track-details\">\n                    <div>\n                        <label *ngIf=\"!track.editName\" \n                            (click)=\"editTrackDetails(track, 'name')\" \n                            name=\"name\">{{ track.name }}</label>\n                        <input *ngIf=\"track.editName\" \n                            (blur)=\"track.editName = false; updateTrackName($event, track, name.value)\"\n                            (keyup)=\"updateName($event, track, name.value)\"\n                            class=\"name\"\n                            value=\"{{ track.name }}\" \n                            type=\"text\" \n                            name=\"name\" \n                            pattern=\"[a-zA-Z\\s]+\"\n                            autofocus #name>\n                    </div>\n                    <div>\n                        <label *ngIf=\"!track.editTime\" \n                            (click)=\"editTrackDetails(track, 'time')\" \n                            name=\"time\">{{ track?.time }} hours</label>\n                        <input *ngIf=\"track.editTime\" \n                            (blur)=\"track.editTime = false; updateTrackTime(track, time.value)\" \n                            (keypress)=\"updateTime($event, track, time.value)\"\n                            class=\"time\"\n                            value=\"{{ track?.time }}\" \n                            type=\"text\" \n                            name=\"time\" \n                            pattern=\"/^\\d*\\.?\\d*$/\"\n                            autofocus #time>\n                    </div>\n                </div>\n                <div class=\"buttons-wrapper\">\n                    <!-- <button type=\"button\" id=\"edit\" class=\"listButtons\" (click)=\"makeSelectedTrack(track)\" [routerLink]=\"['/Input']\">add time</button> -->\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack(track)\">delete</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"exportTrackData(track)\">export</button> \n                </div>\n            </div>\n        </li>\n    </ul>\n</div>\n<!-- <div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2>\n</div> -->\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo</h3>\n</div>"
 
 /***/ }),
 
@@ -1425,8 +1436,8 @@ var AppListComponent = /** @class */ (function () {
         this.makeSelectedTrack($event);
         this.goalTrackService.trackToEdit = this.track['name'];
     };
-    AppListComponent.prototype.exportTrackData = function (trackName) {
-        this.goalTrackService.exportTrackData(trackName);
+    AppListComponent.prototype.exportTrackData = function (track) {
+        this.goalTrackService.exportTrackData(track);
     };
     AppListComponent.prototype.updateTrackName = function (event, track, property) {
         var _this = this;
