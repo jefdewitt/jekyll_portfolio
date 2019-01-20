@@ -372,19 +372,16 @@ var GoalTrackService = /** @class */ (function () {
     };
     // Returns the current selected track
     GoalTrackService.prototype.findSelectedTrack = function () {
-        // private findSelectedTrack() {
         try {
             for (var i = 0; i < localStorage.length; i++) {
                 var track = localStorage.getItem(localStorage.key(i));
                 track = JSON.parse(track);
                 if (track['selected'] === true) {
                     return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(track);
-                    // return track;
                 }
             }
             // If there's no selected tracks
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(false);
-            // return false;
         }
         catch (error) {
             console.log('Currently there\'s no selected track. ' + error.message);
@@ -678,8 +675,7 @@ var GoalTrackService = /** @class */ (function () {
         trackDates.sort(this.compareFunction);
         for (var i = 0; i < trackDates.length; i++) {
             var trackDataString = '';
-            // store 2 items
-            debugger;
+            // grab 2 entries for date comparison
             var item1 = parsedTrack['dates'][i - 1];
             item1 = item1 ? new Date(item1.recordedDate.replace('-', '/')) : null;
             var item2 = parsedTrack['dates'][i];
@@ -692,11 +688,9 @@ var GoalTrackService = /** @class */ (function () {
                 for (var j = numberOfDays - 1; j > 0; j--) {
                     var timePeriod = oneDay * j;
                     var adjustedTime = item2 - timePeriod;
-                    // item2 = item2 - timePeriod;
                     var placeHolder = new Date(adjustedTime);
                     itemDate = this.createDateObject(placeHolder);
                     itemTime = '0';
-                    // trackDates.push({'recordedMinutes': itemTime, 'recordedDate': itemDate});
                     trackDataString += itemDate + ' = ' + itemTime + '%0D%0A';
                 }
                 itemDate = parsedTrack['dates'][i]['recordedDate'];
