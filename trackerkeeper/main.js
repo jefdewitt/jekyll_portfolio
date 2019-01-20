@@ -323,7 +323,7 @@ var GoalTrackService = /** @class */ (function () {
      *
      * Takes an actual formatted year/month/day date string, a day
      * that represents the number of the day in that month, and the
-     * entered when you click on a calendar cell.
+     * time entered when you click on a calendar cell.
      */
     GoalTrackService.prototype.updateTrackTimeInStorage = function (date, day, time) {
         var convertedTime = this.convertToNumber(time);
@@ -465,8 +465,8 @@ var GoalTrackService = /** @class */ (function () {
         }
     };
     // Create a string from a Date object with today's date, format YYYY-MM-DD
-    GoalTrackService.prototype.createDateObject = function () {
-        var dateObj = new Date();
+    GoalTrackService.prototype.createDateObject = function (date) {
+        var dateObj = date ? date : new Date();
         var month = dateObj.getMonth() + 1; // getMonth is 0-based
         if (month < 10) {
             month = '0' + month;
@@ -645,6 +645,13 @@ var GoalTrackService = /** @class */ (function () {
             console.log('Currently there\'s no selected track. ' + error.message);
         }
     };
+    /**
+     *
+     * @param track
+     *
+     * Takes a track object and prompts a user for an email address
+     * to send the track data (dates & times entered).
+     */
     GoalTrackService.prototype.exportTrackData = function (track) {
         var email = prompt('Provide an email address to send this data to.');
         // Was email address provided?
@@ -658,7 +665,7 @@ var GoalTrackService = /** @class */ (function () {
     };
     /**
      *
-     * @param trackName: string
+     * @param trackName
      *
      * Get the track minutes and export them in an easy to read JSON file.
      */
@@ -667,11 +674,39 @@ var GoalTrackService = /** @class */ (function () {
         var selectedTrack = localStorage.getItem(track.name);
         var parsedTrack = JSON.parse(selectedTrack);
         var trackDates = parsedTrack['dates'];
-        var sortTrackDates = trackDates.sort(this.compareFunction);
+        var oneDay = 86400000;
+        trackDates.sort(this.compareFunction);
         for (var i = 0; i < trackDates.length; i++) {
-            var itemDate = parsedTrack['dates'][i]['recordedDate'];
-            var itemTime = parsedTrack['dates'][i]['recordedMinutes'];
-            var trackDataString = itemDate + ' = ' + itemTime + '%0D%0A';
+            var trackDataString = '';
+            // store 2 items
+            debugger;
+            var item1 = parsedTrack['dates'][i - 1];
+            item1 = item1 ? new Date(item1.recordedDate.replace('-', '/')) : null;
+            var item2 = parsedTrack['dates'][i];
+            item2 = item2 ? new Date(item2.recordedDate.replace('-', '/')) : null;
+            var itemDate = void 0;
+            var itemTime = void 0;
+            // compute how many days are in between entries
+            var numberOfDays = (item2 - item1) / oneDay;
+            if ((item1 && item2) && (numberOfDays)) {
+                for (var j = numberOfDays - 1; j > 0; j--) {
+                    var timePeriod = oneDay * j;
+                    var adjustedTime = item2 - timePeriod;
+                    // item2 = item2 - timePeriod;
+                    var placeHolder = new Date(adjustedTime);
+                    itemDate = this.createDateObject(placeHolder);
+                    itemTime = '0';
+                    // trackDates.push({'recordedMinutes': itemTime, 'recordedDate': itemDate});
+                    trackDataString += itemDate + ' = ' + itemTime + '%0D%0A';
+                }
+                itemDate = parsedTrack['dates'][i]['recordedDate'];
+                itemTime = parsedTrack['dates'][i]['recordedMinutes'];
+            }
+            else {
+                itemDate = parsedTrack['dates'][i]['recordedDate'];
+                itemTime = parsedTrack['dates'][i]['recordedMinutes'];
+            }
+            trackDataString += itemDate + ' = ' + itemTime + '%0D%0A';
             trackDataOutput += trackDataString;
         }
         trackDataOutput += '%0D%0A' + selectedTrack;
@@ -1109,6 +1144,14 @@ var AppCalendarComponent = /** @class */ (function () {
             day.edit = true;
         }
     };
+    /**
+     *
+     * @param hours
+     *
+     * All we're doing here is converting the time displayed in the
+     * cal from min to hrs & vice versa. Hours is a boolean set by
+     * selecting a checkbox.
+     */
     AppCalendarComponent.prototype.changeTimeFrame = function (hours) {
         this.month.weeks.forEach(function (element) {
             element.forEach(function (item) {
