@@ -775,7 +775,7 @@ var GoalTrackService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n    position: relative;\n    width: 100%;\n}\n\ntr {\n    text-align: center;\n    height: 3rem;\n}\n\nthead,\ntd {\n    position: relative;\n}\n\n.arrow {\n    position: absolute;\n    height: 10px;\n    width: 10px;\n    top: 8px;\n    border-top: solid 5px #444;\n    border-left: solid 5px #444;\n    z-index: 1;\n}\n\n.arrow.left {\n    left: 10px;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg);\n}\n\n.arrow.right {\n    right: 10px;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n\nlabel[class^=\"timeStamp\"] {\n    font-size: 8px;\n    color: red;\n    position: absolute;\n        left: 75%;\n}\n\ninput {\n    position: absolute;\n    left: 75%;\n    top: 25%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center;\n    width: 4em;\n    opacity: .7;\n}\n"
+module.exports = "table {\n    position: relative;\n    width: 100%;\n}\n\ntr {\n    text-align: center;\n    height: 3rem;\n}\n\nthead,\ntd {\n    position: relative;\n}\n\n.arrow {\n    position: absolute;\n    height: 10px;\n    width: 10px;\n    top: 8px;\n    border-top: solid 5px #444;\n    border-left: solid 5px #444;\n    z-index: 1;\n}\n\n.arrow.left {\n    left: 10px;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg);\n}\n\n.arrow.right {\n    right: 10px;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n\nlabel[class^=\"timeStamp\"] {\n    font-size: 8px;\n    color: red;\n    position: absolute;\n        left: 75%;\n}\n\ntd input {\n    position: absolute;\n    left: 75%;\n    top: 25%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center;\n    width: 4em;\n    opacity: .7;\n}\n\n.hours-button {\n    display: block;\n    text-align: right;\n}\n"
 
 /***/ }),
 
@@ -786,7 +786,7 @@ module.exports = "table {\n    position: relative;\n    width: 100%;\n}\n\ntr {\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main\" (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"-1\" [ngClass]=\"{'in': visibleAnimate}\"\n[ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\n  <table class=\"\" cols=\"7\" cellpadding=\"0\" cellspacing=\"0\">\n    <thead>\n      <tr>\n        <th colspan=\"7\"><span class=\"arrow left\" (click)=\"prevMonth()\"></span> {{ displayMonth }} {{ displayYear }}<span class=\"arrow right\" (click)=\"nextMonth()\"></span></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n          <td *ngFor=\"let day of weekdays\">{{ day }}</td>\n      </tr>\n      <tr *ngFor=\"let week of month.weeks\"> \n          <td *ngFor=\"let day of week\" \n              class=\"{{ checkForToday(day.date) }}\" \n              id=\"date-{{ curYear }}-{{ formatSingleDigitValues(monthToDisplay + 1) }}-{{ formatSingleDigitValues(day.date) }}\"\n              (click)=\"editDateEntryTime(day)\"\n              >{{ day.date }}\n            <label *ngIf=\"!day.edit\" \n                   class=\"timeStamp-{{ day.date }}\">{{ day.minutes > 0 ? day.minutes : '' }}\n            </label>\n            <input *ngIf=\"day.edit\" \n                   (blur)=\"updateStorage(curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\" \n                   (keypress)=\"updateTime($event, curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\"\n                   tabindex=\"0\" \n                   type=\"text\" \n                   value=\"{{ day.minutes ? day.minutes : 0 }}\" \n                   #time>\n          </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n"
+module.exports = "<div class=\"main\" (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"-1\" [ngClass]=\"{'in': visibleAnimate}\"\n[ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\n<label class=\"hours-button\" for=\"hours\">Hours\n    <input type=\"checkbox\" \n        name=\"hours\" \n        id=\"hours\" \n        (click)=\"changeTimeFrame(!hours); hours = !hours\">\n  </label>\n  <table class=\"\" cols=\"7\" cellpadding=\"0\" cellspacing=\"0\">\n    <thead>\n      <tr>\n        <th colspan=\"7\"><span class=\"arrow left\" (click)=\"prevMonth()\"></span> {{ displayMonth }} {{ displayYear }}<span class=\"arrow right\" (click)=\"nextMonth()\"></span></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n          <td *ngFor=\"let day of weekdays\">{{ day }}</td>\n      </tr>\n      <tr *ngFor=\"let week of month.weeks\"> \n          <td *ngFor=\"let day of week\" \n              class=\"{{ checkForToday(day.date) }}\" \n              id=\"date-{{ curYear }}-{{ formatSingleDigitValues(monthToDisplay + 1) }}-{{ formatSingleDigitValues(day.date) }}\"\n              (click)=\"editDateEntryTime(day)\"\n              >{{ day.date }}\n            <label *ngIf=\"!day.edit\" \n                   class=\"timeStamp-{{ day.date }}\">{{ day.minutes > 0 ? day.minutes : '' }}\n            </label>\n            <input *ngIf=\"day.edit\" \n                   (blur)=\"updateStorage(curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\" \n                   (keypress)=\"updateTime($event, curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\"\n                   tabindex=\"0\" \n                   type=\"text\" \n                   value=\"{{ day.minutes ? day.minutes : 0 }}\" \n                   #time>\n          </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n"
 
 /***/ }),
 
@@ -824,6 +824,7 @@ var AppCalendarComponent = /** @class */ (function () {
             weeks: []
         };
         this.curYear = this.todayDate.getFullYear();
+        this.hours = false;
         // Used in main calendar build method
         this.weeks = [];
         this.tableRows = [];
@@ -926,9 +927,9 @@ var AppCalendarComponent = /** @class */ (function () {
     };
     /**
      *
-     * @param monthIndex
+     * @param monthIndex number;
      *
-     * This builds the flippin calendar. It's one parameter is used
+     * This builds the flippin calendar. Its one parameter is used
      * when cycling between months.
      */
     AppCalendarComponent.prototype.buildCal = function (monthIndex) {
@@ -1040,9 +1041,9 @@ var AppCalendarComponent = /** @class */ (function () {
      * time entered when you click on a calendar cell.
      */
     AppCalendarComponent.prototype.updateStorage = function (date, day, time) {
-        var isValidTime = this.goalTrackService.minutesOrHours(false, time);
-        if (isValidTime) {
-            this.goalTrackService.updateTrackTimeInStorage(date, day, time);
+        var minutes = this.goalTrackService.minutesOrHours(this.hours, time);
+        if (minutes) {
+            this.goalTrackService.updateTrackTimeInStorage(date, day, minutes);
             day.minutes = time;
             day.edit = false;
         }
@@ -1107,6 +1108,18 @@ var AppCalendarComponent = /** @class */ (function () {
             }
             day.edit = true;
         }
+    };
+    AppCalendarComponent.prototype.changeTimeFrame = function (hours) {
+        this.month.weeks.forEach(function (element) {
+            element.forEach(function (item) {
+                if (item.minutes > 0 && hours) {
+                    item.minutes = item.minutes / 60;
+                }
+                else {
+                    item.minutes = item.minutes * 60;
+                }
+            });
+        });
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])('time'),
