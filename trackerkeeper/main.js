@@ -808,7 +808,7 @@ var GoalTrackService = /** @class */ (function () {
         var times = dates.reduce(function (a, b) {
             return a + b.recordedMinutes;
         }, 0);
-        var avgOverTimeSpan = Math.floor(times / timeInBetween);
+        var avgOverTimeSpan = timeInBetween > 0 ? Math.floor(times / timeInBetween) : times;
         console.log(avgOverTimeSpan + ' ' + timeInBetween);
         return [avgOverTimeSpan, timeInBetween];
     };
