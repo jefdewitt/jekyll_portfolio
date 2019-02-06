@@ -287,10 +287,10 @@ var GoalTrackService = /** @class */ (function () {
     function GoalTrackService() {
         var _this = this;
         this.trackToEdit = '';
+        this.oneDay = 86400000;
         this.count = 2;
         this.event = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.findSelectedTrack().subscribe(function (track) {
-            console.log('this.track', _this.track);
             _this.track = track;
             return track;
         });
@@ -324,7 +324,7 @@ var GoalTrackService = /** @class */ (function () {
      *
      * Takes an actual formatted year/month/day date string, a day
      * that represents the number of the day in that month, and the
-     * entered when you click on a calendar cell.
+     * time entered when you click on a calendar cell.
      */
     GoalTrackService.prototype.updateTrackTimeInStorage = function (date, day, time) {
         var convertedTime = this.convertToNumber(time);
@@ -373,19 +373,16 @@ var GoalTrackService = /** @class */ (function () {
     };
     // Returns the current selected track
     GoalTrackService.prototype.findSelectedTrack = function () {
-        // private findSelectedTrack() {
         try {
             for (var i = 0; i < localStorage.length; i++) {
                 var track = localStorage.getItem(localStorage.key(i));
                 track = JSON.parse(track);
                 if (track['selected'] === true) {
                     return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(track);
-                    // return track;
                 }
             }
             // If there's no selected tracks
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(false);
-            // return false;
         }
         catch (error) {
             console.log('Currently there\'s no selected track. ' + error.message);
@@ -432,7 +429,23 @@ var GoalTrackService = /** @class */ (function () {
             return true;
         }
         else {
-            alert('Please enter a time greater than 0.');
+            return;
+        }
+    };
+    /**
+    * Check to see if user is inputting time in hours.
+    * We declare these as lets instead of class properties cuz they aren't
+    * loaded in time for Angular to find them in the DOM otherwise.
+    */
+    GoalTrackService.prototype.minutesOrHours = function (hours, minutes) {
+        if (hours === true && minutes <= 24) {
+            return minutes * 60;
+        }
+        else if (hours === false && minutes <= 1440) {
+            return minutes;
+        }
+        else {
+            return;
         }
     };
     // Defaults all tracks selected property to false
@@ -450,8 +463,8 @@ var GoalTrackService = /** @class */ (function () {
         }
     };
     // Create a string from a Date object with today's date, format YYYY-MM-DD
-    GoalTrackService.prototype.createDateObject = function () {
-        var dateObj = new Date();
+    GoalTrackService.prototype.createDateObject = function (date) {
+        var dateObj = date ? date : new Date();
         var month = dateObj.getMonth() + 1; // getMonth is 0-based
         if (month < 10) {
             month = '0' + month;
@@ -493,9 +506,9 @@ var GoalTrackService = /** @class */ (function () {
     };
     /**
      *
-     * @param trackName : string
-     * @param startTime : number
-     * @param endTime   : number
+     * @param trackName
+     * @param startTime
+     * @param endTime
      *
      * The startTime is the number of days from today to begin the maths and the endTime is number of days from today
      * to end the maths.
@@ -524,8 +537,8 @@ var GoalTrackService = /** @class */ (function () {
     };
     /**
      *
-     * @param sum: number;
-     * @param interval: number;
+     * @param sum
+     * @param interval
      *
      * Pass a sum and a time interval (7 = week, 30 = month, etc) to find daily minutes
      */
@@ -540,12 +553,15 @@ var GoalTrackService = /** @class */ (function () {
     };
     /**
      *
-     * @param trackName string
-     * @param sum number
-     * @param interval number
+     * @param trackName
+     * @param sum
+     * @param interval
      */
     GoalTrackService.prototype.dailyPercentage = function (trackName, sum, interval) {
         try {
+            // First, is this a new(er) track? If so, there may not be enough data
+            var today = new Date();
+            this.verifyNewerTrackInfo();
             var track = this.findTrackByName(trackName);
             var timeGoal = (track['time'] !== 0) ? track['time'] : 0;
             var percent = (sum > 0 && timeGoal > 0) ? (sum / timeGoal) * 100 : 0;
@@ -576,7 +592,7 @@ var GoalTrackService = /** @class */ (function () {
     };
     /**
      *
-     * @param numberOfDays: number
+     * @param numberOfDays
      *
      * Pass the number of days you want data on and the time completed for each day will be
      * returned in a tidy array;
@@ -618,7 +634,7 @@ var GoalTrackService = /** @class */ (function () {
             for (var i = 0; i < track['dates'].length; i++) {
                 sum += Number(track['dates'][i].recordedMinutes);
             }
-            var percentage = track['time'].length > 0 ? (sum / (track['time'] * 60)) * 100 : 0;
+            var percentage = track['time'] > 0 ? (sum / (track['time'] * 60)) * 100 : 0;
             if (percentage > 0) {
                 return percentage.toFixed(2);
             }
@@ -630,36 +646,78 @@ var GoalTrackService = /** @class */ (function () {
             console.log('Currently there\'s no selected track. ' + error.message);
         }
     };
-    GoalTrackService.prototype.exportTrackData = function (trackName) {
+    /**
+     *
+     * @param track
+     *
+     * Takes a track object and prompts a user for an email address
+     * to send the track data (dates & times entered).
+     */
+    GoalTrackService.prototype.exportTrackData = function (track) {
         var email = prompt('Provide an email address to send this data to.');
-        var trackData = this.formatTrackData(trackName);
-        window.location.href = 'mailto:' + email + '?subject=' + trackName + ' Data&body=' + trackData + '';
+        // Was email address provided?
+        if (email === null || email === '' || !email) {
+            return false;
+        }
+        else {
+            var trackData = this.formatTrackData(track);
+            window.location.href = 'mailto:' + email + '?subject=' + track.name + ' Data&body=' + trackData + '';
+        }
     };
     /**
      *
-     * @param trackName: string
+     * @param trackName
      *
      * Get the track minutes and export them in an easy to read JSON file.
      */
-    GoalTrackService.prototype.formatTrackData = function (trackName) {
-        var trackDataOutput = 'Track name = ' + trackName + '%0D%0A%0D%0A';
-        var track = localStorage.getItem(localStorage.key(trackName));
-        var parsedTrack = JSON.parse(track);
+    GoalTrackService.prototype.formatTrackData = function (track) {
+        var trackDataOutput = 'Track name = ' + track.name + '%0D%0A%0D%0A';
+        var selectedTrack = localStorage.getItem(track.name);
+        var parsedTrack = JSON.parse(selectedTrack);
         var trackDates = parsedTrack['dates'];
-        var sortTrackDates = trackDates.sort(this.compareFunction);
+        trackDates.sort(this.compareFunction);
         for (var i = 0; i < trackDates.length; i++) {
-            var itemDate = parsedTrack['dates'][i]['recordedDate'];
-            var itemTime = parsedTrack['dates'][i]['recordedMinutes'];
-            var trackDataString = itemDate + ' = ' + itemTime + '%0D%0A';
+            var trackDataString = '';
+            // Grab 2 entries for date comparison
+            var item1 = parsedTrack['dates'][i - 1];
+            item1 = item1 ? new Date(item1.recordedDate.replace('-', '/')) : null;
+            var item2 = parsedTrack['dates'][i];
+            item2 = item2 ? new Date(item2.recordedDate.replace('-', '/')) : null;
+            var itemDate = void 0;
+            var itemTime = void 0;
+            /**
+             * Compute how many days are in between entries. If there are any
+             * gaps, create placeholder date objects with 0 minutes to fill them.
+             * This is so the emailed dates are sequential and there are no
+             * missing dates (makes it easier to average out times later).
+            */
+            var numberOfDays = (item2 - item1) / this.oneDay;
+            if ((item1 && item2) && (numberOfDays)) {
+                for (var j = numberOfDays - 1; j > 0; j--) {
+                    var timePeriod = this.oneDay * j;
+                    var adjustedTime = item2 - timePeriod;
+                    var placeHolder = new Date(adjustedTime);
+                    itemDate = this.createDateObject(placeHolder);
+                    itemTime = '0';
+                    trackDataString += itemDate + ' = ' + itemTime + '%0D%0A';
+                }
+                itemDate = parsedTrack['dates'][i]['recordedDate'];
+                itemTime = parsedTrack['dates'][i]['recordedMinutes'];
+            }
+            else {
+                itemDate = parsedTrack['dates'][i]['recordedDate'];
+                itemTime = parsedTrack['dates'][i]['recordedMinutes'];
+            }
+            trackDataString += itemDate + ' = ' + itemTime + '%0D%0A';
             trackDataOutput += trackDataString;
         }
-        trackDataOutput += '%0D%0A' + track;
+        trackDataOutput += '%0D%0A' + selectedTrack;
         return trackDataOutput;
     };
     /**
      *
-     * @param first: number
-     * @param second: number
+     * @param first
+     * @param second
      *
      * Sort track entries by date. First, these need to have hyphens
      * removed so we can properly parse them and then compare.
@@ -728,9 +786,31 @@ var GoalTrackService = /** @class */ (function () {
             console.log('Could not change selected track ' + error.message);
         }
     };
+    /**
+     *
+     * @param track
+     */
     GoalTrackService.prototype.deleteTrack = function (track) {
-        // const selectedTrack: any = this.findTrackByName(track.name);
         localStorage.removeItem(track.name);
+    };
+    GoalTrackService.prototype.verifyNewerTrackInfo = function () {
+        // Typed as 'any' for the subtraction below
+        var todaysDate = new Date();
+        var dates = [];
+        // find first date in storage
+        this.track.dates.forEach(function (element) {
+            dates.push(element);
+        });
+        var convertedDate = dates[0] ? dates[0].recordedDate : null;
+        convertedDate = convertedDate ? new Date(convertedDate.replace('-', '/')) : null;
+        var timeInBetween = Math.floor((todaysDate - convertedDate) / this.oneDay);
+        // Reduce lets you sum an array (dates is an array of objects)
+        var times = dates.reduce(function (a, b) {
+            return a + b.recordedMinutes;
+        }, 0);
+        var avgOverTimeSpan = timeInBetween > 0 ? Math.floor(times / timeInBetween) : times;
+        console.log(avgOverTimeSpan + ' ' + timeInBetween);
+        return [avgOverTimeSpan, timeInBetween];
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
@@ -754,7 +834,7 @@ var GoalTrackService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n    position: relative;\n    width: 100%;\n}\n\ntr {\n    text-align: center;\n    height: 3rem;\n}\n\nthead,\ntd {\n    position: relative;\n}\n\n.arrow {\n    position: absolute;\n    height: 10px;\n    width: 10px;\n    top: 8px;\n    border-top: solid 5px #444;\n    border-left: solid 5px #444;\n    z-index: 1;\n}\n\n.arrow.left {\n    left: 10px;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg);\n}\n\n.arrow.right {\n    right: 10px;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n\nlabel[class^=\"timeStamp\"] {\n    font-size: 8px;\n    color: red;\n    position: absolute;\n        left: 75%;\n}\n\ninput {\n    position: absolute;\n    left: 75%;\n    top: 25%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center;\n    width: 4em;\n    opacity: .7;\n}\n"
+module.exports = "table {\n    position: relative;\n    width: 100%;\n}\n\ntr {\n    text-align: center;\n    height: 3rem;\n}\n\nthead,\ntd {\n    position: relative;\n}\n\n.arrow {\n    position: absolute;\n    height: 10px;\n    width: 10px;\n    top: 8px;\n    border-top: solid 5px #444;\n    border-left: solid 5px #444;\n    z-index: 1;\n}\n\n.arrow.left {\n    left: 10px;\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg);\n}\n\n.arrow.right {\n    right: 10px;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n\nlabel[class^=\"timeStamp\"] {\n    font-size: 8px;\n    color: red;\n    position: absolute;\n        left: 75%;\n}\n\ntd input {\n    position: absolute;\n    left: 75%;\n    top: 25%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    text-align: center;\n    width: 4em;\n    opacity: .7;\n}\n\n.hours-button {\n    display: block;\n    text-align: right;\n}\n"
 
 /***/ }),
 
@@ -765,7 +845,7 @@ module.exports = "table {\n    position: relative;\n    width: 100%;\n}\n\ntr {\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main\" (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"-1\" [ngClass]=\"{'in': visibleAnimate}\"\n[ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\n  <table class=\"\" cols=\"7\" cellpadding=\"0\" cellspacing=\"0\">\n    <thead>\n      <tr>\n        <th colspan=\"7\"><span class=\"arrow left\" (click)=\"prevMonth()\"></span> {{ displayMonth }} {{ displayYear }}<span class=\"arrow right\" (click)=\"nextMonth()\"></span></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n          <td *ngFor=\"let day of weekdays\">{{ day }}</td>\n      </tr>\n      <tr *ngFor=\"let week of month.weeks\"> \n          <td *ngFor=\"let day of week\" \n              class=\"{{ checkForToday(day.date) }}\" \n              id=\"date-{{ curYear }}-{{ formatSingleDigitValues(monthToDisplay + 1) }}-{{ formatSingleDigitValues(day.date) }}\"\n              (click)=\"editDateEntryTime(day)\"\n              >{{ day.date }}\n            <label *ngIf=\"!day.edit\" \n                   class=\"timeStamp-{{ day.date }}\">{{ day.minutes > 0 ? day.minutes : '' }}\n            </label>\n            <input *ngIf=\"day.edit\" \n                   (blur)=\"updateStorage(curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\" \n                   (keypress)=\"updateTime($event, curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\"\n                   tabindex=\"0\" \n                   type=\"text\" \n                   value=\"{{ day.minutes ? day.minutes : 0 }}\" \n                   #time>\n          </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n"
+module.exports = "<div class=\"main\" (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"-1\" [ngClass]=\"{'in': visibleAnimate}\"\n[ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\n<label class=\"hours-button\" for=\"hours\">Hours\n    <input type=\"checkbox\" \n        name=\"hours\" \n        id=\"hours\" \n        (click)=\"changeTimeFrame(!hours); hours = !hours\">\n  </label>\n  <table class=\"\" cols=\"7\" cellpadding=\"0\" cellspacing=\"0\">\n    <thead>\n      <tr>\n        <th colspan=\"7\"><span class=\"arrow left\" (click)=\"prevMonth()\"></span> {{ displayMonth }} {{ displayYear }}<span class=\"arrow right\" (click)=\"nextMonth()\"></span></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n          <td *ngFor=\"let day of weekdays\">{{ day }}</td>\n      </tr>\n      <tr *ngFor=\"let week of month.weeks\"> \n          <td *ngFor=\"let day of week\" \n              class=\"{{ checkForToday(day.date) }}\" \n              id=\"date-{{ curYear }}-{{ formatSingleDigitValues(monthToDisplay + 1) }}-{{ formatSingleDigitValues(day.date) }}\"\n              (click)=\"editDateEntryTime(day)\"\n              >{{ day.date }}\n            <label *ngIf=\"!day.edit\" \n                   class=\"timeStamp-{{ day.date }}\">{{ day.minutes > 0 ? day.minutes : '' }}\n            </label>\n            <input *ngIf=\"day.edit\" \n                   (blur)=\"updateStorage(curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\" \n                   (keypress)=\"updateTime($event, curYear + '-' + formatSingleDigitValues(monthToDisplay + 1) + '-' + formatSingleDigitValues(day.date), day, time.value)\"\n                   tabindex=\"0\" \n                   type=\"text\" \n                   value=\"{{ day.minutes ? day.minutes : 0 }}\" \n                   #time>\n          </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n"
 
 /***/ }),
 
@@ -803,6 +883,7 @@ var AppCalendarComponent = /** @class */ (function () {
             weeks: []
         };
         this.curYear = this.todayDate.getFullYear();
+        this.hours = false;
         // Used in main calendar build method
         this.weeks = [];
         this.tableRows = [];
@@ -905,9 +986,9 @@ var AppCalendarComponent = /** @class */ (function () {
     };
     /**
      *
-     * @param monthIndex
+     * @param monthIndex number;
      *
-     * This builds the flippin calendar. It's one parameter is used
+     * This builds the flippin calendar. Its one parameter is used
      * when cycling between months.
      */
     AppCalendarComponent.prototype.buildCal = function (monthIndex) {
@@ -1019,10 +1100,12 @@ var AppCalendarComponent = /** @class */ (function () {
      * time entered when you click on a calendar cell.
      */
     AppCalendarComponent.prototype.updateStorage = function (date, day, time) {
-        console.log('this.track', this.track);
-        this.goalTrackService.updateTrackTimeInStorage(date, day, time);
-        day.minutes = time;
-        day.edit = false;
+        var minutes = this.goalTrackService.minutesOrHours(this.hours, time);
+        if (minutes) {
+            this.goalTrackService.updateTrackTimeInStorage(date, day, minutes);
+            day.minutes = time;
+            day.edit = false;
+        }
     };
     /**
    *
@@ -1085,6 +1168,26 @@ var AppCalendarComponent = /** @class */ (function () {
             day.edit = true;
         }
     };
+    /**
+     *
+     * @param hours
+     *
+     * All we're doing here is converting the time displayed in the
+     * cal from min to hrs & vice versa. Hours is a boolean set by
+     * selecting a checkbox.
+     */
+    AppCalendarComponent.prototype.changeTimeFrame = function (hours) {
+        this.month.weeks.forEach(function (element) {
+            element.forEach(function (item) {
+                if (item.minutes > 0 && hours) {
+                    item.minutes = item.minutes / 60;
+                }
+                else {
+                    item.minutes = item.minutes * 60;
+                }
+            });
+        });
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])('time'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
@@ -1112,7 +1215,7 @@ var AppCalendarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".controls img {\n    vertical-align: middle;\n}\n\nimg.cal-button {\n    margin-left: .5em;\n    width: 2rem;\n}\n\nform div {\n    display: flex;\n}\n\nform div > input {\n    border: #ddd solid 3px;\n    padding: 1em;\n    flex: 4;\n}\n\nform label {\n    padding-left: 1em;\n}\n\n.manual-input {\n    position: absolute;\n        top: 7.5em;\n    opacity: 0;\n    pointer-events: none;\n}\n\n.manual-input.active {\n    opacity: 1;\n    pointer-events: initial;\n}\n\nbutton {\n    display: block;\n    margin-top: 2em;\n    padding: 1em;\n}\n"
+module.exports = ".controls img {\n    vertical-align: super;\n}\n\nform div {\n    display: flex;\n}\n\nform div > input {\n    border: #ddd solid 3px;\n    padding: 1em;\n    flex: 4;\n    border-radius: 0;\n    border-top: #ddd solid 1px;\n}\n\nform label {\n    padding-left: 1em;\n}\n\n.manual-input {\n    position: absolute;\n        top: 6em;\n    opacity: 0;\n    pointer-events: none;\n}\n\n.manual-input.active {\n    opacity: 1;\n    pointer-events: initial;\n}\n\n.manual-input h3 {\n    margin-top: 0;\n}\n\nbutton {\n    display: block;\n    margin-top: 2em;\n    padding: 1em;\n}\n"
 
 /***/ }),
 
@@ -1165,19 +1268,6 @@ var AppInputComponent = /** @class */ (function () {
     AppInputComponent.prototype.disableRouteTrigger = function () {
         this.minutesAlreadyEntered = '';
     };
-    /**
-     * Check to see if user is inputting time in hours.
-     * We declares these as lets instead of class properties cuz they aren't
-     * loaded in time for Angular to find them in the DOM otherwise.
-     */
-    AppInputComponent.prototype.minutesOrHours = function () {
-        if (this.hours === true) {
-            return this.minutes * 60;
-        }
-        else {
-            return this.minutes;
-        }
-    };
     // Have previous times been entered for the date being checked?
     AppInputComponent.prototype.sameDateCheck = function () {
         for (var i = 0; i < this.track['dates'].length; i++) {
@@ -1219,7 +1309,7 @@ var AppInputComponent = /** @class */ (function () {
                 return true;
             }
             else {
-                alert('Please provide a time greater than 0.');
+                alert('Please enter an actual amount of time, dummy.');
                 return false;
             }
         }
@@ -1231,7 +1321,7 @@ var AppInputComponent = /** @class */ (function () {
     AppInputComponent.prototype.addMinutes = function () {
         try {
             // Check if minutes or hours
-            this.minutes = this.minutesOrHours();
+            this.minutes = this.goalTrackService.minutesOrHours(this.hours, this.minutes);
             // Create new time object for the dates array
             this.setTimeObject(this.goalTrackService.createDateObject());
             // Check if min > 0 and if there are prev. date entries in dates array
@@ -1304,7 +1394,7 @@ var AppInputComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".trackList {\n    width: 100%;\n    padding-bottom: 3em;\n}\n\nul {\n    list-style: none;\n    padding: 0;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n    background: #fff;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 32%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}\n\n.track-wrapper {\n    width: 100%;\n    display: flex;\n    align-items: center;\n}\n\n.track-wrapper div:first-child,\n.track-wrapper div:last-child {\n    flex: 1;\n}\n\n.track-details {\n    flex: 3;\n    padding-left: 1em;\n}\n\n.buttons-wrapper {\n    display: inline-block;\n}\n\n.buttons-wrapper button {\n    display: block;\n    width: 100%;\n    white-space: nowrap; \n}"
+module.exports = ".trackList {\n    width: 100%;\n    padding-bottom: 3em;\n}\n\nul {\n    list-style: none;\n    padding: 0;\n}\n\nli {\n    padding-bottom: 20px;\n    position: relative;\n    border: 5px solid #ddd;\n    padding: 10px;\n    margin-bottom: 20px;\n    background: #fff;\n}\n\nli a {\n    text-decoration: none;\n    display: block;\n    position: relative;\n    padding: 1em 1em 2em;\n}\n\n.hasTracks h2 {\n    color: #b06d06;\n    pointer-events: none;\n}\n\n.hasTracks h2:first-of-type {\n    font-size: 2em;\n    opacity: .4;\n    margin: 0;\n    text-align: left;\n}\n\n.hasTracks h2:last-of-type {\n    position: absolute;\n    bottom: .5em;\n    right: 1em;\n    margin: 0;\n}\n\nspan {\n    display: inline-block;\n    width: 32%;\n}\n\na span.percent {\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: .25em;\n    color: #000;\n}\n\n.noTracks h2 {\n    color: #000;\n    font-size: 1.5em;\n}\n\n.track-wrapper {\n    width: 100%;\n    display: flex;\n    align-items: center;\n}\n\n.track-wrapper div:first-child,\n.track-wrapper div:last-child {\n    flex: 1;\n}\n\n.track-details {\n    flex: 3;\n    padding-left: 1em;\n}\n\n.buttons-wrapper {\n    display: inline-block;\n}\n\n.buttons-wrapper button {\n    display: block;\n    width: 100%;\n    white-space: nowrap; \n}\n\n/* .disabled {\n    pointer-events: none;\n} */"
 
 /***/ }),
 
@@ -1315,7 +1405,7 @@ module.exports = ".trackList {\n    width: 100%;\n    padding-bottom: 3em;\n}\n\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"list-view sub-header\">\n    <h2>Active: {{ track?.name }}</h2>\n    <div class=\"controls\">\n        <p>Create new</p>\n        <img class=\"add-button\" (click)=\"createNew()\" src=\"./assets/new.svg\"/>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks; let i = index;\" class=\"track-{{i}}\" (click)=\"makeSelectedTrack(track)\">\n            <!-- <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\"> -->\n            <div class=\"track-wrapper\">\n                <div>\n                    <span class=\"percent\">{{ findPercentCompleted(track) }}%<br>done</span>\n                </div>\n                <div class=\"track-details\">\n                    <div>\n                        <label *ngIf=\"!track.editName\" \n                            (click)=\"editTrackDetails(track, 'name')\" \n                            name=\"name\">{{ track.name }}</label>\n                        <input *ngIf=\"track.editName\" \n                            (blur)=\"track.editName = false; updateTrackName($event, track, name.value)\"\n                            (keyup)=\"updateName($event, track, name.value)\"\n                            class=\"name\"\n                            value=\"{{ track.name }}\" \n                            type=\"text\" \n                            name=\"name\" \n                            pattern=\"[a-zA-Z\\s]+\"\n                            autofocus #name>\n                    </div>\n                    <div>\n                        <label *ngIf=\"!track.editTime\" \n                            (click)=\"editTrackDetails(track, 'time')\" \n                            name=\"time\">{{ track?.time }} hours</label>\n                        <input *ngIf=\"track.editTime\" \n                            (blur)=\"track.editTime = false; updateTrackTime(track, time.value)\" \n                            (keypress)=\"updateTime($event, track, time.value)\"\n                            class=\"time\"\n                            value=\"{{ track?.time }}\" \n                            type=\"text\" \n                            name=\"time\" \n                            pattern=\"/^\\d*\\.?\\d*$/\"\n                            autofocus #time>\n                    </div>\n                </div>\n                <div class=\"buttons-wrapper\">\n                    <button type=\"button\" id=\"edit\" class=\"listButtons\" (click)=\"makeSelectedTrack(track)\" [routerLink]=\"['/Input']\">add time</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack(track)\">delete</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"exportTrackData(track.name)\">export</button> \n                </div>\n            </div>\n        </li>\n    </ul>\n</div>\n<!-- <div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2>\n</div> -->\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo</h3>\n</div>"
+module.exports = "<div class=\"list-view sub-header\">\n    <h2>Active: {{ track?.name }}</h2>\n    <div class=\"controls\">\n        <p>Create new</p>\n        <img class=\"add-button\" (click)=\"createNew()\" src=\"./assets/new.svg\"/>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\" class=\"trackList\">\n    <ul>\n        <li *ngFor=\"let track of tracks; let i = index;\" \n            class=\"track-{{i}}\"\n            [class.disabled]=\"disabled\"\n            (click)=\"makeSelectedTrack(track)\"\n            [routerLink]=\"!disabled ? ['/Track Output'] : null\"\n            >\n            <!-- <a href=\"/Input\" [routerLink]=\"['/Input']\" id=\"trackWrapper\" (click)=\"makeSelectedTrack($event)\"> -->\n            <div class=\"track-wrapper\">\n                <div>\n                    <span class=\"percent\">{{ findPercentCompleted(track) }}%<br>done</span>\n                </div>\n                <div class=\"track-details\">\n                    <div>\n                        <label *ngIf=\"!track.editName\" \n                            (click)=\"editTrackDetails(track, 'name')\" \n                            name=\"name\">{{ track.name }}</label>\n                        <input *ngIf=\"track.editName\" \n                            (blur)=\"track.editName = false; updateTrackName($event, track, name.value)\"\n                            (keyup)=\"updateName($event, track, name.value)\"\n                            class=\"name\"\n                            value=\"{{ track.name }}\" \n                            type=\"text\" \n                            name=\"name\" \n                            pattern=\"[a-zA-Z\\s]+\"\n                            autofocus #name>\n                    </div>\n                    <div>\n                        <label *ngIf=\"!track.editTime\" \n                            (click)=\"editTrackDetails(track, 'time')\" \n                            name=\"time\">{{ track?.time }} hours</label>\n                        <input *ngIf=\"track.editTime\" \n                            (blur)=\"track.editTime = false; updateTrackTime(track, time.value)\" \n                            (keypress)=\"updateTime($event, track, time.value)\"\n                            class=\"time\"\n                            value=\"{{ track?.time }}\" \n                            type=\"text\" \n                            name=\"time\" \n                            pattern=\"/^\\d*\\.?\\d*$/\"\n                            autofocus #time>\n                    </div>\n                </div>\n                <div class=\"buttons-wrapper\">\n                    <!-- <button type=\"button\" id=\"edit\" class=\"listButtons\" (click)=\"makeSelectedTrack(track)\" [routerLink]=\"['/Input']\">add time</button> -->\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"deleteTrack(track)\">delete</button>\n                    <button type=\"button\" id=\"delete\" class=\"listButtons\" (click)=\"exportTrackData(track)\">export</button> \n                </div>\n            </div>\n        </li>\n    </ul>\n</div>\n<!-- <div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h2>Currently there are zero tracks selected. Please select a track or create a new one.</h2>\n</div> -->\n<div *ngIf=\"noTracks\" [class.noTracks]=\"noTracks\" >\n    <h3>Click the plus sign (+) to get started.</h3>\n</div>"
 
 /***/ }),
 
@@ -1344,11 +1434,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var AppListComponent = /** @class */ (function () {
+    // private nameVetted;
     function AppListComponent(goalTrackService) {
         this.goalTrackService = goalTrackService;
         this.noTracks = false;
         this.nameSelected = false;
         this.timeSelected = false;
+        this.disabled = false;
     }
     AppListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1424,10 +1516,11 @@ var AppListComponent = /** @class */ (function () {
         this.makeSelectedTrack($event);
         this.goalTrackService.trackToEdit = this.track['name'];
     };
-    AppListComponent.prototype.exportTrackData = function (trackName) {
-        this.goalTrackService.exportTrackData(trackName);
+    AppListComponent.prototype.exportTrackData = function (track) {
+        this.goalTrackService.exportTrackData(track);
     };
     AppListComponent.prototype.updateTrackName = function (event, track, property) {
+        var _this = this;
         var nameIsNotTaken;
         if (event.type === 'blur') {
             nameIsNotTaken = this.goalTrackService.nameCheck(property);
@@ -1439,8 +1532,12 @@ var AppListComponent = /** @class */ (function () {
             localStorage.removeItem(formerName);
         }
         track.editName = false;
+        setTimeout(function () {
+            _this.disabled = false;
+        }), 500;
     };
     AppListComponent.prototype.updateTrackTime = function (track, property) {
+        var _this = this;
         // Check if number starts with 0
         if (property.charAt(0) === '0') {
             property = parseFloat(property);
@@ -1448,8 +1545,12 @@ var AppListComponent = /** @class */ (function () {
         track.time = property > 0 ? property : 0;
         localStorage.setItem(this.track['name'], JSON.stringify(track));
         track.editTime = false;
+        setTimeout(function () {
+            _this.disabled = false;
+        }), 500;
     };
     AppListComponent.prototype.editTrackDetails = function (track, property) {
+        this.disabled = true;
         if (property === 'name') {
             track.editName = true;
         }
@@ -1501,7 +1602,7 @@ var AppListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#progressContainer {\n    display: flex;\n    min-height: 100px;\n    justify-content: center;\n    align-items: center;\n    margin: 3em auto 4em;\n    position: relative;\n    border-left: 1px solid;\n    border-right: 1px solid;\n    background: #fff;\n}\n\n.top {\n    position: absolute;\n    bottom: 91%;\n    width: 100%;\n    text-align: right;\n    z-index: 1;\n}\n\n.top:before {\n    content: '';\n    background: white;\n    width: 19%;\n    height: 20px;\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    right: -1%;\n    opacity: .5;\n}\n\n.top:after {\n    content: '';\n    width: 82%;\n    border-bottom: 1px solid;\n    height: 1px;\n    position: absolute;\n    left: 0;\n    top: 50%;\n    -webkit-transform: translatey(-50%);\n    transform: translatey(-50%);\n    z-index: -1;\n}\n\n.bottom {\n    position: absolute;\n    top: 90%;\n    width: 100%;\n    text-align: left;\n    z-index: 1;\n}\n\n.bottom:before {\n    content: '';\n    background: white;\n    width: 18%;\n    height: 20px;\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    left: -1%;\n    opacity: .5;\n}\n\n.bottom:after {\n    content: '';\n    width: 82%;\n    border-bottom: 1px solid;\n    height: 1px;\n    position: absolute;\n    right: 0;\n    top: 50%;\n    -webkit-transform: translatey(-50%);\n    transform: translatey(-50%);\n    z-index: -1;\n}\n\n#progressHeader {\n    margin-bottom: 1em;\n}\n\n.progressBar {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n    height: 4px;\n    width: 100px;\n    position: relative;\n}\n\nprogress {\n    position: absolute;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    left: 50%;\n    top: 50%;\n    display: inline-block;\n    border-bottom: 1px solid #fff;\n}\n\nprogress[value] {\n    box-sizing: border-box;\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n         appearance: none;\n    opacity: .75;\n    height: 11px;\n    width: 100px;\n}\n\nprogress[value]::-webkit-progress-bar {\n    background-color: #eee;\n    border-radius: 2px;\n}\n\n.before {\n    content: '';\n    position: absolute;\n    left: -75px;\n    top: -155%;\n    -webkit-transform: rotate(25deg);\n            transform: rotate(25deg);\n    width: 100%;\n    height: 100%;\n}\n\n.after {\n    position: absolute;\n    right: -45px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n}\n\nprogress::-webkit-progress-value {\n    transition: 1s width ease-in-out;\n}\n\nform {\n    display: flex;\n    justify-content: space-around;\n}\n\nul {\n    display: flex;\n}\n\nli {\n    padding: 0;\n    margin: 0;\n    height: 100px;\n    width: 20px;\n}\n\nprogress.progress-bar:before {\n    content: '';\n    display: inline-block;\n    width: .5em;\n    height: 1px;\n    background:#000;\n    position: absolute;\n        top: 50%;\n        right: 100%;\n    -webkit-transform: translatey(-50%);\n            transform: translatey(-50%);\n}\n\n.monthView progress{\n    height: 11px;\n}\n\n.three-month-view progress{\n    height: 5px;\n}\n\n.six-month-view progress{\n    height: 2px;\n    border-bottom: none;\n}\n\n.monthView .before,\n.three-month-view .before,\n.six-month-view .before,\n.before  + progress.progress-bar:before {\n    display: none;\n}\n\n.monthView:nth-of-type(3n-1) .before,\n.three-month-view:nth-of-type(9n-1) .before,\n.six-month-view:nth-of-type(18n-1) .before,\n.monthView:nth-of-type(3n-1) .before  + progress.progress-bar:before,\n.three-month-view:nth-of-type(9n-1) .before  + progress.progress-bar:before, \n.six-month-view:nth-of-type(18n-1) .before  + progress.progress-bar:before {\n    display: inline-block;\n}\n\nspan.before {\n    font-size: 8px;\n}"
+module.exports = "#progressContainer {\n    /* display: flex; */\n    /* min-height: 100px;\n    justify-content: center;\n    align-items: center; */\n    /* position: relative;\n    border-left: 1px solid;\n    border-right: 1px solid;\n    background: #fff; */\n    /* margin: 0 auto 3rem;\n    transform: rotate(270deg);\n    width: 100px;\n    padding: 0; */\n    margin: 0 auto 2em;\n    position: relative;\n    height: 150px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n#progressContainer > div {\n    /* margin: 0 auto 3rem; */\n    height: 300px;\n    width: 100px;\n    /* padding: 0;\n    position: absolute;\n    left: 50%; */\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n}\n\n@media screen and (min-width: 568px) {\n    #progressContainer > div {\n        height: 300px;\n    }\n}\n\n.top {\n    position: absolute;\n    width: 100%;\n    text-align: right;\n    z-index: 1;\n    left: 33%;\n    top: 80%;\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n}\n\n.top:before {\n    content: '';\n    background: white;\n    width: 19%;\n    height: 20px;\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    right: -1%;\n    opacity: .5;\n}\n\n/*.top:after {\n    content: '';\n    width: 50%;\n    border-bottom: 1px solid;\n    height: 1px;\n    position: absolute;\n    right: 0;\n    top: 133%;\n    -webkit-transform: translatey(-50%);\n    transform: translatey(-50%);\n    z-index: -1;\n}*/\n\n.bottom {\n    position: absolute;\n    width: 100%;\n    text-align: left;\n    z-index: 1;\n    right: 33%;\n    bottom: 0;\n    bottom: 80%;\n    -webkit-transform: rotate(90deg);\n            transform: rotate(90deg);\n}\n\n.bottom:before {\n    content: '';\n    background: white;\n    width: 18%;\n    height: 20px;\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    left: -1%;\n    opacity: .5;\n}\n\n/* .bottom:after {\n    content: '';\n    width: 50%;\n    border-bottom: 1px solid;\n    height: 1px;\n    position: absolute;\n    left: 0;\n    bottom: 133%;\n    -webkit-transform: translatey(-50%);\n    transform: translatey(-50%);\n    z-index: -1;\n} */\n\n#progressHeader {\n    margin: 0 0 1rem;\n}\n\n.progressBar {\n    /* transform: rotate(270deg);\n    height: 4px;\n    width: 100px; */\n    position: relative;\n}\n\n/* progress {\n    position: absolute;\n    transform: translate(-50%, -50%);\n    left: 50%;\n    top: 50%;\n    display: inline-block;\n    border-bottom: 1px solid #fff;\n} */\n\nprogress[value] {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    /* box-sizing: border-box;\n    display: inline-block; */\n    -webkit-appearance: none;\n    -moz-appearance: none;\n         appearance: none;\n    /* opacity: .75;\n    height: 11px;\n    width: 100px; */\n}\n\nprogress[value]::-webkit-progress-bar {\n    background-color: #eee;\n    border-radius: 2px;\n}\n\n.before {\n    content: '';\n    position: absolute;\n    right: 110%;\n    -webkit-transform: rotate(25deg);\n            transform: rotate(25deg);\n}\n\n.after {\n    position: absolute;\n    right: -45px;\n    top: 50%;\n    -webkit-transform: translatey(-50%) rotate(90deg);\n            transform: translatey(-50%) rotate(90deg);\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n}\n\nprogress::-webkit-progress-value {\n    transition: 1s width ease-in-out;\n}\n\nform {\n    display: flex;\n    justify-content: space-around;\n}\n\nul {\n    display: flex;\n}\n\nli {\n    padding: 0;\n    margin: 0;\n    height: 100px;\n    width: 20px;\n}\n\nprogress.progress-bar:before {\n    content: '';\n    display: inline-block;\n    width: .5em;\n    height: 1px;\n    background:#000;\n    position: absolute;\n        top: 50%;\n        right: 100%;\n    -webkit-transform: translatey(-50%);\n            transform: translatey(-50%);\n}\n\n/* .monthView progress{\n    height: 10px;\n}\n\n.three-month-view progress{\n    height: 5px;\n} */\n\n.six-month-view progress{\n    /* height: 2px; */\n    border-bottom: none;\n}\n\n.monthView .before,\n.three-month-view .before,\n.six-month-view .before,\n.before  + progress.progress-bar:before {\n    display: none;\n}\n\n.monthView:nth-of-type(3n-1) .before,\n.three-month-view:nth-of-type(9n+5) .before,\n.six-month-view:nth-of-type(18n+10) .before,\n.monthView:nth-of-type(3n-1) .before  + progress.progress-bar:before,\n.three-month-view:nth-of-type(9n+5) .before  + progress.progress-bar:before, \n.six-month-view:nth-of-type(18n+10) .before  + progress.progress-bar:before {\n    display: inline-block;\n}\n\nspan.before {\n    font-size: 8px;\n}"
 
 /***/ }),
 
@@ -1512,7 +1613,7 @@ module.exports = "#progressContainer {\n    display: flex;\n    min-height: 100p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"output-view sub-header\">\n    <h2>Active: {{ track.name }}</h2>\n    <div>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\">\n    <h3 id=\"progressHeader\">\n        <span *ngIf=\"showTotalCompleted\">You've completed {{ percentageDone.toFixed(2) }}%\n        of your goal {{ completed }}.</span> Your {{ timePeriod }} is\n        {{ dailyMinutes.toFixed(0) }} minutes or\n        {{ dailyPercentage.toFixed(2) }}%.\n    </h3>\n    <div id=\"progressContainer\">\n        <span class=\"top\">{{ this.mostTime }} hrs</span>\n            <div class=\"progressBar\" [class.monthView]=\"isMonthView\" \n                                     [class.three-month-view]=\"isThreeMonthView\" \n                                     [class.six-month-view]=\"isSixMonthView\" \n                                     *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\">\n                <span class=\"before\">{{ dailyRecordedTime['date'] }}</span>\n                <progress class=\"progress-bar\" max=\"{{ this.mostTime }}\" value=\"{{ dailyRecordedTime['time'] }}\"></progress>\n            </div>\n        <span class=\"bottom\">&nbsp;&nbsp;0 hrs</span>\n    </div>\n    <div id=\"formContainer\">\n        <form action=\"\">\n            <label for=\"1-month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"1-month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">1-month\n            </label>\n            <label for=\"3-month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"3-month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">3-month\n            </label>\n            <label for=\"6-month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"6-month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">6-month\n            </label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h3>Currently there are zero tracks selected. Please select a track or create a new one.</h3></div>\n\n"
+module.exports = "<div class=\"output-view sub-header\">\n    <h2>Active: {{ track.name }}</h2>\n    <div>\n    </div>\n</div>\n<div *ngIf=\"!noTracks\">\n    <h3 id=\"progressHeader\">\n        <span *ngIf=\"showTotalCompleted\">You've completed {{ percentageDone.toFixed(2) }}%\n        of your goal {{ completed }}.</span> Your {{ timePeriod }} is\n        {{ dailyMinutes.toFixed(0) }} minutes or\n        {{ dailyPercentage.toFixed(2) }}%.<span *ngIf=\"!showTotalCompleted\">\n            {{ noTimeFrameChosen }}</span>\n    </h3>\n    <div id=\"progressContainer\">\n        <div>\n            <span class=\"top\">{{ this.mostTime }} hrs</span>\n                <div class=\"progressBar\" [style.height.px]=\"width\"\n                                        [class.monthView]=\"isMonthView\" \n                                        [class.three-month-view]=\"isThreeMonthView\" \n                                        [class.six-month-view]=\"isSixMonthView\" \n                                        *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\">\n                    <span class=\"before\">{{ dailyRecordedTime['date'] }}</span>\n                    <progress class=\"progress-bar\" \n                              [style.height.px]=\"width\"\n                              max=\"{{ this.mostTime }}\" \n                              value=\"{{ dailyRecordedTime['time'] }}\"></progress>\n                </div>\n                <!-- <progress [style.height.px]=\"width\" *ngFor=\"let dailyRecordedTime of dailyRecordedTimes; let index = index; let count = count\"\n                        class=\"progress-bar\" max=\"{{ mostTime }}\" value=\"{{ dailyRecordedTime['time'] }}\">\n                    </progress>\n                    <span class=\"before\">{{ dailyRecordedTime['date'] }}</span> -->\n            <span class=\"bottom\">&nbsp;&nbsp;0 hrs</span>\n        </div>\n    </div>\n    <div id=\"formContainer\">\n        <form action=\"\">\n            <label for=\"1-month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"1-month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">1-month\n            </label>\n            <label for=\"3-month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"3-month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">3-month\n            </label>\n            <label for=\"6-month\">\n                <input type=\"radio\" name=\"timeFrame\" id=\"6-month\" class=\"radio\" (click)=\"changeTimeFrame($event)\">6-month\n            </label>\n        </form>\n    </div>\n</div>\n<div *ngIf=\"noTracks\"><h3>Currently there are zero tracks selected. Please select a track or create a new one.</h3></div>\n\n"
 
 /***/ }),
 
@@ -1526,9 +1627,9 @@ module.exports = "<div class=\"output-view sub-header\">\n    <h2>Active: {{ tra
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppOutputComponent", function() { return AppOutputComponent; });
-/* harmony import */ var _services_goal_track_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/goal-track.service */ "./src/app/services/goal-track.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_goal_track_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/goal-track.service */ "./src/app/services/goal-track.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1550,30 +1651,36 @@ var AppOutputComponent = /** @class */ (function () {
         this.percentageDone = null;
         this.timePeriod = 'progress today';
         this.completed = ' today';
+        this.noTimeFrameChosen = ' Select an option below to view a different time frame.';
         this.dailyRecordedTimes = [];
         this.noTracks = false;
         this.track = this.goalTrackService.track;
         this.showTotalCompleted = false;
+        this.mobileDeviceWidth = 300;
         var track = this.goalTrackService.track;
         if (!track) {
             this.noTracks = true;
         }
         else {
             var sumInInterval = this.goalTrackService.timeInInterval(track['name'], 0, 0);
+            this.newerTrackCheckArray = this.goalTrackService.verifyNewerTrackInfo();
             this.dailyMinAndPerc(track, sumInInterval, 1);
         }
     }
-    AppOutputComponent.prototype.ngOnInit = function () { };
     AppOutputComponent.prototype.ngAfterContentInit = function () {
-        this.dailyRecordedTimes = this.populateProgressBars(30);
+        this.dailyRecordedTimes = this.newerTrackCheckArray[1] > 30 ? this.populateProgressBars(30) : this.populateProgressBars(this.newerTrackCheckArray[1]);
+        this.width = this.newerTrackCheckArray[1] >= 29 ? 10 : Math.floor(this.mobileDeviceWidth / this.newerTrackCheckArray[1]);
         this.isMonthView = true;
     };
     /**
      *
+     * @param track
+     * @param sumInInterval
+     * @param daysInInterval
      */
     AppOutputComponent.prototype.dailyMinAndPerc = function (track, sumInInterval, daysInInterval) {
-        this.dailyMinutes = this.goalTrackService.dailyMinutes(sumInInterval, daysInInterval);
-        this.dailyPercentage = (this.goalTrackService.dailyPercentage(track['name'], sumInInterval, daysInInterval)) / 60;
+        this.dailyMinutes = this.newerTrackCheckArray[1] > daysInInterval ? this.goalTrackService.dailyMinutes(sumInInterval, daysInInterval) : this.newerTrackCheckArray[0];
+        this.dailyPercentage = this.newerTrackCheckArray[1] > daysInInterval ? (this.goalTrackService.dailyPercentage(track['name'], sumInInterval, daysInInterval)) / 60 : this.newerTrackCheckArray[0];
         this.dailyRecordedTimes = this.goalTrackService.findRecentTime(track['name'], 1);
         this.percentageDone = this.goalTrackService.percentOfEntireGoal(track['name'], sumInInterval);
     };
@@ -1596,24 +1703,27 @@ var AppOutputComponent = /** @class */ (function () {
             switch (timeValue) {
                 case '1-month':
                     var sumInInterval = this.goalTrackService.timeInInterval(this.track['name'], 0, 29);
-                    this.dailyMinAndPerc(this.track, sumInInterval, 29);
                     this.completed = ' this month';
-                    this.dailyRecordedTimes = this.populateProgressBars(30);
+                    this.dailyMinAndPerc(this.track, sumInInterval, 29);
+                    this.dailyRecordedTimes = this.newerTrackCheckArray[1] > 30 ? this.populateProgressBars(30) : this.populateProgressBars(this.newerTrackCheckArray[1]);
                     this.isMonthView = true;
+                    this.width = this.newerTrackCheckArray[1] >= 29 ? 10 : Math.floor(this.mobileDeviceWidth / this.newerTrackCheckArray[1]);
                     break;
                 case '3-month':
                     sumInInterval = this.goalTrackService.timeInInterval(this.track['name'], 0, 89);
-                    this.dailyMinAndPerc(this.track, sumInInterval, 89);
                     this.completed = ' in the last 90 days';
-                    this.dailyRecordedTimes = this.populateProgressBars(90);
+                    this.dailyMinAndPerc(this.track, sumInInterval, 89);
+                    this.dailyRecordedTimes = this.newerTrackCheckArray[1] > 30 ? this.populateProgressBars(90) : this.populateProgressBars(this.newerTrackCheckArray[1]);
                     this.isThreeMonthView = true;
+                    this.width = this.newerTrackCheckArray[1] >= 89 ? 3.33 : Math.floor(this.mobileDeviceWidth / this.newerTrackCheckArray[1]);
                     break;
                 case '6-month':
-                    sumInInterval = this.goalTrackService.timeInInterval(this.track['name'], 0, 183);
-                    this.dailyMinAndPerc(this.track, sumInInterval, 183);
+                    sumInInterval = this.goalTrackService.timeInInterval(this.track['name'], 0, 179);
                     this.completed = ' in the last 6 months';
-                    this.dailyRecordedTimes = this.populateProgressBars(184);
+                    this.dailyMinAndPerc(this.track, sumInInterval, 179);
+                    this.dailyRecordedTimes = this.newerTrackCheckArray[1] > 30 ? this.populateProgressBars(179) : this.populateProgressBars(this.newerTrackCheckArray[1]);
                     this.isSixMonthView = true;
+                    this.width = this.newerTrackCheckArray[1] >= 179 ? 1.66 : Math.floor(this.mobileDeviceWidth / this.newerTrackCheckArray[1]);
                     break;
             }
         }
@@ -1623,14 +1733,14 @@ var AppOutputComponent = /** @class */ (function () {
     };
     /**
      *
-     * @param time: number
+     * @param time
      *
      * Take a date with format YYYY-MM-DD and reformat it to M/DD
      */
     AppOutputComponent.prototype.trimmedDate = function (time) {
-        time = time.split('-');
-        var trimmedDayDate = time[1];
-        var trimmedMonthDate = time[2];
+        var splitTime = time.split('-');
+        var trimmedDayDate = splitTime[1];
+        var trimmedMonthDate = splitTime[2];
         if (trimmedDayDate.startsWith('0')) {
             trimmedDayDate = trimmedDayDate[1];
         }
@@ -1642,7 +1752,7 @@ var AppOutputComponent = /** @class */ (function () {
     };
     /**
      *
-     * @param track: object
+     * @param track
      * @param datePlaceholder
      *
      * This simply loops thru a track's dates property for matching dates provided from
@@ -1666,7 +1776,7 @@ var AppOutputComponent = /** @class */ (function () {
     };
     /**
      *
-     * @param timeInterval: number
+     * @param timeInterval
      *
      * Pass the number of date objects you want returned in a new progress bar array.
      * If time already exists inside the dates property of the track object for the
@@ -1689,7 +1799,6 @@ var AppOutputComponent = /** @class */ (function () {
                 progressArray.push(progressBarObject);
             }
             this.findMostTime(progressArray);
-            // this.bottomTime = this.findBottomTime(progressArray);
             return progressArray.reverse();
         }
         catch (error) {
@@ -1721,12 +1830,12 @@ var AppOutputComponent = /** @class */ (function () {
         }
     };
     AppOutputComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-app-output',
             template: __webpack_require__(/*! ./app-output.component.html */ "./src/app/views/app-output/app-output.component.html"),
             styles: [__webpack_require__(/*! ./app-output.component.css */ "./src/app/views/app-output/app-output.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_goal_track_service__WEBPACK_IMPORTED_MODULE_0__["GoalTrackService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_services_goal_track_service__WEBPACK_IMPORTED_MODULE_2__["GoalTrackService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], AppOutputComponent);
     return AppOutputComponent;
 }());
@@ -1796,7 +1905,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jef.dewitt/Desktop/pers_git_projs/tk3/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/Jef/Development/code_projects/tk3/src/main.ts */"./src/main.ts");
 
 
 /***/ })
