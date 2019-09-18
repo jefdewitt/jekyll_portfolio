@@ -271,3 +271,5 @@ As you can see this file uses another layout type `default` for its main structu
 ## Comments
 
 Any questions or comments please send them my way [here](http://www.jefdewitt.com/connect).
+
+## Here is a tiny change for test purposes
