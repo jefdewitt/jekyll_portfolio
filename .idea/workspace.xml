@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="356f0d38-6e17-4985-bc09-90c971a42e98" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="356f0d38-6e17-4985-bc09-90c971a42e98" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +12,7 @@
     <session id="454434587">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.7" value="1" />
@@ -49,8 +47,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="502">
-                <caret line="274" column="42" selection-start-line="274" selection-start-column="42" selection-end-line="274" selection-end-column="42" />
+              <first_editor relative-caret-position="412">
+                <caret line="269" lean-forward="true" selection-start-line="269" selection-end-line="269" />
                 <folding>
                   <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
                 </folding>
@@ -173,7 +171,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8589000" />
+    <option name="totallyTimeSpent" value="9282000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="840" y="23" width="840" height="866" extended-state="0" />
@@ -218,8 +216,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="502">
-            <caret line="274" column="42" selection-start-line="274" selection-start-column="42" selection-end-line="274" selection-end-column="42" />
+          <first_editor relative-caret-position="412">
+            <caret line="269" lean-forward="true" selection-start-line="269" selection-end-line="269" />
             <folding>
               <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
             </folding>
