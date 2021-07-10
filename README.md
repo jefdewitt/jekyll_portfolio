@@ -82,7 +82,7 @@ The `_includes` directory contains portions of code to be reused or included els
 {% include youtubePlayer.html %}
 ```
 
-Includes are a great way to add functionality with precision, only where it's needed. Thanks to Adam Harris's [article](http://www.adamwadeharris.com/how-to-easily-embed-youtube-videos-in-jekyll-sites-without-a-plugin/) I found a way for embedding YouTube videos easily with no 3rd party plugins.
+Includes are a great way to add functionality with precision, only where it's needed. Thanks to Adam Garrett-Harris's [article](https://adam.garrett-harris.com/how-to-easily-embed-youtube-videos-in-jekyll-sites-without-a-plugin) I found a way for embedding YouTube videos easily with no 3rd party plugins.
 
 My `youtubePlayer.html` file:
 ```html
